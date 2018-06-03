@@ -1,2 +1,2 @@
 #+TITLE: README
-
+* .doom.d
