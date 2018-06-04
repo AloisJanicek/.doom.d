@@ -114,10 +114,10 @@
   ;; (setq       org-bullets-bullet-list '("#" "#" "#" "#" "#" "#" "#" "#"))
   (setq org-agenda-category-icon-alist
         `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center)))
-  (setq org-agenda-custom-commands nil)
-  (setq org-capture-templates nil)
-  (setq org-agenda-files nil)
-  (setq org-refile-targets nil)
+  ;; (setq org-agenda-custom-commands nil)
+  ;; (setq org-capture-templates nil)
+  ;; (setq org-agenda-files nil)
+  ;; (setq org-refile-targets nil)
 
   ;; lists
   (add-to-list 'org-file-apps
