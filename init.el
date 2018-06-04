@@ -159,7 +159,7 @@
         ("wikipedia\\.org" . browse-url-firefox)
         ("github" . browse-url-chromium)
         ("thefreedictionary\\.com" . eww-browse-url)
-        ("." . eww-browse-url)
+        ("." . gk-browse-url)
         ))
 
 ;; Set user credentials

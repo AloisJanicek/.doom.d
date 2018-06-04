@@ -541,3 +541,13 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   (let ((bookmark-default-file (concat (projectile-project-name) "/bookmarks")))
     (counsel-bookmark)))
 
+;;;###autoload
+; TODO: replace "link: " with actual domain name - useful for hyper links with titles
+(defun gk-browse-url (&rest args)
+  "Prompt for whether or not to browse with EWW, if no browse
+with external browser."
+  (apply
+   (if (y-or-n-p (concat "link: " "Browse with EWW? "))
+       'eww-browse-url
+     #'browse-url-xdg-open)
+   args))

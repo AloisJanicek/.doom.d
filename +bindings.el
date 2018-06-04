@@ -64,6 +64,7 @@
          :desc "Decrypt entries"       :nv "D" #'org-decrypt-entry
          )
        :desc "Todo"         :nv "t" #'org-todo
+       :desc "Open"         :nv "o" #'ace-link
        :desc "Edna"           :nv "E" #'org-edna-edit
 
        (:desc "Tags"          :prefix "g"
