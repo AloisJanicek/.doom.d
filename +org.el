@@ -289,11 +289,9 @@
   :after ox)
 
 (def-package! ob-javascript
-  :disabled
   :after ob-core
   )
 (def-package! ob-async
-  :disabled
   :after ob-core
   :commands ob-async
   :hook

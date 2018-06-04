@@ -28,9 +28,9 @@
 (package! highlight-blocks)
 (package! ivy-yasnippet :recipe (:fetcher github :repo "mkcms/ivy-yasnippet"))
 
-;; (package! ob-javascript :recipe (:fetcher github :repo "zweifisch/ob-javascript" :files ("*")))
-;; (package! ob-async :recipe (:fetcher github :repo "astahlman/ob-async" ))
-;; (package! ereader :recipe (:fetcher github :repo "bddean/emacs-ereader" :files ("*.el")))
+(package! ob-javascript :recipe (:fetcher github :repo "zweifisch/ob-javascript" :files ("*")))
+(package! ob-async :recipe (:fetcher github :repo "astahlman/ob-async" ))
+(package! ereader :recipe (:fetcher github :repo "bddean/emacs-ereader" :files ("*.el")))
 
 ;; (package! org-sidebar :recipe (:fetcher github :repo "alphapapa/org-sidebar" :files ("org-sidebar.el")))
 ;; (package! org-agenda-ng :recipe (:fetcher github :repo "alphapapa/org-agenda-ng" :files ("*.el")))

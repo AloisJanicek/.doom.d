@@ -17,7 +17,10 @@
 (def-package! ivy-yasnippet
   :disabled
   :commands (ivy-yasnippet))
-;; (def-package! ereader)
+(def-package! ereader
+  :after org
+  :commands org-ebook-open
+  )
 ;; (def-package! xml+)
 (def-package! cheatsheet
   :disabled
