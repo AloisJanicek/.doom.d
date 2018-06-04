@@ -30,3 +30,5 @@
 (advice-add '+popup--delete-window :before #'(lambda (&rest _) (when (eq major-mode 'org-mode) (save-buffer))))
 (defadvice emmet-preview-accept (after emmet-after activate) (aj/indent-if-not-webmode))
 
+;; misc
+(set! :popup "*backtrace\*"'((size . 0.4) (side . right)) '((select . t)))

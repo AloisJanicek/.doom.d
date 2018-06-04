@@ -245,6 +245,7 @@
    (:desc "help"        :prefix "h"
      :desc "Manual"     :nv     "m" #'man
      :desc "Echo"     :nv     "e" #'view-echo-area-messages
+     :desc "Pop on error"     :nv     "P" #'toggle-debug-on-error
      )
    (:desc "snippet"        :prefix "s"
      :desc "Preview"     :nv     "p" #'ivy-yasnippet
