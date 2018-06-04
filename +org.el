@@ -238,7 +238,9 @@
   :after org
   :commands (org-pomodoro org-pomodoro-remaining-seconds org-pomodoro-state)
   :config
-  (setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil))))
+  (setq alert-user-configuration (quote ((((:category . "org-pomodoro")) libnotify nil)))
+        org-pomodoro-ask-upon-killing nil
+        )
   )
 (def-package! org-projectile
   :after org
