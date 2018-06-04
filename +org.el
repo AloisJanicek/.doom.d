@@ -13,126 +13,80 @@
   (org-babel-do-load-languages
    'org-babel-load-languages '((shell . t)))
 
+  (add-to-list 'org-file-apps
+               '("\\.pdf\\'" . (lambda (file link)
+                                 (org-pdfview-open link))))
   ;; vars
   ;; setqs
   (setq evil-org-key-theme '(textobjects insert navigation additional shift heading))
-  (setq org-fontify-whole-heading-line nil)
-  ;; (setq org-hide-emphasis-markers t)
+
   (setq org-agenda-prefix-format '(
                                    (agenda  . "  %-12s%6t ")
                                    (timeline  . "%s ")
                                    (todo  . "     Effort: %6e  ")
                                    (tags  . " ")
                                    (search . " ")))
-  (setq org-todo-keywords
-        '(
-          (sequence "TODO(t!)" "NEXT(n!)" "WAIT(w!)" "|" "DONE(d!)"     "CANC(c!)")
-          (sequence "ACTIVE(a!)"          "WAIT(w!)" "|" "FINISHED(f!)" "CANC(c!)")
-          (sequence "PRACTICE(p!)"                   "|" "FINISHED(f!)")
-          (sequence "CHALLENGE(l!)"                  "|" "FINISHED(f!)")
-          (sequence "SKETCH(1!)" "ASSETS(2!)" "DESIGN(3!)" "CODING(4!)" "TESTING(5!)" "|" "PUBLISH(6!)")
-          )
-        )
-  (setq org-todo-keyword-faces
-        '(
+  (setq org-todo-keywords '())
+  (setq org-todo-keyword-faces '())
+  (setq org-agenda-custom-commands nil)
+  (setq org-capture-templates nil)
+  (setq org-agenda-files nil)
+  (setq org-refile-targets nil)
+  (setq org-agenda-category-icon-alist
+        `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center)))
 
-          ("ACTIVE" (:background "#69F0AE" :foreground "#212121" :weight bold))
-          ("TODO" (:background "#FFD600" :foreground "#212121" :weight bold))
-
-          ("NEXT" (:background "#FFD600" :foreground "white" :weight bold))
-
-          ("WAIT" (:background "#FF80AB" :foreground "#212121" :weight bold))
-
-          ("DONE" (:background "#21242b" :foreground "#616161" :weight bold))
-          ("FINISHED" (:background "#21242b" :foreground "#616161" :weight bold))
-          ;; website kanban
-          ("SKETCH" (:background "#3C3C45" :foreground "#EFF0F1" :weight bold))
-          ("ASSETS" (:background "#20221F" :foreground "#EFF0F1" :weight bold))
-          ("DESIGN" (:background "#480000" :foreground "#EFF0F1" :weight bold))
-          ("CODING" (:background "#D89048" :foreground "#EFF0F1" :weight bold))
-          ("TESTING" (:background "#268BD2" :foreground "#EFF0F1" :weight bold))
-          ))
-  (setq org-startup-with-inline-images t)
   (setq +org-dir "~/org/"
         +org-attach-dir "attach/"
         org-export-directory "export/"
         org-archive-location "~/org/archive/archive.org::datetree/"
         org-id-locations-file "~/.emacs.d/.local/org-ids-locations"
-
-        org-enforce-todo-dependencies nil             ;; Block entries to change todo state to done if there are unfinished children
-        org-enforce-todo-checkbox-dependencies nil    ;; Same as above but with check boxes
-        org-agenda-dim-blocked-tasks t              ;; Dim blocked tasks in org-agenda views
-        org-provide-todo-statistics t               ;; Needed for following item
-        org-hierarchical-todo-statistics nil        ;; Count all unfinished tasks, not only direct children
-        org-checkbox-hierarchical-statistics nil       ;; Count all unfinished check boxes, not only direct children
-        org-agenda-todo-list-sublevels t            ;; Keep sub tasks out of global todo list (nil), or include them (t)
-        org-agenda-log-mode-items '(closed clock state) ;; Show reoccurring tasks in agenda log book
-        org-log-done 'time
-        org-log-redeadline 'time
-        org-log-reschedule 'time
-        org-log-into-drawer "LOGBOOK"
-        org-agenda-span 2                  ;; Display just today by default
-        org-agenda-start-on-weekday nil    ;; First displayed day will be determined by org-agenda-span
+        org-startup-with-inline-images t
+        org-hide-emphasis-markers nil
+        org-fontify-whole-heading-line nil
+        org-enforce-todo-dependencies nil
+        org-enforce-todo-checkbox-dependencies nil
+        org-agenda-dim-blocked-tasks t
+        org-provide-todo-statistics t
+        org-hierarchical-todo-statistics nil
+        org-checkbox-hierarchical-statistics nil
+        org-agenda-todo-list-sublevels t
+        org-agenda-log-mode-items '(closed clock state)
+        org-agenda-span 2
+        org-agenda-start-on-weekday nil
         org-agenda-start-with-log-mode nil
         org-agenda-start-day "1d"
         org-agenda-compact-blocks t
         org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
-        ;; (setq org-agenda-start-with-clockreport-mode 1)
-        ;; Org-ids for org-brain
         org-id-track-globally t
-        ;; Properties inheritance
         org-use-property-inheritance t
-
         org-log-done 'time
+        org-log-redeadline 'time
+        org-log-reschedule 'time
         org-log-into-drawer "LOGBOOK"
         org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"
-        ;; Show lot of clocking history so it's easy to pick items off the C-F11 list
         org-clock-history-length 23
-        ;; Resume clocking task on clock-in if the clock is open
         org-clock-in-resume t
-        ;; Change tasks to NEXT when clocking in
-        ;; org-clock-in-switch-to-state 'bh/clock-in-to-next
-        ;; Separate drawers for clocking and logs
         org-drawers (quote ("PROPERTIES" "LOGBOOK"))
-        ;; Save clock data and state changes and notes in the LOGBOOK drawer
         org-clock-into-drawer t
-        ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
         org-clock-out-remove-zero-time-clocks t
-        ;; Clock out when moving task to a done state
         org-clock-out-when-done t
-        ;; Save the running clock and all clock history when exiting Emacs, load it on startup
         org-clock-persist t
-        ;; Do not prompt to resume an active clock
         org-clock-persist-query-resume nil
-        ;; Enable auto clock resolution for finding open clocks
         org-clock-auto-clock-resolution (quote when-no-clock-is-running)
-        ;; Include current clocking task in clock reports
         org-clock-report-include-clocking-task t
 
         )
-  ;; (setq       org-bullets-bullet-list '("#" "#" "#" "#" "#" "#" "#" "#"))
-  (setq org-agenda-category-icon-alist
-        `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center)))
-  ;; (setq org-agenda-custom-commands nil)
-  ;; (setq org-capture-templates nil)
-  ;; (setq org-agenda-files nil)
-  ;; (setq org-refile-targets nil)
 
-  ;; lists
-  (add-to-list 'org-file-apps
-               '("\\.pdf\\'" . (lambda (file link)
-                                 (org-pdfview-open link))))
 
   ;; hooks
   (add-hook 'org-after-todo-state-change-hook 'org-save-all-org-buffers)
   (add-hook 'org-agenda-after-show-hook 'org-narrow-to-subtree)
-  ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-  (remove-hook 'org-mode-hook #'auto-fill-mode)
   (add-hook 'org-mode-hook #'visual-line-mode)
+  ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+  (remove-hook 'org-agenda-finalize-hook '+org|cleanup-agenda-files)
+  (remove-hook 'org-mode-hook #'auto-fill-mode)
 
-  ;; afters
-  (after! org (remove-hook 'org-agenda-finalize-hook '+org|cleanup-agenda-files))
 
   ;; faces
   (set-face-attribute     'org-level-1 nil :height 1.0)
