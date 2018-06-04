@@ -32,3 +32,9 @@
 
 ;; misc
 (set! :popup "*backtrace\*"'((size . 0.4) (side . right)) '((select . t)))
+
+(evil-define-command evil-ask-to-save-and-quit ()
+  "Ask to save each modified buffer and exit Emacs."
+  (save-some-buffers nil nil)
+  (kill-emacs)
+  )

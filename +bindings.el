@@ -243,6 +243,9 @@
  ;; leader
 
  (:leader
+   (:desc "quit"        :prefix "q"
+     :desc "Ask to save and quit"     :nv     "a" #'evil-ask-to-save-and-quit
+     )
    (:desc "help"        :prefix "h"
      :desc "Manual"     :nv     "m" #'man
      :desc "Echo"     :nv     "e" #'view-echo-area-messages
