@@ -9,6 +9,8 @@
   (set! :popup "*man\*" '((size . 0.6) (side . left)) '((select . t) )))
 (after! eww
   (set! :popup "*eww\*" '((size . 0.4) (side . left)) '((select . t) )))
+(after! ibuffer
+  (set! :popup "*Ibuffer\*" '((size . 0.4) (side . left)) '((select . t) )))
 (after! info
   (advice-add 'info :before 'aj/set-info-popup-width))
 (after! cus-edit

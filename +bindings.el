@@ -250,6 +250,9 @@
    (:desc "snippet"        :prefix "s"
      :desc "Preview"     :nv     "p" #'ivy-yasnippet
      )
+   (:desc "buffer"        :prefix "b"
+     :desc "List"     :nv     "l" #'ibuffer-list-buffers
+     )
    (:desc "jump:" :prefix "j"
      :desc "file"         :nv "f" #'counsel-file-jump
      :desc "session"      :nv "S" #'+workspace/load-session
