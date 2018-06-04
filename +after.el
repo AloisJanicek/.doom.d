@@ -20,6 +20,8 @@
 (after! apropos
   (set! :popup "*apropos\*" '((size . 0.4) (side . left)) '((select . t) ))
   (set! :popup "*Apropos\*" '((size . 0.4) (side . left)) '((select . t) )))
+(after! profiler
+  (set! :popup "^.*-Profiler-Report.*$"'((size . 0.4) (side . right)) '((select . t))))
 (after! evil
   (setq evil-move-cursor-back nil))
 (after! prodigy
