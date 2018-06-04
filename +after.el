@@ -2,7 +2,7 @@
 
 (after! epa
   (setq epa-pinentry-mode 'ask))
-(after! Man
+(after! man
   (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "orange red")
   (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "forest green")
   (set! :popup "*Man\*" '((size . 0.4) (side . left)) '((select . t) ))
