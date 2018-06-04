@@ -22,7 +22,7 @@
 (add-hook! 'web-mode-hook #'flycheck-mode)
 
 ;; remap keys for terminal with Evil
-;; (add-hook! :append term-mode 'aj/set-term-keys)
+(add-hook! :append term-mode 'aj/set-term-keys)
 
 ;;; run remaping function before entering emmet-preview
 (advice-add 'emmet-preview :before 'aj/remap-emmet)
