@@ -17,7 +17,7 @@
   ;; setqs
   (setq evil-org-key-theme '(textobjects insert navigation additional shift heading))
   (setq org-fontify-whole-heading-line nil)
-  (setq org-hide-emphasis-markers t)
+  ;; (setq org-hide-emphasis-markers t)
   (setq org-agenda-prefix-format '(
                                    (agenda  . "  %-12s%6t ")
                                    (timeline  . "%s ")
