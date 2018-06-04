@@ -128,7 +128,8 @@
   (add-hook 'org-after-todo-state-change-hook 'org-save-all-org-buffers)
   (add-hook 'org-agenda-after-show-hook 'org-narrow-to-subtree)
   ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-
+  (remove-hook 'org-mode-hook #'auto-fill-mode)
+  (add-hook 'org-mode-hook #'visual-line-mode)
 
   ;; afters
   (after! org (remove-hook 'org-agenda-finalize-hook '+org|cleanup-agenda-files))
