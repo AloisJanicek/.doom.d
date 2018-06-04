@@ -20,6 +20,8 @@
    "C-s"        #'ispell-word
    "C-="          #'recenter-top-bottom
    "C-\\"          #'move-to-window-line-top-bottom
+   "C-<right>"      #'next-buffer
+   "C-<left>"      #'previous-buffer
    "M-p"  #'+ivy:rg
    :ne "M-f"  #'aj/my-swiper
    "<f2>" #'which-key-show-top-level

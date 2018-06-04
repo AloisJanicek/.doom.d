@@ -395,6 +395,8 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
     (kbd "C-h") 'evil-window-left
     (kbd "C-j") 'evil-window-down
     (kbd "C-k") 'evil-window-up
+    (kbd "C-<right>") 'next-buffer
+    (kbd "C-<left>") 'previous-buffer
     (kbd "M-1") (function
                  (lambda nil
                    (interactive)
