@@ -1,12 +1,7 @@
 ;;; ~/.doom.d/+org.el -*- lexical-binding: t; -*-
 
-(after! org
-  ;; requires
-  (require 'org-man)
-  (require 'org-eww)
-  (require 'org-protocol)
-  (require 'org-habit)
-
+;; load additional org-modules
+(add-hook 'org-load-hook '(lambda () (setq org-modules (append '(org-man org-eww org-protocol org-habit) org-modules))))
 
   ;; signatures
   (org-clock-persistence-insinuate)
