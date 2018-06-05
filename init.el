@@ -199,6 +199,8 @@
 ;; start me maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; disable distracting messages when exiting doom
+(setq +doom-quit-messages '(""))
 ;; scratch: inherit major mode from latest active buffer
 (setq doom-scratch-buffer-major-mode t)
 ;; (custom-set-faces
