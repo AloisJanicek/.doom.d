@@ -204,7 +204,8 @@
   :config (org-projectile-per-project)
   )
 
-(def-package! ereader)
+(def-package! ereader
+    :init (add-to-list 'doom-large-file-modes-list 'ereader-mode))
 (def-package! org-ebook :after (org ereader))
 (def-package! org-pdfview :after org)
 (def-package! ob-javascript :after ob-core)
