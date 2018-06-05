@@ -20,7 +20,7 @@
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 (add-hook 'web-mode-hook 'er/add-web-mode-expansions)
 (add-hook! 'web-mode-hook #'flycheck-mode)
-
+(add-hook! 'doom-scratch-buffer-hook #'aj/scratch-menu/body)
 ;; remap keys for terminal with Evil
 (add-hook! :append term-mode 'aj/set-term-keys)
 
