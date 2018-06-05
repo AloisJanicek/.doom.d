@@ -1,5 +1,5 @@
 ;;; ~/.doom.d/+hydras.el -*- lexical-binding: t; -*-
-(defhydra aj/scratch-menu (:color blue)
+(defhydra aj/switch-mode-menu (:color blue)
   "Select mode:"
   ("o" (org-mode) "Org" )
   ("e" (emacs-lisp-mode) "Elisp" )

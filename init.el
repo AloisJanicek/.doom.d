@@ -199,6 +199,8 @@
 ;; start me maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; scratch: inherit major mode from latest active buffer
+(setq doom-scratch-buffer-major-mode t)
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
