@@ -15,11 +15,9 @@
 (package! org-projectile)
 (package! org-pomodoro)
 (package! org-pdfview)
-(package! ob-browser)
 (package! org-brain)
 (package! org-edna)
 (package! ox-hugo)
-(package! ox-epub)
 (package! powerthesaurus :recipe (:fetcher github :repo "SavchenkoValeriy/emacs-powerthesaurus"))
 (package! qml-mode)
 (package! cheatsheet)
@@ -30,7 +28,8 @@
 
 (package! ob-javascript :recipe (:fetcher github :repo "zweifisch/ob-javascript" :files ("*")))
 (package! ob-async :recipe (:fetcher github :repo "astahlman/ob-async" ))
-(package! ereader :recipe (:fetcher github :repo "bddean/emacs-ereader" :files ("*.el")))
+(package! ereader :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/ereader.el"))
+(package! org-ebook :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/org-ebook.el"))
 
 ;; (package! org-sidebar :recipe (:fetcher github :repo "alphapapa/org-sidebar" :files ("org-sidebar.el")))
 ;; (package! org-agenda-ng :recipe (:fetcher github :repo "alphapapa/org-agenda-ng" :files ("*.el")))

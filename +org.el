@@ -204,6 +204,11 @@
   :config (org-projectile-per-project)
   )
 
+(def-package! ereader)
+(def-package! org-ebook :after (org ereader))
+(def-package! org-pdfview :after org)
+(def-package! ob-javascript :after ob-core)
+(def-package! ob-async :after ob-core :commands ob-async-org-babel-execute-src-block)
 ;; disabled
 (def-package! org-fancy-priorities
   :after org
