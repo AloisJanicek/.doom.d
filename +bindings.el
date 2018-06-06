@@ -53,6 +53,7 @@
    :i "C-'" #'forward-char
    :i "C-;" #'backward-char
    "C-s"        #'ispell-word
+   :inv "M-y"          #'counsel-yank-pop
    "C-="          #'recenter-top-bottom
    "C-\\"          #'move-to-window-line-top-bottom
    "C-<right>"      #'next-buffer

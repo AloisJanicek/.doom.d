@@ -375,7 +375,7 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
 (defun aj/my-swiper ()
   "Launch swiper with different ivi-height (12)"
   (interactive)
-  (let ((ivy-height 12))
+  (let ((ivy-height 15))
     (counsel-grep-or-swiper)))
 ;;;###autoload
 (defun aj/mark-region-and-preview-emmet ()
