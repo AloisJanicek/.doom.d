@@ -183,16 +183,17 @@ of text segment of current headline.
   "Go to a different location in my private wiki file."
   (interactive)
   (let ((ivy-height 40)
+        (ivy-posframe-font (font-spec :family "Iosevka" :size 18))
         (ivy-posframe-parameters `((min-width . 120)
                                    (height . 30)
-                                  (min-height . ,ivy-height)
+                                   (min-height . ,ivy-height)
                                    (internal-border-width . 20))))
-     (ivy-read "Goto: " (counsel-org-goto--get-headlines)
-               :history 'counsel-org-goto-history
-               ;; :action 'aj/create-new-org-l1-heading
-               :action 'counsel-org-goto-wiki-action
-               :caller 'counsel-org-goto))
-   )
+    (ivy-read "Goto: " (counsel-org-goto--get-headlines)
+              :history 'counsel-org-goto-history
+              ;; :action 'aj/create-new-org-l1-heading
+              :action 'counsel-org-goto-wiki-action
+              :caller 'counsel-org-goto))
+  )
 
 ;;;###autoload
 (defun aj/refile-to-file-headline (file headline &optional arg)
