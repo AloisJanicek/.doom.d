@@ -375,6 +375,7 @@
      :desc "ag"         :nv "g" #'counsel-ag
      :desc "ag"         :nv "h" #'counsel-rg
      :desc "file"         :nv "f" #'counsel-find-file
+     :desc "jump org"         :nv "o" #'aj/jump-to-org-dir
      :desc "jump file"         :nv "j" #'counsel-file-jump
      :desc "jump dir"         :nv "k" #'counsel-dired-jump
      )

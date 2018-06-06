@@ -553,3 +553,10 @@ with external browser."
        'eww-browse-url
      #'browse-url-xdg-open)
    args))
+
+;;;###autoload
+(defun aj/jump-to-org-dir ()
+  "Jumps to org directory"
+  (interactive)
+  (let ((default-directory "~/org/"))
+    (counsel-find-file)))
