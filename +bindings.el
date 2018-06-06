@@ -10,7 +10,7 @@
           :desc "encrypt entry"     :nv "e" #'org-encrypt-entry
           :desc "Encrytp entries"     :nv "E" #'org-encrypt-entries
           :desc "decrypt entry"       :nv "d" #'org-decrypt-entry
-          :desc "Decrypt entries"       :nv "D" #'org-decrypt-entry
+          :desc "Decrypt entries"       :nv "D" #'org-decrypt-entries
           )
        (:desc "Clock"        :prefix "c"
          :desc "IN"           :nv "i" #'org-clock-in
