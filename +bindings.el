@@ -82,6 +82,9 @@
          :desc "Subtree"           :nv "s" #'org-archive-subtree
          )
 
+       (:desc "jump:"          :prefix "j"
+         :desc "headline"           :nv "h" #'counsel-org-goto
+         )
        :desc "Wiki"       :nv "w"     (λ! (progn
                                             (widen)
                                             (org-set-visibility-according-to-property)
