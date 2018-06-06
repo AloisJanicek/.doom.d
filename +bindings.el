@@ -31,6 +31,11 @@
    )
 
  ;; modes
+ (:after info
+   (:map Info-mode-map
+    :nve "o"      #'ace-link-info
+     )
+   )
  (:after org-capture
    (:map org-capture-mode-map
      ;; Switch to other workspaces even if org-capture is opened and focused
