@@ -91,6 +91,7 @@
 
      "C-]"        #'org-insert-subheading
      "<tab>"      #'org-cycle
+     :inv "M-l"   #'aj/insert-link-in-org
      :n "J"       #'outline-next-visible-heading
      :n "K"       #'outline-previous-visible-heading
 

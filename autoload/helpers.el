@@ -156,4 +156,9 @@ Use `org-agenda-refile' in `org-agenda' mode."
         css-indent-offset 2
         )
   )
-
+;;;###autoload
+(defun aj/insert-link-in-org()
+  (interactive)
+  (org-insert-link)
+  (evil-org-open-below 1)
+  )
