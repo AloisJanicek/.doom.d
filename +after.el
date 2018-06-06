@@ -112,7 +112,7 @@ See URL `http://stylelint.io/'."
   ;; finally add them to `flycheck-checkers' list
   (add-to-list 'flycheck-checkers 'css-stylelint-custom 'javascript-eslint-custom ))
 (after! company
-  (setq company-idle-delay 0.2)
+  (setq company-idle-delay 0.6)
   (setq company-minimum-prefix-length 2))
 (after! json-mode
   (setq js2-basic-offset 2))
