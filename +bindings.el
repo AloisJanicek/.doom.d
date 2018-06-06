@@ -311,6 +311,7 @@
      :desc "Switch"       :nv     "s" #'counsel-projectile-switch-project
      :desc "Add"       :nv     "A" #'projectile-add-known-project
      :desc "Services"   :nv     "t" #'prodigy
+     :desc "set variable"   :nv     "v" #'projectile-edit-dir-locals
      )
    (:desc "code"        :prefix "c"
      :desc "eval-last-sexp"       :nv     "s" #'eval-last-sexp
