@@ -68,7 +68,7 @@
  ;; modes
  (:after info
    (:map Info-mode-map
-    :nve "o"      #'ace-link-info
+     :nve "o"      #'ace-link-info
      )
    )
  (:after org-capture
