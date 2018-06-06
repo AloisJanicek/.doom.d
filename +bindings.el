@@ -39,17 +39,17 @@
 
  ;; global
  (:map global-map
-   (:when (featurep 'evil)
-     :nimve "M-1"   (λ! (+workspace/switch-to 0))
-     :nimve "M-2"   (λ! (+workspace/switch-to 1))
-     :nimve "M-3"   (λ! (+workspace/switch-to 2))
-     :nimve "M-4"   (λ! (+workspace/switch-to 3))
-     :nimve "M-5"   (λ! (+workspace/switch-to 4))
-     :nimve "M-6"   (λ! (+workspace/switch-to 5))
-     :nimve "M-7"   (λ! (+workspace/switch-to 6))
-     :nimve "M-8"   (λ! (+workspace/switch-to 7))
-     :nimve "M-9"   (λ! (+workspace/switch-to 8))
-     :nimve "M-0"   #'+workspace/switch-to-last)
+   :nimve "M-1"   (λ! (+workspace/switch-to 0))
+   :nimve "M-2"   (λ! (+workspace/switch-to 1))
+   :nimve "M-3"   (λ! (+workspace/switch-to 2))
+   :nimve "M-4"   (λ! (+workspace/switch-to 3))
+   :nimve "M-5"   (λ! (+workspace/switch-to 4))
+   :nimve "M-6"   (λ! (+workspace/switch-to 5))
+   :nimve "M-7"   (λ! (+workspace/switch-to 6))
+   :nimve "M-8"   (λ! (+workspace/switch-to 7))
+   :nimve "M-9"   (λ! (+workspace/switch-to 8))
+   :nimve "M-0"   #'+workspace/switch-to-last
+
    :i "C-'" #'forward-char
    :i "C-;" #'backward-char
    "C-s"        #'ispell-word
