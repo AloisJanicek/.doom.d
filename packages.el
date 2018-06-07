@@ -35,7 +35,7 @@
 (package! ereader :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/ereader.el" :version 0.0.0))
 (package! org-ebook :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/org-ebook.el" :version 0.0.0))
 (package! sdcv :recipe (:fetcher url :url "https://raw.githubusercontent.com/stardiviner/sdcv.el/master/sdcv.el"))
-
+(package! define-word)
 ;; (package! org-sidebar :recipe (:fetcher github :repo "alphapapa/org-sidebar" :files ("org-sidebar.el")))
 ;; (package! org-agenda-ng :recipe (:fetcher github :repo "alphapapa/org-agenda-ng" :files ("*.el")))
 

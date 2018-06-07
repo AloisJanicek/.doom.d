@@ -140,3 +140,4 @@
   (exwm-randr-enable)
   )
 (def-package! sdcv)
+(def-package! define-word)
