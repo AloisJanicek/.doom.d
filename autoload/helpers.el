@@ -160,5 +160,5 @@ Use `org-agenda-refile' in `org-agenda' mode."
 (defun aj/insert-link-in-org()
   (interactive)
   (org-insert-link)
-  (evil-org-open-below 1)
+  ;; (evil-org-open-below 1)
   )
