@@ -81,7 +81,7 @@ See URL `http://eslint.org/'."
           :label "config file"
           :message (if have-config "found" "missing or incorrect")
           :face (if have-config 'success '(bold error)))))))
-
+  (add-to-list 'flycheck-checkers 'javascript-eslint-custom)
   ;; css-styleling checke with explainer
   (flycheck-define-checker css-stylelint-custom
     "A CSS syntax and style checker using stylelint.
@@ -99,9 +99,8 @@ See URL `http://stylelint.io/'."
         (progn
           (browse-url (concat "https://stylelint.io/user-guide/rules/" error-code)))))
     :modes (css-mode))
-
-  ;; finally add them to `flycheck-checkers' list
-  (add-to-list 'flycheck-checkers 'css-stylelint-custom 'javascript-eslint-custom ))
+  (add-to-list 'flycheck-checkers 'css-stylelint-custom)
+  )
 (after! company
   (setq company-idle-delay 0.6)
   (setq company-minimum-prefix-length 2))
