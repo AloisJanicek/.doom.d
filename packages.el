@@ -1,6 +1,9 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; packages.el
 
+;; until it gets merged
+(package! flycheck :recipe (:fetcher github :repo "flycheck/flycheck" :branch "fix-1398-quoted-lambdas"))
+
 (package! fish-mode)
 (package! apache-mode)
 (package! robots-txt-mode)
