@@ -1,27 +1,27 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
 ;; hacks
-(defun localleader-belongs-to-me-in-org (&rest _)
-  "Take over of prefix mappings defined in +org|setup-evil"
-  (require 'evil-org)
-  (map! :map evil-org-mode-map
-        :localleader
-        (:desc "decrypt:"          :prefix "d"
-          :desc "encrypt entry"     :nv "e" #'org-encrypt-entry
-          :desc "Encrytp entries"     :nv "E" #'org-encrypt-entries
-          :desc "decrypt entry"       :nv "d" #'org-decrypt-entry
-          :desc "Decrypt entries"       :nv "D" #'org-decrypt-entries
-          )
-       (:desc "Clock"        :prefix "c"
-         :desc "IN"           :nv "i" #'org-clock-in
-         :desc "OUT"          :nv "o" #'org-clock-out
-         :desc "Goto"         :nv "g" #'org-clock-goto
-         :desc "Pomodoro"     :nv "p" #'org-pomodoro
-         )
-       :desc "Todo"         :nv "t" #'org-todo
-        )
-  )
-(advice-add #'+org|setup-evil :around #'localleader-belongs-to-me-in-org)
+;; (defun localleader-belongs-to-me-in-org (&rest _)
+;;   "Take over of prefix mappings defined in +org|setup-evil"
+;;   (require 'evil-org)
+;;   (map! :map evil-org-mode-map
+;;         :localleader
+;;         (:desc "decrypt:"          :prefix "d"
+;;           :desc "encrypt entry"     :nv "e" #'org-encrypt-entry
+;;           :desc "Encrytp entries"     :nv "E" #'org-encrypt-entries
+;;           :desc "decrypt entry"       :nv "d" #'org-decrypt-entry
+;;           :desc "Decrypt entries"       :nv "D" #'org-decrypt-entries
+;;           )
+;;        (:desc "Clock"        :prefix "c"
+;;          :desc "IN"           :nv "i" #'org-clock-in
+;;          :desc "OUT"          :nv "o" #'org-clock-out
+;;          :desc "Goto"         :nv "g" #'org-clock-goto
+;;          :desc "Pomodoro"     :nv "p" #'org-pomodoro
+;;          )
+;;        :desc "Todo"         :nv "t" #'org-todo
+;;         )
+;;   )
+;; (advice-add #'+org|setup-evil :around #'localleader-belongs-to-me-in-org)
 
 ;; this doesn't work for prefix, only for single key
 ;; (map! :after org
