@@ -13,6 +13,7 @@
 (package! gulp-task-runner)
 (package! flyspell-lazy)
 
+(package! all-the-icons-ivy)
 (package! org-fancy-priorities)
 (package! org-super-agenda)
 (package! org-projectile)

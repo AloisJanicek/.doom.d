@@ -17,6 +17,13 @@
 (def-package! ivy-yasnippet
   :disabled
   :commands (ivy-yasnippet))
+(def-package! all-the-icons-ivy
+  :after ivy
+  :config
+  (setq all-the-icons-ivy-file-commands
+        '(counsel-find-file counsel-file-jump counsel-recentf counsel-projectile-find-file counsel-projectile-find-dir counsel-projectile-find-file))
+  (all-the-icons-ivy-setup)
+  )
 (def-package! ereader
   :after org
   :commands org-ebook-open
