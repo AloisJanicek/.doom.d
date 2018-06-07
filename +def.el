@@ -139,3 +139,4 @@
                "xrandr" nil "xrandr --output VGA-1 --right-of LVDS-1 --auto")))
   (exwm-randr-enable)
   )
+(def-package! sdcv)
