@@ -568,3 +568,44 @@ with external browser."
   (interactive)
   (let ((default-directory "~/org/"))
     (counsel-find-file)))
+
+;;;###autoload
+(defun counsel-projectile-bookmark ()
+  "Forward to `bookmark-jump' or `bookmark-set' if bookmark doesn't exist."
+  (interactive)
+  (require 'bookmark)
+  (let ((projectile-bookmarks (projectile-bookmarks)))
+    (ivy-read "Create or jump to bookmark: "
+              projectile-bookmarks
+              :action (lambda (x)
+                        (cond ((and counsel-bookmark-avoid-dired
+                                    (member x projectile-bookmarks)
+                                    (file-directory-p (bookmark-location x)))
+                               (with-ivy-window
+                                 (let ((default-directory (bookmark-location x)))
+                                   (counsel-find-file))))
+                              ((member x projectile-bookmarks)
+                               (with-ivy-window
+                                 (bookmark-jump x)))
+                              (t
+                               (bookmark-set x))))
+              :caller 'counsel-projectile-bookmark)))
+
+
+;;;###autoload
+(defun projectile-bookmarks ()
+  (let ((bmarks (bookmark-all-names)))
+    (cl-remove-if-not #'workspace-bookmark-p bmarks)))
+
+;;;###autoload
+(defun workspace-bookmark-p (bmark)
+  (let ((bmark-path (expand-file-name (bookmark-location bmark))))
+    (string-prefix-p (bmacs-project-root) bmark-path)))
+
+;;;###autoload
+(defun bmacs-project-root ()
+  "Get the path to the root of your project.
+If STRICT-P, return nil if no project was found, otherwise return
+`default-directory'."
+  (let (projectile-require-project-root)
+    (projectile-project-root)))

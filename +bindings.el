@@ -316,6 +316,7 @@
      :desc "view"         :nv "v" #'ivy-switch-view
      :desc "clock"        :nv "c" #'org-clock-jump-to-current-clock
      :desc "buffer"        :nv "b" #'counsel-ibuffer
+     :desc "project bookmark"   :nv     "p" #'counsel-projectile-bookmark
      )
    (:desc "view:" :prefix "v"
      :desc "jump"   :nv "j" #'ivy-switch-view

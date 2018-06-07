@@ -113,6 +113,12 @@ See URL `http://stylelint.io/'."
 (after! tide
   (setq tide-completion-detailed nil
         tide-always-show-documentation nil))
+(after! ivy
+  (ivy-set-actions
+   'counsel-projectile-bookmark
+   '(("d" bookmark-delete "delete")
+     ("e" bookmark-rename "edit")))
+  )
 (after! counsel
   (setq counsel-grep-base-command "grep -E -n -i -e %s %s")
   (setq counsel-org-goto-face-style 'org
