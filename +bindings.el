@@ -327,6 +327,10 @@
      :desc "Save session as"   :nv "S" #'aj/save-session-as
      :desc "Save session"   :nv "a" #'+workspace/save-session
      )
+   (:desc "dict" :prefix "d"
+     :desc "word/stardict"   :nv "s" #'sdcv-search-pointer
+     :desc "input/stardict"   :nv "i" #'sdcv-search-input
+     )
    :desc "clock"        :nv     "\\"    #'aj/clocking/body
    :desc "popup"     :nv     "'" #'+popup/toggle
    :desc "agenda"     :nv     "a" #'aj/agenda/body
