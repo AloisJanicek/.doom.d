@@ -609,3 +609,11 @@ If STRICT-P, return nil if no project was found, otherwise return
 `default-directory'."
   (let (projectile-require-project-root)
     (projectile-project-root)))
+;;;###autoload
+(defun browse-webster-at-point ()
+    (interactive)
+    (browse-url (concat "https://www.merriam-webster.com/dictionary/" (thing-at-point 'word))))
+;;;###autoload
+(defun browse-dictionary-at-point ()
+  (interactive)
+  (browse-url (concat "https://dictionary.com/browse/" (thing-at-point 'word))))

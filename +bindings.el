@@ -332,6 +332,8 @@
      :desc "input/stardict"   :nv "i" #'sdcv-search-input
      :desc "online"   :nv "o" #'define-word
      :desc "online/point"   :nv "p" #'define-word-at-point
+     :desc "webster"   :nv "w" #'browse-webster-at-point
+     :desc "dictionary"   :nv "d" #'browse-dictionary-at-point
      )
    :desc "clock"        :nv     "\\"    #'aj/clocking/body
    :desc "popup"     :nv     "'" #'+popup/toggle
