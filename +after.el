@@ -38,19 +38,7 @@
 (after! projectile
   (setq projectile-globally-ignored-file-suffixes (append (list ".elc"))
         projectile-globally-ignored-directories (append (list "node_modules"))
-        projectile-ignored-projects '("~/"
-                                      "~/Inbox/"
-                                      "/tmp/*"
-                                      "/tmp/"
-                                      "~/org-protocol:/"
-                                      "~/Reference/"
-                                      "/usr/share/*"
-                                      "~/org/"
-                                      "~/org/wiki/"
-                                      "/usr/share/emacs/26.0.91/lisp/"
-                                      "/usr/share/emacs/26.0.91/lisp/progmodes/"
-                                      "~/repos/doom-emacs-private-xfu"
-                                      "~/org/snippets/templates"
+        projectile-ignored-projects '(
                                       )))
 (after! persp-mode
   (setq persp-kill-foreign-buffer-action nil))
