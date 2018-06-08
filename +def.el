@@ -20,7 +20,7 @@
 (def-package! all-the-icons-ivy
   :after ivy
   :config
-  ;; (all-the-icons-ivy-setup)
+  (all-the-icons-ivy-setup)
   (ivy-set-display-transformer '+ivy/switch-workspace-buffer 'all-the-icons-ivy-buffer-transformer)
   (ivy-set-display-transformer 'counsel-projectile-find-file 'all-the-icons-ivy-file-transformer)
   (ivy-set-display-transformer 'counsel-file-jump 'all-the-icons-ivy-file-transformer)
