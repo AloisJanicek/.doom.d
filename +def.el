@@ -18,7 +18,18 @@
   :disabled
   :commands (ivy-yasnippet))
 (def-package! all-the-icons-ivy
-  :after ivy
+  :after (ivy counsel)
+  :init
+  (setq all-the-icons-ivy-file-commands
+        '(counsel-recentf
+          counsel-find-file
+          counsel-file-jump
+          counsel-dired-jump
+          counsel-projectile-find-file ;; not working
+          counsel-projectile-find-dir))
+  (setq all-the-icons-ivy-buffer-commands
+        '(+ivy/switch-workspace-buffer
+          ))
   :config
   (all-the-icons-ivy-setup)
   (ivy-set-display-transformer '+ivy/switch-workspace-buffer 'all-the-icons-ivy-buffer-transformer)
