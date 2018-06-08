@@ -2,6 +2,12 @@
 
 (after! epa
   (setq epa-pinentry-mode 'ask))
+(after! flyspell
+  (setq flyspell-issue-message-flag nil
+        flyspell-issue-welcome-flag nil
+        )
+  (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
+  )
 (after! man
   (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "orange red")
   (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "forest green")
