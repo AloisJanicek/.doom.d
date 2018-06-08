@@ -240,6 +240,7 @@
      "k" #'pdf-view-previous-line-or-previous-page
      "l" #'org-store-link
      "i" #'counsel-imenu
+     :nimve "y" #'pdf-view-kill-ring-save
      )
    )
  (:after man
