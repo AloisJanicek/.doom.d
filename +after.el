@@ -52,7 +52,9 @@
   (set! :popup "^.*magit" '((slot . -1) (side . right) (size . 80)) '((modeline . nil) (select . t)))
   (set! :popup "^.*magit.*popup\\*" '((slot . 0) (side . right)) '((modeline . nil) (select . t)))
   (set! :popup "^.*magit-revision:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . t)))
-  (set! :popup "^.*magit-diff:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . nil))))
+  (set! :popup "^.*magit-diff:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . nil)))
+  (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
+  )
 ; note: broken with default flycheck, needs :branch "fix-1398-quoted-lambdas"
 ; see: https://github.com/flycheck/flycheck/pull/1440
 ; see: https://github.com/flycheck/flycheck/issues/1398
