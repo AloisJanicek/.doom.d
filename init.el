@@ -194,7 +194,7 @@
       )
 
 ;; Customize which-key
-(setq which-key-idle-delay 0.2
+(setq which-key-idle-delay 0.8
       which-key-allow-regexps nil
       which-key-allow-evil-operators 1
       )
