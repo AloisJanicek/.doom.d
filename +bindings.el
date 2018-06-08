@@ -233,6 +233,7 @@
    (:map git-commit-mode-map
      (:localleader
        :desc "Finalize"        :nv "f" #'with-editor-finish
+       :desc "Finalize"        :nv "k" #'with-editor-cancel
        )))
  (:after pdf-tools
    (:map pdf-view-mode-map
