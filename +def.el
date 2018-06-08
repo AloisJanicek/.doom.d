@@ -20,9 +20,11 @@
 (def-package! all-the-icons-ivy
   :after ivy
   :config
-  (setq all-the-icons-ivy-file-commands
-        '(counsel-find-file counsel-file-jump counsel-recentf counsel-projectile-find-file counsel-projectile-find-dir counsel-projectile-find-file))
-  (all-the-icons-ivy-setup)
+  ;; (all-the-icons-ivy-setup)
+  (ivy-set-display-transformer '+ivy/switch-workspace-buffer 'all-the-icons-ivy-buffer-transformer)
+  (ivy-set-display-transformer 'counsel-projectile-find-file 'all-the-icons-ivy-file-transformer)
+  (ivy-set-display-transformer 'counsel-file-jump 'all-the-icons-ivy-file-transformer)
+  (ivy-set-display-transformer 'counsel-dired-jump 'all-the-icons-ivy-file-transformer)
   )
 (def-package! ereader
   :after org
