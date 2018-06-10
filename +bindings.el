@@ -76,6 +76,7 @@
  (:after org-capture
    (:map org-capture-mode-map
      ;; Switch to other workspaces even if org-capture is opened and focused
+     :inve [escape]       #'org-capture-finalize
      (:localleader
        :desc "Schedule"     :nv "s" #'org-schedule
        :desc "Todo"         :nv "t" #'org-todo
