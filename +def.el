@@ -154,14 +154,15 @@
 (def-package! sdcv)
 (def-package! define-word)
 
-(def-package! prescient
-  :config (prescient-persist-mode 1)
-  )
-(def-package! ivy-prescient
-  :after ivy
-  :config (ivy-prescient-mode 1)
-  )
-(def-package! company-prescient
-  :after company
-  :config (company-prescient-mode 1)
-  )
+;; (def-package! prescient
+;;   :config (prescient-persist-mode 1)
+;;   )
+;; (def-package! ivy-prescient
+;;   :after ivy
+;;   :config
+;;   (ivy-prescient-mode)
+;;   (set-face-attribute 'ivy-minibuffer-match-face-1 nil :foreground "#c678dd" :weight 'bold))
+;; (def-package! company-prescient
+;;   :after company
+;;   :config (company-prescient-mode)
+;;   )

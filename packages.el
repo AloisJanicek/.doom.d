@@ -37,9 +37,9 @@
 (package! sdcv :recipe (:fetcher url :url "https://raw.githubusercontent.com/stardiviner/sdcv.el/master/sdcv.el"))
 (package! define-word)
 
-(package! prescient)
-(package! ivy-prescient)
-(package! company-prescient)
+;; (package! prescient)
+;; (package! ivy-prescient)
+;; (package! company-prescient)
 
 ;; (package! xah-css-mode)
 
