@@ -5,7 +5,7 @@
   (interactive)
   (let ((my-current-buffer (buffer-name)))
     (progn
-      (find-file "~/org/bookmarks.org")
+      (find-file "~/org/BOOKMARKS.org")
       (widen)
       (counsel-org-goto-bookmarks)
       (switch-to-buffer my-current-buffer))))

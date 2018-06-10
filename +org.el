@@ -25,13 +25,13 @@
    org-export-directory "export/"
    org-crypt-tag-matcher "+crypt-nocrypt"
 
-   org-capture-templates '(("p" "Protocol" entry (file+olp+datetree "~/org/journal.org")
+   org-capture-templates '(("p" "Protocol" entry (file "~/org/BOOKMARKS.org")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:quote:\n%u\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n"
-                            :immediate-finish t :kill-buffer t :tree-type week)
+                            :immediate-finish t :kill-buffer t :prepend t)
 
-                           ("L" "Protocol Link" entry (file+olp+datetree "~/org/journal.org")
+                           ("L" "Protocol Link" entry (file "~/org/BOOKMARKS.org")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:\n%u"
-                            :immediate-finish t :kill-buffer t :tree-type week)
+                            :immediate-finish t :kill-buffer t :prepend t)
 
                            ("w" "Website" entry (file "~/org/website-tmp.org")
                             "* %a :website:\n\n%U %?\n\n%:initial"
