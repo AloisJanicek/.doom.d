@@ -9,8 +9,8 @@
   (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC"))
   )
 (after! man
-  (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "orange red")
-  (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "forest green")
+  (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "#ff7a79")
+  (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "#98be65")
   (set! :popup "*Man\*" '((size . 0.4) (side . left)) '((select . t) ))
   (set! :popup "*man\*" '((size . 0.6) (side . left)) '((select . t) )))
 (after! eww

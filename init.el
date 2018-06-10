@@ -212,8 +212,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(show-paren-match-expression ((t (:background "SkyBlue4"))))
- '(Man-overstrike ((t (:foreground "#ff7a79"))))
- '(Man-underline ((t (:inherit underline :foreground "#98be65"))))
  '(fixed-pitch-serif ((t (:family "Iosevka Slab"))))
  '(web-mode-current-element-highlight-face ((t (:foreground "#51afef"))))
  '(web-mode-html-attr-equal-face ((t (:foreground "#5B6268"))))
