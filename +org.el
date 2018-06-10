@@ -72,6 +72,11 @@
    org-tags-match-list-sublevels 'indented
    org-agenda-category-icon-alist
    `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center))
+   org-show-context-detail '((agenda .minimal)
+                             (bookmark-jump . lineage)
+                             (isearch . lineage)
+                             (default . lineage)
+                             )
 
    ;; org-todo-keywords '()
    ;; org-todo-keyword-faces '()
