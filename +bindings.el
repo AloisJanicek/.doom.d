@@ -224,6 +224,10 @@
      :mn     "j"     #'org-agenda-next-item
      :mn     "k"     #'org-agenda-previous-item
      :mn     "z"     #'org-agenda-view-mode-dispatch
+     :iemnv "C-k" #'evil-window-up
+     :iemnv "C-j" #'evil-window-down
+     :iemnv "C-h" #'evil-window-left
+     :iemnv "C-l" #'evil-window-right
      ))
  (:after org-brain
    (:map org-brain-visualize-mode-map
