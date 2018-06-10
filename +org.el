@@ -24,7 +24,6 @@
    +org-attach-dir "attach/"
    org-export-directory "export/"
    org-crypt-tag-matcher "+crypt-nocrypt"
-   ;; org-archive-location "~/org/archive/archive.org::datetree/"
 
    org-capture-templates '(("p" "Protocol" entry (file+olp+datetree "~/org/journal.org")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:quote:\n%u\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n"
@@ -90,7 +89,7 @@
    org-hide-emphasis-markers nil
    org-fontify-whole-heading-line nil
 
-   ;; org-refile-targets nil
+   org-refile-targets '((org-agenda-files :maxlevel . 5))
    org-refile-use-outline-path 'file
    org-outline-path-complete-in-steps nil
 
