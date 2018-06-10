@@ -36,9 +36,6 @@
 (package! org-ebook :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/org-ebook.el" :version 0.0.0))
 (package! sdcv :recipe (:fetcher url :url "https://raw.githubusercontent.com/stardiviner/sdcv.el/master/sdcv.el"))
 (package! define-word)
-;; (package! org-ql :recipe (:fetcher url :url "https://raw.githubusercontent.com/alphapapa/org-agenda-ng/master/org-ql.el" ))
-;; (package! org-agenda-ng :recipe (:fetcher url :url "https://raw.githubusercontent.com/alphapapa/org-agenda-ng/master/org-agenda-ng.el" ))
-;; (package! org-sidebar :recipe (:fetcher url :url "https://raw.githubusercontent.com/alphapapa/org-sidebar/master/org-sidebar.el"))
 ;; (package! xah-css-mode)
 
 ;; (package! mpdel :recipe (:fetcher github :repo "mpdel/mpdel"))
