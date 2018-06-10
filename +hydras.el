@@ -36,12 +36,7 @@
 (defhydra aj/capture ()
   "Capture:"
   ("k" (org-capture nil "e") "journal Entry" :exit t)
-  ("j" (aj/capture-journal/body) "Journal:" :exit t)
-  ("t" (aj/capture-task/body) "Task:" :exit t)
-  ("c" (aj/capture-clocked-task/body) "Clocked task:" :exit t)
-  ("i" (aj/capture-interuption/body) "Interruption:" :exit t)
-  ("s" (aj/capture-statistics/body) "Statistics:" :exit t)
-  ("n" (org-capture nil "n") "Note clock:" :exit t)
+  ("t" (org-capture nil "t") "Task:" :exit t)
   )
 
 (defhydra aj/capture-clocked-task ()

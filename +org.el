@@ -39,6 +39,9 @@
 
                            ("e" "journal Entry" entry (file+olp+datetree "~/org/JOURNAL.org")
                             "**** %?" :tree-type week)
+
+                           ("t" "task" entry (file+headline "~/org/GTD.org" "TASKS")
+                            "* [ ] %?" :prepend t)
                            )
 
    org-agenda-custom-commands
