@@ -187,6 +187,7 @@
   ;; popups
   (set! :popup "^\\*org-brain\\*$" '((vslot . -1) (size . 0.3) (side . left)) '((select . t) (quit . t) (transient . t)))
   (set! :popup "^CAPTURE.*\\.org$" '((side . bottom) (size . 0.4)) '((select . t)))
+  (set! :popup "GTD.org" '((vslot . -1)(size . 0.32) (side . right)) '((select . t) (transient . nil)))
   (set! :popup "README.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
   (set! :popup "work-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
   (set! :popup "build-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
