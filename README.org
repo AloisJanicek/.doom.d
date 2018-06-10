@@ -1,4 +1,4 @@
 #+TITLE: README
 * .doom.d
 ** notice
-- =+org.el== is totally broken, I am implementing different workflow right now 
+- +=+org.el== is totally broken, I am implementing different workflow right now+ 
