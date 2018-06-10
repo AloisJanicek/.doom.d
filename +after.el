@@ -134,4 +134,9 @@ See URL `http://stylelint.io/'."
         counsel-org-headline-display-todo t))
 (after! web-mode
   (setq web-mode-enable-current-element-highlight t)
+  (set-face-attribute 'web-mode-current-element-highlight-face nil :background "#21242b" :foreground "#51afef")
+  (set-face-attribute 'web-mode-html-attr-equal-face nil :foreground "#5B6268")
+  (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#5B6268")
+  (set-face-attribute 'web-mode-html-tag-face nil :foreground "#E06C75")
+  (set-face-attribute 'web-mode-html-tag-unclosed-face nil :inherit 'web-mode-html-tag-face :underline '(:color "#ff6c6b" :style wave))
   )
