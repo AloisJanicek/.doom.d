@@ -22,6 +22,7 @@
                         )
                       :color blue)
   "Agenda"
+  ("a" (org-agenda nil "a") "Agenda")
   ("p" (org-agenda nil "P") "Projects Overview")
   ("t" (org-agenda nil "T") "Tasks Overview")
   )
