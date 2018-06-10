@@ -37,7 +37,7 @@
                             "* %a :website:\n\n%U %?\n\n%:initial"
                             :immediate-finish t :kill-buffer t)
 
-                           ("e" "journal Entry" entry (file+olp+datetree "~/org/journal.org")
+                           ("e" "journal Entry" entry (file+olp+datetree "~/org/JOURNAL.org")
                             "**** %?" :tree-type week)
                            )
 
