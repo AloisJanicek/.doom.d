@@ -128,6 +128,9 @@ See URL `http://stylelint.io/'."
    '(("d" bookmark-delete "delete")
      ("e" bookmark-rename "edit")))
   )
+(after! org-bullets
+  (setq org-bullets-bullet-list
+        '("◉")))
 (after! counsel
   (setq counsel-grep-base-command "grep -E -n -i -e %s %s")
   (setq counsel-org-goto-face-style 'org
