@@ -153,3 +153,15 @@
   )
 (def-package! sdcv)
 (def-package! define-word)
+
+(def-package! prescient
+  :config (prescient-persist-mode 1)
+  )
+(def-package! ivy-prescient
+  :after ivy
+  :config (ivy-prescient-mode 1)
+  )
+(def-package! company-prescient
+  :after company
+  :config (company-prescient-mode 1)
+  )

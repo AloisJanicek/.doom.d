@@ -36,6 +36,11 @@
 (package! org-ebook :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/org-ebook.el" :version 0.0.0))
 (package! sdcv :recipe (:fetcher url :url "https://raw.githubusercontent.com/stardiviner/sdcv.el/master/sdcv.el"))
 (package! define-word)
+
+(package! prescient)
+(package! ivy-prescient)
+(package! company-prescient)
+
 ;; (package! xah-css-mode)
 
 ;; (package! mpdel :recipe (:fetcher github :repo "mpdel/mpdel"))
