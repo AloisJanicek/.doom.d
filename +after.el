@@ -121,6 +121,8 @@ See URL `http://stylelint.io/'."
   (setq tide-completion-detailed nil
         tide-always-show-documentation nil))
 (after! ivy
+  (setq ivy-height 40)
+  (map-put ivy-display-functions-alist 't 'ivy-posframe-display-at-frame-center)
   (ivy-set-actions
    'counsel-projectile-bookmark
    '(("d" bookmark-delete "delete")
