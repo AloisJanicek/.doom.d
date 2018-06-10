@@ -33,7 +33,7 @@
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:\n%u"
                             :immediate-finish t :kill-buffer t :prepend t)
 
-                           ("w" "Website" entry (file "~/org/website-tmp.org")
+                           ("w" "Website" entry (file "~/org/WEBSITES.org")
                             "* %a :website:\n\n%U %?\n\n%:initial"
                             :immediate-finish t :kill-buffer t)
 
