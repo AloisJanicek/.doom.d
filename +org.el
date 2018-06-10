@@ -1,77 +1,119 @@
 ;;; ~/.doom.d/+org.el -*- lexical-binding: t; -*-
 
+;; local elisp files which refused to be installed with quelpa
+(after! org-protocol  (load! "local/org-protocol-capture-html/org-protocol-capture-html.el"))
+;; (after! org-agenda    (load! "local/org-agenda-ng/org-ql.el"))
+;; (after! org-agenda    (load! "local/org-agenda-ng/org-agenda.el"))
+;; (after! org-agenda    (load! "local/org-sidebar/org-sidebar.el"))
+
 ;; load additional org-modules
 (add-hook 'org-load-hook '(lambda () (setq org-modules (append '(org-man org-eww org-protocol org-habit) org-modules))))
 
-  ;; signatures
+(after! org
+  ;; clock persistence
   (org-clock-persistence-insinuate)
-  (org-babel-do-load-languages
-   'org-babel-load-languages '((shell . t)))
 
+  ;; open all pdf links with org-pfdview
   (add-to-list 'org-file-apps
                '("\\.pdf\\'" . (lambda (file link)
                                  (org-pdfview-open link))))
-  ;; vars
-  ;; setqs
-  (setq evil-org-key-theme '(textobjects insert navigation additional shift heading))
 
-  (setq org-agenda-prefix-format '(
-                                   (agenda  . "  %-12s%6t ")
-                                   (timeline  . "%s ")
-                                   (todo  . "     Effort: %6e  ")
-                                   (tags  . " ")
-                                   (search . " ")))
-  (setq org-todo-keywords '())
-  (setq org-todo-keyword-faces '())
-  (setq org-agenda-custom-commands nil)
-  (setq org-capture-templates nil)
-  (setq org-agenda-files nil)
-  (setq org-refile-targets nil)
-  (setq org-agenda-category-icon-alist
-        `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center)))
 
-  (setq +org-dir "~/org/"
-        +org-attach-dir "attach/"
-        org-export-directory "export/"
-        org-archive-location "~/org/archive/archive.org::datetree/"
-        org-id-locations-file "~/.emacs.d/.local/org-ids-locations"
-        org-startup-with-inline-images t
-        org-hide-emphasis-markers nil
-        org-fontify-whole-heading-line nil
-        org-enforce-todo-dependencies nil
-        org-enforce-todo-checkbox-dependencies nil
-        org-agenda-dim-blocked-tasks t
-        org-provide-todo-statistics t
-        org-hierarchical-todo-statistics nil
-        org-checkbox-hierarchical-statistics nil
-        org-agenda-todo-list-sublevels t
-        org-agenda-log-mode-items '(closed clock state)
-        org-agenda-span 2
-        org-agenda-start-on-weekday nil
-        org-agenda-start-with-log-mode nil
-        org-agenda-start-day "1d"
-        org-agenda-compact-blocks t
-        org-refile-use-outline-path 'file
-        org-outline-path-complete-in-steps nil
-        org-id-track-globally t
-        org-use-property-inheritance t
-        org-log-done 'time
-        org-log-redeadline 'time
-        org-log-reschedule 'time
-        org-log-into-drawer "LOGBOOK"
-        org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"
-        org-clock-history-length 23
-        org-clock-in-resume t
-        org-drawers (quote ("PROPERTIES" "LOGBOOK"))
-        org-clock-into-drawer t
-        org-clock-out-remove-zero-time-clocks t
-        org-clock-out-when-done t
-        org-clock-persist t
-        org-clock-persist-query-resume nil
-        org-clock-auto-clock-resolution (quote when-no-clock-is-running)
-        org-clock-report-include-clocking-task t
+  (setq
+   +org-dir "~/org/"
+   +org-attach-dir "attach/"
+   org-export-directory "export/"
+   org-crypt-tag-matcher "+crypt-nocrypt"
+   ;; org-archive-location "~/org/archive/archive.org::datetree/"
 
-        )
+   org-capture-templates '(("p" "Protocol" entry (file+olp+datetree "~/org/journal.org")
+                            "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:quote:\n%u\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n"
+                            :immediate-finish t :kill-buffer t :tree-type week)
+
+                           ("L" "Protocol Link" entry (file+olp+datetree "~/org/journal.org")
+                            "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:\n%u"
+                            :immediate-finish t :kill-buffer t :tree-type week)
+
+                           ("w" "Website" entry (file "~/org/website-tmp.org")
+                            "* %a :website:\n\n%U %?\n\n%:initial"
+                            :immediate-finish t :kill-buffer t)
+
+                           ("e" "journal Entry" entry (file+olp+datetree "~/org/journal.org")
+                            "**** %?" :tree-type week)
+                           )
+
+   org-agenda-custom-commands
+   ' (("P" "Projects" ((tags "+LEVEL=2+CATEGORY=\"PROJECTS\"
+                              |+LEVEL=3+CATEGORY=\"PROJECTS\"
+                              |+LEVEL=4+CATEGORY=\"PROJECTS\""))
+       ((org-agenda-overriding-header "Projects Overview")
+        (org-agenda-files '("~/org/GTD.org"))
+        ))
+      ("T" "Tasks" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
+                          |+LEVEL=2+CATEGORY=\"TASKS\""))
+       ((org-agenda-overriding-header "Tasks Overview")
+        (org-agenda-files '("~/org/GTD.org"))
+        ))
+      )
+   ;; org-agenda-files nil
+   org-agenda-prefix-format '((agenda  . "  %-12s%6t ")
+                              (timeline  . "%s ")
+                              (todo  . "     Effort: %6e  ")
+                              (tags  . "%l")
+                              (search . "%l"))
+   org-agenda-todo-list-sublevels t
+   org-agenda-log-mode-items '(closed clock state)
+   org-agenda-span 2
+   org-agenda-start-on-weekday nil
+   org-agenda-start-with-log-mode nil
+   org-agenda-start-day "1d"
+   org-agenda-compact-blocks t
+   org-agenda-dim-blocked-tasks 'invisible
+   org-tags-match-list-sublevels 'indented
+   org-agenda-category-icon-alist
+   `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center))
+
+   ;; org-todo-keywords '()
+   ;; org-todo-keyword-faces '()
+   org-enforce-todo-dependencies t
+   org-enforce-todo-checkbox-dependencies nil
+   org-provide-todo-statistics t
+   org-checkbox-hierarchical-statistics nil
+   org-hierarchical-todo-statistics nil
+
+   org-startup-with-inline-images t
+   org-hide-emphasis-markers nil
+   org-fontify-whole-heading-line nil
+
+   ;; org-refile-targets nil
+   org-refile-use-outline-path 'file
+   org-outline-path-complete-in-steps nil
+
+   org-id-track-globally t
+   org-id-locations-file (concat +org-dir ".org-ids-locations")
+   org-use-property-inheritance t
+
+   org-log-done 'time
+   org-log-redeadline 'time
+   org-log-reschedule 'time
+   org-log-into-drawer "LOGBOOK"
+
+   org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"
+   org-drawers (quote ("PROPERTIES" "LOGBOOK"))
+
+   org-clock-auto-clock-resolution (quote when-no-clock-is-running)
+   org-clock-report-include-clocking-task t
+   org-clock-out-remove-zero-time-clocks t
+   org-clock-persist-query-resume nil
+   org-clock-history-length 23
+   org-clock-out-when-done t
+   org-clock-into-drawer t
+   org-clock-in-resume t
+   org-clock-persist t
+
+   evil-org-key-theme '(textobjects insert navigation additional shift heading)
+
+   )
 
 
   ;; hooks
@@ -84,11 +126,11 @@
 
 
   ;; faces
-  (set-face-attribute     'org-level-1 nil :height 1.0)
-  (set-face-attribute     'org-agenda-date nil           :height 1.0)
-  (set-face-attribute     'org-agenda-date-today    nil  :height 1.0)
-  (set-face-attribute     'org-agenda-date-weekend  nil  :height 1.0)
-  (set-face-attribute     'org-agenda-structure     nil  :height 1.0)
+  (set-face-attribute     'org-level-1 nil                :height 1.0)
+  (set-face-attribute     'org-agenda-date nil            :height 1.0)
+  (set-face-attribute     'org-agenda-date-today    nil   :height 1.0)
+  (set-face-attribute     'org-agenda-date-weekend  nil   :height 1.0)
+  (set-face-attribute     'org-agenda-structure     nil   :height 1.0)
 
   ;; advices
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
@@ -150,13 +192,10 @@
   )
 
 ;; packages
-
-
-
 (def-package! org-brain
   :after org
   :init
-  (setq org-brain-path "~/org/wiki")
+  (setq org-brain-path "~/org")
   (set! :evil-state 'org-brain-visualize-mode 'emacs)
   :config
   (setq org-brain-visualize-default-choices 'all
@@ -205,7 +244,7 @@
   )
 
 (def-package! ereader
-    :init (add-to-list 'doom-large-file-modes-list 'ereader-mode))
+  :init (add-to-list 'doom-large-file-modes-list 'ereader-mode))
 (def-package! org-ebook :after (org ereader))
 (def-package! org-pdfview :after org)
 (def-package! ob-javascript :after ob-core)
@@ -236,27 +275,10 @@
   :after org
   :commands org-edna-load
   )
-
 (def-package! ox-hugo
   :disabled
   :after ox)
 (def-package! ox-epub
   :disabled
   :after ox)
-
-(def-package! ob-javascript
-  :after ob-core
-  )
-(def-package! ob-async
-  :after ob-core
-  :commands ob-async
-  :hook
-  (org-mode . ob-async)
-  )
-(def-package! ob-browser
-  :disabled
-  :after ob-core)
-
-
-
 

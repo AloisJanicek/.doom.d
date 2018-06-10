@@ -144,15 +144,15 @@
 ;;
 
 ;; Wiki files locations
-(defvar +private-wiki "~/org/wiki/private-wiki.org"
+(defvar +private-wiki "~/org/private-wiki.org"
   "File where my private wiki is.")
-(defvar +work-wiki "~/org/wiki/work-wiki.org"
+(defvar +work-wiki "~/org/work-wiki.org"
   "File where my work wiki is.")
-(defvar +environment-wiki "~/org/wiki/environment-wiki.org"
+(defvar +environment-wiki "~/org/environment-wiki.org"
   "File where my environment wiki is.")
-(defvar +education-wiki "~/org/wiki/education-wiki.org"
+(defvar +education-wiki "~/org/education-wiki.org"
   "File where my education wiki is.")
-(defvar +build-wiki "~/org/wiki/build-wiki.org"
+(defvar +build-wiki "~/org/build-wiki.org"
   "File where my build wiki is.")
 
 (setq browse-url-browser-function

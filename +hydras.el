@@ -1,16 +1,29 @@
 ;;; ~/.doom.d/+hydras.el -*- lexical-binding: t; -*-
-(defhydra aj/switch-mode-menu (:color blue)
-  "Select mode:"
-  ("o" (org-mode) "Org" )
-  ("e" (emacs-lisp-mode) "Elisp" )
+(defhydra aj/gtd-review-refile ()
+  "Refile"
+  ("p" (aj/refile-to-file-headline "~/org/gtd.org" "PERSONAL") "PERSONAL")
+  ("w" (aj/refile-to-file-headline "~/org/gtd.org" "WORK") "WORK")
+  ("e" (aj/refile-to-file-headline "~/org/gtd.org" "ENVIRONMENT") "ENVIRONMENT")
+  ("d" (aj/refile-to-file-headline "~/org/gtd.org" "EDUCATION") "EDUCATION")
   )
-
 
 (defhydra aj/agenda-hydra (:color blue )
   "Agenda:"
   ("c" (aj/clock-menu) "clock" )
   ("p" (org-pomodoro) "pomodoro" )
   ("r" (aj/gtd-review-refile/body) "refile")
+  )
+
+(defhydra aj/agenda ( :body-pre
+                      (progn
+                        ;; (org-agenda nil "g")
+                        ;; (aj/remap-keys-for-org-agenda) ;; remap keys for org agenda
+                        ;; (projectile-project-root)
+                        )
+                      :color blue)
+  "Agenda"
+  ("p" (org-agenda nil "P") "Projects Overview")
+  ("t" (org-agenda nil "T") "Tasks Overview")
   )
 
 (defhydra aj/clocking (:color blue)
@@ -20,15 +33,15 @@
   ("s" (org-clock-out) "stop clock")
   )
 
-(defhydra aj/agenda ( :body-pre
-                      (progn
-                        (org-agenda nil "g")
-                        (aj/remap-keys-for-org-agenda) ;; remap keys for org agenda
-                        (projectile-project-root)
-                        )
-                      :color blue)
-  "Agenda"
-  ("c" (org-agenda nil "c") "Coding")
+(defhydra aj/capture ()
+  "Capture:"
+  ("k" (org-capture nil "e") "journal Entry" :exit t)
+  ("j" (aj/capture-journal/body) "Journal:" :exit t)
+  ("t" (aj/capture-task/body) "Task:" :exit t)
+  ("c" (aj/capture-clocked-task/body) "Clocked task:" :exit t)
+  ("i" (aj/capture-interuption/body) "Interruption:" :exit t)
+  ("s" (aj/capture-statistics/body) "Statistics:" :exit t)
+  ("n" (org-capture nil "n") "Note clock:" :exit t)
   )
 
 (defhydra aj/capture-clocked-task ()
@@ -74,15 +87,6 @@
   ("e" (org-capture nil "je") "Environment" :exit t)
   )
 
-(defhydra aj/capture ()
-  "Capture:"
-  ("j" (aj/capture-journal/body) "Journal:" :exit t)
-  ("t" (aj/capture-task/body) "Task:" :exit t)
-  ("c" (aj/capture-clocked-task/body) "Clocked task:" :exit t)
-  ("i" (aj/capture-interuption/body) "Interruption:" :exit t)
-  ("s" (aj/capture-statistics/body) "Statistics:" :exit t)
-  ("n" (org-capture nil "n") "Note clock:" :exit t)
-  )
 
 (defhydra aj/wiki-select (:color blue)
   "Goto:"
@@ -97,10 +101,8 @@
   ("d" (org-decrypt-entries) "Decrypt entries" :exit t)
   )
 
-(defhydra aj/gtd-review-refile ()
-  "Refile"
-  ("p" (aj/refile-to-file-headline "~/org/gtd.org" "PERSONAL") "PERSONAL")
-  ("w" (aj/refile-to-file-headline "~/org/gtd.org" "WORK") "WORK")
-  ("e" (aj/refile-to-file-headline "~/org/gtd.org" "ENVIRONMENT") "ENVIRONMENT")
-  ("d" (aj/refile-to-file-headline "~/org/gtd.org" "EDUCATION") "EDUCATION")
+(defhydra aj/switch-mode-menu (:color blue)
+  "Select mode:"
+  ("o" (org-mode) "Org" )
+  ("e" (emacs-lisp-mode) "Elisp" )
   )
