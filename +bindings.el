@@ -49,6 +49,7 @@
    :nimve "M-8"   (λ! (+workspace/switch-to 7))
    :nimve "M-9"   (λ! (+workspace/switch-to 8))
    :nimve "M-0"   #'+workspace/switch-to-last
+   :nimve "M-t"   #'+workspace/new
 
    :i "C-'" #'forward-char
    :i "C-;" #'backward-char
