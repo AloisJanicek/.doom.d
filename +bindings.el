@@ -52,7 +52,6 @@
 
    :i "C-'" #'forward-char
    :i "C-;" #'backward-char
-   :i "<backspace>" #'hungry-delete-backward
    "C-s"        #'ispell-word
    :inv "M-y"          #'counsel-yank-pop
    "C-="          #'recenter-top-bottom

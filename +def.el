@@ -8,8 +8,11 @@
   )
 (def-package! highlight-blocks)
 (def-package! hungry-delete
-  :commands hungry-delete-backward
-  )
+  :demand t
+  :config
+  (setq hungry-delete-except-modes
+        '(term-mode help-mode minibuffer-inactive-mode calc-mode))
+  (global-hungry-delete-mode 1))
 (def-package! find-file-in-project)
 (def-package! gulp-task-runner
   :commands gulp
