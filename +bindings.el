@@ -340,6 +340,8 @@
      :desc "online"   :nv "o" #'define-word
      :desc "online/point"   :nv "p" #'define-word-at-point
      :desc "webster"   :nv "w" #'browse-webster-at-point
+     :desc "google at point"   :nv "g" #'google-translate-at-point
+     :desc "google query:"   :nv "G" #'google-translate-query-translate
      :desc "dictionary"   :nv "d" #'browse-dictionary-at-point
      )
    :desc "clock"        :nv     "\\"    #'aj/clocking/body
