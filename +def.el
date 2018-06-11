@@ -40,7 +40,7 @@
   :after org
   :commands org-ebook-open
   )
-;; (def-package! xml+)
+(def-package! xml+)
 (def-package! cheatsheet
   :disabled
   :commands (

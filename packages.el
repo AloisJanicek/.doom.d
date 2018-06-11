@@ -32,10 +32,11 @@
 
 (package! ob-javascript :recipe (:fetcher github :repo "zweifisch/ob-javascript" :files ("*")))
 (package! ob-async :recipe (:fetcher github :repo "astahlman/ob-async" ))
-(package! ereader :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/ereader.el" :version 0.0.0))
-(package! org-ebook :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/org-ebook.el" :version 0.0.0))
+(package! ereader :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/ereader.el"))
+(package! org-ebook :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/org-ebook.el"))
 (package! sdcv :recipe (:fetcher url :url "https://raw.githubusercontent.com/stardiviner/sdcv.el/master/sdcv.el"))
 (package! define-word)
+(package! xml+)
 
 ;; (package! prescient)
 ;; (package! ivy-prescient)
