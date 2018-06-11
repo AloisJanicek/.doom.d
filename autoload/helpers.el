@@ -163,3 +163,21 @@ Use `org-agenda-refile' in `org-agenda' mode."
   (org-insert-link)
   ;; (evil-org-open-below 1)
   )
+;;;###autoload
+(defun josh/org-capture-refile-but-with-args (file headline &optional arg)
+  "Copied from `org-capture-refile' since it doesn't allow passing arguments. This does."
+  (unless (eq (org-capture-get :type 'local) 'entry)
+    (error
+     "Refiling from a capture buffer makes only sense for `entry'-type templates"))
+  (let ((pos (point))
+	(base (buffer-base-buffer (current-buffer)))
+	(org-capture-is-refiling t)
+	(kill-buffer (org-capture-get :kill-buffer 'local)))
+    (org-capture-put :kill-buffer nil)
+    (org-capture-finalize)
+    (save-window-excursion
+      (with-current-buffer (or base (current-buffer))
+	(org-with-wide-buffer
+	 (goto-char pos)
+	 (my/refile file headline arg))))
+    (when kill-buffer (kill-buffer base))))
