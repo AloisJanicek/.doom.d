@@ -352,6 +352,7 @@
      :desc "App: MPD" :nv "m" #'aj/mpd-control/body
      :desc "Clock"      :nv "c" #'aj/clock-menu
      :desc "Links"  :nv     "l" #'aj/goto-bookmarks
+     :desc "GTD"        :nv "g" (λ! (find-file +GTD))
      (:desc "Wiki"      :prefix     "w"
        :desc "private"      :nv     "p" #'aj/goto-private-wiki
        :desc "work"         :nv     "w" #'aj/goto-work-wiki
