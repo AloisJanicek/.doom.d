@@ -10,6 +10,7 @@
 (add-hook 'org-load-hook '(lambda () (setq org-modules (append '(org-man org-eww org-protocol org-habit) org-modules))))
 
 (after! org
+  (add-hook 'org-capture-mode-hook 'flyspell-mode)
   ;; clock persistence
   (org-clock-persistence-insinuate)
 
