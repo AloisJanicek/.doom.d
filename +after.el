@@ -145,7 +145,7 @@ See URL `http://stylelint.io/'."
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "#E06C75")
   (set-face-attribute 'web-mode-html-tag-unclosed-face nil :inherit 'web-mode-html-tag-face :underline '(:color "#ff6c6b" :style wave))
   )
-(after! google-translate
+(after! google-translate-default-ui
   (setq google-translate-default-source-language "cs"
         google-translate-default-target-language "en")
   (set! :popup "*Google Translate\*" '((size . 0.4) (side . top)) '((select . t) ))
