@@ -147,4 +147,6 @@ See URL `http://stylelint.io/'."
   )
 (after! google-translate
   (setq google-translate-default-source-language "cs"
-        google-translate-default-target-language "en"))
+        google-translate-default-target-language "en")
+  (set! :popup "*Google Translate\*" '((size . 0.4) (side . top)) '((select . t) ))
+  )
