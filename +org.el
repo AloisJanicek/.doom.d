@@ -57,7 +57,7 @@
         (org-agenda-files '("~/org/GTD.org"))
         ))
       )
-   ;; org-agenda-files nil
+   org-agenda-files '("~/org/GTD.org")
    org-agenda-prefix-format '((agenda  . "  %-12s%6t ")
                               (timeline  . "%s ")
                               (todo  . "     Effort: %6e  ")
@@ -72,6 +72,7 @@
    org-agenda-compact-blocks t
    org-agenda-dim-blocked-tasks 'invisible
    org-tags-match-list-sublevels 'indented
+   org-agenda-tags-column 68
    org-agenda-category-icon-alist
    `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center))
    org-show-context-detail '((agenda .minimal)
