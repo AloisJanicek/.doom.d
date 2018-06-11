@@ -19,6 +19,7 @@
   "Go to headline in candidate X."
   (org-goto-marker-or-bmk (cdr x))
   (outline-show-branches)
+  (turn-off-solaire-mode)
   ;; (forward-line 1)
   ;; (org-cycle)
   ;; (forward-line -1)
