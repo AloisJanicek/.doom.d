@@ -150,3 +150,10 @@ See URL `http://stylelint.io/'."
         google-translate-default-target-language "en")
   (set! :popup "*Google Translate\*" '((size . 0.4) (side . top)) '((select . t) ))
   )
+
+(after! synosaurus
+  (set! :popup "*Synonyms List\*" '((size . 0.4) (side . top)) '((select . t) ))
+  )
+(after! wordnut
+  (set! :popup "*WordNut\*" '((size . 0.4) (side . top)) '((select . t) ))
+  )

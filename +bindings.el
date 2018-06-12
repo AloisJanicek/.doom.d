@@ -345,6 +345,9 @@
       :desc "online"                   :nv     "o" #'define-word
       :desc "online/point"             :nv     "p" #'define-word-at-point
       :desc "webster"                  :nv     "w" #'browse-webster-at-point
+      :desc "synosaurus"               :nv     "j" #'synosaurus-lookup
+      :desc "synosaurus"               :nv     "r" #'synosaurus-choose-and-replace
+      :desc "wordnut"                  :nv     "k" #'wordnut-lookup-current-word
       :desc "google at point"          :nv     "g" #'google-translate-at-point
       :desc "google at point reverse:" :nv     "G" #'google-translate-at-point-reverse
       :desc "dictionary"               :nv     "d" #'browse-dictionary-at-point
