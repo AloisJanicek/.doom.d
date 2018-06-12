@@ -160,6 +160,7 @@
       '(
         ("wikipedia\\.org" . browse-url-firefox)
         ("github" . browse-url-chromium)
+        ("youtube" . browse-url-chromium)
         ("thefreedictionary\\.com" . eww-browse-url)
         ("dictionary\\.com" . eww-browse-url)
         ("merriam-webster\\.com" . eww-browse-url)
