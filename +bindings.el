@@ -417,7 +417,8 @@
      :desc "Swiper"         :nv "/" #'aj/my-swiper
      )
    (:desc "toggle" :prefix "t"
-     :desc "Theme"         :nv "t" #'aj/toggle-doom-theme
+     :desc "light/dark theme"         :nv "t" #'aj/toggle-doom-theme
+     :desc "Themes"         :nv "T" #'counsel-load-theme
      :desc "Modeline"       :nv "m" #'hide-mode-line-mode
      )
    )
