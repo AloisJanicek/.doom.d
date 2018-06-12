@@ -13,13 +13,14 @@
   "Open selected link"
   (org-goto-marker-or-bmk (cdr x))
   (org-open-at-point)
-  (kill-buffer))
+  (bury-buffer)
+  ;; (kill-buffer)
+  )
 ;;;###autoload
 (defun counsel-org-goto-wiki-action (x)
   "Go to headline in candidate X."
   (org-goto-marker-or-bmk (cdr x))
   (outline-show-branches)
-  (turn-off-solaire-mode)
   ;; (forward-line 1)
   ;; (org-cycle)
   ;; (forward-line -1)
