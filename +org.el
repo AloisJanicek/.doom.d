@@ -53,6 +53,12 @@
         (org-agenda-files '("~/org/GTD.org"))
         (org-agenda-dim-blocked-tasks nil)
         ))
+
+      ("C" "Current project" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
+                                    |+LEVEL=2+CATEGORY=\"TASKS\""))
+       ((org-agenda-files (aj/return-project-org-file))
+        (org-agenda-overriding-header (aj/return-short-project-name))
+        ))
       ("T" "Tasks" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
                           |+LEVEL=2+CATEGORY=\"TASKS\""))
        ((org-agenda-overriding-header "Tasks Overview")

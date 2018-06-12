@@ -438,7 +438,7 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   (progn
     (projectile-project-root)
     (projectile-project-name)
-    (org-agenda nil "p"))
+    (org-agenda nil "C"))
   )
 ;;;###autoload
 (defun aj-mpdel-playlist-open (&optional playlist)
