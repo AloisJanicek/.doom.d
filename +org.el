@@ -152,7 +152,7 @@
 
   ;; faces
   (add-hook 'doom-load-theme-hook #'aj/my-org-faces)
-  (add-hook! :append 'org-load-hook #'aj/my-org-faces)
+  (add-hook! :append 'org-mode-hook #'aj/my-org-faces)
 
   ;; advices
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
