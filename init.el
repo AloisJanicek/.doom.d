@@ -212,6 +212,13 @@
       which-key-allow-evil-operators 1
       )
 
+;; fix langtoll on my Arch
+(def-package-hook! langtool
+  :pre-config
+  (setq langtool-language-tool-jar t)
+  (setq langtool-java-classpath
+        "/usr/share/languagetool:/usr/share/java/languagetool/*")
+  nil)
 ;; start me maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
