@@ -82,7 +82,9 @@
                              (default . minimal)
                              )
 
-   ;; org-todo-keywords '()
+   org-todo-keywords
+   '((sequence "[ ](t)" "[-](p)" "[?](m)" "|" "[X](d)")
+     (sequence "TODO(T)" "NEXT(n)" "WAITING(w)" "LATER(l)" "|" "DONE(D)" "CANCELLED(c)"))
    org-todo-keyword-faces '(("NEXT" . "#98be65") ("WAITING" . "#c678dd") ("TODO" . "#ECBE7B"))
    org-enforce-todo-dependencies t
    org-enforce-todo-checkbox-dependencies nil
