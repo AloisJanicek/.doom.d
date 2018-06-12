@@ -1,11 +1,41 @@
 ;;; ~/.doom.d/+hydras.el -*- lexical-binding: t; -*-
-(defhydra aj/gtd-review-refile ()
-  "Refile"
-  ("p" (aj/refile-to-file-headline "~/org/gtd.org" "PERSONAL") "PERSONAL")
-  ("w" (aj/refile-to-file-headline "~/org/gtd.org" "WORK") "WORK")
-  ("e" (aj/refile-to-file-headline "~/org/gtd.org" "ENVIRONMENT") "ENVIRONMENT")
-  ("d" (aj/refile-to-file-headline "~/org/gtd.org" "EDUCATION") "EDUCATION")
+(defhydra aj/gtd-refile (:color blue)
+  "GTD Refile:"
+  ("t" (aj/refile-to-file-headline +GTD "TASKS") "task")
+  ("p" (aj/refile-to-file-headline +GTD "PROJECTS") "project")
+  ("h" (aj/refile-to-file-headline +GTD "HABITS") "habit")
+  ("r" (aj/refile-to-file-headline +GTD "REOCCURRING") "reoccurring")
+  ("c" (aj/refile-to-file-headline +GTD "CALENDAR") "calendar")
+  ("f" (aj/refile-to-file-headline +GTD "FINANCE") "finance")
+  ("s" (aj/gtd-someday-refile/body) "someday")
+  ("m" (aj/refile-to-file-headline +MAYBE "Ideas") "maybe")
   )
+
+(defhydra aj/gtd-someday-refile ()
+  "SOMEDAY:"
+  ("b" (aj/refile-to-file-headline +SOMEDAY "Build" )     "build" )
+  ("B" (aj/refile-to-file-headline +SOMEDAY "Buy" )       "Buy" )
+  ("c" (aj/refile-to-file-headline +SOMEDAY "Configure" ) "configure" )
+  ("d" (aj/refile-to-file-headline +SOMEDAY "Do" )        "do" )
+  ("g" (aj/refile-to-file-headline +SOMEDAY "Go" )        "go" )
+  ("h" (aj/refile-to-file-headline +SOMEDAY "Habbit" )    "habbit" )
+  ("l" (aj/refile-to-file-headline +SOMEDAY "Learn" )     "learn" )
+  ("L" (aj/refile-to-file-headline +SOMEDAY "Listen" )    "Listen" )
+  ("m" (aj/refile-to-file-headline +SOMEDAY "MOC" )       "moc" )
+  ("p" (aj/refile-to-file-headline +SOMEDAY "Program" )   "program" )
+  ("r" (aj/refile-to-file-headline +SOMEDAY "Read" )      "read" )
+  ("W" (aj/refile-to-file-headline +SOMEDAY "Watch" )     "Watch" )
+  ("w" (aj/refile-to-file-headline +SOMEDAY "Write" )     "write" )
+  )
+
+(defhydra aj/gtd-goto (:color blue)
+  "GTD file:"
+  ("g" (aj/goto-GTD) "GTD" )
+  ("j" (aj/goto-journal) "journal" )
+  ("s" (aj/goto-someday) "someday" )
+  ("m" (aj/goto-maybe) "maybe" )
+  )
+
 
 (defhydra aj/agenda-hydra (:color blue )
   "Agenda:"
@@ -82,7 +112,6 @@
   ("d" (org-capture nil "jd") "eDucation" :exit t)
   ("e" (org-capture nil "je") "Environment" :exit t)
   )
-
 
 (defhydra aj/wiki-select (:color blue)
   "Goto:"
