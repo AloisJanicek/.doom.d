@@ -150,6 +150,7 @@
 
   ;; advices
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
+  (advice-add 'org-agenda-switch-to :after 'turn-off-solaire-mode)
 
   (advice-add 'org-refile :after
               (lambda (&rest _)
