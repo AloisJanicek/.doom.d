@@ -92,6 +92,7 @@
 
      "C-]"        #'org-insert-subheading
      "<tab>"      #'org-cycle
+     :i   "M-r"        #'aj/gtd-refile/body
      :inv "M-l"   #'aj/insert-link-in-org
      :n "J"       #'outline-next-visible-heading
      :n "K"       #'outline-previous-visible-heading
@@ -134,10 +135,13 @@
                                             (outline-show-branches)
                                             (counsel-org-goto-private-wiki))
                                           )
-       :desc "Refile"       :nv "R" #'org-refile
-       :desc "Refile"       :nv "r" #'avy-org-refile-as-child
-       :desc "Export"       :nv "e" #'org-export-dispatch
+       (:desc "Refile:"       :prefix "r"
+         :desc "targets"       :nv "t" #'org-refile
+         :desc "visible"       :nv "v" #'avy-org-refile-as-child
+         :desc "GTD"            :nv "g" #'aj/gtd-refile/body
+         )
 
+         :desc "Export"       :nv "e" #'org-export-dispatch
        (:desc "Clock"        :prefix "c"
          :desc "IN"           :nv "i" #'org-clock-in
          :desc "OUT"          :nv "o" #'org-clock-out
@@ -355,7 +359,7 @@
      :desc "App: MPD" :nv "m" #'aj/mpd-control/body
      :desc "Clock"      :nv "c" #'aj/clock-menu
      :desc "Links"  :nv     "l" #'aj/goto-bookmarks
-     :desc "GTD"        :nv "g" (λ! (find-file +GTD))
+     :desc "GTD"        :nv "g" #'aj/gtd-goto/body
      (:desc "Wiki"      :prefix     "w"
        :desc "private"      :nv     "p" #'aj/goto-private-wiki
        :desc "work"         :nv     "w" #'aj/goto-work-wiki
