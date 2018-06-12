@@ -48,9 +48,10 @@
    org-agenda-custom-commands
    ' (("P" "Projects" ((tags "+LEVEL=2+CATEGORY=\"PROJECTS\"
                               |+LEVEL=3+CATEGORY=\"PROJECTS\"
-                              |+LEVEL=4+CATEGORY=\"PROJECTS\"/-DONE-TODO"))
+                              |+LEVEL=4+CATEGORY=\"PROJECTS\"/!+STARTED|+NEXT"))
        ((org-agenda-overriding-header "Projects Overview")
         (org-agenda-files '("~/org/GTD.org"))
+        (org-agenda-dim-blocked-tasks nil)
         ))
       ("T" "Tasks" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
                           |+LEVEL=2+CATEGORY=\"TASKS\""))
