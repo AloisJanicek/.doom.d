@@ -344,6 +344,7 @@ If either org-pomodoro or org-clock aren't active, print \"No Active Task \" "
   "Find and open org-projectile file"
   (interactive)
   (find-file (concat (projectile-project-root) "README.org"))
+  (goto-char (org-find-exact-headline-in-buffer "TASKS"))
   )
 ;;;###autoload
 (defun aj/goto-current-org-projectile-file ()

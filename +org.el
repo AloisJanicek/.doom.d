@@ -43,6 +43,11 @@
 
                            ("t" "task" entry (file+headline "~/org/GTD.org" "TASKS")
                             "* [ ] %?" :prepend t)
+
+                           ("P" "Projectile" entry
+                            (function aj/find-and-open-org-projectile-file)
+                            "* [ ] %?" :prepend t)
+
                            )
 
    org-agenda-custom-commands
