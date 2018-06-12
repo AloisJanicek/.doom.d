@@ -458,7 +458,7 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   (interactive)
   (if (equal 'doom-one doom-theme)
       (progn
-        (setq doom-theme 'doom-one-light)
+        (setq doom-theme 'doom-solarized-light)
         (doom//reload-theme))
     (progn
       (setq doom-theme 'doom-one)
