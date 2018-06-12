@@ -83,9 +83,11 @@
                              )
 
    org-todo-keywords
-   '((sequence "[ ](t)" "[-](p)" "[?](m)" "|" "[X](d)")
+   ;;           todo     ongoing  hold         zap      done
+   '((sequence "[ ](t)" "[-](o)" "[!](h)" "|" "[✘](z)" "[✔](d)")
+     (sequnece "STARTED(s)" "|" "FINISHED(f)")
      (sequence "TODO(T)" "NEXT(n)" "WAITING(w)" "LATER(l)" "|" "DONE(D)" "CANCELLED(c)"))
-   org-todo-keyword-faces '(("NEXT" . "#98be65") ("WAITING" . "#c678dd") ("TODO" . "#ECBE7B"))
+   org-todo-keyword-faces '(("NEXT" . "#98be65") ("WAITING" . "#c678dd") ("TODO" . "#ECBE7B") ("STARTED" . "#4db5bd"))
    org-enforce-todo-dependencies t
    org-enforce-todo-checkbox-dependencies nil
    org-provide-todo-statistics t
