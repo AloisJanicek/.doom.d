@@ -18,8 +18,20 @@
   (add-to-list 'org-file-apps
                '("\\.pdf\\'" . (lambda (file link)
                                  (org-pdfview-open link))))
+  ;; register pdfview link type (copied from org-pdfview.el so I can lazy load)
+  (if (fboundp 'org-link-set-parameters)
+      (org-link-set-parameters "pdfview"
+                               :follow #'org-pdfview-open
+                               :complete #'org-pdfview-complete-link
+                               :store #'org-pdfview-store-link)
+    (org-add-link-type "pdfview" 'org-pdfview-open)
+    (add-hook 'org-store-link-functions 'org-pdfview-store-link))
 
-
+  ;; ...and same thing for org-ebook
+  (if (fboundp 'org-link-set-parameters)
+      (org-link-set-parameters "ebook"
+                               :follow #'org-ebook-open
+                               :store #'org-ebook-store-link))
   (setq
    +org-dir "~/org/"
    +org-attach-dir "attach/"
@@ -248,8 +260,7 @@
    org-brain-remove-parent
    ))
 (def-package! org-pdfview
-  :after org
-  :commands org-pdfview-open
+  :commands (org-pdfview-open org-pdfview-store-link org-pdfview-complete-link org-pdfview-export)
   )
 (def-package! org-pomodoro
   :after org
@@ -272,41 +283,47 @@
   )
 
 (def-package! ereader
-  :init (add-to-list 'doom-large-file-modes-list 'ereader-mode))
-(def-package! org-ebook :after (org ereader))
-(def-package! org-pdfview :after org)
-(def-package! ob-javascript :after ob-core)
-(def-package! ob-async :after ob-core :commands ob-async-org-babel-execute-src-block)
-;; disabled
-(def-package! org-fancy-priorities
-  :after org
-  :disabled
-  :hook
-  (org-mode . org-fancy-priorities-mode)
-  :config
-  (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
-(def-package! org-super-agenda
-  :disabled
-  :after org
-  :commands org-super-agenda-mode
-  :init
-  ;; I will set this for specific commands only
-  (setq org-super-agenda-groups nil)
-  :config
-  (org-super-agenda-mode))
-(def-package! plain-org-wiki
-  :disabled
-  :after org
-  :commands plain-org-wiki)
-(def-package! org-edna
-  :disabled
-  :after org
-  :commands org-edna-load
+  :mode ("\\.epub\\'". ereader-mode)
+  :init (add-to-list 'doom-large-file-modes-list 'ereader-mode)
+  :commands (ereader-read-epub ereader-mode)
   )
-(def-package! ox-hugo
-  :disabled
-  :after ox)
-(def-package! ox-epub
-  :disabled
-  :after ox)
+(def-package! org-ebook
+  :after (org ereader)
+  :commands (org-ebook-open org-ebook-store-link)
+  )
+(def-package! ob-javascript
+  :after ob-core)
+(def-package! ob-async
+  :after ob-core
+  :commands ob-async-org-babel-execute-src-block)
+
+;; disabled
+;; (def-package! org-fancy-priorities
+;;   :after org
+;;   :disabled
+;;   :hook
+;;   (org-mode . org-fancy-priorities-mode)
+;;   :config
+;;   (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
+;; (def-package! org-super-agenda
+;;   :disabled
+;;   :after org
+;;   :commands org-super-agenda-mode
+;;   :init
+;;   ;; I will set this for specific commands only
+;;   (setq org-super-agenda-groups nil)
+;;   :config
+;;   (org-super-agenda-mode))
+;; (def-package! plain-org-wiki
+;;   :disabled
+;;   :after org
+;;   :commands plain-org-wiki)
+;; (def-package! org-edna
+;;   :disabled
+;;   :after org
+;;   :commands org-edna-load
+;;   )
+;; (def-package! ox-hugo
+;;   :disabled
+;;   :after ox)
 
