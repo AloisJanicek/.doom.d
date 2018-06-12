@@ -1,18 +1,93 @@
 ;;; ~/.doom.d/autoload/interactive.el -*- lexical-binding: t; -*-
 ;;;###autoload
-(defun aj/goto-bookmarks ()
-  "Go to my private wiki and browse it,narrow it"
+(defun aj/goto-journal ()
   (interactive)
-  (let ((my-current-buffer (buffer-name)))
+  (persp-remove-buffer "JOURNAL.org")
+  (if (get-buffer "JOURNAL.org")
+      (progn
+        (pop-to-buffer "JOURNAL.org")
+        (emacs-lock-mode 'kill))
     (progn
-      (find-file "~/org/BOOKMARKS.org")
+      (pop-to-buffer (find-file-noselect +JOURNAL))
+      (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode))))
+;;;###autoload
+(defun aj/goto-someday ()
+  (interactive)
+  (persp-remove-buffer "SOMEDAY.org")
+  (if (get-buffer "SOMEDAY.org")
+      (progn
+        (pop-to-buffer "SOMEDAY.org")
+        (emacs-lock-mode 'kill)
+        (widen)
+        (goto-line 3)
+        (outline-show-branches)
+        )
+    (progn
+      (pop-to-buffer (find-file-noselect +SOMEDAY))
+      (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
       (widen)
-      (counsel-org-goto-bookmarks)
-      (switch-to-buffer my-current-buffer))))
+      (goto-line 3)
+      (outline-show-branches)
+      )))
+;;;###autoload
+(defun aj/goto-maybe ()
+  (interactive)
+  (persp-remove-buffer "MAYBE.org")
+  (if (get-buffer "MAYBE.org")
+      (progn
+        (pop-to-buffer "MAYBE.org")
+        (emacs-lock-mode 'kill)
+        (widen)
+        (goto-line 3)
+        )
+    (progn
+      (pop-to-buffer (find-file-noselect +MAYBE))
+      (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
+      (widen)
+      (goto-line 3)
+      )))
+;;;###autoload
+(defun aj/goto-GTD ()
+  (interactive)
+  (persp-remove-buffer "GTD.org")
+  (if (get-buffer "GTD.org")
+      (progn
+        (pop-to-buffer "GTD.org")
+        (emacs-lock-mode 'kill)
+        (widen)
+        (goto-line 6)
+        )
+    (progn
+      (pop-to-buffer (find-file-noselect +GTD))
+      (emacs-lock-mode 'kill)
+      (widen)
+      (goto-line 6)
+      (turn-off-solaire-mode))))
+;;;###autoload
+(defun aj/goto-bookmarks ()
+  "Selects and opens links"
+  (interactive)
+  (persp-remove-buffer "BOOKMARKS.org")
+  (if (get-buffer +BOOKMARKS)
+      (progn
+        (pop-to-buffer "BOOKMARKS.org")
+        (emacs-lock-mode 'kill)
+        (widen)
+        (counsel-org-goto-bookmarks))
+    (progn
+      (pop-to-buffer (find-file-noselect +BOOKMARKS))
+      (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
+      (widen)
+      (counsel-org-goto-bookmarks))))
 ;;;###autoload
 (defun aj/goto-private-wiki ()
   "Go to my private wiki and browse it"
   (interactive)
+  (persp-remove-buffer "private-wiki.org")
   (require 'counsel)
   (if (get-buffer "private-wiki.org")
       (progn
@@ -22,11 +97,13 @@
     (progn
       (pop-to-buffer (find-file-noselect +private-wiki))
       (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
       (counsel-org-goto-private-wiki))))
 ;;;###autoload
 (defun aj/goto-environment-wiki ()
   "Go to my environment wiki and browse it"
   (interactive)
+  (persp-remove-buffer "environment-wiki.org")
   (require 'counsel)
   (if (get-buffer "environment-wiki.org")
       (progn
@@ -37,11 +114,13 @@
     (progn
       (pop-to-buffer (find-file-noselect +environment-wiki))
       (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
       (counsel-org-goto-private-wiki))))
 ;;;###autoload
 (defun aj/goto-education-wiki ()
   "Go to my environment wiki and browse it"
   (interactive)
+  (persp-remove-buffer "education-wiki.org")
   (require 'counsel)
   (if (get-buffer "education-wiki.org")
       (progn
@@ -51,26 +130,30 @@
     (progn
       (pop-to-buffer (find-file-noselect +education-wiki))
       (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
       (counsel-org-goto-private-wiki))))
 ;;;###autoload
 (defun aj/goto-work-wiki ()
   "Go to my work wiki and browse it,narrow it"
   (interactive)
+  (persp-remove-buffer "work-wiki.org")
   (require 'counsel)
   (if (get-buffer "work-wiki.org")
       (progn
         (pop-to-buffer "work-wiki.org")
         (emacs-lock-mode 'kill)
-        (goto-line 5)
+        (goto-line 6)
         (aj/wiki-select/body))
     (progn
       (pop-to-buffer (find-file-noselect +work-wiki))
       (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
       (counsel-org-goto-private-wiki))))
 ;;;###autoload
 (defun aj/goto-build-wiki ()
   "Go to my work wiki and browse it,narrow it"
   (interactive)
+  (persp-remove-buffer "build-wiki.org")
   (require 'counsel)
   (if (get-buffer "build-wiki.org")
       (progn
@@ -80,6 +163,7 @@
     (progn
       (pop-to-buffer (find-file-noselect +build-wiki))
       (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode)
       (counsel-org-goto-private-wiki))))
 ;;;###autoload
 (defun aj-strike-through-org-headline ()
@@ -552,7 +636,7 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
     (counsel-bookmark)))
 
 ;;;###autoload
-; TODO: replace "link: " with actual domain name - useful for hyper links with titles
+                                        ; TODO: replace "link: " with actual domain name - useful for hyper links with titles
 (defun gk-browse-url (&rest args)
   "Prompt for whether or not to browse with EWW, if no browse
 with external browser."
@@ -611,8 +695,8 @@ If STRICT-P, return nil if no project was found, otherwise return
     (projectile-project-root)))
 ;;;###autoload
 (defun browse-webster-at-point ()
-    (interactive)
-    (browse-url (concat "https://www.merriam-webster.com/dictionary/" (thing-at-point 'word))))
+  (interactive)
+  (browse-url (concat "https://www.merriam-webster.com/dictionary/" (thing-at-point 'word))))
 ;;;###autoload
 (defun browse-dictionary-at-point ()
   (interactive)
