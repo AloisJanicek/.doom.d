@@ -151,18 +151,8 @@
 
 
   ;; faces
-  (add-hook 'doom-load-theme-hook
-            '(lambda () (interactive)
-               (set-face-attribute     'org-level-1 nil                :height 1.0 :background nil)
-               (set-face-attribute     'org-level-2 nil                :height 1.0)
-               (set-face-attribute     'org-level-3 nil                :height 1.0)
-               (set-face-attribute     'org-level-4 nil                :height 1.0)
-               (set-face-attribute     'org-agenda-date nil            :height 1.0)
-               (set-face-attribute     'org-agenda-date-today    nil   :height 1.0)
-               (set-face-attribute     'org-agenda-date-weekend  nil   :height 1.0)
-               (set-face-attribute     'org-agenda-structure     nil   :height 1.0)
-               (setq org-fontify-whole-heading-line nil)
-               ))
+  (add-hook 'doom-load-theme-hook #'aj/my-org-faces)
+  (add-hook! :append 'org-load-hook #'aj/my-org-faces)
 
   ;; advices
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
