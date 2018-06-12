@@ -48,7 +48,7 @@
    org-agenda-custom-commands
    ' (("P" "Projects" ((tags "+LEVEL=2+CATEGORY=\"PROJECTS\"
                               |+LEVEL=3+CATEGORY=\"PROJECTS\"
-                              |+LEVEL=4+CATEGORY=\"PROJECTS\""))
+                              |+LEVEL=4+CATEGORY=\"PROJECTS\"/-DONE-TODO"))
        ((org-agenda-overriding-header "Projects Overview")
         (org-agenda-files '("~/org/GTD.org"))
         ))
@@ -77,13 +77,13 @@
    org-agenda-category-icon-alist
    `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center))
    org-show-context-detail '((agenda .minimal)
-                             (bookmark-jump . lineage)
+                             (bookmark-jump . minimal)
                              (isearch . lineage)
-                             (default . lineage)
+                             (default . minimal)
                              )
 
    ;; org-todo-keywords '()
-   ;; org-todo-keyword-faces '()
+   org-todo-keyword-faces '(("NEXT" . "#98be65") ("WAITING" . "#c678dd") ("TODO" . "#ECBE7B"))
    org-enforce-todo-dependencies t
    org-enforce-todo-checkbox-dependencies nil
    org-provide-todo-statistics t
@@ -198,6 +198,10 @@
   (set! :popup "education-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
   (set! :popup "^\\*Org Src" '((size . 0.4) (side . right)) '((quit) (select . t)))
   (set! :popup "^\\*Org Agenda.*\\*$" '((slot . -1) (size . 0.32) (side . right)) '((select . t) (modeline . nil) (quit . t)))
+  (set! :popup "JOURNAL.org" '((size . 0.4) (side . top)) '((select . t) (transient . nil)))
+  (set! :popup "SOMEDAY.org" '((size . 0.4) (side . right)) '((select . t) (transient . nil)))
+  (set! :popup "MAYBE.org" '((size . 0.4) (side . right)) '((select . t) (transient . nil)))
+  (set! :popup "BOOKMARKS.org" '((size . 0.4) (side . top)) '((select . t) (transient . nil)))
 
   )
 
