@@ -310,6 +310,7 @@
      )
    (:desc "buffer"        :prefix "b"
      :desc "List"     :nv     "l" #'ibuffer-list-buffers
+     :desc "Kill buffers"     :nv     "K" #'kill-buffer
      )
    (:desc "jump:" :prefix "j"
      :desc "file"         :nv "f" #'counsel-file-jump
