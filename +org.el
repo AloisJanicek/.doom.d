@@ -27,6 +27,9 @@
   (org-link-set-parameters "ebook"
                            :follow #'org-ebook-open
                            :store #'org-ebook-store-link)
+  (org-add-link-type "ebook" 'org-ebook-open)
+  (add-hook 'org-store-link-functions 'org-ebook-store-link)
+
   (setq
    +org-dir "~/org/"
    +org-attach-dir "attach/"
