@@ -45,6 +45,9 @@
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
 
+       :editor
+      ;; parinfer          ; turn lisp into python, sort of
+
        :emacs
        dired             ; making dired pretty [functional]
        ediff             ; comparing files in Emacs
