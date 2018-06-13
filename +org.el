@@ -38,11 +38,11 @@
 
    org-capture-templates '(("p" "Protocol" entry (file "~/org/BOOKMARKS.org")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:quote:\n%u\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n"
-                            :immediate-finish t :kill-buffer t :prepend t)
+                            :immediate-finish t :prepend t)
 
                            ("L" "Protocol Link" entry (file "~/org/BOOKMARKS.org")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:\n%u"
-                            :immediate-finish t :kill-buffer t :prepend t)
+                            :immediate-finish t :prepend t)
 
                            ("w" "Website" entry (file "~/org/WEBSITES.org")
                             "* %c :website:\n\n%U %?\n\n%:initial" :immediate-finish t)
