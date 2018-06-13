@@ -193,7 +193,7 @@
 (def-package! org-brain
   :after org
   :init
-  (setq org-brain-path "~/org")
+  (setq org-brain-path "~/org/brain")
   (set! :evil-state 'org-brain-visualize-mode 'emacs)
   :config
   (setq org-brain-visualize-default-choices 'all
