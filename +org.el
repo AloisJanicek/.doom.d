@@ -45,8 +45,7 @@
                             :immediate-finish t :kill-buffer t :prepend t)
 
                            ("w" "Website" entry (file "~/org/WEBSITES.org")
-                            "* %a :website:\n\n%U %?\n\n%:initial"
-                            :immediate-finish t :kill-buffer t)
+                            "* %c :website:\n\n%U %?\n\n%:initial" :immediate-finish t)
 
                            ("e" "journal Entry" entry (file+olp+datetree "~/org/JOURNAL.org")
                             "**** %?" :tree-type week)
