@@ -1,25 +1,26 @@
 ;;; ~/.doom.d/+def.el -*- lexical-binding: t; -*-
-(def-package! avy
-  :commands (avy-goto-char-2 avy-goto-line avy-org-refile-as-child)
-  :config
-  (setq avy-all-windows nil
-        avy-background t))
 (def-package! outline-magic
-  )
-(def-package! highlight-blocks)
+  :commands (outline-cycle outline-next-line outline-move-subtree-up outline-move-subtree-down outline-promote outline-demote))
+
+(def-package! highlight-blocks
+  :commands (highlight-blocks-mode highlight-blocks-now))
+
 (def-package! hungry-delete
   :demand t
   :config
   (setq hungry-delete-except-modes
         '(term-mode help-mode minibuffer-inactive-mode calc-mode))
   (global-hungry-delete-mode 1))
-(def-package! find-file-in-project)
+
+(def-package! find-file-in-project
+  :commands (ffip ffip-show-diff))
+
 (def-package! gulp-task-runner
-  :commands gulp
-  )
+  :commands gulp)
+
 (def-package! ivy-yasnippet
-  :disabled
   :commands (ivy-yasnippet))
+
 (def-package! all-the-icons-ivy
   :after (ivy counsel)
   :init
@@ -31,68 +32,32 @@
           counsel-projectile-find-file ;; not working
           counsel-projectile-find-dir))
   (setq all-the-icons-ivy-buffer-commands
-        '(+ivy/switch-workspace-buffer
-          ))
-  :config
-  (all-the-icons-ivy-setup)
-  )
-(def-package! ereader
-  :after org
-  :commands org-ebook-open
-  )
-(def-package! xml+)
+        '(+ivy/switch-workspace-buffer))
+  :config (all-the-icons-ivy-setup))
+
+(def-package! xml+
+  :commands (xml+-query--generic xml+-query-all xml+-query-first xml+-node-text xml+-node-text--helper))
+
 (def-package! cheatsheet
-  :disabled
-  :commands (
-             cheatsheet-add
-             cheatsheet-add-group
-             cheatsheet-get
-             cheatsheet-show
-             )
-  )
+  :commands (cheatsheet-add cheatsheet-add-group cheatsheet-get cheatsheet-show))
+
 (def-package! x-path-walker
-  :commands (helm-x-path-walker)
-  :config
-  (setq helm-display-function #'helm-posframe-display
-        helm-posframe-buffer nil)
-  (defun helm-posframe-display (buffer &optional _resume)
-    (posframe-show
-     (setq helm-posframe-buffer buffer)
-     :poshandler #'posframe-poshandler-frame-center
-     :left-fringe 10
-     :width (window-width)
-     :height 40
-     :respect-header-line t))
+  :commands (helm-x-path-walker))
 
-  (defun helm-posframe-cleanup ()
-    (posframe-hide helm-posframe-buffer))
-
-  (add-hook 'helm-cleanup-hook #'helm-posframe-cleanup)
-  )
-(def-package! qml-mode
-  :commands (qml-mode)
-  )
 (def-package! apache-mode
-  :commands apache-mode
-  :init
-  (autoload 'apache-mode "apache-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
-  (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
-  (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
-  (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
-  (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
-  )
+  :mode (("apache\\.conf\\'" . apache-mode)
+         ("\\.htaccess\\'" . apache-mode)
+         ("httpd\\.conf\\'" . apache-mode)
+         ("srm\\.conf\\'"    . apache-mode)
+         ("access\\.conf\\'" . apache-mode)
+         ("sites-\\(available\\|enabled\\)/" . apache-mode)))
 (def-package! robots-txt-mode
-  :commands robots-txt-mode
-  :init
-  (add-to-list 'auto-mode-alist '("/robots\\.txt\\'" . robots-txt-mode))
-  )
+  :mode (("/robots\\.txt\\'" . robots-txt-mode)))
+
 (def-package! systemd)
-(def-package! fish-mode
-  :commands fish-mode)
-(def-package! postcss-sorting
-  :disabled
-  )
+
+(def-package! fish-mode)
+
 (def-package! mpdel
   :disabled
   :config
@@ -103,14 +68,13 @@
     ("l" (ivy-mpdel-stored-playlists) "list")
     ("p" (libmpdel-playback-play-pause) "play/pause" :color blue)
     ("s" (libmpdel-stop) "stop" :color blue)
-    ("o" (aj-mpdel-playlist-open) "open" :color blue)
-    )
-  )
+    ("o" (aj-mpdel-playlist-open) "open" :color blue)))
+
 (def-package! ivy-mpdel
   :disabled
   :config
-  (set! :popup "*MPDEL Current Playlist*" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
-  )
+  (set! :popup "*MPDEL Current Playlist*" '((size . 0.4) (side . left)) '((select . t) (transient . nil))))
+
 (def-package! podcaster
   :disabled
   :commands podcaster
@@ -122,20 +86,8 @@
     ("l" (podcaster) "listen")
     ("p" (podcaster-pause) "pause")
     ("s" (podcaster-stop) "stop")
-    ("r" (podcaster-resume) "resume"))
-  )
-(def-package! emms
-  :disabled
-  :commands emms
-  :config
-  (require 'emms-setup)
-  (require 'emms-player-mpd)
-  (emms-all)
-  (setq emms-seek-seconds 5)
-  (setq emms-player-list '(emms-player-mpd))
-  (setq emms-player-mpd-server-name "localhost")
-  (setq emms-player-mpd-server-port "6600")
-  )
+    ("r" (podcaster-resume) "resume")))
+
 (def-package! exwm
   :disabled
   :config
@@ -149,23 +101,10 @@
             (lambda ()
               (start-process-shell-command
                "xrandr" nil "xrandr --output VGA-1 --right-of LVDS-1 --auto")))
-  (exwm-randr-enable)
-  )
+  (exwm-randr-enable))
+
 (def-package! sdcv
   :config
-  (set! :popup "*SDCV\*" '((size . 0.4) (side . top)) '((select . t) ))
-  )
-(def-package! define-word)
+  (set! :popup "*SDCV\*" '((size . 0.4) (side . top)) '((select . t) )))
 
-;; (def-package! prescient
-;;   :config (prescient-persist-mode 1)
-;;   )
-;; (def-package! ivy-prescient
-;;   :after ivy
-;;   :config
-;;   (ivy-prescient-mode)
-;;   (set-face-attribute 'ivy-minibuffer-match-face-1 nil :foreground "#c678dd" :weight 'bold))
-;; (def-package! company-prescient
-;;   :after company
-;;   :config (company-prescient-mode)
-;;   )
+(def-package! define-word)

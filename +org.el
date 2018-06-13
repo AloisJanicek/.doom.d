@@ -2,9 +2,6 @@
 
 ;; local elisp files which refused to be installed with quelpa
 (after! org-protocol  (load! "local/org-protocol-capture-html/org-protocol-capture-html.el"))
-;; (after! org-agenda    (load! "local/org-agenda-ng/org-ql.el"))
-;; (after! org-agenda    (load! "local/org-agenda-ng/org-agenda.el"))
-;; (after! org-agenda    (load! "local/org-sidebar/org-sidebar.el"))
 
 ;; load additional org-modules
 (add-hook 'org-load-hook '(lambda () (setq org-modules (append '(org-man org-eww org-protocol org-habit) org-modules))))
@@ -298,31 +295,6 @@
   :commands ob-async-org-babel-execute-src-block)
 
 ;; disabled
-;; (def-package! org-fancy-priorities
-;;   :after org
-;;   :disabled
-;;   :hook
-;;   (org-mode . org-fancy-priorities-mode)
-;;   :config
-;;   (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
-;; (def-package! org-super-agenda
-;;   :disabled
-;;   :after org
-;;   :commands org-super-agenda-mode
-;;   :init
-;;   ;; I will set this for specific commands only
-;;   (setq org-super-agenda-groups nil)
-;;   :config
-;;   (org-super-agenda-mode))
-;; (def-package! plain-org-wiki
-;;   :disabled
-;;   :after org
-;;   :commands plain-org-wiki)
-;; (def-package! org-edna
-;;   :disabled
-;;   :after org
-;;   :commands org-edna-load
-;;   )
 ;; (def-package! ox-hugo
 ;;   :disabled
 ;;   :after ox)
