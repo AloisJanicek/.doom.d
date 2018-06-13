@@ -16,19 +16,17 @@
                '("\\.pdf\\'" . (lambda (file link)
                                  (org-pdfview-open link))))
   ;; register pdfview link type (copied from org-pdfview.el so I can lazy load)
-  (if (fboundp 'org-link-set-parameters)
-      (org-link-set-parameters "pdfview"
-                               :follow #'org-pdfview-open
-                               :complete #'org-pdfview-complete-link
-                               :store #'org-pdfview-store-link)
-    (org-add-link-type "pdfview" 'org-pdfview-open)
-    (add-hook 'org-store-link-functions 'org-pdfview-store-link))
+  (org-link-set-parameters "pdfview"
+                           :follow #'org-pdfview-open
+                           :complete #'org-pdfview-complete-link
+                           :store #'org-pdfview-store-link)
+  (org-add-link-type "pdfview" 'org-pdfview-open)
+  (add-hook 'org-store-link-functions 'org-pdfview-store-link)
 
   ;; ...and same thing for org-ebook
-  (if (fboundp 'org-link-set-parameters)
-      (org-link-set-parameters "ebook"
-                               :follow #'org-ebook-open
-                               :store #'org-ebook-store-link))
+  (org-link-set-parameters "ebook"
+                           :follow #'org-ebook-open
+                           :store #'org-ebook-store-link)
   (setq
    +org-dir "~/org/"
    +org-attach-dir "attach/"
