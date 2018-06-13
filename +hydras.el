@@ -18,7 +18,7 @@
   ("c" (aj/refile-to-file-headline +SOMEDAY "Configure" ) "configure" )
   ("d" (aj/refile-to-file-headline +SOMEDAY "Do" )        "do" )
   ("g" (aj/refile-to-file-headline +SOMEDAY "Go" )        "go" )
-  ("h" (aj/refile-to-file-headline +SOMEDAY "Habbit" )    "habbit" )
+  ("h" (aj/refile-to-file-headline +SOMEDAY "Habit" )    "habit" )
   ("l" (aj/refile-to-file-headline +SOMEDAY "Learn" )     "learn" )
   ("L" (aj/refile-to-file-headline +SOMEDAY "Listen" )    "Listen" )
   ("m" (aj/refile-to-file-headline +SOMEDAY "MOC" )       "moc" )
