@@ -188,6 +188,18 @@
   (set! :popup "BOOKMARKS.org" '((size . 0.4) (side . top)) '((select . t) (transient . nil)))
 
   )
+(after! ob-core
+  (setq
+   org-babel-default-header-args '((:session . "none")
+                                   (:results . "replace")
+                                   (:exports . "code")
+                                   (:cache . "no")
+                                   (:noweb . "no")
+                                   (:hlines . "no")
+                                   (:tangle . "no")
+                                   (:mkdir . "yes"))
+   )
+  )
 
 ;; packages
 (def-package! org-brain
