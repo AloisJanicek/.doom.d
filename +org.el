@@ -166,49 +166,10 @@
 
   ;; advices
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
+  (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
   (advice-add 'org-agenda-switch-to :after 'turn-off-solaire-mode)
-
-  (advice-add 'org-refile :after
-              (lambda (&rest _)
-                (org-save-all-org-buffers)))
-
-
-  (defadvice org-capture-refile (around opened-org-capture-around activate)
-    (opened-org-agenda-files)
-    ad-do-it
-    (kill-org-agenda-files))
-
-  (defadvice org-agenda (around opened-org-capture-around activate)
-    (opened-org-agenda-files)
-    ad-do-it
-    (kill-org-agenda-files))
-
-  (defadvice org-agenda-exit (around opened-org-capture-around activate)
-    (opened-org-agenda-files)
-    ad-do-it
-    (kill-org-agenda-files))
-
-  (defadvice org-agenda-quit (around opened-org-capture-around activate)
-    (opened-org-agenda-files)
-    ad-do-it
-    (kill-org-agenda-files))
-
-  (defadvice org-refile (around opened-org-capture-around activate)
-    (opened-org-agenda-files)
-    ad-do-it
-    (kill-org-agenda-files))
-
-  (defadvice org-clock-in (around opened-org-clock-in activate)
-    (opened-org-agenda-files)
-    ad-do-it
-    (kill-org-agenda-files)
-    (org-save-all-org-buffers))
-
-  (defadvice org-clock-out (around opened-org-clock-out activate)
-    (opened-org-agenda-files)
-    ad-do-it
-    (kill-org-agenda-files)
-    (org-save-all-org-buffers))
+  (advice-add 'org-clock-in :around (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-clock-out :around (lambda (&rest _) (org-save-all-org-buffers)))
 
   ;; popups
   (set! :popup "^\\*org-brain\\*$" '((vslot . -1) (size . 0.3) (side . left)) '((select . t) (quit . t) (transient . t)))
