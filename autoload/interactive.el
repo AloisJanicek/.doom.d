@@ -20,7 +20,8 @@
         (pop-to-buffer "SOMEDAY.org")
         (emacs-lock-mode 'kill)
         (widen)
-        (goto-line 3)
+        (goto-char (point-min))
+        (forward-line 3)
         (outline-show-branches)
         )
     (progn
@@ -28,7 +29,8 @@
       (emacs-lock-mode 'kill)
       (turn-off-solaire-mode)
       (widen)
-      (goto-line 3)
+      (goto-char (point-min))
+      (forward-line 3)
       (outline-show-branches)
       )))
 ;;;###autoload
@@ -40,14 +42,16 @@
         (pop-to-buffer "MAYBE.org")
         (emacs-lock-mode 'kill)
         (widen)
-        (goto-line 3)
+        (goto-char (point-min))
+        (forward-line 3)
         )
     (progn
       (pop-to-buffer (find-file-noselect +MAYBE))
       (emacs-lock-mode 'kill)
       (turn-off-solaire-mode)
       (widen)
-      (goto-line 3)
+      (goto-char (point-min))
+      (forward-line 3)
       )))
 ;;;###autoload
 (defun aj/goto-GTD ()
@@ -58,13 +62,15 @@
         (pop-to-buffer "GTD.org")
         (emacs-lock-mode 'kill)
         (widen)
-        (goto-line 6)
+        (goto-char (point-min))
+        (forward-line 6)
         )
     (progn
       (pop-to-buffer (find-file-noselect +GTD))
       (emacs-lock-mode 'kill)
       (widen)
-      (goto-line 6)
+      (goto-char (point-min))
+      (forward-line 6)
       (turn-off-solaire-mode))))
 ;;;###autoload
 (defun aj/goto-bookmarks ()
@@ -109,7 +115,8 @@
       (progn
         (pop-to-buffer "environment-wiki.org")
         (emacs-lock-mode 'kill)
-        (goto-line 8)
+        (goto-char (point-min))
+        (forward-line 8)
         (aj/wiki-select/body))
     (progn
       (pop-to-buffer (find-file-noselect +environment-wiki))
@@ -141,8 +148,10 @@
   (if (get-buffer "work-wiki.org")
       (progn
         (pop-to-buffer "work-wiki.org")
+        (goto-char (point-min))
         (emacs-lock-mode 'kill)
-        (goto-line 6)
+        (goto-char (point-min))
+        (forward-line 6)
         (aj/wiki-select/body))
     (progn
       (pop-to-buffer (find-file-noselect +work-wiki))
@@ -259,6 +268,7 @@ of text segment of current headline.
     (org-insert-heading-respect-content)
     (insert x)
     (org-id-get-create)
+    (goto-char (point-min))
     (forward-line 1)
     (org-cycle)
     (evil-open-below 1)))
