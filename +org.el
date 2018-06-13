@@ -247,7 +247,6 @@
   :commands (ereader-read-epub ereader-mode)
   )
 (def-package! org-ebook
-  :after (org ereader)
   :commands (org-ebook-open org-ebook-store-link)
   )
 (def-package! ob-javascript
