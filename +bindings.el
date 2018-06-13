@@ -331,6 +331,7 @@
       :desc "project bookmark"         :nv     "p" #'counsel-projectile-bookmark
       )
     (:desc "view:" :prefix                     "v"
+      :desc "brain-visualize"          :nv     "v" #'org-brain-visualize
       :desc "jump"                     :nv     "j" #'ivy-switch-view
       :desc "save"                     :nv     "s" #'ivy-push-view
       :desc "pop"                      :nv     "p" #'ivy-pop-view
