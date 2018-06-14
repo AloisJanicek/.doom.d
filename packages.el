@@ -36,6 +36,7 @@
 (package! sdcv :recipe (:fetcher url :url "https://raw.githubusercontent.com/stardiviner/sdcv.el/master/sdcv.el"))
 (package! define-word)
 (package! xml+)
+(package! other-frame-window)
 
 ;; (package! prescient)
 ;; (package! ivy-prescient)

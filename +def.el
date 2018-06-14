@@ -108,3 +108,4 @@
   (set! :popup "*SDCV\*" '((size . 0.4) (side . top)) '((select . t) )))
 
 (def-package! define-word)
+(def-package! other-frame-window)
