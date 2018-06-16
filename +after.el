@@ -11,25 +11,25 @@
 (after! man
   (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "#ff7a79")
   (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "#98be65")
-  (set! :popup "*Man\*" '((size . 0.4) (side . left)) '((select . t) ))
-  (set! :popup "*man\*" '((size . 0.6) (side . left)) '((select . t) )))
+  (set-popup-rule! "*Man\*" '((size . 0.4) (side . left)) '((select . t) ))
+  (set-popup-rule! "*man\*" '((size . 0.6) (side . left)) '((select . t) )))
 (after! eww
-  (set! :popup "*eww\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*eww\*" '((size . 0.4) (side . left)) '((select . t) )))
 (after! ibuffer
-  (set! :popup "*Ibuffer\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*Ibuffer\*" '((size . 0.4) (side . left)) '((select . t) )))
 (after! info
   (advice-add 'info :before 'aj/set-info-popup-width))
 (after! cus-edit
-  (set! :popup "*Customize\*" '((size . 0.4) (side . left)) '((select . t) (transient . nil))))
+  (set-popup-rule! "*Customize\*" '((size . 0.4) (side . left)) '((select . t) (transient . nil))))
 (after! helpful
-  (set! :popup "*helpful\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*helpful\*" '((size . 0.4) (side . left)) '((select . t) )))
 (after! help
-  (set! :popup "*help\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*help\*" '((size . 0.4) (side . left)) '((select . t) )))
 (after! apropos
-  (set! :popup "*apropos\*" '((size . 0.4) (side . left)) '((select . t) ))
-  (set! :popup "*Apropos\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*apropos\*" '((size . 0.4) (side . left)) '((select . t) ))
+  (set-popup-rule! "*Apropos\*" '((size . 0.4) (side . left)) '((select . t) )))
 (after! profiler
-  (set! :popup "^.*-Profiler-Report.*$"'((size . 0.4) (side . right)) '((select . t))))
+  (set-popup-rule! "^.*-Profiler-Report.*$"'((size . 0.4) (side . right)) '((select . t))))
 (after! evil
   (setq evil-move-cursor-back nil))
 (after! prodigy
@@ -49,10 +49,10 @@
 (after! persp-mode
   (setq persp-kill-foreign-buffer-action nil))
 (after! magit
-  ;; (set! :popup "^.*magit" '((slot . -1) (side . right) (size . 80)) '((modeline . nil) (select . t)))
-  ;; (set! :popup "^.*magit.*popup\\*" '((slot . 0) (side . right)) '((modeline . nil) (select . t)))
-  ;; (set! :popup "^.*magit-revision:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . t)))
-  ;; (set! :popup "^.*magit-diff:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . nil)))
+  ;; (set-popup-rule! "^.*magit" '((slot . -1) (side . right) (size . 80)) '((modeline . nil) (select . t)))
+  ;; (set-popup-rule! "^.*magit.*popup\\*" '((slot . 0) (side . right)) '((modeline . nil) (select . t)))
+  ;; (set-popup-rule! "^.*magit-revision:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . t)))
+  ;; (set-popup-rule! "^.*magit-diff:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . nil)))
   (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
   )
 ; note: broken with default flycheck, needs :branch "fix-1398-quoted-lambdas"
@@ -148,12 +148,12 @@ See URL `http://stylelint.io/'."
 (after! google-translate-default-ui
   (setq google-translate-default-source-language "cs"
         google-translate-default-target-language "en")
-  (set! :popup "*Google Translate\*" '((size . 0.4) (side . top)) '((select . t) ))
+  (set-popup-rule! "*Google Translate\*" '((size . 0.4) (side . top)) '((select . t) ))
   )
 
 (after! synosaurus
-  (set! :popup "*Synonyms List\*" '((size . 0.4) (side . top)) '((select . t) ))
+  (set-popup-rule! "*Synonyms List\*" '((size . 0.4) (side . top)) '((select . t) ))
   )
 (after! wordnut
-  (set! :popup "*WordNut\*" '((size . 0.4) (side . top)) '((select . t) ))
+  (set-popup-rule! "*WordNut\*" '((size . 0.4) (side . top)) '((select . t) ))
   )

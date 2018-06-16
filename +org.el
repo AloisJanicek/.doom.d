@@ -171,21 +171,21 @@
   (advice-add 'org-clock-out :around (lambda (&rest _) (org-save-all-org-buffers)))
 
   ;; popups
-  (set! :popup "^\\*org-brain\\*$" '((vslot . -1) (size . 0.3) (side . left)) '((select . t) (quit . t) (transient . t)))
-  (set! :popup "^CAPTURE.*\\.org$" '((side . bottom) (size . 0.4)) '((select . t)))
-  (set! :popup "GTD.org" '((vslot . -1)(size . 0.32) (side . right)) '((select . t) (transient . nil)))
-  (set! :popup "README.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
-  (set! :popup "work-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
-  (set! :popup "build-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
-  (set! :popup "private-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
-  (set! :popup "environment-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
-  (set! :popup "education-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
-  (set! :popup "^\\*Org Src" '((size . 0.4) (side . right)) '((quit) (select . t)))
-  (set! :popup "^\\*Org Agenda.*\\*$" '((slot . -1) (size . 0.32) (side . right)) '((select . t) (modeline . nil) (quit . t)))
-  (set! :popup "JOURNAL.org" '((size . 0.4) (side . top)) '((select . t) (transient . nil)))
-  (set! :popup "SOMEDAY.org" '((size . 0.4) (side . right)) '((select . t) (transient . nil)))
-  (set! :popup "MAYBE.org" '((size . 0.4) (side . right)) '((select . t) (transient . nil)))
-  (set! :popup "BOOKMARKS.org" '((size . 0.4) (side . top)) '((select . t) (transient . nil)))
+  (set-popup-rule! "^\\*org-brain\\*$" '((vslot . -1) (size . 0.3) (side . left)) '((select . t) (quit . t) (transient . t)))
+  (set-popup-rule! "^CAPTURE.*\\.org$" '((side . bottom) (size . 0.4)) '((select . t)))
+  (set-popup-rule! "GTD.org" '((vslot . -1)(size . 0.32) (side . right)) '((select . t) (transient . nil)))
+  (set-popup-rule! "README.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
+  ;; (set-popup-rule! "work-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
+  ;; (set-popup-rule! "build-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
+  ;; (set-popup-rule! "private-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
+  ;; (set-popup-rule! "environment-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
+  ;; (set-popup-rule! "education-wiki.org" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))
+  (set-popup-rule! "^\\*Org Src" '((size . 0.4) (side . right)) '((quit) (select . t)))
+  (set-popup-rule! "^\\*Org Agenda.*\\*$" '((slot . -1) (size . 0.32) (side . right)) '((select . t) (modeline . nil) (quit . t)))
+  (set-popup-rule! "JOURNAL.org" '((size . 0.4) (side . top)) '((select . t) (transient . nil)))
+  (set-popup-rule! "SOMEDAY.org" '((size . 0.4) (side . right)) '((select . t) (transient . nil)))
+  (set-popup-rule! "MAYBE.org" '((size . 0.4) (side . right)) '((select . t) (transient . nil)))
+  ;; (set-popup-rule! "BOOKMARKS.org" '((size . 0.4) (side . top)) '((select . t) (transient . nil)))
 
   )
 (after! ob-core
@@ -206,7 +206,7 @@
   :after org
   :init
   (setq org-brain-path "~/org/brain")
-  (set! :evil-state 'org-brain-visualize-mode 'emacs)
+  (set-evil-initial-state! 'org-brain-visualize-mode 'emacs)
   :config
   (setq org-brain-visualize-default-choices 'all
         org-brain-title-max-length 12 )
