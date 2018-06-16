@@ -102,7 +102,11 @@
                              (isearch . lineage)
                              (default . minimal)
                              )
-
+   org-link-frame-setup '((vm . vm-visit-folder-other-frame)
+                          (vm-imap . vm-visit-imap-folder-other-frame)
+                          (gnus . org-gnus-no-new-news)
+                          (file . find-file-other-window)
+                          (wl . wl-other-frame))
    org-todo-keywords
    ;;           todo     ongoing  hold         zap      done
    '((sequence "[ ](t)" "[-](o)" "[!](h)" "|" "[✘](z)" "[✔](d)")
