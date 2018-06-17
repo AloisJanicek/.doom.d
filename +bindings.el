@@ -402,8 +402,10 @@
       :desc "/log"                     :nv     "/" #'counsel-git-log
       )
     (:desc "file" :prefix                      "f"
-      :desc "ag"                       :nv     "g" #'+ivy/ag-from-cwd
-      :desc "ag"                       :nv     "h" #'+ivy/rg-from-cwd
+      :desc "ag-cwd"                   :nv     "g" #'+ivy/ag-from-cwd
+      :desc "ag-project"               :nv     "G" #'+ivy/ag
+      :desc "rg-cwd"                   :nv     "h" #'+ivy/rg-from-cwd
+      :desc "rg-project"               :nv     "H" #'+ivy/rg
       :desc "file"                     :nv     "f" #'counsel-find-file
       :desc "jump org"                 :nv     "o" #'aj/jump-to-org-dir
       :desc "jump file"                :nv     "j" #'counsel-file-jump
