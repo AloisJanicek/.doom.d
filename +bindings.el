@@ -1,42 +1,6 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
-;; hacks
-;; (defun localleader-belongs-to-me-in-org (&rest _)
-;;   "Take over of prefix mappings defined in +org|setup-evil"
-;;   (require 'evil-org)
-;;   (map! :map evil-org-mode-map
-;;         :localleader
-;;         (:desc "decrypt:"          :prefix "d"
-;;           :desc "encrypt entry"     :nv "e" #'org-encrypt-entry
-;;           :desc "Encrytp entries"     :nv "E" #'org-encrypt-entries
-;;           :desc "decrypt entry"       :nv "d" #'org-decrypt-entry
-;;           :desc "Decrypt entries"       :nv "D" #'org-decrypt-entries
-;;           )
-;;        (:desc "Clock"        :prefix "c"
-;;          :desc "IN"           :nv "i" #'org-clock-in
-;;          :desc "OUT"          :nv "o" #'org-clock-out
-;;          :desc "Goto"         :nv "g" #'org-clock-goto
-;;          :desc "Pomodoro"     :nv "p" #'org-pomodoro
-;;          )
-;;        :desc "Todo"         :nv "t" #'org-todo
-;;         )
-;;   )
-;; (advice-add #'+org|setup-evil :around #'localleader-belongs-to-me-in-org)
-
-;; this doesn't work for prefix, only for single key
-;; (map! :after org
-;;       :map evil-org-mode-map
-;;       :localleader
-;;       "d" nil
-;;       (:desc "decrypt:"          :prefix "d"
-;;         :desc "encrypt entry"     :nv "e" #'org-encrypt-entry
-;;         :desc "Encrytp entries"     :nv "E" #'org-encrypt-entries
-;;         :desc "decrypt entry"       :nv "d" #'org-decrypt-entry
-;;         :desc "Decrypt entries"       :nv "D" #'org-decrypt-entry
-;;         )
-;;       )
 ( map!
-
   ;; global
   (               :map global-map
     :nimve "M-1"   (λ! (+workspace/switch-to 0))
@@ -53,6 +17,7 @@
 
     :i   "C-'"       #'forward-char
     :i   "C-;"       #'backward-char
+    :invmve "H-o"    #'other-frame
     "C-s"       #'ispell-word
     :inv "M-y"       #'counsel-yank-pop
     "C-="       #'recenter-top-bottom
@@ -88,6 +53,24 @@
         :desc "clock-OUT"    :nv               "o" #'org-clock-out))
     )
   (:after org
+    (:map evil-org-mode-map
+      :localleader
+      :nvmoe "d" nil
+      (:desc "decrypt:"          :prefix "d"
+        :desc "encrypt entry"     :nv "e" #'org-encrypt-entry
+        :desc "Encrytp entries"     :nv "E" #'org-encrypt-entries
+        :desc "decrypt entry"       :nv "d" #'org-decrypt-entry
+        :desc "Decrypt entries"       :nv "D" #'org-decrypt-entry
+        )
+      :nvmoe "c" nil
+      (:desc "Clock"        :prefix "c"
+        :desc "IN"           :nv "i" #'org-clock-in
+        :desc "OUT"          :nv "o" #'org-clock-out
+        :desc "Goto"         :nv "g" #'org-clock-goto
+        :desc "Pomodoro"     :nv "p" #'org-pomodoro
+        )
+      :desc "Todo"         :nv "t" #'org-todo
+      )
     (:map org-mode-map
 
       "C-]"   #'org-insert-subheading
@@ -98,11 +81,6 @@
       :n   "K"     #'outline-previous-visible-heading
 
       (:localleader
-        ;; (      :desc "schedule:"          :prefix "s"
-        ;;        :desc "Schedule"     :nv          "s" #'org-schedule
-        ;;        :desc "Deadline"       :nv        "d" #'org-deadline
-        ;;   )
-
         (:desc "decrypt:"          :prefix     "d"
           :desc "encrypt entry"     :nv        "e" #'org-encrypt-entry
           :desc "Encrytp entries"     :nv      "E" #'org-encrypt-entries
