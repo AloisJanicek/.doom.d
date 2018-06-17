@@ -253,9 +253,9 @@
   :commands (org-projectile-todo-files org-projectile-capture-for-current-project)
   :init (setq org-projectile-per-project-filepath "README.org"
               org-projectile-capture-template (format "%s%s" "* TODO %?" :clock-in t)
-              org-agenda-files (append (list
-                                        ""
-                                        ))
+              ;; org-agenda-files (append (list
+              ;;                           ""
+              ;;                           ))
               )
   :config (org-projectile-per-project)
   )
