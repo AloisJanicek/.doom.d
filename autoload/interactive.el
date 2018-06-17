@@ -416,18 +416,18 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   (progn
     (org-brain-visualize (org-brain-entry-at-pt))))
 ;;;###autoload
-(defun pack-info-add-directories ()
-  (interactive)
-  (require 'info)
-  (require 'f)
-  (require 'dash)
-  (let ((old-info-dirs Info-additional-directory-list))
-    (setq Info-additional-directory-list nil)
-    (setq Info-additional-directory-list
-          (-concat
-           (--filter (file-exists-p (expand-file-name "dir" it))
-                     (f-directories package-user-dir))
-           old-info-dirs))))
+;; (defun pack-info-add-directories ()
+;;   (interactive)
+;;   (require 'info)
+;;   (require 'f)
+;;   (require 'dash)
+;;   (let ((old-info-dirs Info-additional-directory-list))
+;;     (setq Info-additional-directory-list nil)
+;;     (setq Info-additional-directory-list
+;;           (-concat
+;;            (--filter (file-exists-p (expand-file-name "dir" it))
+;;                      (f-directories package-user-dir))
+;;            old-info-dirs))))
 ;;;###autoload
 (defun aj/clock-menu ()
   "Present recent clocked tasks"
