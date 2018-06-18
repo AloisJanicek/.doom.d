@@ -1,6 +1,6 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
-( map!
+(map!
   ;; global
   (               :map global-map
     :nimve "M-1"   (λ! (+workspace/switch-to 0))
@@ -36,6 +36,15 @@
   (:after info
     (:map Info-mode-map
       :nve                                     "o"      #'ace-link-info
+      )
+    )
+  (:after yasnippet
+    (:map snippet-mode-map
+      (:localleader
+        :desc "tryout"     :nv               "t" #'yas-tryout-snippet
+        :desc "load"       :nv               "l" #'yas-load-snippet-buffer
+        :desc "load&close" :nv               "f" #'yas-load-snippet-buffer-and-close
+        )
       )
     )
   (:after org-capture
