@@ -274,10 +274,9 @@
   )
 (def-package! ob-javascript
   :after ob-core)
-(def-package! ob-async
-  :after ob-core
-  :commands ob-async-org-babel-execute-src-block)
-
+;; (def-package! ob-async
+;;   :after org
+;; )
 ;; disabled
 ;; (def-package! ox-hugo
 ;;   :disabled
