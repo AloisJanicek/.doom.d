@@ -37,6 +37,7 @@
 (package! define-word)
 (package! xml+)
 (package! other-frame-window)
+(package! link-hint)
 
 ;; (package! prescient)
 ;; (package! ivy-prescient)

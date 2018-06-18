@@ -111,3 +111,4 @@
 
 (def-package! define-word)
 (def-package! other-frame-window)
+(def-package! link-hint)
