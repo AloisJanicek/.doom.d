@@ -131,6 +131,9 @@ See URL `http://stylelint.io/'."
    'counsel-projectile-bookmark
    '(("d" bookmark-delete "delete")
      ("e" bookmark-rename "edit")))
+  (ivy-add-actions
+   #'ivy-yasnippet
+   '(("e" ivy-yasnippet--copy-edit-snippet-action "Edit snippet as your own")))
   )
 (after! org-bullets
   (setq org-bullets-bullet-list

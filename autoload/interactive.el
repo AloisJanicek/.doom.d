@@ -712,3 +712,14 @@ If STRICT-P, return nil if no project was found, otherwise return
 (defun browse-dictionary-at-point ()
   (interactive)
   (browse-url (concat "https://dictionary.com/browse/" (thing-at-point 'word))))
+
+;;;###autoload
+(defun ivy-yasnippet--copy-edit-snippet-action (template-name)
+  (let ((inhibit-read-only t))
+    (ivy-yasnippet--revert))
+  (yas-new-snippet)
+  (erase-buffer)
+  (insert-file-contents
+   (yas--template-get-file
+    (ivy-yasnippet--lookup-template template-name))
+   nil 0 500))
