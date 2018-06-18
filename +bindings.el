@@ -379,6 +379,12 @@
     (:desc "git" :prefix                       "g"
       :desc "/log"                     :nv     "/" #'counsel-git-log
       )
+    (:desc "notes" :prefix                    "n"
+      :desc "notes"     :nv "n" (λ! (counsel-find-file org-brain-path))
+      :desc "private"   :nv "p" (λ! (counsel-find-file (concat org-brain-path "/private_brain/")))
+      :desc "grep"      :nv "g" (λ! (+ivy/rg nil nil org-brain-path))
+      :desc "visualize" :nv "v" #'org-brain-visualize
+      )
     (:desc "file" :prefix                      "f"
       :desc "ag-cwd"                   :nv     "g" #'+ivy/ag-from-cwd
       :desc "ag-project"               :nv     "G" #'+ivy/ag
