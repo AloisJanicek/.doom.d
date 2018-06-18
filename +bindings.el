@@ -15,21 +15,21 @@
     :nimve "M-0"   #'+workspace/switch-to-last
     :nimve "M-t"   #'+workspace/new
 
-    :i   "C-'"       #'forward-char
-    :i   "C-;"       #'backward-char
-    :invmve "H-o"    #'other-frame
-    "C-s"       #'ispell-word
-    :inv "M-y"       #'counsel-yank-pop
-    "C-="       #'recenter-top-bottom
-    "C-\\"      #'move-to-window-line-top-bottom
-    "C-<right>" #'next-buffer
-    "C-<left>"  #'previous-buffer
-    "M-p"       #'+ivy :rg
-    :ne  "M-f"       #'aj/my-swiper
-    "<f2>"      #'which-key-show-top-level
-    "<f3>"      #'which-key-show-major-mode
-    "<f4>"      #'which-key-show-minor-mode-keymap
-    "<f5>"      #'which-key-show-keymap
+    :i     "C-'"       #'forward-char
+    :i     "C-;"       #'backward-char
+    :invme "H-o"       #'other-frame
+           "C-s"       #'ispell-word
+    :inv   "M-y"       #'counsel-yank-pop
+           "C-="       #'recenter-top-bottom
+           "C-\\"      #'move-to-window-line-top-bottom
+           "C-<right>" #'next-buffer
+           "C-<left>"  #'previous-buffer
+           "M-p"       #'ivy-yasnippet
+    :ne    "M-f"       #'aj/my-swiper
+           "<f2>"      #'which-key-show-top-level
+           "<f3>"      #'which-key-show-major-mode
+           "<f4>"      #'which-key-show-minor-mode-keymap
+           "<f5>"      #'which-key-show-keymap
     )
 
   ;; modes
