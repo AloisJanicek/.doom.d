@@ -172,6 +172,10 @@
   (add-hook! :append 'org-mode-hook #'aj/my-org-faces)
 
   ;; advices
+  (advice-add 'org-archive-subtree :after #'org-save-all-org-buffers)
+  (advice-add 'org-archive-subtree-default :after #'org-save-all-org-buffers)
+  (advice-add 'org-agenda-archive :after #'org-save-all-org-buffers)
+  (advice-add 'org-agenda-archive-default :after #'org-save-all-org-buffers)
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
   (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
   (advice-add 'org-agenda-switch-to :after 'turn-off-solaire-mode)
