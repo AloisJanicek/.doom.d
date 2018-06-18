@@ -146,8 +146,9 @@ Use `org-agenda-refile' in `org-agenda' mode."
 (defun aj/set-info-popup-width (&optional asdf asds)
   "Set width of info popup buffer"
   (if doom-big-font-mode
-      (set-popup-rule! "*info*" '((size . 0.6) (side . left)) '((select . t) (transient . nil)))
-    (set-popup-rule! "*info*" '((size . 0.4) (side . left)) '((select . t) (transient . nil)))))
+      (set-popup-rule! "*info*"                         :size 0.6 :side 'left :select t :transient nil)
+    (set-popup-rule! "*info*"                         :size 0.4 :side 'left :select t :transient nil)
+    ))
 ;;;###autoload
 (defun my-web-mode-hook ()
   "Hooks for Web mode."

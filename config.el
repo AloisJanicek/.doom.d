@@ -33,4 +33,4 @@
 (defadvice emmet-preview-accept (after emmet-after activate) (aj/indent-if-not-webmode))
 
 ;; misc
-(set-popup-rule! "*backtrace\*"'((size . 0.4) (side . right)) '((select . t)))
+(set-popup-rule! "*backtrace\*"                   :size 0.4 :side 'right :select t)

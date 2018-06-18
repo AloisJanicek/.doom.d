@@ -73,7 +73,8 @@
 (def-package! ivy-mpdel
   :disabled
   :config
-  (set-popup-rule! "*MPDEL Current Playlist*" '((size . 0.4) (side . left)) '((select . t) (transient . nil))))
+  (set-popup-rule! "*MPDEL Current Playlist*"       :size 0.4 :side 'left :select t :transient nil)
+  )
 
 (def-package! podcaster
   :disabled
@@ -105,7 +106,8 @@
 
 (def-package! sdcv
   :config
-  (set-popup-rule! "*SDCV\*" '((size . 0.4) (side . top)) '((select . t) )))
+  (set-popup-rule! "*SDCV\*"                        :size 0.4 :side 'top :select t)
+  )
 
 (def-package! define-word)
 (def-package! other-frame-window)

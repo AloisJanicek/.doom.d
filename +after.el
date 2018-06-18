@@ -11,25 +11,33 @@
 (after! man
   (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "#ff7a79")
   (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "#98be65")
-  (set-popup-rule! "*Man\*" '((size . 0.4) (side . left)) '((select . t) ))
-  (set-popup-rule! "*man\*" '((size . 0.6) (side . left)) '((select . t) )))
+  (set-popup-rule! "*Man\*"                         :size 0.4 :side 'left :select t)
+  (set-popup-rule! "*man\*"                         :size 0.6 :side 'left :select t)
+  )
 (after! eww
-  (set-popup-rule! "*eww\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*eww\*"                         :size 0.4 :side 'left :select t)
+  )
 (after! ibuffer
-  (set-popup-rule! "*Ibuffer\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*Ibuffer\*"                     :size 0.4 :side 'left :select t)
+  )
 (after! info
   (advice-add 'info :before 'aj/set-info-popup-width))
 (after! cus-edit
-  (set-popup-rule! "*Customize\*" '((size . 0.4) (side . left)) '((select . t) (transient . nil))))
+  (set-popup-rule! "*Customize\*"                   :size 0.4 :side 'left :select t :transient nil)
+  )
 (after! helpful
-  (set-popup-rule! "*helpful\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*helpful\*"                     :size 0.4 :side 'left :select t)
+  )
 (after! help
-  (set-popup-rule! "*help\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*help\*"                        :size 0.4 :side 'left :select t)
+  )
 (after! apropos
-  (set-popup-rule! "*apropos\*" '((size . 0.4) (side . left)) '((select . t) ))
-  (set-popup-rule! "*Apropos\*" '((size . 0.4) (side . left)) '((select . t) )))
+  (set-popup-rule! "*apropos\*"                     :size 0.4 :side 'left :select t)
+  (set-popup-rule! "*Apropos\*"                     :size 0.4 :side 'left :select t)
+  )
 (after! profiler
-  (set-popup-rule! "^.*-Profiler-Report.*$"'((size . 0.4) (side . right)) '((select . t))))
+  (set-popup-rule! "^.*-Profiler-Report.*$"         :size 0.4 :side 'right :select t)
+  )
 (after! evil
   (setq evil-move-cursor-back nil))
 (after! prodigy
@@ -148,12 +156,12 @@ See URL `http://stylelint.io/'."
 (after! google-translate-default-ui
   (setq google-translate-default-source-language "cs"
         google-translate-default-target-language "en")
-  (set-popup-rule! "*Google Translate\*" '((size . 0.4) (side . top)) '((select . t) ))
+  (set-popup-rule! "*Google Translate\*"            :size 0.4 :side 'top :select t)
   )
 
 (after! synosaurus
-  (set-popup-rule! "*Synonyms List\*" '((size . 0.4) (side . top)) '((select . t) ))
+  (set-popup-rule! "*Synonyms List\*"               :size 0.4 :side 'top :select t)
   )
 (after! wordnut
-  (set-popup-rule! "*WordNut\*" '((size . 0.4) (side . top)) '((select . t) ))
+  (set-popup-rule! "*WordNut\*"                     :size 0.4 :side 'top :select t)
   )
