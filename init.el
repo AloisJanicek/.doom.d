@@ -208,6 +208,7 @@
 
 ;; Customize files and directory variables
 (setq org-directory "~/org/"
+      org-brain-path "~/org/brain/"
       +org-attach-dir "./attach/"
       +file-templates-dir "~/org/templates"
       )

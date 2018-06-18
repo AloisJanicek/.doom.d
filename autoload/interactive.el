@@ -470,10 +470,10 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   (if (equal 'doom-one doom-theme)
       (progn
         (setq doom-theme 'doom-solarized-light)
-        (doom//reload-theme))
+        (doom/reload-theme))
     (progn
       (setq doom-theme 'doom-one)
-      (doom//reload-theme))))
+      (doom/reload-theme))))
 ;;;###autoload
 (defun aj/my-swiper ()
   "Launch swiper with different ivi-height (12)"
