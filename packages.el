@@ -51,4 +51,4 @@
 ;; (package! emms)
 ;; (package! exwm)
 
-;; (package! plain-org-wiki :recipe (:fetcher github :repo "AloisJanicek/plain-org-wiki"))
+(package! plain-org-wiki :recipe (:fetcher github :repo "AloisJanicek/plain-org-wiki"))

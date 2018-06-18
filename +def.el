@@ -112,3 +112,6 @@
 (def-package! define-word)
 (def-package! other-frame-window)
 (def-package! link-hint)
+(def-package! plain-org-wiki
+  :config
+  (setq pow-directory "~/org/brain"))
