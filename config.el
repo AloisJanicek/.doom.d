@@ -20,7 +20,7 @@
 (add-hook 'web-mode-hook 'er/add-web-mode-expansions)
 (add-hook! 'web-mode-hook #'flycheck-mode)
 (add-hook 'term-mode-hook '(lambda () (interactive)(setq left-fringe-width 0
-                                                    right-ringe-width 0)))
+                                                         right-ringe-width 0)))
 (add-hook! 'term-mode-hook #'hide-mode-line-mode)
 (add-hook 'ereader-mode-hook 'hide-mode-line-mode)
 ;; remap keys for terminal with Evil
