@@ -57,10 +57,6 @@
 (after! persp-mode
   (setq persp-kill-foreign-buffer-action nil))
 (after! magit
-  ;; (set-popup-rule! "^.*magit" '((slot . -1) (side . right) (size . 80)) '((modeline . nil) (select . t)))
-  ;; (set-popup-rule! "^.*magit.*popup\\*" '((slot . 0) (side . right)) '((modeline . nil) (select . t)))
-  ;; (set-popup-rule! "^.*magit-revision:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . t)))
-  ;; (set-popup-rule! "^.*magit-diff:.*" '((slot . 2) (side . right) (window-height . 0.6)) '((modeline . nil) (select . nil)))
   (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
   )
 ; note: broken with default flycheck, needs :branch "fix-1398-quoted-lambdas"
