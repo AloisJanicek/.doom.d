@@ -207,7 +207,7 @@
       )
 
 ;; Customize files and directory variables
-(setq +org-dir "~/org/"
+(setq org-directory "~/org/"
       +org-attach-dir "./attach/"
       +file-templates-dir "~/org/templates"
       )
