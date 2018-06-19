@@ -30,6 +30,12 @@
            "<f3>"      #'which-key-show-major-mode
            "<f4>"      #'which-key-show-minor-mode-keymap
            "<f5>"      #'which-key-show-keymap
+ (:prefix "g"
+   :n "2" #'avy-goto-char-2
+   :n "h" #'avy-goto-char-timer
+   :n "j" #'avy-goto-line-below
+   :n "k" #'avy-goto-line-above
+ )
     )
 
   ;; modes
