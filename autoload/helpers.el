@@ -197,3 +197,13 @@ Use `org-agenda-refile' in `org-agenda' mode."
   (set-face-attribute     'org-agenda-structure     nil   :height 1.0)
   (setq org-fontify-whole-heading-line nil)
   )
+;;;###autoload
+(defun aj/projectile-add-known-project-and-save (project-root)
+  "Add PROJECT-ROOT to the list of known projects and save it to the list of known projects."
+  (interactive (list (read-directory-name "Add to known projects: ")))
+  (unless (projectile-ignored-project-p project-root)
+    (setq projectile-known-projects
+          (delete-dups
+           (cons (file-name-as-directory (abbreviate-file-name project-root))
+                 projectile-known-projects))))
+  (projectile-save-known-projects))
