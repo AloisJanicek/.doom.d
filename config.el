@@ -25,6 +25,7 @@
 (add-hook 'ereader-mode-hook 'hide-mode-line-mode)
 ;; remap keys for terminal with Evil
 (add-hook! :append term-mode 'aj/set-term-keys)
+(add-hook! 'prog-mode-hook 'goto-address-mode)
 
 ;;; run remaping function before entering emmet-preview
 (advice-add 'emmet-preview :before 'aj/remap-emmet)

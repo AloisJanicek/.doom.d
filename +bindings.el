@@ -390,7 +390,10 @@
     (:desc "link"        :prefix               "l"
       :desc "Org-store-link"           :nv     "s" #'org-store-link
       :desc "Org-copy-link"            :nv     "c" #'my-org-retrieve-url-from-point
-      :desc "Open"                     :nv     "o" #'aj/goto-bookmarks
+      :desc "Open"                     :nv     "f" #'link-hint-open-link
+      :desc "Open all links"           :nv     "a" #'link-hint-open-all-links
+      :desc "Copy"                     :nv     "c" #'link-hint-copy-link
+      :desc "Copy all links"           :nv     "C" #'link-hint-copy-all-links
       )
     (:desc "git" :prefix                       "g"
       :desc "/log"                     :nv     "/" #'counsel-git-log
