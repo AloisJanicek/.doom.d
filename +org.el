@@ -125,7 +125,7 @@
    org-startup-with-inline-images t
    org-hide-emphasis-markers nil
    org-fontify-whole-heading-line nil
-   org-src-fontify-natively nil
+   org-src-fontify-natively t
 
    org-refile-targets '((org-agenda-files :maxlevel . 5))
    org-refile-use-outline-path 'file
