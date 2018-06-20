@@ -378,6 +378,7 @@
       :desc "Add"                      :nv     "A" #'aj/projectile-add-known-project-and-save
       :desc "Services"                 :nv     "t" #'prodigy
       :desc "set variable"             :nv     "v" #'projectile-edit-dir-locals
+      :desc "Remove"                   :nv     "R" #'projectile-remove-known-project
       )
     (:desc "code"        :prefix               "c"
       :desc "eval-last-sexp"           :nv     "s" #'eval-last-sexp
