@@ -165,3 +165,6 @@ See URL `http://stylelint.io/'."
 (after! wordnut
   (set-popup-rule! "*WordNut\*"                     :size 0.4 :side 'top :select t)
   )
+(after! avy
+  (setq avy-all-windows t
+        avy-background t))

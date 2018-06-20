@@ -226,12 +226,6 @@
   (setq langtool-java-classpath
         "/usr/share/languagetool:/usr/share/java/languagetool/*")
   nil)
-;; avy settings
-(def-package-hook! avy
-  :post-config
-  (setq avy-all-windows nil
-        avy-background t)
-  t)
 ;; start me maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
