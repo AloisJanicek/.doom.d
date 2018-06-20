@@ -144,7 +144,9 @@ See URL `http://stylelint.io/'."
   (setq counsel-org-goto-face-style 'org
         counsel-org-headline-display-style 'path
         counsel-org-headline-display-tags t
-        counsel-org-headline-display-todo t))
+        counsel-org-headline-display-todo t)
+  (set-popup-rule! "^\\*ivy-occur" :size 0.70 :ttl 0 :quit nil)
+  )
 (after! web-mode
   (setq web-mode-enable-current-element-highlight t)
   (set-face-attribute 'web-mode-current-element-highlight-face nil :background "#21242b" :foreground "#51afef")
