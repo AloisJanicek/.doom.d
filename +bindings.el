@@ -351,6 +351,7 @@
     :desc "agenda"                   :nv       "a" #'aj/agenda/body
     :desc "capture"                  :nv       "k" #'aj/capture/body
     (:desc "open"        :prefix               "o"
+      :desc "link"                     :nv     "o" #'link-hint-open-link
       :desc "Agenda"                   :nv     "A" #'org-agenda
       :desc "App: Podcast"             :nv     "p" #'podcaster
       :desc "App: MPD"                 :nv     "m" #'aj/mpd-control/body
