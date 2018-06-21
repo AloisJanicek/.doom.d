@@ -734,7 +734,7 @@ If STRICT-P, return nil if no project was found, otherwise return
         (call-process-shell-command (concat "cd " fp " && " "git remote add origin git@gitlab.com:AloisJanicek/" project ".git"))
         (call-process-shell-command (concat "cd " fp " && " "git push -u origin --all"))
         (call-process-shell-command (concat "cd " fp " && " "git push -u origin --tags"))))
-  (projectile-add-known-project fp)
+  (aj/projectile-add-known-project-and-save fp)
   (projectile-switch-project-by-name fp))
 
 ;;;###autoload
