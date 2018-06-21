@@ -373,6 +373,7 @@
       )
     (:desc "project"    :prefix                "p"
       :desc "Agenda"                   :nv     "a" #'aj/project
+      :desc "bootstrap"                :nv     "b" #'aj/project-bootstrap
       :desc "Capture"                  :nv     "x" #'aj/org-projectile-capture-for-current-project
       :desc "P README"                 :nv     "p" #'aj/better-open-current-projectile-org-file
       :desc "Switch"                   :nv     "s" #'counsel-projectile-switch-project

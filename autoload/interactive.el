@@ -723,3 +723,28 @@ If STRICT-P, return nil if no project was found, otherwise return
    (yas--template-get-file
     (ivy-yasnippet--lookup-template template-name))
    nil 0 500))
+
+;;;###autoload
+(defun aj/new-project-init-and-register (fp)
+  (call-process-shell-command (concat "cd " fp " && " "git init"))
+  (projectile-add-known-project fp)
+  (projectile-switch-project-by-name fp))
+
+;;;###autoload
+(defun aj/project-bootstrap ()
+  (interactive)
+  (let* ((project (read-string "New project name: "))
+         (directory (read-directory-name "Directory: " "~/repos/"))
+         (template (ivy-read "Template: " '("web-starter-kit" "other")))
+         (full-path (concat directory project))
+         )
+    ;; create directory
+    (make-directory full-path)
+
+    (if (string-equal template "web-starter-kit")
+        (progn
+          (call-process-shell-command (concat "git clone git@gitlab.com:AloisJanicek/web-starter-kit.git " full-path))
+          (delete-directory (concat full-path "/.git/") t)
+          (aj/new-project-init-and-register full-path)
+          )
+      (aj/new-project-init-and-register full-path))))
