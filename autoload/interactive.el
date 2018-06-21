@@ -725,8 +725,15 @@ If STRICT-P, return nil if no project was found, otherwise return
    nil 0 500))
 
 ;;;###autoload
-(defun aj/new-project-init-and-register (fp)
+(defun aj/new-project-init-and-register (fp gitlab project)
   (call-process-shell-command (concat "cd " fp " && " "git init"))
+  (if (string-equal "yes" gitlab)
+      (progn
+        (call-process-shell-command (concat "lab project create " project))
+        (call-process-shell-command (concat "cd " fp " && " "git remote rename origin old-origin"))
+        (call-process-shell-command (concat "cd " fp " && " "git remote add origin git@gitlab.com:AloisJanicek/" project ".git"))
+        (call-process-shell-command (concat "cd " fp " && " "git push -u origin --all"))
+        (call-process-shell-command (concat "cd " fp " && " "git push -u origin --tags"))))
   (projectile-add-known-project fp)
   (projectile-switch-project-by-name fp))
 
@@ -736,6 +743,7 @@ If STRICT-P, return nil if no project was found, otherwise return
   (let* ((project (read-string "New project name: "))
          (directory (read-directory-name "Directory: " "~/repos/"))
          (template (ivy-read "Template: " '("web-starter-kit" "other")))
+         (gitlab (ivy-read "Gitlab?:" '("yes" "no")))
          (full-path (concat directory project))
          )
     ;; create directory
@@ -745,6 +753,6 @@ If STRICT-P, return nil if no project was found, otherwise return
         (progn
           (call-process-shell-command (concat "git clone git@gitlab.com:AloisJanicek/web-starter-kit.git " full-path))
           (delete-directory (concat full-path "/.git/") t)
-          (aj/new-project-init-and-register full-path)
+          (aj/new-project-init-and-register full-path gitlab project)
           )
-      (aj/new-project-init-and-register full-path))))
+      (aj/new-project-init-and-register full-path gitlab project))))
