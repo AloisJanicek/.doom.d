@@ -39,6 +39,14 @@
     )
 
   ;; modes
+  (:after treemacs
+    (:map treemacs-mode-map
+      :iemnv "C-k" #'evil-window-up
+      :iemnv "C-j" #'evil-window-down
+      :iemnv "C-h" #'evil-window-left
+      :iemnv "C-l" #'evil-window-right
+      )
+    )
   (:after info
     (:map Info-mode-map
       :nve                                     "o"      #'ace-link-info
@@ -358,6 +366,7 @@
       :desc "Clock"                    :nv     "c" #'aj/clock-menu
       :desc "Links"                    :nv     "l" #'aj/goto-bookmarks
       :desc "GTD"                      :nv     "g" #'aj/gtd-goto/body
+      :desc "Sidebar"                   :nv     "s" #'+treemacs/toggle
       (:desc "Wiki"      :prefix               "w"
         :desc "private"                  :nv   "p" #'aj/goto-private-wiki
         :desc "work"                     :nv   "w" #'aj/goto-work-wiki

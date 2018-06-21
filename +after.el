@@ -170,3 +170,7 @@ See URL `http://stylelint.io/'."
 (after! avy
   (setq avy-all-windows t
         avy-background t))
+
+(after! treemacs
+  (setq evil-treemacs-state-cursor 'box)
+  )
