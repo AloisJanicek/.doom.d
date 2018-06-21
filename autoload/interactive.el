@@ -756,3 +756,17 @@ If STRICT-P, return nil if no project was found, otherwise return
           (aj/new-project-init-and-register full-path gitlab project)
           )
       (aj/new-project-init-and-register full-path gitlab project))))
+
+;; TODO
+;;;###autoload
+(defun aj/visualize-brain-and-take-care-of-buffers ()
+  "Visualize all brain org files and them hide them from perspectives"
+  (interactive)
+  (let ((persp-autokill-buffer-on-remove nil))
+    (call-interactively 'org-brain-visualize)
+    (persp-remove-buffer persp-blacklist)))
+
+;; TODO
+;;;###autoload
+(defun aj/browse-brain-files ()
+    "browse brain files and bring selected one to the current perspective")

@@ -414,7 +414,7 @@
       :desc "notes"     :nv "n" (λ! (counsel-find-file org-brain-path))
       :desc "private"   :nv "p" (λ! (counsel-find-file (concat org-brain-path "/private_brain/")))
       :desc "grep"      :nv "g" (λ! (+ivy/rg nil nil org-brain-path))
-      :desc "visualize" :nv "v" #'org-brain-visualize
+      :desc "visualize" :nv "v" #'aj/visualize-brain-and-take-care-of-buffers
       )
     (:desc "file" :prefix                      "f"
       :desc "ag-cwd"                   :nv     "g" #'+ivy/ag-from-cwd

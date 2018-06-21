@@ -183,7 +183,7 @@
   (advice-add 'org-clock-out :around (lambda (&rest _) (org-save-all-org-buffers)))
 
   ;; popups
-  (set-popup-rule! "^\\*org-brain\\*$"    :size 0.3 :side 'left :vslot -2 :select t :quit t :transient t)
+  (set-popup-rule! "^\\*org-brain\\*$"    :size 0.3 :side 'left :vslot -2 :select t :quit nil :transient t)
   (set-popup-rule! "^CAPTURE.*\\.org$"    :size 0.4 :side 'bottom :select t)
   (set-popup-rule! "GTD.org"              :size 0.32 :side 'right :vslot -1  :select t :transient nil)
   (set-popup-rule! "README.org"           :size 0.4 :side 'left :select t :transient nil)
