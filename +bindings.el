@@ -114,6 +114,7 @@
         :desc "Todo"         :nv               "t" #'org-todo
         :desc "Open"         :nv               "o" #'ace-link
         :desc "Edna"           :nv             "E" #'org-edna-edit
+        :desc "Strike"         :nv             "=" #'aj-strike-through-org-headline
 
         (:desc "Tags"          :prefix         "g"
           :desc "Tags"           :nv           "g" #'counsel-org-tag
