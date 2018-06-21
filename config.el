@@ -13,7 +13,7 @@
 (add-hook 'js2-mode-hook (lambda () (setq-local counsel-dash-docsets '("JavaScript" "HTML" "CSS"))))
 (add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python_3"))))
 (add-hook 'js2-mode-hook 'eslintd-fix-mode)
-(add-hook 'org-agenda-mode-hook #'hide-mode-line-mode )
+(add-hook 'org-agenda-mode-hook #'hide-mode-line-mode)
 (add-hook 'after-save-hook #'prettier-stylelint-fix-file-and-revert)
 (add-hook 'after-save-hook #'beautify-html-file-and-revert)
 (add-hook 'web-mode-hook  'my-web-mode-hook)
