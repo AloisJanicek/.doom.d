@@ -173,4 +173,5 @@ See URL `http://stylelint.io/'."
 
 (after! treemacs
   (setq evil-treemacs-state-cursor 'box)
+  (setq treemacs-project-follow-cleanup t)
   )

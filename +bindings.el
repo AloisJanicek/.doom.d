@@ -45,6 +45,7 @@
       :iemnv "C-j" #'evil-window-down
       :iemnv "C-h" #'evil-window-left
       :iemnv "C-l" #'evil-window-right
+      :iemnv "C-<SPC>" #'treemacs-peek
       )
     )
   (:after info
