@@ -94,6 +94,7 @@
         :desc "Pomodoro"     :nv "p" #'org-pomodoro
         )
       :desc "Todo"         :nv "t" #'org-todo
+      :desc "Schedule"     :nv "s" #'org-schedule
       )
     (:map org-mode-map
 
