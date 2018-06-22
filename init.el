@@ -178,6 +178,7 @@
       '(
         ("wikipedia\\.org" . browse-url-firefox)
         ("github" . browse-url-chromium)
+        ("reddit" . browse-url-chromium)
         ("gitlab" . browse-url-chromium)
         ("youtube" . browse-url-chromium)
         ("eslint.org" . browse-url-chromium)
