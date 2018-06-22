@@ -207,3 +207,46 @@ Use `org-agenda-refile' in `org-agenda' mode."
            (cons (file-name-as-directory (abbreviate-file-name project-root))
                  projectile-known-projects))))
   (projectile-save-known-projects))
+
+;;;###autoload
+(defun +ivy-projectile-find-file-combined-transformer (str)
+  "Highlight entries that have been visited. This is the opposite of
+`counsel-projectile-find-file'. And apply all-the-icons"
+  (let ((s (format "%s\t%s"
+                   (propertize "\t" 'display (all-the-icons-icon-for-file str))
+                   str)))
+    (cond ((get-file-buffer (projectile-expand-root str))
+           (propertize s 'face '(:weight ultra-bold :slant italic)))
+          (t s))))
+;;;###autoload
+(defun +ivy-recentf-combined-transformer (str)
+  "Dim recentf entries that are not in the current project of the buffer you
+started `counsel-recentf' from. Also uses `abbreviate-file-name'. And apply all-the-icons"
+  (let* ((s (abbreviate-file-name str))
+         (s (format "%s\t%s"
+                    (propertize "\t" 'display (all-the-icons-icon-for-file str))
+                    str))
+         )
+    (if (file-in-directory-p str (doom-project-root))
+        s
+      (propertize s 'face 'ivy-virtual))))
+;;;###autoload
+(defun +ivy-combined-buffer-transformer (str)
+  "Dim special buffers, buffers whose file aren't in the current buffer, and
+virtual buffers. Uses `ivy-rich' under the hood. And apply all-the-icons"
+  (let* ((buf (get-buffer str))
+         (mode (buffer-local-value 'major-mode buf))
+         (s (format "%s\t%s"
+                    (propertize "\t" 'display (or
+                                               (all-the-icons-ivy--icon-for-mode mode)
+                                               (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))))
+                    (all-the-icons-ivy--buffer-propertize buf str)))
+         )
+    (require 'ivy-rich)
+    (cond (buf (ivy-rich-switch-buffer-transformer s))
+          ((and (eq ivy-virtual-abbreviate 'full)
+                ivy-rich-switch-buffer-align-virtual-buffer)
+           (ivy-rich-switch-buffer-virtual-buffer s))
+          ((eq ivy-virtual-abbreviate 'full)
+           (propertize (abbreviate-file-name str) 's 'ivy-virtual))
+          (t (propertize s 'face 'ivy-virtual)))))

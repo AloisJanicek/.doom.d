@@ -22,16 +22,11 @@
   :commands (ivy-yasnippet))
 
 (def-package! all-the-icons-ivy
-  :after-call (+ivy-buffer-transformer +ivy-recentf-transformer +ivy-projectile-find-file-transformer)
+  :after ivy
   :config
-  (dolist (cmd '(+ivy/switch-workspace-buffer ivy-switch-buffer counsel-projectile-switch-to-buffer))
-    (ivy-set-display-transformer cmd #'all-the-icons-ivy-buffer-transformer))
-  (dolist (cmd '(counsel-recentf counsel-find-file counsel-file-jump
-                                 counsel-dired-jump counsel-projectile-find-dir
-                                 counsel-projectile-find-file counsel-recentf
-                                 counsel-switch-to-shell-buffer
-                                 counsel-projectile-switch-project
-                                 ))
+  (dolist (cmd '( counsel-find-file counsel-file-jump
+                                    counsel-dired-jump counsel-projectile-find-dir
+                                    counsel-projectile-switch-project))
     (ivy-set-display-transformer cmd #'all-the-icons-ivy-file-transformer))
   )
 
