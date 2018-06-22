@@ -100,7 +100,7 @@
 
       "C-]"   #'org-insert-subheading
       "<tab>" #'org-cycle
-      :i   "M-r"   #'aj/gtd-refile/body
+      :i   "M-r"   (λ! (let ((hydra-lv nil)) (aj/gtd-refile/body)))
       :inv "M-l"   #'aj/insert-link-in-org
       :n   "J"     #'outline-next-visible-heading
       :n   "K"     #'outline-previous-visible-heading
@@ -142,7 +142,7 @@
         (:desc "Refile:"       :prefix         "r"
           :desc "targets"       :nv            "t" #'org-refile
           :desc "visible"       :nv            "v" #'avy-org-refile-as-child
-          :desc "GTD"            :nv           "g" #'aj/gtd-refile/body
+          :desc "GTD"            :nv           "g" (λ! (let ((hydra-lv nil)) (aj/gtd-refile/body)))
           )
 
         :desc "Export"       :nv               "e" #'org-export-dispatch
@@ -188,7 +188,7 @@
             )
           )
         (:desc "hydras"            :prefix     "h"
-          :desc "refile"          :nv          "r" #'aj/gtd-review-refile/body
+          :desc "refile"            :nv           "r" (λ! (let ((hydra-lv nil)) (aj/gtd-review-refile/body)))
           )
 
         (:desc "Mind"          :prefix         "m"
@@ -357,18 +357,19 @@
       :desc "google at point reverse:" :nv     "G" #'google-translate-at-point-reverse
       :desc "dictionary"               :nv     "d" #'browse-dictionary-at-point
       )
-    :desc "clock"                    :nv     "\\"    #'aj/clocking/body
+    :desc "clock"                  :nv       "\\" (λ! (let ((hydra-lv nil)) (aj/clocking/body)))
     :desc "popup"                    :nv       "'" #'+popup/toggle
-    :desc "agenda"                   :nv       "a" #'aj/agenda/body
+    :desc "agenda"                  :nv       "a" (λ! (let ((hydra-lv nil)) (aj/agenda/body)))
     :desc "capture"                  :nv       "k" (λ! (let ((hydra-lv nil)) (aj/capture/body)))
     (:desc "open"        :prefix               "o"
       :desc "link"                     :nv     "o" #'link-hint-open-link
       :desc "Agenda"                   :nv     "A" #'org-agenda
       :desc "App: Podcast"             :nv     "p" #'podcaster
-      :desc "App: MPD"                 :nv     "m" #'aj/mpd-control/body
+      :desc "App: MPD"                 :nv     "m" (λ! (let ((hydra-lv nil)) (aj/mpd-control/body)))
       :desc "Clock"                    :nv     "c" #'aj/clock-menu
       :desc "Links"                    :nv     "l" #'aj/goto-bookmarks
       :desc "GTD"                      :nv     "g" #'aj/gtd-goto/body
+      :desc "GTD"                      :nv     "g" (λ! (let ((hydra-lv nil)) (aj/gtd-goto/body)))
       :desc "Sidebar"                   :nv     "s" #'+treemacs/toggle
       (:desc "Wiki"      :prefix               "w"
         :desc "private"                  :nv   "p" #'aj/goto-private-wiki
