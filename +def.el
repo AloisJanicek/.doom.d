@@ -22,18 +22,19 @@
   :commands (ivy-yasnippet))
 
 (def-package! all-the-icons-ivy
-  :after (ivy counsel)
-  :init
-  (setq all-the-icons-ivy-file-commands
-        '(counsel-recentf
-          counsel-find-file
-          counsel-file-jump
-          counsel-dired-jump
-          counsel-projectile-find-file ;; not working
-          counsel-projectile-find-dir))
-  (setq all-the-icons-ivy-buffer-commands
-        '(+ivy/switch-workspace-buffer))
-  :config (all-the-icons-ivy-setup))
+  :after-call (+ivy-buffer-transformer +ivy-recentf-transformer +ivy-projectile-find-file-transformer)
+  :config
+  (dolist (cmd '(+ivy/switch-workspace-buffer ivy-switch-buffer counsel-projectile-switch-to-buffer))
+    (ivy-set-display-transformer cmd #'all-the-icons-ivy-buffer-transformer))
+  (dolist (cmd '(counsel-recentf counsel-find-file counsel-file-jump
+                                 counsel-dired-jump counsel-projectile-find-dir
+                                 counsel-projectile-find-file counsel-recentf
+                                 counsel-switch-to-shell-buffer
+                                 counsel-projectile-switch-project
+                                 ))
+    (ivy-set-display-transformer cmd #'all-the-icons-ivy-file-transformer))
+  )
+
 
 (def-package! xml+
   :commands (xml+-query--generic xml+-query-all xml+-query-first xml+-node-text xml+-node-text--helper))
