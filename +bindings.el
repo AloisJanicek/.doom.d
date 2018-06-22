@@ -325,7 +325,7 @@
       :desc "session"                  :nv     "S" #'+workspace/load-session
       :desc "workspace"                :nv     "i" #'+workspace/switch-to
       :desc "window"                   :nv     "o" #'ace-select-window
-      :desc "symbol"                   :nv     "s" #'evil-avy-goto-symbol-1
+      :desc "shell-buffer"             :nv     "s" #'counsel-switch-to-shell-buffer
       :desc "word"                     :nv     "w" #'evil-avy-goto-word-1
       :desc "line"                     :nv     "l" #'evil-avy-goto-line
       :desc "directory"                :nv     "d" #'counsel-dired-jump
