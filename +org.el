@@ -39,7 +39,7 @@
    org-export-directory "export/"
    org-crypt-tag-matcher "+crypt-nocrypt"
 
-   org-capture-templates '(("p" "Protocol" entry (file "~/org/BOOKMARKS.org")
+   org-capture-templates `(("p" "Protocol" entry (file "~/org/BOOKMARKS.org")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:quote:\n%u\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n"
                             :immediate-finish t :prepend t)
 
@@ -56,10 +56,11 @@
                            ("t" "task" entry (file+headline "~/org/GTD.org" "TASKS")
                             "* [ ] %?" :prepend t)
 
-                           ("P" "Projectile" entry
-                            (function aj/find-and-open-org-projectile-file)
+                           ("P" "Project task" entry (file+headline ,(concat (projectile-project-root) "README.org") "TASKS")
                             "* [ ] %?" :prepend t)
 
+                           ("J" "Project journal" entry (file+olp+datetree ,(concat (projectile-project-root) "README.org") "JOURNAL")
+                            "**** %?" :tree-type week)
                            )
 
    org-agenda-custom-commands

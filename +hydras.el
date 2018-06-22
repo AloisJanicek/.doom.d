@@ -69,6 +69,7 @@
   ("k" (org-capture nil "e") "journal Entry" :exit t)
   ("t" (org-capture nil "t") "Task:" :exit t)
   ("p" (org-capture nil "P") "project Task:" :exit t)
+  ("j" (org-capture nil "J") "project Journal:" :exit t)
   )
 
 (defhydra aj/capture-clocked-task ()
