@@ -360,7 +360,7 @@
     :desc "clock"                    :nv     "\\"    #'aj/clocking/body
     :desc "popup"                    :nv       "'" #'+popup/toggle
     :desc "agenda"                   :nv       "a" #'aj/agenda/body
-    :desc "capture"                  :nv       "k" #'aj/capture/body
+    :desc "capture"                  :nv       "k" (λ! (let ((hydra-lv nil)) (aj/capture/body)))
     (:desc "open"        :prefix               "o"
       :desc "link"                     :nv     "o" #'link-hint-open-link
       :desc "Agenda"                   :nv     "A" #'org-agenda
