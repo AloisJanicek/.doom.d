@@ -60,13 +60,13 @@
   ;; (setq persp-kill-foreign-buffer-action nil)
   ;; collect names of all brain files
   (setq +persp-blacklist (append
-                         `,(directory-files (concat org-brain-path "private_brain"))
-                         `,(directory-files org-brain-path)))
+                          `,(directory-files (concat org-brain-path "private_brain"))
+                          `,(directory-files org-brain-path)))
   ;; TODO
   ;; collect names of all interactively used brain files
   ;; this should be some data structure which would hold list of whitelisted files per perspective
   (setq +persp-whitelist nil)
-  (setq persp-mode (setq persp-emacsclient-init-frame-behavior-override 'persp-ignore-wconf))
+  (setq persp-emacsclient-init-frame-behavior-override 'persp-ignore-wconf)
   )
 
 (after! magit
