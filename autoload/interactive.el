@@ -764,7 +764,7 @@ If STRICT-P, return nil if no project was found, otherwise return
   (interactive)
   (let ((persp-autokill-buffer-on-remove nil))
     (call-interactively 'org-brain-visualize)
-    (persp-remove-buffer persp-blacklist)))
+    (persp-remove-buffer +persp-blacklist)))
 
 ;; TODO
 ;;;###autoload

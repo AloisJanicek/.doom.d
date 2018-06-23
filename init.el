@@ -173,6 +173,10 @@
   "File where my education wiki is.")
 (defvar +build-wiki "~/org/build-wiki.org"
   "File where my build wiki is.")
+(defvar +persp-blacklist nil
+  "Contains list files which should not be considered as part of workspace")
+(defvar +persp-whitelist nil
+  "Contains list files which should be considered as part of workspace")
 
 (setq browse-url-browser-function
       '(
