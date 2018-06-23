@@ -182,4 +182,16 @@ See URL `http://stylelint.io/'."
 (after! treemacs
   (setq evil-treemacs-state-cursor 'box)
   (setq treemacs-project-follow-cleanup t)
+
+  ;; seems like all the icons doesn't work without png icons being enabled
+  (setq treemacs-no-png-images nil)
+  ;; Looks actually quite good now with this size setting
+  (treemacs-resize-icons 18)
+  ;; Override (some?) icons with all-the-icons
+  (dolist (item all-the-icons-icon-alist)
+    (let* ((extension (car item))
+           (icon (apply (cdr item))))
+      (ht-set! treemacs-icons-hash
+               (s-replace-all '(("\\" . "") ("$" . "") ("." . "")) extension)
+               (concat icon " "))))
   )
