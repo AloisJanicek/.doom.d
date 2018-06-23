@@ -35,15 +35,3 @@
 
 ;; misc
 (set-popup-rule! "*backtrace\*"                   :size 0.4 :side 'right :select t)
-
-(after! persp-mode
-  ;; collect names of all brain files
-  (setq persp-blacklist (append
-                         `,(directory-files (concat org-brain-path "private_brain"))
-                         `,(directory-files org-brain-path)))
-  ;; TODO
-  ;; collect names of all interactively used brain files
-  ;; this should be some data structure which would hold list of whitelisted files per perspective
-  (setq persp-whitelist nil)
-  )
-
