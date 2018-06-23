@@ -57,7 +57,17 @@
         projectile-ignored-projects '(
                                       )))
 (after! persp-mode
-  (setq persp-kill-foreign-buffer-action nil))
+  ;; (setq persp-kill-foreign-buffer-action nil)
+  ;; collect names of all brain files
+  (setq persp-blacklist (append
+                         `,(directory-files (concat org-brain-path "private_brain"))
+                         `,(directory-files org-brain-path)))
+  ;; TODO
+  ;; collect names of all interactively used brain files
+  ;; this should be some data structure which would hold list of whitelisted files per perspective
+  (setq persp-whitelist nil)
+  )
+
 (after! magit
   (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
   )
