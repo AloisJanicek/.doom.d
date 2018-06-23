@@ -27,9 +27,7 @@
   (dolist (cmd '( counsel-find-file counsel-file-jump
                                     counsel-dired-jump counsel-projectile-find-dir
                                     counsel-projectile-switch-project))
-    (ivy-set-display-transformer cmd #'all-the-icons-ivy-file-transformer))
-  )
-
+    (ivy-set-display-transformer cmd #'all-the-icons-ivy-file-transformer)))
 
 (def-package! xml+
   :commands (xml+-query--generic xml+-query-all xml+-query-first xml+-node-text xml+-node-text--helper))

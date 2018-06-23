@@ -233,20 +233,6 @@
         "/usr/share/languagetool:/usr/share/java/languagetool/*")
   nil)
 
-(def-package-hook! counsel
-  :post-config
-  (ivy-set-display-transformer #'counsel-recentf #'+ivy-recentf-combined-transformer))
-
-(def-package-hook! ivy-rich
-  :post-config
-  (dolist (cmd '(ivy-switch-buffer
-                 +ivy/switch-workspace-buffer
-                 counsel-projectile-switch-to-buffer))
-    (ivy-set-display-transformer cmd #'+ivy-combined-buffer-transformer)))
-
-(def-package-hook! counsel-projectile
-  :post-config
-  (ivy-set-display-transformer #'counsel-projectile-find-file #'+ivy-projectile-find-file-combined-transformer))
 ;; start me maximized
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 

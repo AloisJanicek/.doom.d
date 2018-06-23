@@ -137,9 +137,9 @@ See URL `http://stylelint.io/'."
    #'ivy-yasnippet
    '(("e" ivy-yasnippet--copy-edit-snippet-action "Edit snippet as your own")))
   )
-(after! org-bullets
-  (setq org-bullets-bullet-list
-        '("◉")))
+(after! ivy-rich
+  (advice-add #'+ivy-recentf-transformer :override #'+ivy-recentf-combined-transformer))
+
 (after! counsel
   (setq counsel-grep-base-command "grep -E -n -i -e %s %s")
   (setq counsel-org-goto-face-style 'org
@@ -147,7 +147,14 @@ See URL `http://stylelint.io/'."
         counsel-org-headline-display-tags t
         counsel-org-headline-display-todo t)
   (set-popup-rule! "^\\*ivy-occur" :size 0.70 :ttl 0 :quit nil)
-  )
+  (advice-add #'+ivy-buffer-transformer :override #'+ivy-combined-buffer-transformer))
+
+(after! counsel-projectile
+  (advice-add  #'+ivy-projectile-find-file-transformer :override #'+ivy-projectile-find-file-combined-transformer))
+
+(after! org-bullets
+  (setq org-bullets-bullet-list
+        '("◉")))
 (after! web-mode
   (setq web-mode-enable-current-element-highlight t)
   (set-face-attribute 'web-mode-current-element-highlight-face nil :background "#21242b" :foreground "#51afef")
