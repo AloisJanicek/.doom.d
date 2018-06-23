@@ -3,6 +3,7 @@
 (def-package! racket-mode
   :config
   (set-repl-handler! 'racket-mode #'+racket/repl)
+  (set-popup-rule! "*Racket REPL\*" :quit nil :ttl nil :side 'bottom :size 0.4)
   )
 
 (def-package! ob-racket
