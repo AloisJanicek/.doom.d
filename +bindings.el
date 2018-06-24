@@ -240,6 +240,7 @@
   (:after org-brain
     (:map org-brain-visualize-mode-map
       :ienv                                    "o" #'my/org-brain-goto-current
+      :ienv                                    "J" #'link-hint-open-link
       )
     )
   (:after magit
