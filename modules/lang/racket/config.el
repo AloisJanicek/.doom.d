@@ -7,6 +7,8 @@
 
   (evil-set-initial-state 'racket-repl-mode 'insert)
 
+  (add-hook! '(racket-mode-hook racket-repl-mode-hook) 'rainbow-delimiters-mode)
+
   (map!
    :map racket-repl-mode-map
    "C-k"  #'evil-window-up
