@@ -66,7 +66,7 @@
   ;; collect names of all interactively used brain files
   ;; this should be some data structure which would hold list of whitelisted files per perspective
   (setq +persp-whitelist nil)
-  (setq persp-emacsclient-init-frame-behavior-override 'persp-ignore-wconf)
+  (setq persp-emacsclient-init-frame-behaviour-override 'persp-ignore-wconf)
   )
 
 (after! magit
