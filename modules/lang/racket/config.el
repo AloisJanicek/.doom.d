@@ -5,6 +5,9 @@
   (set-repl-handler! 'racket-mode #'+racket/repl)
   (set-popup-rule! "*Racket REPL\*" :quit nil :ttl nil :side 'bottom :size 0.4)
   (map!
+   :map racket-repl-mode-map
+   "C-k"  #'evil-window-up
+   "C-j"  #'evil-window-bottom
    :map racket-mode-map
    :localleader
 
