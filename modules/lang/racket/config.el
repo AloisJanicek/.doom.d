@@ -7,7 +7,11 @@
 
   (evil-set-initial-state 'racket-repl-mode 'insert)
 
-  (add-hook! '(racket-mode-hook racket-repl-mode-hook) 'rainbow-delimiters-mode)
+  (add-hook! '(racket-mode-hook racket-repl-mode-hook)
+    (rainbow-delimiters-mode +1)
+    (custom-set-faces `(racket-selfeval-face ((t (:foreground ,(doom-color 'numbers) :weight bold)))))
+    (custom-set-faces `(racket-keyword-argument-face ((t (:foreground ,(doom-color 'dark-cyan))))))
+    )
 
   (map!
    :map racket-repl-mode-map
