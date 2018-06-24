@@ -12,10 +12,10 @@
    :localleader
 
    ;; when in normal mode, evaluate whole buffer
-   :desc    "run"                   :n    "e"     #'racket-run
+   :desc    "run"                   :n    "r"     #'racket-run
 
    ;; otherwise send region to REPL
-   :desc    "run/send-region"           :v    "e"     #'racket-send-region
+   :desc    "run/send-region"       :v    "r"     #'racket-send-region
    :desc    "send-definition"       :nv   "d"     #'racket-send-definition
    :desc    "send-last-sexp"        :nv   "s"     #'racket-send-last-sexp
 
