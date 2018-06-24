@@ -7,7 +7,7 @@
   (map!
    :map racket-repl-mode-map
    "C-k"  #'evil-window-up
-   "C-j"  #'evil-window-bottom
+   "C-h"  #'evil-window-left
    :map racket-mode-map
    :localleader
 
