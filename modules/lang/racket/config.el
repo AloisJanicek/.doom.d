@@ -51,16 +51,11 @@
    ;; racket-find-collection
 
 
-   ;; racket-describe-mode
-   ;; racket-describe
-   ;; racket-describe--next-button ;; evilize it
-   ;; racket-describe--prev-button ;; evilize it
-
    ;; mode specific ----------------
    ;; racket-bug-report
 
    ;; syntax check mode ------------------ evilize it
-   ;; racket-check-syntax-mode
+   :desc "check syntax"         :nv   "c"     #'racket-check-syntax-mode
    ;; racket-check-syntax-mode-goto-def
    ;; racket-check-syntax-mode-goto-next-def
    ;; racket-check-syntax-mode-goto-next-use
@@ -70,16 +65,19 @@
    ;; racket-check-syntax-mode-quit
    ;; racket-check-syntax-mode-rename
 
-   ;; expand region/send
+   ;; expand racket macros and send them to repl?
    ;; racket-expand-again
    ;; racket-expand-definition
    ;; racket-expand-last-sexp
    ;; racket-expand-region
 
    ;; tests
+   :desc    "tests"                   :nv   "t"     #'racket-test
+   :desc    "raco-tests"              :nv   "T"     #'racket-raco-test
    ;; racket-test
    ;; racket-raco-test
-   ;; racket-fold-all-tests
+   :desc    "fold-all-tests"              :nv   "f"     #'racket-fold-all-tests
+   :desc    "unfold-all-tests"              :nv   "F"     #'racket-unfold-all-tests
    ;; racket-unfold-all-tests
 
 
@@ -90,7 +88,7 @@
    ;; racket-smart-open-bracket
 
    ;; loger
-   ;; racket-logger
+   :desc    "logger"              :nv   "l"     #'racket-logger
    ;; racket-logger-clear
    ;; racket-logger-exit
    ;; racket-logger-mode
@@ -103,10 +101,10 @@
    ;; racket-mode-menu
 
    ;; racket-profile-mode
-   ;; racket-profile
+   :desc    "profile"              :nv   "o"     #'racket-profile
 
    ;; run current file in shell with racket <file.rkt>
-   ;; racket-racket
+   :desc    "run with racket"              :nv   "R"     #'racket-racket
 
    ;; racket-repl-mode
    ;; racket-repl
@@ -115,24 +113,27 @@
    ;; racket-repl-switch-to-edit
    ;; racket-repl-mode-menu
 
-   ;; racket-run
    ;; racket-run-and-switch-to-repl
    ;; racket-run-with-errortrace
 
    ;; requires -----------
    ;; racket-tidy-requires
    ;; racket-trim-requires
-
    ;; racket-open-require-path
 
    ;; racket-unicode-input-method-enable
 
    ;; racket-view-last-image
 
-   ;; visit
-   ;; racket-visit-definition
-   ;; racket-visit-module
-   ;; racket-unvisit
+   (:desc "visit" :prefix "v"
+     :desc    "definition"                   :nv   "d"     #'racket-visit-definition
+     :desc    "module"                   :nv   "m"     #'racket-visit-module
+
+     ;; visit
+     ;; racket-visit-definition
+     ;; racket-visit-module
+     ;; racket-unvisit
+     )
    )
   )
 ;; (setq +eval-runners nil)
