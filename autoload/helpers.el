@@ -250,3 +250,11 @@ virtual buffers. Uses `ivy-rich' under the hood. And apply all-the-icons"
           ((eq ivy-virtual-abbreviate 'full)
            (propertize (abbreviate-file-name str) 's 'ivy-virtual))
           (t (propertize s 'face 'ivy-virtual)))))
+;; this hook saves an ics file once an org-buffer is saved
+
+;;;###autoload
+(defun my-icalendar-agenda-export()
+  "Export org agenda into ical file when saving GTD org file. Useful when in after-save-hook"
+  (if (string= (expand-file-name +GTD) (buffer-file-name))
+      (org-icalendar-combine-agenda-files)))
+

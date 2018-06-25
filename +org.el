@@ -38,6 +38,12 @@
    +org-attach-dir "attach/"
    org-export-directory "export/"
    org-crypt-tag-matcher "+crypt-nocrypt"
+   ;; settings for export to ical file
+   org-icalendar-store-UID t
+   org-icalendar-combined-agenda-file "~/org/agenda.ics"
+   org-icalendar-include-todo '(all)
+   org-icalendar-use-scheduled '(event-if-todo event-if-not-todo)
+   org-icalendar-use-deadline '(event-if-todo event-if-not-todo)
 
    org-capture-templates `(("p" "Protocol" entry (file "~/org/BOOKMARKS.org")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:quote:\n%u\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n"
@@ -160,6 +166,7 @@
 
 
   ;; hooks
+  (add-hook 'after-save-hook 'my-icalendar-agenda-export)
   (add-hook 'org-after-todo-state-change-hook 'org-save-all-org-buffers)
   (add-hook 'org-agenda-after-show-hook 'org-narrow-to-subtree)
   (add-hook 'org-mode-hook #'visual-line-mode)
