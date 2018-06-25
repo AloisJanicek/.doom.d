@@ -239,7 +239,7 @@
   nil)
 
 ;; start me maximized
-;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; disable distracting messages when exiting doom
 (setq +doom-quit-messages '(""))
