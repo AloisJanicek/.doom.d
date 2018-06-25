@@ -145,7 +145,13 @@
           :desc "GTD"            :nv           "g" (λ! (let ((hydra-lv nil)) (aj/gtd-refile/body)))
           )
 
-        :desc "Export"       :nv               "e" #'org-export-dispatch
+        (:desc "Export"        :prefix "e"
+          :desc "dispatch"    :nv       "d" #'org-export-dispatch
+          (:desc "ical"        :prefix   "i"
+            :desc "current buffer"    :nv "c" #'org-icalendar-export-to-ics
+            :desc "agenda files"    :nv   "a" #'org-icalendar-combine-agenda-files
+            )
+          )
         (:desc "Clock"        :prefix          "c"
           :desc "IN"           :nv             "i" #'org-clock-in
           :desc "OUT"          :nv             "o" #'org-clock-out
