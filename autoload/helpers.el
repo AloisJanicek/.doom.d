@@ -200,7 +200,7 @@ Use `org-agenda-refile' in `org-agenda' mode."
 ;;;###autoload
 (defun aj/projectile-add-known-project-and-save (project-root)
   "Add PROJECT-ROOT to the list of known projects and save it to the list of known projects."
-  (interactive (list (read-directory-name "Add to known projects: ")))
+  (interactive (list (read-directory-name "Add to known projects: " "~/repos/")))
   (unless (projectile-ignored-project-p project-root)
     (setq projectile-known-projects
           (delete-dups
