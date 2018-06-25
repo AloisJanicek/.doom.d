@@ -62,6 +62,9 @@
                            ("t" "task" entry (file+headline "~/org/GTD.org" "TASKS")
                             "* [ ] %?" :prepend t)
 
+                           ("c" "calendar" entry (file+headline "~/org/GTD.org" "CALENDAR")
+                            "** %^{Title} %^g\n SCHEDULED: %^{Scheduled to begin}t \nr")
+
                            ("P" "Project task" entry (file+headline ,(concat (projectile-project-root) "README.org") "TASKS")
                             "* [ ] %?" :prepend t)
 
