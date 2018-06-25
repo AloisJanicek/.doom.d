@@ -169,7 +169,7 @@
 
 
   ;; hooks
-  (add-hook 'after-save-hook 'my-icalendar-agenda-export)
+  ;; (add-hook 'after-save-hook 'my-icalendar-agenda-export)
   (add-hook 'org-after-todo-state-change-hook 'org-save-all-org-buffers)
   (add-hook 'org-agenda-after-show-hook 'org-narrow-to-subtree)
   (add-hook 'org-mode-hook #'visual-line-mode)
