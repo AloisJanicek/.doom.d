@@ -258,3 +258,14 @@ virtual buffers. Uses `ivy-rich' under the hood. And apply all-the-icons"
   (if (string= (expand-file-name +GTD) (buffer-file-name))
       (org-icalendar-combine-agenda-files)))
 
+
+;;;###autoload
+(defun aj/enable-flyspell-check-if-prog ()
+  "Toggle flyspell mode with check for progn-derived mode"
+  (interactive)
+  (if (not flyspell-mode)
+      (progn
+        (flyspell-mode 1)
+        (if (derived-mode-p 'prog-mode)
+            (flyspell-prog-mode)))
+    (flyspell-mode 0)))

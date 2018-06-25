@@ -449,6 +449,7 @@
       :desc "light/dark theme"         :nv     "t" #'aj/toggle-doom-theme
       :desc "Themes"                   :nv     "T" #'counsel-load-theme
       :desc "Modeline"                 :nv     "m" #'hide-mode-line-mode
+      :desc "Flyspell"                 :nv     "s" #'aj/enable-flyspell-check-if-prog
       )
     )
   )
