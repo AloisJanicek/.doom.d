@@ -4,6 +4,7 @@
   :config
   (set-repl-handler! 'racket-mode #'+racket/repl)
   (set-popup-rule! "*Racket REPL\*" :quit nil :ttl nil :side 'bottom :size 0.4)
+  (set-popup-rule! "*Racket Describe*"        :select t :side 'left  :size 0.4)
 
   (evil-set-initial-state 'racket-repl-mode 'insert)
 
@@ -13,10 +14,15 @@
     (custom-set-faces `(racket-keyword-argument-face ((t (:foreground ,(doom-color 'dark-cyan))))))
     )
 
+  ;; wrap lines so you can see whole thing without horizontal scroll and $ symbols everywhere
+  (add-hook 'racket-describe-mode-hook 'visual-line-mode)
+
   (map!
    :map racket-repl-mode-map
    "C-k"  #'evil-window-up
    "C-h"  #'evil-window-left
+   :map racket-describe-mode-map
+   :nv "o" #'link-hint-open-link
    :map racket-mode-map
    :localleader
 
@@ -33,6 +39,7 @@
    ;; open =drracket=
    ;; Preferences -> Browsers -> [/usr/bin/xdg-open " ] <URL> ["     ]
    :desc    "doc"                   :nv   "h"     #'racket-doc
+   :desc    "describe"              :nv   "."     #'racket-describe
    ;; code manipulation -------------
    ;; racket-backward-up-list
    ;; racket-cycle-paren-shapes
