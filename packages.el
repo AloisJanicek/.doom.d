@@ -8,7 +8,7 @@
 (package! apache-mode)
 (package! robots-txt-mode)
 (package! systemd)
-(package! find-file-in-project)
+(package! find-file-in-project :disable t)
 (package! hungry-delete)
 (package! gulp-task-runner :disable t)
 (package! flyspell-lazy :disable t)
