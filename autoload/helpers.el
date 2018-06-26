@@ -269,3 +269,16 @@ virtual buffers. Uses `ivy-rich' under the hood. And apply all-the-icons"
         (if (derived-mode-p 'prog-mode)
             (flyspell-prog-mode)))
     (flyspell-mode 0)))
+
+;;;###autoload
+(defun aj/swap-two-ispell-dicts (dict1 dict2)
+  "If dict1 is active switch to dict2 or do it backwards"
+  (interactive)
+  (if (string= dict1 ispell-local-dictionary)
+      (progn
+        (ispell-change-dictionary dict2)
+        (flyspell-mode 1))
+    (progn
+      (ispell-change-dictionary dict1)
+      (flyspell-mode 1))
+    ))

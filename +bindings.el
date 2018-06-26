@@ -456,6 +456,7 @@
       :desc "Themes"                   :nv     "T" #'counsel-load-theme
       :desc "Modeline"                 :nv     "m" #'hide-mode-line-mode
       :desc "Flyspell"                 :nv     "s" #'aj/enable-flyspell-check-if-prog
+      :desc "Swap dictionaries"        :nv     "S" (λ! (aj/swap-two-ispell-dicts "english" "czech"))
       :desc "Highlight-blocks"         :nv     "B" #'highlight-blocks-mode
       )
     )
