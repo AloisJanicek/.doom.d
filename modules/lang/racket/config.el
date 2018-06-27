@@ -6,6 +6,7 @@
   (set-popup-rule! "*Racket REPL\*" :quit nil :ttl nil :side 'bottom :size 0.4)
   (set-popup-rule! "*Racket Describe*"        :select t :side 'left  :size 0.4)
 
+  (fset 'racket--do-describe 'aj/racket--do-describe-for-company)
   (evil-set-initial-state 'racket-repl-mode 'insert)
 
   (add-hook! '(racket-mode-hook racket-repl-mode-hook)
