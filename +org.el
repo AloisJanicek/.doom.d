@@ -129,8 +129,8 @@
    org-enforce-todo-dependencies t
    org-enforce-todo-checkbox-dependencies nil
    org-provide-todo-statistics t
-   org-checkbox-hierarchical-statistics nil
-   org-hierarchical-todo-statistics nil
+   org-checkbox-hierarchical-statistics t
+   org-hierarchical-todo-statistics t
 
    org-startup-with-inline-images t
    org-hide-emphasis-markers nil
