@@ -206,3 +206,15 @@ See URL `http://stylelint.io/'."
                (s-replace-all '(("\\" . "") ("$" . "") ("." . "")) extension)
                (concat icon " "))))
   )
+
+
+(after! imenu-list
+  ;; First create new face which is a copy of hl-line-face
+  (copy-face 'hl-line 'hl-line-imenu-list-face)
+  ;; Change what you want in this new face
+  (set-face-attribute 'hl-line-imenu-list-face nil
+                    :box '(:color "deep pink" :line-width 2))
+  ;; Finally, the hook
+  (add-hook 'imenu-list-major-mode-hook 'my-imenu-list-hl-line)
+  )
+

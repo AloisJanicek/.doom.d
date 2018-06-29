@@ -282,3 +282,8 @@ virtual buffers. Uses `ivy-rich' under the hood. And apply all-the-icons"
       (ispell-change-dictionary dict1)
       (flyspell-mode 1))
     ))
+;;;###autoload
+(defun my-imenu-list-hl-line ()
+  (set (make-local-variable 'hl-line-face) ; This is how to make it local
+       'hl-line-imenu-list-face)
+  (hl-line-mode))

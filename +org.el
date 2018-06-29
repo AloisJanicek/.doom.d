@@ -136,6 +136,7 @@
    org-hide-emphasis-markers nil
    org-fontify-whole-heading-line nil
    org-src-fontify-natively t
+   org-imenu-depth 9
 
    org-refile-targets '((org-agenda-files :maxlevel . 5))
    org-refile-use-outline-path 'file
