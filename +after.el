@@ -205,6 +205,11 @@ See URL `http://stylelint.io/'."
       (ht-set! treemacs-icons-hash
                (s-replace-all '(("\\" . "") ("$" . "") ("." . "")) extension)
                (concat icon " "))))
+
+  (set-face-attribute     'treemacs-root-face nil :height 1.0)
+  ;; (set-face-attribute     'treemacs-directory-face nil :family "Roboto")
+  ;; (set-face-attribute     'treemacs-file-face nil :family "Roboto")
+  (add-hook 'treemacs-mode-hook 'variable-pitch-mode)
   )
 
 
