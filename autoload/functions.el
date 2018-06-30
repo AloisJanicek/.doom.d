@@ -1088,4 +1088,4 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   (progn
     (require 'imenu-list)
     (remove-hook '+popup-buffer-mode-hook '+imenu|cleanup-on-popup-close)
-    (imenu-list)))
+    (imenu-list-smart-toggle)))
