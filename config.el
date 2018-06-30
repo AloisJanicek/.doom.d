@@ -1,9 +1,9 @@
 ;;;  -*- lexical-binding: t; -*-
 
-(load! "+bindings")
-(load! "+hydras")
 (load! "+after")
 (load! "+def")
+(load! "+hydras")
+(load! "+bindings")
 
 (add-hook 'org-load-hook '(lambda () (setq org-modules (append '(org-man org-eww org-protocol org-habit) org-modules))))
 
