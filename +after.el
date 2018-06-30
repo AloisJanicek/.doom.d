@@ -120,8 +120,8 @@ See URL `http://stylelint.io/'."
                       :background `,(doom-color 'base4) :weight 'bold :underline t)
   ;; Finally, the hook
   (add-hook 'imenu-list-major-mode-hook 'my-imenu-list-hl-line)
-  (add-hook 'imenu-list-major-mode-hook 'variable-pitch-mode))
-  (add-hook 'imenu-list-major-mode-hook 'visual-line-mode)
+  (add-hook 'imenu-list-major-mode-hook 'variable-pitch-mode)
+  (add-hook 'imenu-list-major-mode-hook 'visual-line-mode))
 (after! info
   (advice-add 'info :before 'aj/set-info-popup-width))
 (after! ivy
