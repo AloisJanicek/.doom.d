@@ -123,7 +123,7 @@
   (setq org-refile-target-verify-function 'aj/verify-headlines-for-refile)
 
   ;; directories
-  (setq org-starter-path `(,org-brain-path ,org-directory))
+  (setq org-starter-path `(,org-brain-path ,org-directory, (concat org-brain-path "private_brain")))
 
   ;; files
   (org-starter-define-file "GTD.org"          :agenda t :refile '(:level . 1) :key "g")
