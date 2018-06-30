@@ -254,8 +254,6 @@
   ;; :after org
   :commands
   (org-brain-visualize
-   org-brain-goto-end
-   org-brain-visualize
    org-brain-add-parent
    org-brain-add-child
    org-brain-add-friendship
