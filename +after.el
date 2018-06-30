@@ -165,18 +165,6 @@ See URL `http://stylelint.io/'."
   (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "#98be65")
   (set-popup-rule! "*Man\*"                         :size 0.4 :side 'left :select t)
   (set-popup-rule! "*man\*"                         :size 0.6 :side 'left :select t))
-(after! persp-mode
-  ;; (setq persp-kill-foreign-buffer-action nil)
-  ;; collect names of all brain files
-  (setq +persp-blacklist (append
-                          `,(directory-files (concat org-brain-path "private_brain"))
-                          `,(directory-files org-brain-path)))
-  ;; TODO
-  ;; collect names of all interactively used brain files
-  ;; this should be some data structure which would hold list of whitelisted files per perspective
-  (setq +persp-whitelist nil)
-  (setq persp-emacsclient-init-frame-behaviour-override 'persp-ignore-wconf)
-  )
 (after! ob-core
   (setq
    org-babel-default-header-args '((:session . "none")
@@ -412,6 +400,18 @@ See URL `http://stylelint.io/'."
   org-icalendar-include-todo '(all)
   org-icalendar-use-scheduled '(event-if-todo event-if-not-todo)
   org-icalendar-use-deadline '(event-if-todo event-if-not-todo)
+  )
+(after! persp-mode
+  ;; (setq persp-kill-foreign-buffer-action nil)
+  ;; collect names of all brain files
+  (setq +persp-blacklist (append
+                          `,(directory-files (concat org-brain-path "private_brain"))
+                          `,(directory-files org-brain-path)))
+  ;; TODO
+  ;; collect names of all interactively used brain files
+  ;; this should be some data structure which would hold list of whitelisted files per perspective
+  (setq +persp-whitelist nil)
+  (setq persp-emacsclient-init-frame-behaviour-override 'persp-ignore-wconf)
   )
 (after! profiler
   (set-popup-rule! "^.*-Profiler-Report.*$"         :size 0.4 :side 'right :select t))
