@@ -1,5 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
 ;;
+;; start me maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; doom! call
 (doom! :feature
       ;debugger          ; FIXME stepping through code, to help you add bugs
@@ -153,7 +156,6 @@
 ;; Global variables
 ;;
 
-;; Wiki files locations
 (defvar +GTD "~/org/GTD.org"
   "File where things must be done.")
 (defvar +SOMEDAY "~/org/SOMEDAY.org"
@@ -178,21 +180,19 @@
   "Contains list files which should not be considered as part of workspace")
 (defvar +persp-whitelist nil
   "Contains list files which should be considered as part of workspace")
+(defvar +aj/time-block nil
+  "Holds alist of elements (\"%H:%M:%S\" . \"AGENDA-KEY\")
+which is used to map agenda-key to time.")
 
-(setq browse-url-browser-function
-      '(
-        ("wikipedia\\.org" . browse-url-firefox)
-        ("github" . browse-url-chromium)
-        ("reddit" . browse-url-chromium)
-        ("gitlab" . browse-url-chromium)
-        ("youtube" . browse-url-chromium)
-        ("eslint.org" . browse-url-chromium)
-        ("stylelint.io" . browse-url-chromium)
-        ("thefreedictionary\\.com" . eww-browse-url)
-        ("dictionary\\.com" . eww-browse-url)
-        ("merriam-webster\\.com" . eww-browse-url)
-        ("." . gk-browse-url)
-        ))
+;; set time blocks for org-agenda
+(setq +aj/time-blocks '(("06:30:00" . "a")
+                        ("08:00:00" . "a")
+                        ("12:00:00" . "a")
+                        ("12:30:00" . "T")
+                        ("16:30:00" . "T")
+                        ("19:30:00" . "T")
+                        ("21:00:00" . "T")
+                        ("22:00:00" . "T")))
 
 ;; Set user credentials
 (setq user-mail-address "janicek.dev@gmail.com"
@@ -224,11 +224,6 @@
       +file-templates-dir "~/org/templates"
       )
 
-;; Customize which-key
-(setq which-key-idle-delay 0.8
-      which-key-allow-regexps nil
-      which-key-allow-evil-operators 1
-      )
 
 ;; fix langtoll on my Arch
 (def-package-hook! langtool
@@ -238,8 +233,6 @@
         "/usr/share/languagetool:/usr/share/java/languagetool/*")
   nil)
 
-;; start me maximized
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; disable distracting messages when exiting doom
 (setq +doom-quit-messages '(""))

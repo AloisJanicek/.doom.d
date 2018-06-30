@@ -45,12 +45,15 @@
          ("srm\\.conf\\'"    . apache-mode)
          ("access\\.conf\\'" . apache-mode)
          ("sites-\\(available\\|enabled\\)/" . apache-mode)))
+
 (def-package! robots-txt-mode
   :mode (("/robots\\.txt\\'" . robots-txt-mode)))
 
-(def-package! systemd)
+(def-package! systemd
+  :commands (systemd-mode))
 
-(def-package! fish-mode)
+(def-package! fish-mode
+  :commands (fish-mode))
 
 (def-package! mpdel
   :disabled
@@ -67,8 +70,7 @@
 (def-package! ivy-mpdel
   :disabled
   :config
-  (set-popup-rule! "*MPDEL Current Playlist*"       :size 0.4 :side 'left :select t :transient nil)
-  )
+  (set-popup-rule! "*MPDEL Current Playlist*"       :size 0.4 :side 'left :select t :transient nil))
 
 (def-package! podcaster
   :disabled
@@ -99,13 +101,21 @@
   (exwm-randr-enable))
 
 (def-package! sdcv
+  :commands (sdcv-search-input sdcv-search-pointer)
   :config
-  (set-popup-rule! "*SDCV\*"                        :size 0.4 :side 'top :select t)
-  )
+  (set-popup-rule! "*SDCV\*" :size 0.4 :side 'top :select t))
 
-(def-package! define-word)
+(def-package! define-word
+  :commands (define-word  define-word-at-point))
+
 (def-package! other-frame-window)
-(def-package! link-hint)
+
+(def-package! link-hint
+  :commands (link-hint-open-all-links
+             link-hint-copy-all-links
+             link-hint-open-link
+             link-hint-copy-link))
+
 (def-package! plain-org-wiki
   :config
   (setq pow-directory "~/org/brain"))

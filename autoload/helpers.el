@@ -287,3 +287,12 @@ virtual buffers. Uses `ivy-rich' under the hood. And apply all-the-icons"
   (set (make-local-variable 'hl-line-face) ; This is how to make it local
        'hl-line-imenu-list-face)
   (hl-line-mode))
+
+;;;###autoload
+(defun aj/time-from-h-m-s (hms)
+  "Takes HMS which is a string representing time in format \"%H:%M:%S\"
+and returns that weird time number which Emacs understands."
+  (let ((year (format-time-string "%Y" (current-time)))
+        (space " "))
+    (date-to-time (concat (format-time-string "%a %b %d " (current-time))
+                          hms space year))))

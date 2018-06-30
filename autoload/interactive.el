@@ -770,3 +770,14 @@ If STRICT-P, return nil if no project was found, otherwise return
 ;;;###autoload
 (defun aj/browse-brain-files ()
     "browse brain files and bring selected one to the current perspective")
+
+;;;###autoload
+(defun aj/open-agenda-time-dependent ()
+  "Open `org-agenda' depending on what time is it"
+  (interactive)
+  (mapcar (lambda (element)
+            (let ((hms (car element))
+                  (agenda-key (cdr element)))
+              (if (not (time-less-p (current-time) (aj/time-from-h-m-s hms)))
+                  (org-agenda nil agenda-key))))
+          +aj/time-blocks))

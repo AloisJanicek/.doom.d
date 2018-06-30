@@ -13,7 +13,10 @@
 (package! gulp-task-runner :disable t)
 (package! flyspell-lazy :disable t)
 
-(package! all-the-icons-ivy)
+(package! ob-javascript :recipe (:fetcher github :repo "zweifisch/ob-javascript" :files ("*")))
+(package! ob-async :recipe (:fetcher github :repo "astahlman/ob-async"))
+(package! emacs-ereader :recipe (:fetcher github :repo "bddean/emacs-ereader" :files ("org-ebook.el" "ereader.el")))
+(package! org-starter :recipe (:fetcher github :repo "akirak/org-starter"))
 (package! org-super-agenda :disable t)
 (package! org-projectile)
 (package! org-pomodoro)
@@ -28,20 +31,17 @@
 (package! highlight-blocks)
 (package! ivy-yasnippet :recipe (:fetcher github :repo "mkcms/ivy-yasnippet"))
 
-(package! ob-javascript :recipe (:fetcher github :repo "zweifisch/ob-javascript" :files ("*")))
-(package! ob-async :recipe (:fetcher github :repo "astahlman/ob-async"))
-(package! ereader :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/ereader.el") :freeze t)
-(package! org-ebook :recipe (:fetcher url :url "https://raw.githubusercontent.com/bddean/emacs-ereader/master/org-ebook.el") :freeze t)
-(package! sdcv :recipe (:fetcher url :url "https://raw.githubusercontent.com/stardiviner/sdcv.el/master/sdcv.el"))
+
+(package! sdcv :recipe (:fetcher github :repo "stardiviner/sdcv.el" :files ("sdcv.el")))
 (package! define-word)
+(package! all-the-icons-ivy)
+
 (package! xml+)
 (package! other-frame-window :disable t)
 (package! link-hint)
-
 (package! mpdel :recipe (:fetcher github :repo "mpdel/mpdel") :disable t)
 (package! ivy-mpdel :recipe (:fetcher github :repo "mpdel/ivy-mpdel") :disable t)
 (package! podcaster :disable t)
 (package! emms :disable t)
 (package! exwm :disable t)
-
 (package! plain-org-wiki :recipe (:fetcher github :repo "AloisJanicek/plain-org-wiki") :disable t)
