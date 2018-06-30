@@ -447,7 +447,7 @@
    (:desc "code"     :prefix "c"
      :desc "eval-last-sexp"           :nv     "s" #'eval-last-sexp
      :desc "macro-expand"             :nv     "m" #'macrostep-expand
-     :desc "imenu-outline"            :nv     "o" #'counsel-imenu
+     :desc "imenu-outline"            :nv     "o" #'aj/open-imenu-sidebar
      ;;          :desc "Help in Dashdocs"      :nv     "h" #'counsel-dash
      :desc "Help in Dashdocs"         :nv     "h" (lambda! (progn (require 'helm-dash) (counsel-dash)))
      :desc "Info about error"         :nv     "i" #'flycheck-explain-error-at-point
