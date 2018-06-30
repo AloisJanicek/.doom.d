@@ -113,6 +113,9 @@ See URL `http://stylelint.io/'."
 (after! ibuffer
   (set-popup-rule! "*Ibuffer\*"                     :size 0.4 :side 'left :select t))
 (after! imenu-list
+
+  (set-popup-rule! "^\\*Ilist"
+    :side 'right :size 35 :select nil :ttl nil :quit nil)
   ;; First create new face which is a copy of hl-line-face
   (copy-face 'hl-line 'hl-line-imenu-list-face)
   ;; Change what you want in this new face

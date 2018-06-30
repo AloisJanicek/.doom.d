@@ -1079,3 +1079,13 @@ If STRICT-P, return nil if no project was found, otherwise return
               (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
                   (org-agenda nil agenda-key))))
           +aj/time-blocks))
+
+;;;###autoload
+(defun aj/open-imenu-sidebar ()
+  "Remove `+imenu|clean-on-popup-close' form `+popup-buffer-mode-hook' and open
+imenu-list sidbar so it doesn't get closed in any other way then from inside of it"
+  (interactive)
+  (progn
+    (require 'imenu-list)
+    (remove-hook '+popup-buffer-mode-hook '+imenu|cleanup-on-popup-close)
+    (imenu-list)))
