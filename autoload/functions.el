@@ -289,13 +289,14 @@ virtual buffers. Uses `ivy-rich' under the hood. And apply all-the-icons"
   (hl-line-mode))
 
 ;;;###autoload
-(defun aj/time-from-h-m-s (hms)
-  "Takes HMS which is a string representing time in format \"%H:%M:%S\"
+(defun aj/time-from-h-m (hm)
+  "Takes HM which is a string representing time in format \"%H:%M\"
 and returns that weird time number which Emacs understands."
   (let ((year (format-time-string "%Y" (current-time)))
-        (space " "))
+        (space " ")
+        (seconds ":00"))
     (date-to-time (concat (format-time-string "%a %b %d " (current-time))
-                          hms space year))))
+                          hm seconds space year))))
 ;;;###autoload
 (defun aj/goto-journal ()
   (interactive)
@@ -1073,8 +1074,8 @@ If STRICT-P, return nil if no project was found, otherwise return
   "Open `org-agenda' depending on what time is it"
   (interactive)
   (mapcar (lambda (element)
-            (let ((hms (car element))
+            (let ((hm (car element))
                   (agenda-key (cdr element)))
-              (if (not (time-less-p (current-time) (aj/time-from-h-m-s hms)))
+              (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
                   (org-agenda nil agenda-key))))
           +aj/time-blocks))

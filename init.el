@@ -176,7 +176,7 @@
 (defvar +persp-whitelist nil
   "Contains list files which should be considered as part of workspace")
 (defvar +aj/time-block nil
-  "Holds alist of elements (\"%H:%M:%S\" . \"AGENDA-KEY\")
+  "Holds alist of elements (\"%H:%M\" . \"AGENDA-KEY\")
 which is used to map agenda-key to time.")
 
 (setq user-mail-address "janicek.dev@gmail.com"
