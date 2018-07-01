@@ -75,5 +75,6 @@
 (package! systemd
   )
 (package! x-path-walker
+  ;; yay -S python-lxml
   )
 (package! xml+)
