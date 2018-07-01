@@ -153,31 +153,44 @@
 
 (defvar +GTD "~/org/GTD.org"
   "File where things must be done.")
+
 (defvar +SOMEDAY "~/org/SOMEDAY.org"
   "File of things that someday will be done.")
+
 (defvar +MAYBE "~/org/MAYBE.org"
   "File of wild possibilities.")
+
 (defvar +JOURNAL "~/org/JOURNAL.org"
   "File where things are logged.")
+
 (defvar +BOOKMARKS "~/org/BOOKMARKS.org"
   "Jungle of links.")
+
 (defvar +private-wiki "~/org/private-wiki.org"
   "File where my private wiki is.")
+
 (defvar +work-wiki "~/org/work-wiki.org"
   "File where my work wiki is.")
+
 (defvar +environment-wiki "~/org/environment-wiki.org"
   "File where my environment wiki is.")
+
 (defvar +education-wiki "~/org/education-wiki.org"
   "File where my education wiki is.")
+
 (defvar +build-wiki "~/org/build-wiki.org"
   "File where my build wiki is.")
+
 (defvar +persp-blacklist nil
   "Contains list files which should not be considered as part of workspace")
+
 (defvar +persp-whitelist nil
   "Contains list files which should be considered as part of workspace")
+
 (defvar +aj/time-block nil
   "Holds alist of elements (\"%H:%M\" . \"AGENDA-KEY\")
 which is used to map agenda-key to time.")
+
 (defvar +refile-targets-with-headlines t
   "List of org files which should be allowed offer refile under headlines")
 
@@ -203,14 +216,16 @@ which is used to map agenda-key to time.")
       +doom-modeline-bar-width    4
       doom-neotree-project-size 1
       doom-neotree-line-spacing 0
-      doom-theme 'doom-one
+      doom-theme 'doom-nord
       doom-neotree-folder-size 1.0
       doom-neotree-chevron-size 0.6
       all-the-icons-scale-factor 1
       +doom-quit-messages '("")
       doom-scratch-buffer-major-mode t
       )
+
 (setq-default tab-width 2)
+
 (def-package-hook! langtool
   :pre-config
   (setq langtool-language-tool-jar t)

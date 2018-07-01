@@ -1,6 +1,8 @@
 ;;;  -*- lexical-binding: t; -*-
 (load! "+bindings")
+
 (add-hook 'org-load-hook '(lambda () (setq org-modules (append '(org-man org-eww org-protocol org-habit) org-modules))))
+
 (set-popup-rule! "*backtrace\*" :size 0.4 :side 'right :select t)
 
 (def-package! all-the-icons-ivy
@@ -10,6 +12,7 @@
                                     counsel-dired-jump counsel-projectile-find-dir
                                     counsel-projectile-switch-project))
     (ivy-set-display-transformer cmd #'all-the-icons-ivy-file-transformer)))
+
 (def-package! apache-mode
   :mode (("apache\\.conf\\'" . apache-mode)
          ("\\.htaccess\\'" . apache-mode)
@@ -17,12 +20,16 @@
          ("srm\\.conf\\'"    . apache-mode)
          ("access\\.conf\\'" . apache-mode)
          ("sites-\\(available\\|enabled\\)/" . apache-mode)))
+
 (def-package! cheatsheet
   :commands (cheatsheet-add cheatsheet-add-group cheatsheet-get cheatsheet-show))
+
 (def-package! counsel-org-starter
   :commands (counsel-org-starter counsel-org-starter-known-file))
+
 (def-package! define-word
   :commands (define-word  define-word-at-point))
+
 (def-package! exwm
   :disabled
   :config
@@ -37,6 +44,7 @@
               (start-process-shell-command
                "xrandr" nil "xrandr --output VGA-1 --right-of LVDS-1 --auto")))
   (exwm-randr-enable))
+
 (def-package! ereader
   :commands (ereader-read-epub ereader-mode)
   :mode ("\\.epub\\'". ereader-mode)
@@ -44,31 +52,40 @@
   :config
   (add-hook 'ereader-mode-hook 'hide-mode-line-mode)
   )
+
 (def-package! fish-mode
   :commands (fish-mode))
+
 (def-package! find-file-in-project
   :commands (ffip ffip-show-diff))
+
 (def-package! gulp-task-runner
   :commands gulp)
+
 (def-package! highlight-blocks
   :commands (highlight-blocks-mode highlight-blocks-now))
+
 (def-package! hungry-delete
   :demand t
   :config
   (setq hungry-delete-except-modes
         '(term-mode help-mode minibuffer-inactive-mode calc-mode))
   (global-hungry-delete-mode 1))
+
 (def-package! ivy-yasnippet
   :commands (ivy-yasnippet))
+
 (def-package! ivy-mpdel
   :disabled
   :config
   (set-popup-rule! "*MPDEL Current Playlist*"       :size 0.4 :side 'left :select t :transient nil))
+
 (def-package! link-hint
   :commands (link-hint-open-all-links
              link-hint-copy-all-links
              link-hint-open-link
              link-hint-copy-link))
+
 (def-package! mpdel
   :disabled
   :config
@@ -80,11 +97,14 @@
     ("p" (libmpdel-playback-play-pause) "play/pause" :color blue)
     ("s" (libmpdel-stop) "stop" :color blue)
     ("o" (aj-mpdel-playlist-open) "open" :color blue)))
+
 (def-package! ob-async
   :commands ob-async-org-babel-execute-src-block
   )
+
 (def-package! ob-javascript
   :after ob-core)
+
 (def-package! org-brain
   ;; :after org
   :commands
@@ -110,9 +130,11 @@
   (setq org-brain-visualize-default-choices 'all
         org-brain-title-max-length 12 )
   )
+
 (def-package! org-ebook
   :commands (org-ebook-open org-ebook-store-link)
   )
+
 (def-package! org-starter
   :after org-agenda
   :config
@@ -126,9 +148,11 @@
   (org-starter-define-file "MOC.org"          :agenda t :refile '(:level . 1) :key "m")
   (org-starter-define-file "Yoga.org"         :agenda t :refile '(:level . 1) :key "y")
   )
+
 (def-package! org-pdfview
   :commands (org-pdfview-open org-pdfview-store-link org-pdfview-complete-link org-pdfview-export)
   )
+
 (def-package! org-pomodoro
   ;; :after org
   :commands (org-pomodoro org-pomodoro-remaining-seconds org-pomodoro-state)
@@ -137,6 +161,7 @@
         org-pomodoro-ask-upon-killing nil
         )
   )
+
 (def-package! org-projectile
   ;; :after org
   :commands (org-projectile-todo-files org-projectile-capture-for-current-project)
@@ -148,12 +173,16 @@
               )
   :config (org-projectile-per-project)
   )
+
 (def-package! other-frame-window)
+
 (def-package! outline-magic
   :commands (outline-cycle outline-next-line outline-move-subtree-up outline-move-subtree-down outline-promote outline-demote))
+
 (def-package! plain-org-wiki
   :config
   (setq pow-directory "~/org/brain"))
+
 (def-package! podcaster
   :disabled
   :commands podcaster
@@ -166,36 +195,47 @@
     ("p" (podcaster-pause) "pause")
     ("s" (podcaster-stop) "stop")
     ("r" (podcaster-resume) "resume")))
+
 (def-package! robots-txt-mode
   :mode (("/robots\\.txt\\'" . robots-txt-mode)))
+
 (def-package! sdcv
   :commands (sdcv-search-input sdcv-search-pointer)
   :config
   (set-popup-rule! "*SDCV\*" :size 0.4 :side 'top :select t))
+
 (def-package! systemd
   :commands (systemd-mode))
+
 (def-package! xml+
   :commands (xml+-query--generic xml+-query-all xml+-query-first xml+-node-text xml+-node-text--helper))
+
 (def-package! x-path-walker
   :commands (helm-x-path-walker))
 
 (after! apropos
   (set-popup-rule! "*apropos\*"                     :size 0.4 :side 'left :select t)
   (set-popup-rule! "*Apropos\*"                     :size 0.4 :side 'left :select t))
+
 (after! auth-source
   (setq auth-sources '("~/.authinfo.gpg"))
   )
+
 (after! avy
   (setq avy-all-windows t
         avy-background t))
+
 (after! css-mode
   (add-hook 'css-mode-hook (lambda () (setq-local counsel-dash-docsets '("HTML" "CSS"))))
   (add-hook 'scss-mode-hook (lambda () (setq-local counsel-dash-docsets '("Sass" "HTML" "CSS")))))
+
 (after! cus-edit
   (set-popup-rule! "*Customize\*"                   :size 0.4 :side 'left :select t :transient nil))
+
 (after! company
   (setq company-idle-delay 0.6)
   (setq company-minimum-prefix-length 2))
+
 (after! counsel
   (setq counsel-grep-base-command "grep -E -n -i -e %s %s")
   (setq counsel-org-goto-face-style 'org
@@ -204,101 +244,120 @@
         counsel-org-headline-display-todo t)
   (set-popup-rule! "^\\*ivy-occur" :size 0.70 :ttl 0 :quit nil)
   (advice-add #'+ivy-buffer-transformer :override #'+ivy-combined-buffer-transformer))
+
 (after! counsel-projectile
   (advice-add  #'+ivy-projectile-find-file-transformer :override #'+ivy-projectile-find-file-combined-transformer))
+
 (after! epa
   (setq epa-pinentry-mode 'ask))
+
 (after! elisp-mode
   (add-hook 'emacs-lisp-mode-hook
             '(lambda ()
                (dolist (imenu-exp '(("After" "^\\s-*(after! +\\([^ ()\n]+\\)" 1)
                                     ("Hydra" "^\\s-*(defhydra +\\([^ ()\n]+\\)" 1)))
                  (add-to-list 'imenu-generic-expression imenu-exp)))
-            t))
+            t)
+  (add-hook 'emacs-lisp-mode-hook '+evil:fold-close-all)
+  )
+
 (after! evil
   (setq evil-move-cursor-back nil))
+
 (after! evil-org
   (setq evil-org-key-theme '(textobjects insert navigation additional shift heading)))
+
 (after! emmet-mode
 ;;; run remaping function before entering emmet-preview
   (advice-add 'emmet-preview :before 'aj/remap-emmet)
   (defadvice emmet-preview-accept (after emmet-after activate) (aj/indent-if-not-webmode)))
+
 (after! eww
   (set-popup-rule! "*eww\*"                         :size 0.4 :side 'left :select t)
   (add-hook 'eww-mode-hook 'visual-line-mode-hook))
+
 (after! faces
   (set-face-attribute 'fixed-pitch-serif nil :family "Iosevka Slab")
   )
+
 (after! files
   (add-hook 'after-save-hook #'prettier-stylelint-fix-file-and-revert)
   (add-hook 'after-save-hook #'beautify-html-file-and-revert))
+
 (after! flycheck
-  ;; note: broken with default flycheck, needs :branch "fix-1398-quoted-lambdas"
-  ;; see: https://github.com/flycheck/flycheck/pull/1440
-  ;; see: https://github.com/flycheck/flycheck/issues/1398
   (flycheck-add-mode 'html-tidy 'web-mode)
   (setq flycheck-stylelintrc "~/.stylelintrc.json"
         flycheck-tidyrc "~/.tidyrc")
   (setq-default flycheck-disabled-checkers '(css-csslint scss sass/scss-sass-lint))
-  (flycheck-define-checker javascript-eslint-custom
-    "A Javascript syntax and style checker using eslint.
-See URL `http://eslint.org/'."
-    :command ("eslint" "--format=json"
-              (option-list "--rulesdir" flycheck-eslint-rules-directories)
-              "--stdin" "--stdin-filename" source-original)
-    :standard-input t
-    :error-parser flycheck-parse-eslint
-    :enabled (lambda () (flycheck-eslint-config-exists-p))
-    :modes (js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode rjsx-mode)
-    :working-directory flycheck-eslint--find-working-directory
-    :error-explainer
-    (lambda (error)
-      (let ((error-code (flycheck-error-id error)))
-        (progn
-          (browse-url (concat "https://eslint.org/docs/rules/" error-code)))))
-    :verify
-    (lambda (_)
-      (let* ((default-directory
-               (flycheck-compute-working-directory 'javascript-eslint))
-             (have-config (flycheck-eslint-config-exists-p)))
-        (list
-         (flycheck-verification-result-new
-          :label "config file"
-          :message (if have-config "found" "missing or incorrect")
-          :face (if have-config 'success '(bold error)))))))
-  (add-to-list 'flycheck-checkers 'javascript-eslint-custom)
+  ;; note: broken with default flycheck, needs :branch "fix-1398-quoted-lambdas"
+  ;; see: https://github.com/flycheck/flycheck/pull/1440
+  ;; see: https://github.com/flycheck/flycheck/issues/1398
+;;   (flycheck-define-checker javascript-eslint-custom
+;;     "A Javascript syntax and style checker using eslint.
+;; See URL `http://eslint.org/'."
+;;     :command ("eslint" "--format=json"
+;;               (option-list "--rulesdir" flycheck-eslint-rules-directories)
+;;               "--stdin" "--stdin-filename" source-original)
+;;     :standard-input t
+;;     :error-parser flycheck-parse-eslint
+;;     :enabled (lambda () (flycheck-eslint-config-exists-p))
+;;     :modes (js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode rjsx-mode)
+;;     :working-directory flycheck-eslint--find-working-directory
+;;     :error-explainer
+;;     (lambda (error)
+;;       (let ((error-code (flycheck-error-id error)))
+;;         (progn
+;;           (browse-url (concat "https://eslint.org/docs/rules/" error-code)))))
+;;     :verify
+;;     (lambda (_)
+;;       (let* ((default-directory
+;;                (flycheck-compute-working-directory 'javascript-eslint))
+;;              (have-config (flycheck-eslint-config-exists-p)))
+;;         (list
+;;          (flycheck-verification-result-new
+;;           :label "config file"
+;;           :message (if have-config "found" "missing or incorrect")
+;;           :face (if have-config 'success '(bold error)))))))
+;;   (add-to-list 'flycheck-checkers 'javascript-eslint-custom)
   ;; css-styleling checke with explainer
-  (flycheck-define-checker css-stylelint-custom
-    "A CSS syntax and style checker using stylelint.
+;;   (flycheck-define-checker css-stylelint-custom
+;;     "A CSS syntax and style checker using stylelint.
 
-See URL `http://stylelint.io/'."
-    :command ("stylelint"
-              (eval flycheck-stylelint-args)
-              (option-flag "--quiet" flycheck-stylelint-quiet)
-              (config-file "--config" flycheck-stylelintrc))
-    :standard-input t
-    :error-parser flycheck-parse-stylelint
-    :error-explainer
-    (lambda (error)
-      (let ((error-code (flycheck-error-id error)))
-        (progn
-          (browse-url (concat "https://stylelint.io/user-guide/rules/" error-code)))))
-    :modes (css-mode))
-  (add-to-list 'flycheck-checkers 'css-stylelint-custom))
+;; See URL `http://stylelint.io/'."
+;;     :command ("stylelint"
+;;               (eval flycheck-stylelint-args)
+;;               (option-flag "--quiet" flycheck-stylelint-quiet)
+;;               (config-file "--config" flycheck-stylelintrc))
+;;     :standard-input t
+;;     :error-parser flycheck-parse-stylelint
+;;     :error-explainer
+;;     (lambda (error)
+;;       (let ((error-code (flycheck-error-id error)))
+;;         (progn
+;;           (browse-url (concat "https://stylelint.io/user-guide/rules/" error-code)))))
+;;     :modes (css-mode))
+;;   (add-to-list 'flycheck-checkers 'css-stylelint-custom)
+  )
+
 (after! flyspell
   (setq flyspell-issue-message-flag nil
         flyspell-issue-welcome-flag nil)
   (add-to-list 'ispell-skip-region-alist '("^#+BEGIN_SRC" . "^#+END_SRC")))
+
 (after! google-translate-default-ui
   (setq google-translate-default-source-language "cs"
         google-translate-default-target-language "en")
   (set-popup-rule! "*Google Translate\*"            :size 0.4 :side 'top :select t))
+
 (after! help
   (set-popup-rule! "*help\*"                        :size 0.4 :side 'left :select t))
+
 (after! helpful
   (set-popup-rule! "*helpful\*"                     :size 0.4 :side 'left :select t))
+
 (after! ibuffer
   (set-popup-rule! "*Ibuffer\*"                     :size 0.4 :side 'left :select t))
+
 (after! imenu-list
 
   (set-popup-rule! "^\\*Ilist"
@@ -312,8 +371,10 @@ See URL `http://stylelint.io/'."
   (add-hook 'imenu-list-major-mode-hook 'my-imenu-list-hl-line)
   (add-hook 'imenu-list-major-mode-hook 'variable-pitch-mode)
   )
+
 (after! info
   (advice-add 'info :before 'aj/set-info-popup-width))
+
 (after! ivy
   (setq ivy-height 40)
   (map-put ivy-display-functions-alist 't 'ivy-posframe-display-at-frame-center)
@@ -324,15 +385,19 @@ See URL `http://stylelint.io/'."
   (ivy-add-actions
    #'ivy-yasnippet
    '(("e" ivy-yasnippet--copy-edit-snippet-action "Edit snippet as your own"))))
+
 (after! ivy-rich
   (advice-add #'+ivy-recentf-transformer :override #'+ivy-recentf-combined-transformer))
+
 (after! js2-mode
   (add-hook 'js2-mode-hook (lambda () (setq-local counsel-dash-docsets '("JavaScript" "HTML" "CSS"))))
   (add-hook 'js2-mode-hook 'eslintd-fix-mode)
   (setq-default indent-tabs-mode nil)
   (setq-default js2-basic-offset 2))
+
 (after! json-mode
   (setq js2-basic-offset 2))
+
 (after! loaddefs
   (setq browse-url-browser-function
         '(
@@ -349,13 +414,16 @@ See URL `http://stylelint.io/'."
           ("." . gk-browse-url)
           ))
   )
+
 (after! magit
   (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
+
 (after! man
   (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "#ff7a79")
   (set-face-attribute 'Man-underline nil :inherit 'underline :foreground "#98be65")
   (set-popup-rule! "*Man\*"                         :size 0.4 :side 'left :select t)
   (set-popup-rule! "*man\*"                         :size 0.6 :side 'left :select t))
+
 (after! ob-core
   (setq
    org-babel-default-header-args '((:session . "none")
@@ -368,6 +436,7 @@ See URL `http://stylelint.io/'."
                                    (:mkdir . "yes"))
    )
   )
+
 (after! org
   (set-popup-rule! "^\\*org-brain\\*$"    :size 0.3 :side 'left :vslot -2 :select t :quit nil :transient t)
   (set-popup-rule! "^CAPTURE.*\\.org$"    :size 0.4 :side 'bottom :select t)
@@ -469,9 +538,11 @@ See URL `http://stylelint.io/'."
 
 
   )
+
 (after! org-bullets
   (setq org-bullets-bullet-list
         '("◉")))
+
 (after! org-agenda
   (advice-add 'org-agenda-archive :after #'org-save-all-org-buffers)
   (advice-add 'org-agenda-archive-default :after #'org-save-all-org-buffers)
@@ -584,10 +655,12 @@ See URL `http://stylelint.io/'."
       )
    )
   )
+
 (after! org-archive
   (advice-add 'org-archive-subtree :after #'org-save-all-org-buffers)
   (advice-add 'org-archive-subtree-default :after #'org-save-all-org-buffers)
   )
+
 (after! org-capture
   (setq
    org-capture-templates `(("p" "Protocol" entry (file "~/org/BOOKMARKS.org")
@@ -618,6 +691,7 @@ See URL `http://stylelint.io/'."
                            )
    )
   )
+
 (after! org-clock
   (advice-add 'org-clock-in :around (lambda (&rest _) (org-save-all-org-buffers)))
   (advice-add 'org-clock-out :around (lambda (&rest _) (org-save-all-org-buffers)))
@@ -634,17 +708,21 @@ See URL `http://stylelint.io/'."
    )
 
   )
+
 (after! org-list
   (setq
    org-checkbox-hierarchical-statistics t
    )
   )
+
 (after! org-protocol
   (load! "local/org-protocol-capture-html/org-protocol-capture-html.el"))
+
 (after! org-refile
   (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
   (setq org-refile-target-verify-function 'aj/verify-headlines-for-refile)
   )
+
 (after! ox-icalendar
   org-icalendar-store-UID t
   org-icalendar-combined-agenda-file "~/org/agenda.ics"
@@ -652,6 +730,7 @@ See URL `http://stylelint.io/'."
   org-icalendar-use-scheduled '(event-if-todo event-if-not-todo)
   org-icalendar-use-deadline '(event-if-todo event-if-not-todo)
   )
+
 (after! persp-mode
   ;; (setq persp-kill-foreign-buffer-action nil)
   ;; collect names of all brain files
@@ -664,14 +743,17 @@ See URL `http://stylelint.io/'."
   (setq +persp-whitelist nil)
   (setq persp-emacsclient-init-frame-behaviour-override 'persp-ignore-wconf)
   )
+
 (after! profiler
   (set-popup-rule! "^.*-Profiler-Report.*$"         :size 0.4 :side 'right :select t))
+
 (after! projectile
   (setq projectile-globally-ignored-file-suffixes (append (list ".elc"))
         projectile-globally-ignored-directories (append (list "node_modules"))
         projectile-track-known-projects-automatically nil
         counsel-projectile-sort-projects t
         projectile-ignored-projects nil ))
+
 (after! prodigy
   (prodigy-define-service
     :name "Gulp"
@@ -679,21 +761,27 @@ See URL `http://stylelint.io/'."
     :cwd (projectile-project-root)
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t))
+
 (after! prog-mode
   (add-hook! 'prog-mode-hook 'goto-address-mode))
+
 (after! python
   (add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python_3")))))
+
 (after! synosaurus
   (set-popup-rule! "*Synonyms List\*"               :size 0.4 :side 'top :select t))
+
 (after! term
   (add-hook! 'term-mode-hook #'hide-mode-line-mode)
   ;; remap keys for terminal with Evil
   (add-hook! :append term-mode 'aj/set-term-keys)
   (add-hook 'term-mode-hook '(lambda () (interactive)(setq left-fringe-width 0
                                                            right-ringe-width 0))))
+
 (after! tide
   (setq tide-completion-detailed nil
         tide-always-show-documentation nil))
+
 (after! treemacs
   (setq evil-treemacs-state-cursor 'box)
   (setq treemacs-project-follow-cleanup t)
@@ -712,6 +800,7 @@ See URL `http://stylelint.io/'."
 
   (set-face-attribute     'treemacs-root-face nil :height 1.0)
   (add-hook 'treemacs-mode-hook 'variable-pitch-mode))
+
 (after! web-mode
   (add-hook 'web-mode-hook (lambda () (setq-local counsel-dash-docsets '("HTML" "CSS" "Bootstrap 4"))))
   (add-hook 'web-mode-hook 'my-web-mode-hook)
@@ -723,12 +812,15 @@ See URL `http://stylelint.io/'."
   (set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "#5B6268")
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "#E06C75")
   (set-face-attribute 'web-mode-html-tag-unclosed-face nil :inherit 'web-mode-html-tag-face :underline '(:color "#ff6c6b" :style wave)))
+
 (after! which-key
   (setq which-key-idle-delay 0.8
         which-key-allow-regexps nil
         which-key-allow-evil-operators 1))
+
 (after! wordnut
   (set-popup-rule! "*WordNut\*"                     :size 0.4 :side 'top :select t))
+
 (after! yasnippet
   (push "~/org/snippets" yas-snippet-dirs))
 
@@ -745,18 +837,21 @@ See URL `http://stylelint.io/'."
   ("p" (org-agenda nil "P") "Projects Overview")
   ("t" (org-agenda nil "T") "Tasks Overview")
   )
+
 (defhydra aj/agenda-hydra (:color blue )
   "Agenda:"
   ("c" (aj/clock-menu) "clock" )
   ("p" (org-pomodoro) "pomodoro" )
   ("r" (aj/gtd-review-refile/body) "refile")
   )
+
 (defhydra aj/clocking (:color blue)
   "Clock:"
   ("c" (aj/clock-menu) "clock" )
   ("p" (org-pomodoro) "pomodoro" )
   ("s" (org-clock-out) "stop clock")
   )
+
 (defhydra aj/capture ()
   "Capture:"
   ("k" (org-capture nil "e") "journal Entry" :exit t)
@@ -765,6 +860,7 @@ See URL `http://stylelint.io/'."
   ("p" (org-capture nil "P") "project Task:" :exit t)
   ("j" (org-capture nil "J") "project Journal:" :exit t)
   )
+
 (defhydra aj/gtd-goto (:color blue)
   "GTD file:"
   ("g" (aj/goto-GTD) "GTD" )
@@ -772,6 +868,7 @@ See URL `http://stylelint.io/'."
   ("s" (aj/goto-someday) "someday" )
   ("m" (aj/goto-maybe) "maybe" )
   )
+
 (defhydra aj/gtd-refile (:color blue)
   "GTD Refile:"
   ("t" (aj/refile-to-file-headline +GTD "TASKS") "task")
@@ -783,6 +880,7 @@ See URL `http://stylelint.io/'."
   ("s" (aj/gtd-someday-refile/body) "someday")
   ("m" (aj/refile-to-file-headline +MAYBE "Ideas") "maybe")
   )
+
 (defhydra aj/gtd-someday-refile ()
   "SOMEDAY:"
   ("b" (aj/refile-to-file-headline +SOMEDAY "Build" )     "build" )
@@ -799,6 +897,7 @@ See URL `http://stylelint.io/'."
   ("W" (aj/refile-to-file-headline +SOMEDAY "Watch" )     "Watch" )
   ("w" (aj/refile-to-file-headline +SOMEDAY "Write" )     "write" )
   )
+
 (defhydra aj/wiki-select (:color blue)
   "Goto:"
   ("g" (progn
