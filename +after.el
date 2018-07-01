@@ -29,6 +29,14 @@
   (advice-add  #'+ivy-projectile-find-file-transformer :override #'+ivy-projectile-find-file-combined-transformer))
 (after! epa
   (setq epa-pinentry-mode 'ask))
+(after! elisp-mode
+  (add-hook 'emacs-lisp-mode-hook
+            '(lambda ()
+               (dolist (imenu-exp '(("After" "^\\s-*(after! +\\([^ ()\n]+\\)" 1)
+                                    ("Hydra" "^\\s-*(defhydra +\\([^ ()\n]+\\)" 1)))
+                 (add-to-list #'imenu-generic-expression imenu-exp)))
+            t) ;; add it to the end of list
+  )
 (after! evil
   (setq evil-move-cursor-back nil))
 (after! evil-org
