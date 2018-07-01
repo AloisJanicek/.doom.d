@@ -369,6 +369,7 @@
      :desc "files"                    :nv     "f" #'counsel-projectile-find-file
      :desc "buffer"                   :nv     "b" #'counsel-projectile-switch-to-buffer
      :desc "Capture"                  :nv     "x" #'aj/org-projectile-capture-for-current-project
+     :desc "invalidate cache"         :nv     "i" #'projectile-invalidate-cache
      :desc "P README"                 :nv     "p" #'aj/better-open-current-projectile-org-file
      :desc "Switch"                   :nv     "s" #'counsel-projectile-switch-project
      :desc "Add"                      :nv     "A" #'aj/projectile-add-known-project-and-save
