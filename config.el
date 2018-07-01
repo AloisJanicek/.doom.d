@@ -258,7 +258,7 @@
                                     ("Hydra" "^\\s-*(defhydra +\\([^ ()\n]+\\)" 1)))
                  (add-to-list 'imenu-generic-expression imenu-exp)))
             t)
-  (add-hook 'emacs-lisp-mode-hook '+evil:fold-close-all)
+  ;; (add-hook 'emacs-lisp-mode-hook '+evil:fold-close-all)
   )
 
 (after! evil
@@ -627,10 +627,15 @@
        (org-agenda-hide-tags-regexp (regexp-opt '("SATURDAY")))
        )
 
-      ("2" "Sunday" ((tags-todo "SCHEDULED<=\"<today>\"+SUNDAY"
-                                ()))
+      ("2" "Sunday" ((tags-todo "SCHEDULED<=\"<today>\"+MORNING"
+                                ((org-agenda-overriding-header "Morning")))
+                     (tags-todo "SCHEDULED<=\"<today>\"+SUNDAY"
+                                ((org-agenda-overriding-header "Sunday")))
+                     (tags-todo "SCHEDULED<=\"<today>\"+SLEEP"
+                                ((org-agenda-overriding-header "Sleep")))
+                     )
        ((org-agenda-overriding-header "SUNDAY")
-        (org-agenda-tag-filter-preset '("+SUNDAY"))
+        ;; (org-agenda-tag-filter-preset '(""))
         (org-agenda-hide-tags-regexp (regexp-opt '("SUNDAY")))
         ))
 
