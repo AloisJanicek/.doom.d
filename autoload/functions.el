@@ -1098,3 +1098,21 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
 ;;;###autoload
 (defun aj/verify-headlines-for-refile ()
   (if (not (member (buffer-name) +refile-targets-with-headlines)) nil t))
+
+;;;###autoload
+(defun counsel-x-path-walker ()
+  "Goto JSON or XML node"
+  (interactive)
+  (require 'x-path-walker)
+  (let* ((mode (x-path-get-mode))
+         (file (buffer-file-name))
+         (cmd-line `(,(if (bound-and-true-p x-path-walker-verbose)
+                          "-a"
+                        "")
+                     "-m"
+                     ,mode
+                     ,file ))
+         (cands  (split-string (x-path-run-py-script cmd-line)"\n")))
+    (ivy-read "Goto: " cands
+              :action 'x-path-walker-jump-path
+              :caller 'counsel-x-path-walker)))

@@ -74,5 +74,6 @@
   :recipe (:fetcher github :repo "stardiviner/sdcv.el" :files ("sdcv.el")))
 (package! systemd
   )
-(package! x-path-walker :disable t)
+(package! x-path-walker
+  )
 (package! xml+)
