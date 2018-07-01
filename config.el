@@ -451,6 +451,7 @@
   (set-popup-rule! "^\\*Org Agenda.*\\*$" :size 0.32 :side 'right :vslot -1 :select t :modeline nil :quit t)
   (set-popup-rule! "JOURNAL.org"          :size 0.4 :side 'top :select t :transient nil)
   (set-popup-rule! "SOMEDAY.org"          :size 0.4 :side 'right :select t :transient nil)
+  (set-popup-rule! "GTD-Manual.org"       :size 0.4 :side 'right :select t :transient nil)
   (set-popup-rule! "MAYBE.org"            :size 0.4 :side 'right :select t :transient nil)
   (set-popup-rule! "BOOKMARKS.org"        :size 0.4 :side 'top :select t :transient nil)
   (add-hook 'doom-load-theme-hook #'aj/my-org-faces)
@@ -870,8 +871,9 @@
   "GTD file:"
   ("g" (aj/goto-GTD) "GTD" )
   ("j" (aj/goto-journal) "journal" )
-  ("s" (aj/goto-someday) "someday" )
-  ("m" (aj/goto-maybe) "maybe" )
+  ;; ("s" (aj/goto-someday) "someday" )
+  ;; ("m" (aj/goto-maybe) "maybe" )
+  ("m" (aj/goto-gtd-manual) "manual")
   )
 
 (defhydra aj/gtd-refile (:color blue)

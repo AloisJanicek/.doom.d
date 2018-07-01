@@ -371,6 +371,18 @@ and returns that weird time number which Emacs understands."
       (forward-line 6)
       (turn-off-solaire-mode))))
 ;;;###autoload
+(defun aj/goto-gtd-manual ()
+  (interactive)
+  (persp-remove-buffer "GTD-Manual.org")
+  (if (get-buffer "GTD-Manual.org")
+      (progn
+        (pop-to-buffer "GTD-Manual.org")
+        (emacs-lock-mode 'kill))
+    (progn
+      (pop-to-buffer (find-file-noselect (expand-file-name "~/org/GTD-Manual.org")))
+      (emacs-lock-mode 'kill)
+      (turn-off-solaire-mode))))
+;;;###autoload
 (defun aj/goto-bookmarks ()
   "Selects and opens links"
   (interactive)
