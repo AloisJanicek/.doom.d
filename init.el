@@ -216,7 +216,7 @@ which is used to map agenda-key to time.")
       +doom-modeline-bar-width    4
       doom-neotree-project-size 1
       doom-neotree-line-spacing 0
-      doom-theme 'doom-nord
+      doom-theme 'doom-one
       doom-neotree-folder-size 1.0
       doom-neotree-chevron-size 0.6
       all-the-icons-scale-factor 1
