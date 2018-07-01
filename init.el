@@ -178,9 +178,12 @@
 (defvar +aj/time-block nil
   "Holds alist of elements (\"%H:%M\" . \"AGENDA-KEY\")
 which is used to map agenda-key to time.")
+(defvar +refile-targets-with-headlines t
+  "List of org files which should be allowed offer refile under headlines")
 
 (setq user-mail-address "janicek.dev@gmail.com"
       user-full-name    "Alois Janíček"
+      +refile-targets-with-headlines '("GTD.org" "About.org")
       +aj/time-blocks '(("06:30" . "M")   ;; MORNING
                         ("08:00" . "W")   ;; WORK
                         ("12:00" . "L")   ;; LUNCH

@@ -1067,7 +1067,7 @@ If STRICT-P, return nil if no project was found, otherwise return
 ;; TODO
 ;;;###autoload
 (defun aj/browse-brain-files ()
-    "browse brain files and bring selected one to the current perspective")
+  "browse brain files and bring selected one to the current perspective")
 
 ;;;###autoload
 (defun aj/open-agenda-time-dependent ()
@@ -1095,3 +1095,6 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
     (require 'imenu-list)
     (remove-hook '+popup-buffer-mode-hook '+imenu|cleanup-on-popup-close)
     (imenu-list-smart-toggle)))
+;;;###autoload
+(defun aj/verify-headlines-for-refile ()
+  (if (not (member (buffer-name) +refile-targets-with-headlines)) nil t))

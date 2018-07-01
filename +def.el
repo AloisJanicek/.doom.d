@@ -113,15 +113,6 @@
 (def-package! org-starter
   :after org-agenda
   :config
-  ;; restrict refile targets
-  (defvar +refile-targets-with-headlines t)
-  (setq +refile-targets-with-headlines '("GTD.org" "About.org"))
-
-  (defun aj/verify-headlines-for-refile ()
-    (if (not (member (buffer-name) +refile-targets-with-headlines)) nil t))
-
-  (setq org-refile-target-verify-function 'aj/verify-headlines-for-refile)
-
   ;; directories
   (setq org-starter-path `(,org-brain-path ,org-directory, (concat org-brain-path "private_brain")))
 

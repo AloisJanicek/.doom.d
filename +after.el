@@ -456,6 +456,7 @@ See URL `http://stylelint.io/'."
   (load! "local/org-protocol-capture-html/org-protocol-capture-html.el"))
 (after! org-refile
   (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (setq org-refile-target-verify-function 'aj/verify-headlines-for-refile)
   )
 (after! ox-icalendar
   org-icalendar-store-UID t
