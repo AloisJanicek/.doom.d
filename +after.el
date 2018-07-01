@@ -38,7 +38,8 @@
   (advice-add 'emmet-preview :before 'aj/remap-emmet)
   (defadvice emmet-preview-accept (after emmet-after activate) (aj/indent-if-not-webmode)))
 (after! eww
-  (set-popup-rule! "*eww\*"                         :size 0.4 :side 'left :select t))
+  (set-popup-rule! "*eww\*"                         :size 0.4 :side 'left :select t)
+  (add-hook 'eww-mode-hook 'visual-line-mode-hook))
 (after! faces
   (set-face-attribute 'fixed-pitch-serif nil :family "Iosevka Slab")
   )
