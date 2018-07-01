@@ -317,12 +317,63 @@ See URL `http://stylelint.io/'."
    org-agenda-dim-blocked-tasks 'invisible
 
    org-agenda-custom-commands
-   ' (("P" "Projects" ((tags "+LEVEL=2+CATEGORY=\"PROJECTS\"
-                              |+LEVEL=3+CATEGORY=\"PROJECTS\"
-                              |+LEVEL=4+CATEGORY=\"PROJECTS\"/!+STARTED|+NEXT"))
-       ((org-agenda-overriding-header "Projects Overview")
-        (org-agenda-files '("~/org/GTD.org"))
-        (org-agenda-dim-blocked-tasks nil)
+   ' (
+
+      ("M" "Morning Routine" ((tags-todo "SCHEDULED<=\"<today>\"+MORNING"
+                                         ()))
+       ((org-agenda-overriding-header "Morning 06:30 - 08:00")
+        (org-agenda-tag-filter-preset '("+MORNING"))
+        (org-agenda-hide-tags-regexp (regexp-opt '("MORNING;;; ~/.doom.d/+afte")))
+        ))
+
+      ("W" "Work" ((tags-todo "SCHEDULED<=\"<today>\"+WORK"
+                              ()))
+       ((org-agenda-overriding-header "Work 08:00 - 12:00")
+        (org-agenda-tag-filter-preset '("+WORK"))
+        (org-agenda-hide-tags-regexp (regexp-opt '("WORK")))
+        ))
+
+      ("L" "Lunch break" ((tags-todo "SCHEDULED<=\"<today>\"+LUNCH"
+                                     ()))
+       ((org-agenda-overriding-header "Work 08:00 - 12:00")
+        (org-agenda-tag-filter-preset '("+LUNCH"))
+        (org-agenda-hide-tags-regexp (regexp-opt '("LUNCH")))
+        ))
+
+      ("O" "Outside" ((tags-todo "SCHEDULED<=\"<today>\"+OUTSIDE"
+                                 ()))
+       ((org-agenda-overriding-header "Evening 16:30 - 19:30")
+        (org-agenda-tag-filter-preset '("+OUTSIDE"))
+        (org-agenda-hide-tags-regexp (regexp-opt '("OUTSIDE")))
+        ))
+
+      ("E" "Evening Routine" (
+                              (tags-todo "SCHEDULED<=\"<today>\"+EVENING"
+                                         ()))
+       ((org-agenda-overriding-header "Evening 19:30 - 21:30")
+        (org-agenda-tag-filter-preset '("+EVENING"))
+        (org-agenda-hide-tags-regexp (regexp-opt '("EVENING")))
+        ))
+
+      ("S" "Before Sleep" ((tags-todo "SCHEDULED<=\"<today>\"+SLEEP"
+                                      ()))
+       ((org-agenda-overriding-header "Before Sleep 21:00 - 22:00")
+        (org-agenda-tag-filter-preset '("+SLEEP"))
+        (org-agenda-hide-tags-regexp (regexp-opt '("SLEEP")))
+        ))
+
+      ("1" "Saturday" ((tags-todo "SCHEDULED<=\"<today>\"+SATURDAY"
+                                  ()))
+       ((org-agenda-overriding-header "SATURDAY"))
+       (org-agenda-tag-filter-preset '("+SATURDAY"))
+       (org-agenda-hide-tags-regexp (regexp-opt '("SATURDAY")))
+       )
+
+      ("2" "Sunday" ((tags-todo "SCHEDULED<=\"<today>\"+SUNDAY"
+                                ()))
+       ((org-agenda-overriding-header "SUNDAY")
+        (org-agenda-tag-filter-preset '("+SUNDAY"))
+        (org-agenda-hide-tags-regexp (regexp-opt '("SUNDAY")))
         ))
 
       ("C" "Current project" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
@@ -334,6 +385,14 @@ See URL `http://stylelint.io/'."
                           |+LEVEL=2+CATEGORY=\"TASKS\""))
        ((org-agenda-overriding-header "Tasks Overview")
         (org-agenda-files '("~/org/GTD.org"))
+        ))
+
+      ("P" "Projects" ((tags "+LEVEL=2+CATEGORY=\"PROJECTS\"
+                              |+LEVEL=3+CATEGORY=\"PROJECTS\"
+                              |+LEVEL=4+CATEGORY=\"PROJECTS\"/!+STARTED|+NEXT"))
+       ((org-agenda-overriding-header "Projects Overview")
+        (org-agenda-files '("~/org/GTD.org"))
+        (org-agenda-dim-blocked-tasks nil)
         ))
       )
    )

@@ -1071,14 +1071,20 @@ If STRICT-P, return nil if no project was found, otherwise return
 
 ;;;###autoload
 (defun aj/open-agenda-time-dependent ()
-  "Open `org-agenda' depending on what time is it"
+  "Open `org-agenda' depending on current time. If it is weekend
+open agenda for Saturday or Sunday instead."
   (interactive)
-  (mapcar (lambda (element)
-            (let ((hm (car element))
-                  (agenda-key (cdr element)))
-              (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
-                  (org-agenda nil agenda-key))))
-          +aj/time-blocks))
+  (if (string-equal "Sat" (format-time-string "%a"))
+      (org-agenda nil "1")
+    (if (string-equal "Sun" (format-time-string "%a"))
+        (org-agenda nil "2")
+      ;; else assume workday and open agenda for given clock time
+      (mapcar (lambda (element)
+                (let ((hm (car element))
+                      (agenda-key (cdr element)))
+                  (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
+                      (org-agenda nil agenda-key))))
+              +aj/time-blocks))))
 
 ;;;###autoload
 (defun aj/open-imenu-sidebar ()

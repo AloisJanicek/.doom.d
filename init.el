@@ -181,14 +181,14 @@ which is used to map agenda-key to time.")
 
 (setq user-mail-address "janicek.dev@gmail.com"
       user-full-name    "Alois Janíček"
-      +aj/time-blocks '(("06:30:00" . "a")
-                        ("08:00:00" . "a")
-                        ("12:00:00" . "a")
-                        ("12:30:00" . "T")
-                        ("16:30:00" . "T")
-                        ("19:30:00" . "T")
-                        ("21:00:00" . "T")
-                        ("22:00:00" . "T"))
+      +aj/time-blocks '(("06:30" . "M")   ;; MORNING
+                        ("08:00" . "W")   ;; WORK
+                        ("12:00" . "L")   ;; LUNCH
+                        ("12:30" . "W")   ;; WORK
+                        ("16:30" . "O")   ;; OUTSIDE
+                        ("19:30" . "E")   ;; EVENING
+                        ("21:00" . "S")   ;; SLEEP
+                        ("22:00" . nil))
       org-directory "~/org/"
       org-brain-path "~/org/brain/"
       +org-attach-dir "./attach/"

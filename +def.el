@@ -130,6 +130,7 @@
   (org-starter-define-file "Books.org"        :agenda t :refile '(:level . 1) :key "b")
   (org-starter-define-file "Podcasts.org"     :agenda t :refile '(:level . 1) :key "p")
   (org-starter-define-file "MOC.org"          :agenda t :refile '(:level . 1) :key "m")
+  (org-starter-define-file "Yoga.org"         :agenda t :refile '(:level . 1) :key "y")
   )
 (def-package! org-pdfview
   :commands (org-pdfview-open org-pdfview-store-link org-pdfview-complete-link org-pdfview-export)
