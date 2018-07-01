@@ -379,7 +379,7 @@ See URL `http://stylelint.io/'."
   ;; (set-popup-rule! "environment-wiki.org" :size 0.4 :side 'left :select t :transient nil)
   ;; (set-popup-rule! "education-wiki.org"   :size 0.4 :side 'left :select t :transient nil)
   (set-popup-rule! "^\\*Org Src"          :size 0.4 :side 'right :quit t :select t)
-  (set-popup-rule! "^\\*Org Agenda.*\\*$" :size 0.32 :side 'right :slot -1 :select t :modeline nil :quit t)
+  (set-popup-rule! "^\\*Org Agenda.*\\*$" :size 0.32 :side 'right :vslot -1 :select t :modeline nil :quit t)
   (set-popup-rule! "JOURNAL.org"          :size 0.4 :side 'top :select t :transient nil)
   (set-popup-rule! "SOMEDAY.org"          :size 0.4 :side 'right :select t :transient nil)
   (set-popup-rule! "MAYBE.org"            :size 0.4 :side 'right :select t :transient nil)
