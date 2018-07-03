@@ -1,4 +1,5 @@
 #+TITLE: README
 * .doom.d
-** notice
-- +=+org.el== is totally broken, I am implementing different workflow right now+ 
+#+begin_quote
+Doom loaded 247 packages across 50 modules in 0.691s
+#+end_quote
