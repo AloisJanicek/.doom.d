@@ -298,51 +298,51 @@
   ;; note: broken with default flycheck, needs :branch "fix-1398-quoted-lambdas"
   ;; see: https://github.com/flycheck/flycheck/pull/1440
   ;; see: https://github.com/flycheck/flycheck/issues/1398
-;;   (flycheck-define-checker javascript-eslint-custom
-;;     "A Javascript syntax and style checker using eslint.
-;; See URL `http://eslint.org/'."
-;;     :command ("eslint" "--format=json"
-;;               (option-list "--rulesdir" flycheck-eslint-rules-directories)
-;;               "--stdin" "--stdin-filename" source-original)
-;;     :standard-input t
-;;     :error-parser flycheck-parse-eslint
-;;     :enabled (lambda () (flycheck-eslint-config-exists-p))
-;;     :modes (js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode rjsx-mode)
-;;     :working-directory flycheck-eslint--find-working-directory
-;;     :error-explainer
-;;     (lambda (error)
-;;       (let ((error-code (flycheck-error-id error)))
-;;         (progn
-;;           (browse-url (concat "https://eslint.org/docs/rules/" error-code)))))
-;;     :verify
-;;     (lambda (_)
-;;       (let* ((default-directory
-;;                (flycheck-compute-working-directory 'javascript-eslint))
-;;              (have-config (flycheck-eslint-config-exists-p)))
-;;         (list
-;;          (flycheck-verification-result-new
-;;           :label "config file"
-;;           :message (if have-config "found" "missing or incorrect")
-;;           :face (if have-config 'success '(bold error)))))))
-;;   (add-to-list 'flycheck-checkers 'javascript-eslint-custom)
+  ;;   (flycheck-define-checker javascript-eslint-custom
+  ;;     "A Javascript syntax and style checker using eslint.
+  ;; See URL `http://eslint.org/'."
+  ;;     :command ("eslint" "--format=json"
+  ;;               (option-list "--rulesdir" flycheck-eslint-rules-directories)
+  ;;               "--stdin" "--stdin-filename" source-original)
+  ;;     :standard-input t
+  ;;     :error-parser flycheck-parse-eslint
+  ;;     :enabled (lambda () (flycheck-eslint-config-exists-p))
+  ;;     :modes (js-mode js-jsx-mode js2-mode js2-jsx-mode js3-mode rjsx-mode)
+  ;;     :working-directory flycheck-eslint--find-working-directory
+  ;;     :error-explainer
+  ;;     (lambda (error)
+  ;;       (let ((error-code (flycheck-error-id error)))
+  ;;         (progn
+  ;;           (browse-url (concat "https://eslint.org/docs/rules/" error-code)))))
+  ;;     :verify
+  ;;     (lambda (_)
+  ;;       (let* ((default-directory
+  ;;                (flycheck-compute-working-directory 'javascript-eslint))
+  ;;              (have-config (flycheck-eslint-config-exists-p)))
+  ;;         (list
+  ;;          (flycheck-verification-result-new
+  ;;           :label "config file"
+  ;;           :message (if have-config "found" "missing or incorrect")
+  ;;           :face (if have-config 'success '(bold error)))))))
+  ;;   (add-to-list 'flycheck-checkers 'javascript-eslint-custom)
   ;; css-styleling checke with explainer
-;;   (flycheck-define-checker css-stylelint-custom
-;;     "A CSS syntax and style checker using stylelint.
+  ;;   (flycheck-define-checker css-stylelint-custom
+  ;;     "A CSS syntax and style checker using stylelint.
 
-;; See URL `http://stylelint.io/'."
-;;     :command ("stylelint"
-;;               (eval flycheck-stylelint-args)
-;;               (option-flag "--quiet" flycheck-stylelint-quiet)
-;;               (config-file "--config" flycheck-stylelintrc))
-;;     :standard-input t
-;;     :error-parser flycheck-parse-stylelint
-;;     :error-explainer
-;;     (lambda (error)
-;;       (let ((error-code (flycheck-error-id error)))
-;;         (progn
-;;           (browse-url (concat "https://stylelint.io/user-guide/rules/" error-code)))))
-;;     :modes (css-mode))
-;;   (add-to-list 'flycheck-checkers 'css-stylelint-custom)
+  ;; See URL `http://stylelint.io/'."
+  ;;     :command ("stylelint"
+  ;;               (eval flycheck-stylelint-args)
+  ;;               (option-flag "--quiet" flycheck-stylelint-quiet)
+  ;;               (config-file "--config" flycheck-stylelintrc))
+  ;;     :standard-input t
+  ;;     :error-parser flycheck-parse-stylelint
+  ;;     :error-explainer
+  ;;     (lambda (error)
+  ;;       (let ((error-code (flycheck-error-id error)))
+  ;;         (progn
+  ;;           (browse-url (concat "https://stylelint.io/user-guide/rules/" error-code)))))
+  ;;     :modes (css-mode))
+  ;;   (add-to-list 'flycheck-checkers 'css-stylelint-custom)
   )
 
 (after! flyspell
@@ -585,66 +585,58 @@
    org-agenda-dim-blocked-tasks 'invisible
 
    org-agenda-custom-commands
-   ' (
+   ' (("i" "Inbox" ((tags-todo "INBOX"))((org-agenda-overriding-header "Inbox")
+                                         (org-agenda-hide-tags-regexp "INBOX")))
 
-      ("c" "Clever" (
-                   (agenda ""
-                           ((org-agenda-overriding-header "")
-                            (org-agenda-show-current-time-in-grid t)
-                            (org-agenda-span 'day)
-                            (org-super-agenda-groups
-                             '(
-                               (:name "Scheduled hours"
-                                      :time-grid t
-                                      )
-                               (:name "Scheduled today"
-                                      :date today
-                                      :scheduled past ;; ensure overdue items
-                                      :scheduled today
-                                      )
-                               (:discard (:anything t))
-                               ))))
-                   (tags-todo "*"
-                              ((org-agenda-overriding-header "")
-                               (org-super-agenda-groups
-                                '(
-                                  (:name "Projects"
-                                         :children t
-                                         :order 2
-                                         )
-                                  (:discard (:anything t))
-                                  ))))
-                   )
+      ("T" "Tasks" ((tags-todo "*"))((org-agenda-overriding-header "Tasks")
+                                     (org-super-agenda-groups
+                                      '((:discard (:children t))
+                                        (:name "Projects"
+                                               :auto-category t
+                                               )))))
+
+      ("c" "Clever" ((agenda ""
+                             ((org-agenda-overriding-header "")
+                              (org-agenda-show-current-time-in-grid t)
+                              (org-agenda-span 'day)
+                              (org-super-agenda-groups '(
+                                                         (:name "Scheduled hours"
+                                                                :time-grid t
+                                                                )
+                                                         (:name "Scheduled today"
+                                                                :date today
+                                                                :scheduled past ;; ensure overdue items
+                                                                :scheduled today
+                                                                )
+                                                         (:discard (:anything t))))))
+                     (tags-todo "*"
+                                ((org-agenda-overriding-header "")
+                                 (org-super-agenda-groups
+                                  '((:name "Projects"
+                                           :children t
+                                           :order 2)
+                                    (:discard (:anything t))
+                                    ))))
+                     )
        ((org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
                                     (timeline  . "%s ")
                                     (todo  . "     Effort: %6e  ")
                                     (tags  . "        %6e%l")
-                                    (search . "%l")))
-        ))
-
+                                    (search . "%l")))))
 
       ("C" "Current project" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
                                     |+LEVEL=2+CATEGORY=\"TASKS\""))
        ((org-agenda-files (aj/return-project-org-file))
-        (org-agenda-overriding-header (aj/return-short-project-name))
-        ))
+        (org-agenda-overriding-header (aj/return-short-project-name))))
 
-      ("T" "Tasks" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
-                          |+LEVEL=2+CATEGORY=\"TASKS\""))
-       ((org-agenda-overriding-header "Tasks Overview")
-        (org-agenda-files '("~/org/GTD.org"))
-        ))
-
-      ("P" "Projects" ((tags "+LEVEL=2+CATEGORY=\"PROJECTS\"
-                              |+LEVEL=3+CATEGORY=\"PROJECTS\"
-                              |+LEVEL=4+CATEGORY=\"PROJECTS\"/!+STARTED|+NEXT"))
-       ((org-agenda-overriding-header "Projects Overview")
-        (org-agenda-files '("~/org/GTD.org"))
-        (org-agenda-dim-blocked-tasks nil)
-        ))
-      )
+      ("P" "Projects" ((tags-todo "*" ((org-agenda-overriding-header "Projects")
+                                       (org-super-agenda-groups
+                                        '((:discard (:children nil))
+                                          (:name "Projects"
+                                                 :auto-category t))
+                                        ))))))
    )
-  )
+   )
 
 (after! org-archive
   (advice-add 'org-archive-subtree :after #'org-save-all-org-buffers)
@@ -830,6 +822,7 @@
   "Agenda"
   ("a" (org-agenda nil "a") "Agenda")
   ("p" (org-agenda nil "P") "Projects Overview")
+  ("i" (org-agenda nil "i") "inbox")
   ("t" (org-agenda nil "T") "Tasks Overview")
   )
 
