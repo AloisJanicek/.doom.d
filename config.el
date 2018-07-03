@@ -391,6 +391,9 @@
    #'ivy-yasnippet
    '(("e" ivy-yasnippet--copy-edit-snippet-action "Edit snippet as your own"))))
 
+(after! ivy-posframe
+  (advice-add #'ivy-posframe-enable :around #'doom*shut-up))
+
 (after! ivy-rich
   (advice-add #'+ivy-recentf-transformer :override #'+ivy-recentf-combined-transformer))
 
