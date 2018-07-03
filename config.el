@@ -500,7 +500,7 @@
    org-export-directory "export/"
    org-crypt-tag-matcher "+crypt-nocrypt"
    ;; settings for export to ical file
-
+   org-M-RET-may-split-line '((default . nil))
    org-tags-match-list-sublevels 'indented
    org-show-context-detail '((agenda .minimal)
                              (bookmark-jump . minimal)
