@@ -583,7 +583,7 @@
    org-agenda-custom-commands
    ' (
 
-      ("C" "Clever" (
+      ("c" "Clever" (
                    (agenda ""
                            ((org-agenda-overriding-header "")
                             (org-agenda-show-current-time-in-grid t)
