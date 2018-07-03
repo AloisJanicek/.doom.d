@@ -236,3 +236,5 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
   (setq langtool-java-classpath
         "/usr/share/languagetool:/usr/share/java/languagetool/*")
   nil)
+
+(provide 'init.el)
