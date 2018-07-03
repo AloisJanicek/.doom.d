@@ -615,6 +615,10 @@
                                   '((:name "Projects"
                                            :children t
                                            :order 2)
+                                    (:name "Tasks"
+                                           :children nil
+                                           :order 1
+                                           )
                                     (:discard (:anything t))
                                     ))))
                      )
@@ -659,8 +663,35 @@
                            ("e" "journal Entry" entry (file+olp+datetree "~/org/JOURNAL.org")
                             "**** %?" :tree-type week)
 
-                           ("t" "task" entry (file+headline "~/org/GTD.org" "TASKS")
-                            "* [ ] %?" :prepend t)
+                           ;; Capture: GTD
+                           ("g" "GTD:")
+                           ("gi" "INBOX" entry
+                            (file+headline +GTD "INBOX")
+                            "* TODO %?" :prepend t)
+
+                           ("gm" "MORNING" entry
+                            (file+headline +GTD "MORNING")
+                            "* TODO %?" :prepend t)
+
+                           ("gw" "WORK" entry
+                            (file+headline +GTD "WORK")
+                            "* TODO %?" :prepend t)
+
+                           ("gl" "LUNCH" entry
+                            (file+headline +GTD "LUNCH")
+                            "* TODO %?" :prepend t)
+
+                           ("go" "OUTSIDE" entry
+                            (file+headline +GTD "OUTSIDE")
+                            "* TODO %?" :prepend t)
+
+                           ("ge" "EVENING" entry
+                            (file+headline +GTD "EVENING")
+                            "* TODO %?" :prepend t)
+
+                           ("gs" "SLEEP" entry
+                            (file+headline +GTD "SLEEP")
+                            "* TODO %?" :prepend t)
 
                            ("c" "calendar" entry (file+headline "~/org/GTD.org" "CALENDAR")
                             "** %^{Title} %^g\n SCHEDULED: %^{Scheduled to begin}t \nr")
@@ -842,11 +873,17 @@
 
 (defhydra aj/capture ()
   "Capture:"
-  ("k" (org-capture nil "e") "journal Entry" :exit t)
-  ("t" (org-capture nil "t") "Task:" :exit t)
+  ("k" (org-capture nil "gi") "inbox" :exit t)
+  ("m" (org-capture nil "gm") "morning" :exit t)
+  ("w" (org-capture nil "gw") "work:" :exit t)
+  ("l" (org-capture nil "gl") "lunch:" :exit t)
+  ("o" (org-capture nil "go") "outside:" :exit t)
+  ("e" (org-capture nil "ge") "evening" :exit t)
+  ("s" (org-capture nil "gs") "sleep" :exit t)
+  ("j" (org-capture nil "e") "journal Entry" :exit t)
   ("c" (org-capture nil "c") "Calendar:" :exit t)
   ("p" (org-capture nil "P") "project Task:" :exit t)
-  ("j" (org-capture nil "J") "project Journal:" :exit t)
+  ("n" (org-capture nil "J") "project Journal:" :exit t)
   )
 
 (defhydra aj/gtd-goto (:color blue)
@@ -858,32 +895,34 @@
 
 (defhydra aj/gtd-refile (:color blue)
   "GTD Refile:"
-  ("t" (aj/refile-to-file-headline +GTD "TASKS") "task")
-  ("p" (aj/refile-to-file-headline +GTD "PROJECTS") "project")
-  ("h" (aj/refile-to-file-headline +GTD "HABITS") "habit")
-  ("r" (aj/refile-to-file-headline +GTD "REOCCURRING") "reoccurring")
+  ("m" (aj/refile-to-file-headline +GTD "MORNING") "morning")
+  ("w" (aj/refile-to-file-headline +GTD "WORK") "work")
+  ("l" (aj/refile-to-file-headline +GTD "LUNCH") "lunch")
+  ("e" (aj/refile-to-file-headline +GTD "EVENING") "evening")
+  ("o" (aj/refile-to-file-headline +GTD "OUTSIDE") "outside")
+  ("s" (aj/refile-to-file-headline +GTD "SLEEP") "sleep")
   ("c" (aj/refile-to-file-headline +GTD "CALENDAR") "calendar")
-  ("f" (aj/refile-to-file-headline +GTD "FINANCE") "finance")
-  ("s" (aj/gtd-someday-refile/body) "someday")
-  ("m" (aj/refile-to-file-headline +MAYBE "Ideas") "maybe")
+
+  ;; ("s" (aj/gtd-someday-refile/body) "someday")
+  ;; ("m" (aj/refile-to-file-headline +MAYBE "Ideas") "maybe")
   )
 
-(defhydra aj/gtd-someday-refile ()
-  "SOMEDAY:"
-  ("b" (aj/refile-to-file-headline +SOMEDAY "Build" )     "build" )
-  ("B" (aj/refile-to-file-headline +SOMEDAY "Buy" )       "Buy" )
-  ("c" (aj/refile-to-file-headline +SOMEDAY "Configure" ) "configure" )
-  ("d" (aj/refile-to-file-headline +SOMEDAY "Do" )        "do" )
-  ("g" (aj/refile-to-file-headline +SOMEDAY "Go" )        "go" )
-  ("h" (aj/refile-to-file-headline +SOMEDAY "Habit" )    "habit" )
-  ("l" (aj/refile-to-file-headline +SOMEDAY "Learn" )     "learn" )
-  ("L" (aj/refile-to-file-headline +SOMEDAY "Listen" )    "Listen" )
-  ("m" (aj/refile-to-file-headline +SOMEDAY "MOC" )       "moc" )
-  ("p" (aj/refile-to-file-headline +SOMEDAY "Program" )   "program" )
-  ("r" (aj/refile-to-file-headline +SOMEDAY "Read" )      "read" )
-  ("W" (aj/refile-to-file-headline +SOMEDAY "Watch" )     "Watch" )
-  ("w" (aj/refile-to-file-headline +SOMEDAY "Write" )     "write" )
-  )
+;; (defhydra aj/gtd-someday-refile ()
+;;   "SOMEDAY:"
+;;   ("b" (aj/refile-to-file-headline +SOMEDAY "Build" )     "build" )
+;;   ("B" (aj/refile-to-file-headline +SOMEDAY "Buy" )       "Buy" )
+;;   ("c" (aj/refile-to-file-headline +SOMEDAY "Configure" ) "configure" )
+;;   ("d" (aj/refile-to-file-headline +SOMEDAY "Do" )        "do" )
+;;   ("g" (aj/refile-to-file-headline +SOMEDAY "Go" )        "go" )
+;;   ("h" (aj/refile-to-file-headline +SOMEDAY "Habit" )    "habit" )
+;;   ("l" (aj/refile-to-file-headline +SOMEDAY "Learn" )     "learn" )
+;;   ("L" (aj/refile-to-file-headline +SOMEDAY "Listen" )    "Listen" )
+;;   ("m" (aj/refile-to-file-headline +SOMEDAY "MOC" )       "moc" )
+;;   ("p" (aj/refile-to-file-headline +SOMEDAY "Program" )   "program" )
+;;   ("r" (aj/refile-to-file-headline +SOMEDAY "Read" )      "read" )
+;;   ("W" (aj/refile-to-file-headline +SOMEDAY "Watch" )     "Watch" )
+;;   ("w" (aj/refile-to-file-headline +SOMEDAY "Write" )     "write" )
+;;   )
 
 (defhydra aj/wiki-select (:color blue)
   "Goto:"
