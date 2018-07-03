@@ -151,6 +151,7 @@
 
 (def-package! org-super-agenda
   :after org-agenda
+  :init (advice-add #'org-super-agenda-mode :around #'doom*shut-up)
   :config (org-super-agenda-mode)
   )
 
@@ -684,6 +685,8 @@
 (after! org-clock
   (advice-add 'org-clock-in :around (lambda (&rest _) (org-save-all-org-buffers)))
   (advice-add 'org-clock-out :around (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add #'org-clock-load :around #'doom*shut-up)
+
   (setq
    org-clock-auto-clock-resolution (quote when-no-clock-is-running)
    org-clock-report-include-clocking-task t
@@ -756,6 +759,9 @@
 
 (after! python
   (add-hook 'python-mode-hook (lambda () (setq-local counsel-dash-docsets '("Python_3")))))
+
+(after! recentf
+  (advice-add #'recentf-cleanup :around #'doom*shut-up))
 
 (after! synosaurus
   (set-popup-rule! "*Synonyms List\*"               :size 0.4 :side 'top :select t))
