@@ -81,7 +81,7 @@
   :recipe (:fetcher github :repo "akirak/org-starter"))
 
 (package! org-super-agenda
-  :disable t)
+  )
 
 (package! other-frame-window
   :disable t)

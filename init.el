@@ -188,8 +188,11 @@
   "Contains list files which should be considered as part of workspace")
 
 (defvar +aj/time-block nil
-  "Holds alist of elements (\"%H:%M\" . \"AGENDA-KEY\")
-which is used to map agenda-key to time.")
+  "Is a list of sequences where first item is string representing time in
+\"%H:%S\" format, second item is list of integers indicating time which should
+have a grid line in agenda and it is being passed to `org-agenda-grid' and
+third item is string representing tag with leading plus sign \"+\" to which
+should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
 
 (defvar +refile-targets-with-headlines t
   "List of org files which should be allowed offer refile under headlines")
@@ -197,15 +200,16 @@ which is used to map agenda-key to time.")
 (setq user-mail-address "janicek.dev@gmail.com"
       user-full-name    "Alois Janíček"
       +refile-targets-with-headlines '("GTD.org" "About.org")
-      +aj/time-blocks '(("06:30" . "M")   ;; MORNING
-                        ("08:00" . "W")   ;; WORK
-                        ("12:00" . "L")   ;; LUNCH
-                        ("12:30" . "W")   ;; WORK
-                        ("16:30" . "O")   ;; OUTSIDE
-                        ("19:30" . "E")   ;; EVENING
-                        ("21:00" . "S")   ;; SLEEP
-                        ("22:00" . nil))
       org-directory "~/org/"
+      +aj/time-blocks
+      '(["06:30" (0630 0700 0730 0800) "+MORNING"]
+        ["08:00" (0800 0830 0900 0930 1000 1030 1100 1130 1200) "+WORK"]
+        ["12:00" (1200 1230) "+LUNCH"]
+        ["12:30" (1230 1300 1330 1400 1430 1500 1530 1600 1630) "+WORK"]
+        ["16:30" (1630 1700 1730 1800 1830 1900 1930) "+OUTSIDE"]
+        ["19:30" (1930 2000 2030 2100) "+EVENING"]
+        ["21:00" (2100 2130 2200) "+SLEEP"]
+        ["22:00" (2200 0600) nil])
       org-brain-path "~/org/brain/"
       +org-attach-dir "./attach/"
       +file-templates-dir "~/org/templates"

@@ -149,6 +149,11 @@
   (org-starter-define-file "Yoga.org"         :agenda t :refile '(:level . 1) :key "y")
   )
 
+(def-package! org-super-agenda
+  :after org-agenda
+  :config (org-super-agenda-mode)
+  )
+
 (def-package! org-pdfview
   :commands (org-pdfview-open org-pdfview-store-link org-pdfview-complete-link org-pdfview-export)
   )
@@ -509,7 +514,7 @@
      (sequnece "STARTED(s)" "|" "FINISHED(f)")
      (sequence "MAYBE(M)" "SOMEDAY(S)" "TODO(T)" "NEXT(n)" "WAITING(w)" "LATER(l)" "|" "DONE(D)" "CANCELLED(c)"))
    org-todo-keyword-faces '(("NEXT" . "#98be65") ("WAITING" . "#c678dd") ("TODO" . "#ECBE7B") ("STARTED" . "#4db5bd"))
-   org-enforce-todo-dependencies t
+   org-enforce-todo-dependencies nil ;; if t, it hides todo entries with todo children from agenda
    org-enforce-todo-checkbox-dependencies nil
    org-provide-todo-statistics t
    org-hierarchical-todo-statistics t
@@ -578,73 +583,48 @@
    org-agenda-custom-commands
    ' (
 
-      ("M" "Morning Routine" ((tags-todo "SCHEDULED<=\"<today>\"+MORNING"
-                                         ()))
-       ((org-agenda-overriding-header "Morning 06:30 - 08:00")
-        (org-agenda-tag-filter-preset '("+MORNING"))
-        (org-agenda-hide-tags-regexp (regexp-opt '("MORNING;;; ~/.doom.d/+afte")))
+      ("C" "Clever" (
+                   (agenda ""
+                           ((org-agenda-overriding-header "")
+                            (org-agenda-show-current-time-in-grid t)
+                            (org-agenda-span 'day)
+                            (org-super-agenda-groups
+                             '(
+                               (:name "Scheduled hours"
+                                      :time-grid t
+                                      )
+                               (:name "Scheduled today"
+                                      :date today
+                                      :scheduled past ;; ensure overdue items
+                                      :scheduled today
+                                      )
+                               (:discard (:anything t))
+                               ))))
+                   (tags-todo "*"
+                              ((org-agenda-overriding-header "")
+                               (org-super-agenda-groups
+                                '(
+                                  (:name "Projects"
+                                         :children t
+                                         :order 2
+                                         )
+                                  (:discard (:anything t))
+                                  ))))
+                   )
+       ((org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
+                                    (timeline  . "%s ")
+                                    (todo  . "     Effort: %6e  ")
+                                    (tags  . "        %6e%l")
+                                    (search . "%l")))
         ))
 
-      ("W" "Work" ((tags-todo "SCHEDULED<=\"<today>\"+WORK"
-                              ()))
-       ((org-agenda-overriding-header "Work 08:00 - 12:00")
-        (org-agenda-tag-filter-preset '("+WORK"))
-        (org-agenda-hide-tags-regexp (regexp-opt '("WORK")))
-        ))
-
-      ("L" "Lunch break" ((tags-todo "SCHEDULED<=\"<today>\"+LUNCH"
-                                     ()))
-       ((org-agenda-overriding-header "Work 08:00 - 12:00")
-        (org-agenda-tag-filter-preset '("+LUNCH"))
-        (org-agenda-hide-tags-regexp (regexp-opt '("LUNCH")))
-        ))
-
-      ("O" "Outside" ((tags-todo "SCHEDULED<=\"<today>\"+OUTSIDE"
-                                 ()))
-       ((org-agenda-overriding-header "Evening 16:30 - 19:30")
-        (org-agenda-tag-filter-preset '("+OUTSIDE"))
-        (org-agenda-hide-tags-regexp (regexp-opt '("OUTSIDE")))
-        ))
-
-      ("E" "Evening Routine" (
-                              (tags-todo "SCHEDULED<=\"<today>\"+EVENING"
-                                         ()))
-       ((org-agenda-overriding-header "Evening 19:30 - 21:30")
-        (org-agenda-tag-filter-preset '("+EVENING"))
-        (org-agenda-hide-tags-regexp (regexp-opt '("EVENING")))
-        ))
-
-      ("S" "Before Sleep" ((tags-todo "SCHEDULED<=\"<today>\"+SLEEP"
-                                      ()))
-       ((org-agenda-overriding-header "Before Sleep 21:00 - 22:00")
-        (org-agenda-tag-filter-preset '("+SLEEP"))
-        (org-agenda-hide-tags-regexp (regexp-opt '("SLEEP")))
-        ))
-
-      ("1" "Saturday" ((tags-todo "SCHEDULED<=\"<today>\"+SATURDAY"
-                                  ()))
-       ((org-agenda-overriding-header "SATURDAY"))
-       (org-agenda-tag-filter-preset '("+SATURDAY"))
-       (org-agenda-hide-tags-regexp (regexp-opt '("SATURDAY")))
-       )
-
-      ("2" "Sunday" ((tags-todo "SCHEDULED<=\"<today>\"+MORNING"
-                                ((org-agenda-overriding-header "Morning")))
-                     (tags-todo "SCHEDULED<=\"<today>\"+SUNDAY"
-                                ((org-agenda-overriding-header "Sunday")))
-                     (tags-todo "SCHEDULED<=\"<today>\"+SLEEP"
-                                ((org-agenda-overriding-header "Sleep")))
-                     )
-       ((org-agenda-overriding-header "SUNDAY")
-        ;; (org-agenda-tag-filter-preset '(""))
-        (org-agenda-hide-tags-regexp (regexp-opt '("SUNDAY")))
-        ))
 
       ("C" "Current project" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
                                     |+LEVEL=2+CATEGORY=\"TASKS\""))
        ((org-agenda-files (aj/return-project-org-file))
         (org-agenda-overriding-header (aj/return-short-project-name))
         ))
+
       ("T" "Tasks" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
                           |+LEVEL=2+CATEGORY=\"TASKS\""))
        ((org-agenda-overriding-header "Tasks Overview")
@@ -831,7 +811,7 @@
   (push "~/org/snippets" yas-snippet-dirs))
 
 (defhydra aj/agenda ( :body-pre
-                      (aj/open-agenda-time-dependent)
+                      (aj/org-agenda-clever)
                       ;; (progn
                       ;;   ;; (org-agenda nil "g")
                       ;;   ;; (aj/remap-keys-for-org-agenda) ;; remap keys for org agenda

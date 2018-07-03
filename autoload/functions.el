@@ -1128,3 +1128,25 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
     (ivy-read "Goto: " cands
               :action 'x-path-walker-jump-path
               :caller 'counsel-x-path-walker)))
+;;;###autoload
+(defun aj/org-agenda-clever ()
+  "Launch the right agenda at the right time"
+  (interactive)
+  (progn
+    (if (string-equal "Sat" (format-time-string "%a"))
+        (let ((org-agenda-tag-filter-preset '("+SATURDAY")))
+          (org-agenda nil "W"))
+      (if (string-equal "Sun" (format-time-string "%a"))
+          (let ((org-agenda-tag-filter-preset '("+SUNDAY")))
+            (org-agenda nil "W"))
+        (mapcar (lambda (element)
+                  (let ((hm (elt element 0))
+                        (org-agenda-tag-filter-preset (list(elt element 2)))
+                        (org-agenda-time-grid `((daily today remove-match)
+                                                ,(elt element 1) "" ""))
+                        (org-agenda-hide-tags-regexp (string-trim-left (elt element 2) "+"))
+                        ;; (org-agenda-hide-tags-regexp (regexp-opt '("WORK")))
+                        )
+                    (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
+                        (org-agenda nil "W"))))
+                +aj/time-blocks)))))
