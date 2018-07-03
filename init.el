@@ -216,4 +216,9 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
         "/usr/share/languagetool:/usr/share/java/languagetool/*")
   nil)
 
+(setq +doom-dashboard-functions
+      '(doom-dashboard-widget-banner
+        doom-dashboard-widget-loaded
+        doom-dashboard-widget-footer))
+
 (provide 'init.el)
