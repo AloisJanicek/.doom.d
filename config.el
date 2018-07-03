@@ -851,8 +851,6 @@
   "GTD file:"
   ("g" (aj/goto-GTD) "GTD" )
   ("j" (aj/goto-journal) "journal" )
-  ;; ("s" (aj/goto-someday) "someday" )
-  ;; ("m" (aj/goto-maybe) "maybe" )
   ("m" (aj/goto-gtd-manual) "manual")
   )
 

@@ -154,32 +154,11 @@
 (defvar +GTD "~/org/GTD.org"
   "File where things must be done.")
 
-(defvar +SOMEDAY "~/org/SOMEDAY.org"
-  "File of things that someday will be done.")
-
-(defvar +MAYBE "~/org/MAYBE.org"
-  "File of wild possibilities.")
-
 (defvar +JOURNAL "~/org/JOURNAL.org"
   "File where things are logged.")
 
 (defvar +BOOKMARKS "~/org/BOOKMARKS.org"
   "Jungle of links.")
-
-(defvar +private-wiki "~/org/private-wiki.org"
-  "File where my private wiki is.")
-
-(defvar +work-wiki "~/org/work-wiki.org"
-  "File where my work wiki is.")
-
-(defvar +environment-wiki "~/org/environment-wiki.org"
-  "File where my environment wiki is.")
-
-(defvar +education-wiki "~/org/education-wiki.org"
-  "File where my education wiki is.")
-
-(defvar +build-wiki "~/org/build-wiki.org"
-  "File where my build wiki is.")
 
 (defvar +persp-blacklist nil
   "Contains list files which should not be considered as part of workspace")
