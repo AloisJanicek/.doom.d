@@ -587,6 +587,7 @@
       ("c" "Clever" ((agenda ""
                              ((org-agenda-overriding-header "")
                               (org-agenda-show-current-time-in-grid t)
+                              (org-agenda-use-time-grid t)
                               (org-agenda-span 'day)
                               (org-super-agenda-groups '((:name "Scheduled hours"
                                                                 :time-grid t
