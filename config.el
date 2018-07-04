@@ -578,15 +578,16 @@
    org-agenda-use-time-grid nil
 
    org-agenda-custom-commands
-   ' (("i" "Inbox" ((tags "CALENDAR|INBOX"((org-super-agenda-groups '((:discard (:tag "exclude"))
-                                                                      (:name none
-                                                                             :and (:tag "CALENDAR" :scheduled today)
-                                                                             :tag "INBOX")
-                                                                      (:discard (:anything t)))
-
-                                            ))))((org-agenda-overriding-header "Inbox")
-                                    (org-agenda-hide-tags-regexp  "INBOX\\|CALENDAR\\|tags3")
-                                    ))
+   ' (("i" "Inbox" ((tags "CALENDAR|INBOX"
+                          ((org-super-agenda-groups
+                            '((:discard (:tag "exclude"))
+                              (:name none
+                                     :and (:tag "CALENDAR" :scheduled today)
+                                     :tag "INBOX")
+                              (:discard (:anything t)))))))
+       ((org-agenda-overriding-header " Inbox")
+        (org-agenda-hide-tags-regexp  "INBOX\\|CALENDAR\\|tags3")
+        (org-tags-match-list-sublevels t)))
 
       ("T" "Tasks" ((tags-todo "*"))((org-agenda-overriding-header "Tasks")
                                      (org-super-agenda-groups
