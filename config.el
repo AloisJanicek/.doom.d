@@ -753,7 +753,7 @@
   )
 
 (after! persp-mode
-  ;; (setq persp-kill-foreign-buffer-action nil)
+  (setq persp-kill-foreign-buffer-action nil)
   ;; collect names of all brain files
   (setq +persp-blacklist (append
                           `,(directory-files (concat org-brain-path "private_brain"))
