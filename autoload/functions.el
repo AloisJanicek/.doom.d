@@ -1135,10 +1135,10 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   (progn
     (if (string-equal "Sat" (format-time-string "%a"))
         (let ((org-agenda-tag-filter-preset '("+SATURDAY")))
-          (org-agenda nil "W"))
+          (org-agenda nil "c"))
       (if (string-equal "Sun" (format-time-string "%a"))
           (let ((org-agenda-tag-filter-preset '("+SUNDAY")))
-            (org-agenda nil "W"))
+            (org-agenda nil "c"))
         (mapcar (lambda (element)
                   (let* ((hm (elt element 0))
                          (org-agenda-tag-filter-preset (list (concat "+"  (elt element 2))))
