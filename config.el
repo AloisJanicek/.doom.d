@@ -520,6 +520,7 @@
    ;; org-refile-targets '((org-agenda-files :maxlevel . 5))
    org-refile-use-outline-path 'file
    org-outline-path-complete-in-steps nil
+   org-refile-target-verify-function 'aj/verify-headlines-for-refile
 
    org-id-track-globally t
    org-id-locations-file (concat +org-dir ".org-ids-locations")
@@ -546,6 +547,7 @@
   (advice-add 'org-agenda-archive-default :after #'org-save-all-org-buffers)
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
   (advice-add 'org-agenda-switch-to :after 'turn-off-solaire-mode)
+  (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
   (add-hook 'org-agenda-mode-hook #'hide-mode-line-mode)
   (add-hook 'org-agenda-after-show-hook 'org-narrow-to-subtree)
   ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
@@ -741,11 +743,6 @@
 
 (after! org-protocol
   (load! "local/org-protocol-capture-html/org-protocol-capture-html.el"))
-
-(after! org-refile
-  (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
-  (setq org-refile-target-verify-function 'aj/verify-headlines-for-refile)
-  )
 
 (after! ox-icalendar
   org-icalendar-store-UID t
