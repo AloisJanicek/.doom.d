@@ -691,6 +691,14 @@
                             (file+headline +GTD "SLEEP")
                             "* TODO %?" :prepend t)
 
+                           ("g0" "saturday" entry
+                            (file+headline +GTD "SATURDAY")
+                            "* TODO %?" :prepend t)
+
+                           ("g1" "sunday" entry
+                            (file+headline +GTD "SUNDAY")
+                            "* TODO %?" :prepend t)
+
                            ("c" "calendar" entry (file+headline "~/org/GTD.org" "CALENDAR")
                             "** %^{Title} %^g\n SCHEDULED: %^{Scheduled to begin}t \nr")
 
@@ -879,6 +887,8 @@
   ("o" (org-capture nil "go") "outside:" :exit t)
   ("e" (org-capture nil "ge") "evening" :exit t)
   ("s" (org-capture nil "gs") "sleep" :exit t)
+  ("0" (org-capture nil "g0") "saturday" :exit t)
+  ("1" (org-capture nil "g1") "sunday" :exit t)
   ("j" (org-capture nil "e") "journal Entry" :exit t)
   ("c" (org-capture nil "c") "Calendar:" :exit t)
   ("p" (org-capture nil "P") "project Task:" :exit t)
@@ -901,6 +911,8 @@
   ("o" (aj/refile-to-file-headline +GTD "OUTSIDE") "outside")
   ("s" (aj/refile-to-file-headline +GTD "SLEEP") "sleep")
   ("c" (aj/refile-to-file-headline +GTD "CALENDAR") "calendar")
+  ("0" (aj/refile-to-file-headline +GTD "SATURDAY") "Saturday")
+  ("1" (aj/refile-to-file-headline +GTD "SUNDAY") "Sunday")
 
   ;; ("s" (aj/gtd-someday-refile/body) "someday")
   ;; ("m" (aj/refile-to-file-headline +MAYBE "Ideas") "maybe")
