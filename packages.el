@@ -74,9 +74,6 @@
 (package! org-pomodoro
   )
 
-(package! org-projectile
-  )
-
 (package! org-starter
   :recipe (:fetcher github :repo "akirak/org-starter"))
 
