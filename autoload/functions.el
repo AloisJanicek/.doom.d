@@ -1161,3 +1161,19 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
 ;;;###autoload
 (defun get-all-projectile-README-org-files ()
   (mapcar 'org-projectile-get-project-todo-file projectile-known-projects))
+
+;;;###autoload
+(defun aj/remaining-block-time ()
+  "TODO: Returns remaining time to the end of current time block. Due to flaw in my understanding
+of time in emacs, it adds one hour... This probably comes from `date-to-time' which assumes GTM time zone
+and me being in CET"
+  (let ((day-string (format-time-string "%a")))
+    (if (not (or (string-equal "Sat" day-string) (string-equal "Sun" day-string)))
+        (catch 'back (mapcar (lambda (element)
+                               (let* ((hm (elt element 0))
+                                      (time (aj/time-from-h-m hm)))
+                                 (if (time-less-p (current-time) time)
+                                     (throw 'back
+                                            (concat "Remaining time: "
+                                                    (format-time-string "%H:%M" (time-subtract time (current-time))))))))
+                             +aj/time-blocks)))))
