@@ -256,6 +256,8 @@
      :iemnv "C-j" #'evil-window-down
      :iemnv "C-h" #'evil-window-left
      :iemnv "C-l" #'evil-window-right
+     :prefix "d"
+     :m         "s"     #'org-agenda-schedule
      ))
  (:after org-brain
    (:map org-brain-visualize-mode-map
