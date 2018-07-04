@@ -1148,3 +1148,16 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
                     (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
                         (org-agenda nil "c"))))
                 +aj/time-blocks)))))
+
+;;;###autoload
+(defun org-projectile-get-project-todo-file (project-path)
+  (let ((relative-filepath
+         (if (stringp +org-projectile-per-project-filepath)
+             +org-projectile-per-project-filepath
+           (funcall org-projectile-per-project-filepath project-path))))
+    (concat
+     (file-name-as-directory project-path) relative-filepath)))
+
+;;;###autoload
+(defun get-all-projectile-README-org-files ()
+  (mapcar 'org-projectile-get-project-todo-file projectile-known-projects))

@@ -154,6 +154,9 @@
 (defvar +GTD "~/org/GTD.org"
   "File where things must be done.")
 
+(defvar +org-projectile-per-project-filepath "README.org"
+  "Org file in every project which can be used to contribute into agenda")
+
 (defvar +JOURNAL "~/org/JOURNAL.org"
   "File where things are logged.")
 

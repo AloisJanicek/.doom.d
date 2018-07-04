@@ -628,9 +628,17 @@
                                         '((:discard (:children nil))
                                           (:name "Projects"
                                                  :auto-category t))
-                                        ))))))
+                                        )))))
+      ("p" "Projectile Projects" ((todo ""))
+       ((org-agenda-files `,(get-all-projectile-README-org-files))
+        (org-agenda-overriding-header "All Projectile projects")
+        (org-super-agenda-groups
+         '((:name "Projects"
+                  :auto-group t)))))
+
+      )
    )
-   )
+  )
 
 (after! org-archive
   (advice-add 'org-archive-subtree :after #'org-save-all-org-buffers)
@@ -843,6 +851,7 @@
   "Agenda"
   ("a" (org-agenda nil "a") "Agenda")
   ("p" (org-agenda nil "P") "Projects Overview")
+  ("P" (org-agenda nil "p") "Projectile Projects")
   ("i" (org-agenda nil "i") "inbox")
   ("t" (org-agenda nil "T") "Tasks Overview")
   )
