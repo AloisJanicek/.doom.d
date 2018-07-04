@@ -603,7 +603,7 @@
                                     (:name "Projects"
                                            :children t
                                            :order 2)
-                                    (:name "Tasks (not scheduled)"
+                                    (:name "Tasks"
                                            :children nil
                                            :order 1
                                            )
