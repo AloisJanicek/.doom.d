@@ -599,8 +599,7 @@
                              ((org-agenda-overriding-header "")
                               (org-agenda-show-current-time-in-grid t)
                               (org-agenda-span 'day)
-                              (org-super-agenda-groups '(
-                                                         (:name "Scheduled hours"
+                              (org-super-agenda-groups '((:name "Scheduled hours"
                                                                 :time-grid t
                                                                 )
                                                          (:name "Scheduled today"
@@ -612,10 +611,11 @@
                      (tags-todo "*"
                                 ((org-agenda-overriding-header "")
                                  (org-super-agenda-groups
-                                  '((:name "Projects"
+                                  '((:discard (:scheduled t))
+                                    (:name "Projects"
                                            :children t
                                            :order 2)
-                                    (:name "Tasks"
+                                    (:name "Tasks (not scheduled)"
                                            :children nil
                                            :order 1
                                            )
@@ -625,8 +625,10 @@
        ((org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
                                     (timeline  . "%s ")
                                     (todo  . "     Effort: %6e  ")
-                                    (tags  . "        %6e%l")
-                                    (search . "%l")))))
+                                    (tags  . "        %6e ")
+                                    (search . "%l")))
+        (org-tags-match-list-sublevels t)
+        ))
 
       ("C" "Current project" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
                                     |+LEVEL=2+CATEGORY=\"TASKS\""))
