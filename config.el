@@ -143,6 +143,7 @@
 
   ;; files
   (org-starter-define-file "GTD.org"          :agenda t :refile '(:level . 1) :key "g")
+  (org-starter-define-file "BOOKMARKS.org"    :agenda nil :refile '(:level . 1) :key "y")
   (org-starter-define-file "Books.org"        :agenda t :refile '(:level . 1) :key "b")
   (org-starter-define-file "Podcasts.org"     :agenda t :refile '(:level . 1) :key "p")
   (org-starter-define-file "MOC.org"          :agenda t :refile '(:level . 1) :key "m")
@@ -490,6 +491,7 @@
    ;; settings for export to ical file
    org-M-RET-may-split-line '((default . nil))
    org-tags-match-list-sublevels 'indented
+   org-tags-exclude-from-inheritance '("crypt" "exclude")
    org-show-context-detail '((agenda .minimal)
                              (bookmark-jump . minimal)
                              (isearch . lineage)
@@ -576,8 +578,15 @@
    org-agenda-use-time-grid nil
 
    org-agenda-custom-commands
-   ' (("i" "Inbox" ((tags-todo "INBOX"))((org-agenda-overriding-header "Inbox")
-                                         (org-agenda-hide-tags-regexp "INBOX")))
+   ' (("i" "Inbox" ((tags "CALENDAR|INBOX"((org-super-agenda-groups '((:discard (:tag "exclude"))
+                                                                      (:name none
+                                                                             :and (:tag "CALENDAR" :scheduled today)
+                                                                             :tag "INBOX")
+                                                                      (:discard (:anything t)))
+
+                                            ))))((org-agenda-overriding-header "Inbox")
+                                    (org-agenda-hide-tags-regexp  "INBOX\\|CALENDAR\\|tags3")
+                                    ))
 
       ("T" "Tasks" ((tags-todo "*"))((org-agenda-overriding-header "Tasks")
                                      (org-super-agenda-groups
@@ -652,15 +661,15 @@
 
 (after! org-capture
   (setq
-   org-capture-templates `(("p" "Protocol" entry (file "~/org/BOOKMARKS.org")
+   org-capture-templates `(("p" "Protocol" entry (file+headline "~/org/GTD.org" "INBOX")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:quote:\n%u\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n"
                             :immediate-finish t :prepend t)
 
-                           ("L" "Protocol Link" entry (file "~/org/BOOKMARKS.org")
+                           ("L" "Protocol Link" entry (file+headline "~/org/GTD.org" "INBOX")
                             "**** [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]] :link:\n%u"
                             :immediate-finish t :prepend t)
 
-                           ("w" "Website" entry (file "~/org/WEBSITES.org")
+                           ("w" "Website" entry (file+headline "~/org/GTD.org" "INBOX")
                             "* %c :website:\n\n%U %?\n\n%:initial" :immediate-finish t)
 
                            ("e" "journal Entry" entry (file+olp+datetree "~/org/JOURNAL.org")
@@ -670,7 +679,7 @@
                            ("g" "GTD:")
                            ("gi" "INBOX" entry
                             (file+headline +GTD "INBOX")
-                            "* TODO %?" :prepend t)
+                            "* %?" :prepend t)
 
                            ("gm" "MORNING" entry
                             (file+headline +GTD "MORNING")
