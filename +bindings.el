@@ -260,6 +260,7 @@
      :mn                                      "j"     #'org-agenda-next-item
      :mn                                      "k"     #'org-agenda-previous-item
      :mn                                      "z"     #'org-agenda-view-mode-dispatch
+     :mn                                      "o"     #'org-agenda-open-link
      :iemnv "C-k" #'evil-window-up
      :iemnv "C-j" #'evil-window-down
      :iemnv "C-h" #'evil-window-left
