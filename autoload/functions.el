@@ -1202,6 +1202,8 @@ is nil, refile in the current file."
         (goto-char (point-max))
         (org-paste-subtree 4)
         (widen)
+        (save-buffer)
+        (bury-buffer)
         ))))
 
 ;;;###autoload
