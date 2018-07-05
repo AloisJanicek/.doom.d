@@ -256,9 +256,15 @@
      :iemnv "C-j" #'evil-window-down
      :iemnv "C-h" #'evil-window-left
      :iemnv "C-l" #'evil-window-right
-     :prefix "d"
-     :m         "s"     #'org-agenda-schedule
-     ))
+     (:prefix "d"
+       :m         "s"     #'org-agenda-schedule
+       :m         "r"     #'org-agenda-refile
+       )
+     (:prefix "c"
+       :m         "t"     #'counsel-org-tag-agenda
+       )
+     )
+   )
  (:after org-brain
    (:map org-brain-visualize-mode-map
      :ienv                                    "o" #'my/org-brain-goto-current
