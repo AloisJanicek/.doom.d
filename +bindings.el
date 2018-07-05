@@ -333,7 +333,7 @@
    ;; eval expression        "`"
    ;; digits 1 - 9, 0
    ;; -
-   ;; =
+   :desc "ivy-resume"          :nv     "=" #'ivy-resume
    (:desc "workspace" :prefix "TAB"
      :desc "Save session as"          :nv     "S" #'aj/save-session-as
      :desc "Save session"             :nv     "a" #'+workspace/save-session
