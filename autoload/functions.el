@@ -1133,21 +1133,41 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   "Launch the right agenda at the right time"
   (interactive)
   (progn
-    (if (string-equal "Sat" (format-time-string "%a"))
-        (let ((org-agenda-tag-filter-preset '("+SATURDAY")))
-          (org-agenda nil "c"))
-      (if (string-equal "Sun" (format-time-string "%a"))
-          (let ((org-agenda-tag-filter-preset '("+SUNDAY")))
+    (if (aj/has-children-p "~/org/GTD.org" "INBOX")
+        (org-agenda nil "i")
+      (if (string-equal "Sat" (format-time-string "%a"))
+          (let ((org-agenda-tag-filter-preset '("+SATURDAY")))
             (org-agenda nil "c"))
-        (mapcar (lambda (element)
-                  (let* ((hm (elt element 0))
-                         (org-agenda-tag-filter-preset (list (concat "+"  (elt element 2))))
-                         (org-agenda-time-grid `((daily today remove-match)
-                                                 ,(elt element 1) "" ""))
-                         (org-agenda-hide-tags-regexp (elt element 2)))
-                    (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
-                        (org-agenda nil "c"))))
-                +aj/time-blocks)))))
+        (if (string-equal "Sun" (format-time-string "%a"))
+            (let ((org-agenda-tag-filter-preset '("+SUNDAY")))
+              (org-agenda nil "c"))
+          (mapcar (lambda (element)
+                    (let* ((hm (elt element 0))
+                           (org-agenda-tag-filter-preset (list (concat "+"  (elt element 2))))
+                           (org-agenda-time-grid `((daily today remove-match)
+                                                   ,(elt element 1) "" ""))
+                           (org-agenda-hide-tags-regexp (elt element 2)))
+                      (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
+                          (org-agenda nil "c"))))
+                  +aj/time-blocks))))
+    )
+  )
+
+;;;###autoload
+(defun aj/has-children-p (file headline)
+  "Checks if HEADLINE under FILE has children and return t. Otherwise nil"
+  (save-excursion
+    (find-file file)
+    ;; get position of headline
+    (let ((position (save-excursion (org-find-exact-headline-in-buffer headline (current-buffer) t)))) ;; t for returning just position
+      (goto-char position)
+      (forward-line 1)
+      (widen)
+      (org-end-of-subtree t)
+      ;; do one search for the heading
+      (let ((sresult (re-search-backward "^\*+ " position t 1)))
+        ;; if search result doesn't equal position, we can confirm that heading has children heading
+        (if (equal position sresult) nil t)))))
 
 ;;;###autoload
 (defun org-projectile-get-project-todo-file (project-path)
