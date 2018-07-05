@@ -484,9 +484,6 @@
    )
 
   (setq
-   +org-dir "~/org/"
-   +org-attach-dir "attach/"
-   +org-export-dir "export"
    org-crypt-tag-matcher "+crypt-nocrypt"
    ;; settings for export to ical file
    org-M-RET-may-split-line '((default . nil))

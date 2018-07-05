@@ -182,7 +182,6 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
 (setq user-mail-address "janicek.dev@gmail.com"
       user-full-name    "Alois Janíček"
       +refile-targets-with-headlines '("GTD.org" "About.org")
-      org-directory "~/org/"
       +aj/time-blocks
       '(["06:30" (0630 0700 0730 0800) "MORNING"]
         ["08:00" (0800 0830 0900 0930 1000 1030 1100 1130 1200) "WORK"]
@@ -192,8 +191,10 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
         ["19:30" (1930 2000 2030 2100) "EVENING"]
         ["21:00" (2100 2130 2200) "SLEEP"]
         ["22:00" (2200 0600) nil])
+      org-directory "~/org/"
       org-brain-path "~/org/brain/"
-      +org-attach-dir "./attach/"
+      +org-attach-dir "attach/"
+      +org-export-dir "export"
       +file-templates-dir "~/org/templates"
       doom-font                   (font-spec :family "Iosevka" :size 16)
       doom-big-font               (font-spec :family "Iosevka" :size 24)
