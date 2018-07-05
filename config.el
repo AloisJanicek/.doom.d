@@ -653,19 +653,21 @@
        ((org-agenda-files (aj/return-project-org-file))
         (org-agenda-overriding-header (aj/return-short-project-name))))
 
-      ("P" "Projects" ((todo "STARTED" ((org-agenda-overriding-header " Projects by keyword and file:")
-                                        (org-super-agenda-groups
-                                         '((:auto-category t)))))
-
-                       (tags-todo "*"
-                                  ((org-agenda-overriding-header "")
+      ("P" "Projects" ((tags-todo "*"
+                                  ((org-agenda-overriding-header "Projects")
                                    (org-super-agenda-groups
-                                    '((:discard (:children nil))
-                                      (:name "Projects by children:"
+                                    '(
+                                      (:name "Action"
+                                             :children "NEXT")
+
+                                      (:name "Stucked:"
+                                             :and (:children t :todo "STARTED")
+                                             :and (:children nil :todo "STARTED"))
+                                      (:name "By children"
                                              :children t)
                                       (:discard (:anything t))
-                                      ))))
-                       )
+                                      )))
+                                  ))
        ((org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
                                     (timeline  . "%s ")
                                     (todo  . " ")
