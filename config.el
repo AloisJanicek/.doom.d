@@ -596,9 +596,16 @@
         (org-agenda-hide-tags-regexp  "INBOX\\|CALENDAR\\|tags3")
         (org-tags-match-list-sublevels t)))
 
-      ("T" "Tasks" ((tags-todo "*"))((org-agenda-overriding-header "Tasks")
+      ("T" "Tasks" ((tags-todo "*"))((org-agenda-overriding-header "Tasks (no children, no schedule, by file)")
+                                     (org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
+                                                                 (timeline  . "%s ")
+                                                                 (todo  . " ")
+                                                                 (tags  . " ")
+                                                                 (search . "%l")))
+                                     (org-tags-match-list-sublevels t)
                                      (org-super-agenda-groups
                                       '((:discard (:children t))
+                                        (:discard (:scheduled t))
                                         (:name "Projects"
                                                :auto-category t
                                                )))))
@@ -632,9 +639,10 @@
                                     (:discard (:anything t))
                                     ))))
                      )
-       ((org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
+       (
+        (org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
                                     (timeline  . "%s ")
-                                    (todo  . "     Effort: %6e  ")
+                                    (todo  . "        %6e ")
                                     (tags  . "        %6e ")
                                     (search . "%l")))
         (org-tags-match-list-sublevels t)
@@ -645,12 +653,27 @@
        ((org-agenda-files (aj/return-project-org-file))
         (org-agenda-overriding-header (aj/return-short-project-name))))
 
-      ("P" "Projects" ((tags-todo "*" ((org-agenda-overriding-header "Projects")
-                                       (org-super-agenda-groups
-                                        '((:discard (:children nil))
-                                          (:name "Projects"
-                                                 :auto-category t))
-                                        )))))
+      ("P" "Projects" ((todo "STARTED" ((org-agenda-overriding-header " Projects by keyword and file:")
+                                        (org-super-agenda-groups
+                                         '((:auto-category t)))))
+
+                       (tags-todo "*"
+                                  ((org-agenda-overriding-header "")
+                                   (org-super-agenda-groups
+                                    '((:discard (:children nil))
+                                      (:name "Projects by children:"
+                                             :children t)
+                                      (:discard (:anything t))
+                                      ))))
+                       )
+       ((org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
+                                    (timeline  . "%s ")
+                                    (todo  . " ")
+                                    (tags  . " ")
+                                    (search . "%l")))
+        (org-tags-match-list-sublevels t)
+        ))
+
       ("p" "Projectile Projects" ((todo ""))
        ((org-agenda-files `,(get-all-projectile-README-org-files))
         (org-agenda-overriding-header "All Projectile projects")
