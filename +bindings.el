@@ -98,10 +98,12 @@
        :desc "follow"        :nv              "f" #'man-follow
        )
      ))
- (:after org
+ (:after org-colview
    (:map org-columns-map
      "O" #'org-open-at-point
      )
+   )
+ (:after org
    (:map org-mode-map
 
      "C-]"   #'org-insert-subheading
