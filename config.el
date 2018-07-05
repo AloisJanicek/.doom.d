@@ -950,6 +950,7 @@
 
 (defhydra aj/gtd-refile (:color blue)
   "GTD Refile:"
+  ("i" (aj/refile-to-file-headline +GTD "INBOX") "inbox")
   ("m" (aj/refile-to-file-headline +GTD "MORNING") "morning")
   ("w" (aj/refile-to-file-headline +GTD "WORK") "work")
   ("l" (aj/refile-to-file-headline +GTD "LUNCH") "lunch")
