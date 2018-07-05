@@ -363,6 +363,15 @@
   ;; Change what you want in this new face
   (set-face-attribute 'hl-line-imenu-list-face nil
                       :background `,(doom-color 'base4) :weight 'bold :underline t)
+
+  (set-face-attribute 'imenu-list-entry-face-0 nil
+                      :foreground `,(doom-color 'blue))
+  (set-face-attribute 'imenu-list-entry-face-1 nil
+                      :foreground `,(doom-color 'magenta))
+  (set-face-attribute 'imenu-list-entry-face-2 nil
+                      :foreground `,(doom-color 'violet))
+  (set-face-attribute 'imenu-list-entry-face-3 nil
+                      :foreground `,(doom-lighten 'blue 0.25))
   ;; Finally, the hook
   (add-hook 'imenu-list-major-mode-hook 'my-imenu-list-hl-line)
   (add-hook 'imenu-list-major-mode-hook 'variable-pitch-mode)
