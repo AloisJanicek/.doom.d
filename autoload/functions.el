@@ -1227,6 +1227,30 @@ is nil, refile in the current file."
         ))))
 
 ;;;###autoload
-(defun org-agenda-refile-to-datetree ()
-  "TODO"
-  )
+(defun aj/org-agenda-refile-to-datetree (file)
+  ""
+  (interactive "P")
+  (let* ((buffer-orig (buffer-name))
+         (marker (or (org-get-at-bol 'org-hd-marker)
+                     (org-agenda-error)))
+         (buffer (marker-buffer marker))
+         (datetree-date (or (org-entry-get nil "TIMESTAMP" t)
+                            (org-read-date t nil "now")))
+         (date (org-date-to-gregorian datetree-date)))
+    (with-current-buffer buffer
+      (org-with-wide-buffer
+       (goto-char marker)
+       (org-cut-subtree)
+       (if file (find-file file))
+       (org-datetree-find-iso-week-create date) ;; for week-based datatree
+       ;; (org-datetree-find-date-create date)  ;; for month-based datatree
+       (org-narrow-to-subtree)
+       (show-subtree)
+       (org-end-of-subtree t)
+       (newline)
+       (goto-char (point-max))
+       (org-paste-subtree 4)
+       (widen)
+       (save-buffer)
+       (bury-buffer)
+       ))))

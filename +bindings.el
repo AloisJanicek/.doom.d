@@ -274,6 +274,7 @@
      (:prefix "d"
        :m         "s"     #'org-agenda-schedule
        :m         "r"     #'org-agenda-refile
+       :m         "j"     (λ! (aj/org-agenda-refile-to-datetree "~/org/JOURNAL.org"))
        )
      (:prefix "c"
        :m         "t"     #'counsel-org-tag-agenda
