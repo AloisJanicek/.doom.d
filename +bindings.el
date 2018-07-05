@@ -99,6 +99,9 @@
        )
      ))
  (:after org
+   (:map org-columns-map
+     "O" #'org-open-at-point
+     )
    (:map org-mode-map
 
      "C-]"   #'org-insert-subheading
