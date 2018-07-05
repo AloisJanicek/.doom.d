@@ -142,12 +142,13 @@
   (setq org-starter-path `(,org-brain-path ,org-directory, (concat org-brain-path "private_brain")))
 
   ;; files
-  (org-starter-define-file "GTD.org"          :agenda t :refile '(:level . 1) :key "g")
-  (org-starter-define-file "BOOKMARKS.org"    :agenda nil :refile '(:level . 1) :key "y")
-  (org-starter-define-file "Books.org"        :agenda t :refile '(:level . 1) :key "b")
-  (org-starter-define-file "Podcasts.org"     :agenda t :refile '(:level . 1) :key "p")
-  (org-starter-define-file "MOC.org"          :agenda t :refile '(:level . 1) :key "m")
-  (org-starter-define-file "Yoga.org"         :agenda t :refile '(:level . 1) :key "y")
+  (org-starter-define-file "GTD.org"                :agenda t :refile '(:level . 1) :key "g")
+  (org-starter-define-file "BOOKMARKS.org"          :agenda nil :refile '(:level . 1))
+  (org-starter-define-file "ConfigureIssues.org"    :agenda nil :refile '(:level . 1))
+  (org-starter-define-file "Books.org"              :agenda t :refile '(:level . 1) :key "b")
+  (org-starter-define-file "Podcasts.org"           :agenda t :refile '(:level . 1) :key "p")
+  (org-starter-define-file "MOC.org"                :agenda t :refile '(:level . 1) :key "m")
+  (org-starter-define-file "Yoga.org"               :agenda t :refile '(:level . 1) :key "y")
   )
 
 (def-package! org-super-agenda
@@ -673,6 +674,9 @@
                            ("e" "journal Entry" entry (file+olp+datetree "~/org/JOURNAL.org")
                             "**** %?" :tree-type week)
 
+
+                           ("i" "Issue" entry (file+olp+datetree ,(org-starter-locate-file "ConfigureIssues.org"))
+                            "**** %?" :tree-type week)
                            ;; Capture: GTD
                            ("g" "GTD:")
                            ("gi" "INBOX" entry
@@ -887,6 +891,7 @@
 
 (defhydra aj/capture ()
   "Capture:"
+  ("i" (org-capture nil "i") "issue" :exit t)
   ("k" (org-capture nil "gi") "inbox" :exit t)
   ("m" (org-capture nil "gm") "morning" :exit t)
   ("w" (org-capture nil "gw") "work:" :exit t)
@@ -896,10 +901,10 @@
   ("s" (org-capture nil "gs") "sleep" :exit t)
   ("0" (org-capture nil "g0") "saturday" :exit t)
   ("1" (org-capture nil "g1") "sunday" :exit t)
-  ("j" (org-capture nil "e") "journal Entry" :exit t)
-  ("c" (org-capture nil "c") "Calendar:" :exit t)
-  ("p" (org-capture nil "P") "project Task:" :exit t)
-  ("n" (org-capture nil "J") "project Journal:" :exit t)
+  ("j" (org-capture nil "e") "journal" :exit t)
+  ("c" (org-capture nil "c") "CAL:" :exit t)
+  ("p" (org-capture nil "P") "P-task:" :exit t)
+  ("n" (org-capture nil "J") "P-journal:" :exit t)
   )
 
 (defhydra aj/gtd-goto (:color blue)
