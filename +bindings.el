@@ -145,6 +145,7 @@
        (:desc "Refile:"       :prefix         "r"
          :desc "targets"       :nv            "t" #'org-refile
          :desc "visible"       :nv            "v" #'avy-org-refile-as-child
+         :desc "Journal"        :nv           "j" (λ! (org-refile-to-datetree "~/org/JOURNAL.org"))
          :desc "GTD"            :nv           "g" (λ! (let ((hydra-lv nil)) (aj/gtd-refile/body)))
          )
 
