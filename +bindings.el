@@ -80,7 +80,15 @@
      (:localleader
        :desc "Finalize"        :nv            "f" #'with-editor-finish
        :desc "Finalize"        :nv            "k" #'with-editor-cancel
-       )))
+       )
+     )
+   (:map magit-mode-map
+     :iemnv "C-k" #'evil-window-up
+     ;; :iemnv "C-j" #'evil-window-down
+     ;; :iemnv "C-h" #'evil-window-left
+     ;; :iemnv "C-l" #'evil-window-right
+     )
+   )
  (:after man
    (:map Man-mode-map
      :nv                                      "J" #'Man-next-section
