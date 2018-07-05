@@ -674,9 +674,9 @@
                            ("e" "journal Entry" entry (file+olp+datetree "~/org/JOURNAL.org")
                             "**** %?" :tree-type week)
 
-
-                           ("i" "Issue" entry (file+olp+datetree ,(org-starter-locate-file "ConfigureIssues.org"))
+                           ("i" "Issue" entry (file+olp+datetree "~/org/brain/ConfigureIssues.org")
                             "**** %?" :tree-type week)
+
                            ;; Capture: GTD
                            ("g" "GTD:")
                            ("gi" "INBOX" entry
