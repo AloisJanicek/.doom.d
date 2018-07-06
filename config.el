@@ -232,8 +232,7 @@
   (setq company-idle-delay 0.6)
   (setq company-minimum-prefix-length 2))
 
-(after! company-box
-  (set-popup-rule! "^ \\*company-box-" :ignore t))
+(set-popup-rule! "^ \\*company-box-" :ignore t)
 
 (after! counsel
   (setq counsel-grep-base-command "grep -E -n -i -e %s %s")
