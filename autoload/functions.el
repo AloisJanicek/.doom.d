@@ -1133,6 +1133,8 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   "Launch the right agenda at the right time"
   (interactive)
   (progn
+    (if (not (get-buffer "GTD.org"))
+        (pop-to-buffer (find-file-noselect +GTD)))
     (if (aj/has-children-p "~/org/GTD.org" "INBOX")
         (org-agenda nil "i")
       (if (string-equal "Sat" (format-time-string "%a"))
