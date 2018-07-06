@@ -29,7 +29,7 @@
 
        :ui
        doom              ; what makes DOOM look the way it does
-       doom-dashboard    ; a nifty splash screen for Emacs
+       ;; doom-dashboard    ; a nifty splash screen for Emacs
        doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
@@ -220,9 +220,9 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
         "/usr/share/languagetool:/usr/share/java/languagetool/*")
   nil)
 
-(setq +doom-dashboard-functions
-      '(doom-dashboard-widget-banner
-        doom-dashboard-widget-loaded
-        doom-dashboard-widget-footer))
+;; (setq +doom-dashboard-functions
+;;       '(doom-dashboard-widget-banner
+;;         doom-dashboard-widget-loaded
+;;         doom-dashboard-widget-footer))
 
 (provide 'init.el)
