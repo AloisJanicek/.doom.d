@@ -383,6 +383,7 @@
   (advice-add 'info :before 'aj/set-info-popup-width))
 
 (after! ivy
+  (ivy-rich-mode)
   (setq ivy-height 40)
   (map-put ivy-display-functions-alist 't 'ivy-posframe-display-at-frame-center)
   (ivy-set-actions
@@ -397,7 +398,28 @@
   (advice-add #'ivy-posframe-enable :around #'doom*shut-up))
 
 (after! ivy-rich
-  (advice-add #'+ivy-recentf-transformer :override #'+ivy-recentf-combined-transformer))
+  (advice-add #'+ivy-recentf-transformer :override #'+ivy-recentf-combined-transformer)
+  (setq ivy-rich--display-transformers-list
+        '(
+          counsel-M-x
+          (:columns
+           ((counsel-M-x-transformer (:width 40))
+            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face :width 80))))
+          counsel-describe-function
+          (:columns
+           ((counsel-describe-function-transformer (:width 40))
+            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face :width 80))))
+          counsel-describe-variable
+          (:columns
+           ((counsel-describe-variable-transformer (:width 40))
+            (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face :width 80))))
+          counsel-bookmark
+          (:columns
+           ((ivy-rich-bookmark-file-type)       ; return the file type of the bookmark target
+            (ivy-rich-candidate (:width 0.2))   ; return the bookmark name
+            (ivy-rich-bookmark-file-truename)))  ; return the true name of the related file
+          ))
+  )
 
 (after! js2-mode
   (add-hook 'js2-mode-hook (lambda () (setq-local counsel-dash-docsets '("JavaScript" "HTML" "CSS"))))
