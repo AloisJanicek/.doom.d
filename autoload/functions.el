@@ -13,7 +13,7 @@
   "Open selected link"
   (org-goto-marker-or-bmk (cdr x))
   (org-open-at-point)
-  (bury-buffer)
+  ;; (bury-buffer)
   ;; (kill-buffer)
   )
 ;;;###autoload
@@ -564,14 +564,16 @@ of text segment of current headline.
     (when (eq major-mode 'org-mode)
       (call-interactively #'my-org-retrieve-url-from-point))))
 ;;;###autoload
-(defun counsel-org-goto-bookmarks ()
+(defun counsel-org-goto-bookmarks (&optional something)
   "Browse my bookmarks"
   (interactive)
-  (ivy-read "Goto: " (counsel-org-goto--get-headlines)
-            :history 'counsel-org-goto-history
-            ;; :action 'aj/create-new-org-l1-heading
+  (ivy-read "Open: " (counsel-org-goto--get-headlines)
+            :history 'counsel-org-goto-bookmarks
+            :initial-input (ivy-read "Type: " '(":link:" ":book:" ":moc:" ":yt:" ":tut:" " "))
             :action 'counsel-org-goto-open-org-link
-            :caller 'counsel-org-goto))
+            :caller 'counsel-org-goto-bookmarks)
+  )
+
 ;;;###autoload
 (defun aj/create-new-org-l1-heading (x)
   "Creates new top level heading in current org file from which ivy was called"
@@ -1112,7 +1114,11 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
     (imenu-list-smart-toggle)))
 ;;;###autoload
 (defun aj/verify-headlines-for-refile ()
-  (if (not (member (buffer-name) +refile-targets-with-headlines)) nil t))
+  (if (and
+       (not (string= (org-get-heading) "LINKS"))
+       (not (member (buffer-name) +refile-targets-with-headlines))
+       )
+      nil t))
 
 ;;;###autoload
 (defun counsel-x-path-walker ()
@@ -1136,15 +1142,15 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   "Launch the right agenda at the right time"
   (interactive)
   (progn
-    (if (not (get-buffer "GTD.org"))
-        (pop-to-buffer (find-file-noselect +GTD)))
+    ;; (if (not (get-buffer "GTD.org"))
+    ;;     (pop-to-buffer (find-file-noselect +GTD)))
     (if (aj/has-children-p "~/org/GTD.org" "INBOX")
         (org-agenda nil "i")
       (if (string-equal "Sat" (format-time-string "%a"))
-          (let ((org-agenda-tag-filter-preset '("+SATURDAY")))
+          (let ((org-agenda-tag-filter-preset '("+WORK")))
             (org-agenda nil "c"))
         (if (string-equal "Sun" (format-time-string "%a"))
-            (let ((org-agenda-tag-filter-preset '("+SUNDAY")))
+            (let ((org-agenda-tag-filter-preset '("+WORK")))
               (org-agenda nil "c"))
           (mapcar (lambda (element)
                     (let* ((hm (elt element 0))
@@ -1158,13 +1164,18 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
     )
   )
 
+(let ((persp-autokill-buffer-on-remove nil))
+  (persp-remove-buffer +persp-blacklist))
 ;;;###autoload
 (defun aj/has-children-p (file headline)
   "Checks if HEADLINE under FILE has children and return t. Otherwise nil"
   (save-excursion
     (find-file file)
     ;; get position of headline
-    (let ((position (save-excursion (org-find-exact-headline-in-buffer headline (current-buffer) t)))) ;; t for returning just position
+    ;; t for returning just position
+    (let ((position (save-excursion (org-find-exact-headline-in-buffer headline (current-buffer) t)))
+          (persp-autokill-buffer-on-remove nil)
+          )
       (goto-char position)
       (forward-line 1)
       (widen)
@@ -1172,7 +1183,18 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
       ;; do one search for the heading
       (let ((sresult (re-search-backward "^\*+ " position t 1)))
         ;; if search result doesn't equal position, we can confirm that heading has children heading
-        (if (equal position sresult) nil t)))))
+        (if (equal position sresult)
+            (progn
+              (persp-remove-buffer +persp-blacklist)
+              (delete-window)
+              nil
+              )
+          (progn
+            (persp-remove-buffer +persp-blacklist)
+            (delete-window)
+            t
+            )
+          )))))
 
 ;;;###autoload
 (defun org-projectile-get-project-todo-file (project-path)
@@ -1257,5 +1279,302 @@ is nil, refile in the current file."
        (org-paste-subtree 4)
        (widen)
        (save-buffer)
-       (bury-buffer)
-       ))))
+       (delete-window)
+       ))
+    ))
+
+;;;###autoload
+(defun aj/complete-all-tags-for-org ()
+  "Sets buffer-local variable which allows to complete all tags from org-agenda files"
+  (setq-local org-complete-tags-always-offer-all-agenda-tags t))
+
+;;;###autoload
+(defun aj/bookmarks ()
+  (interactive)
+  (let* ((file (read-file-name "File: " "~/org/brain/"))
+         (buffer (file-name-nondirectory file))
+         (was-buffer-live (get-buffer buffer))
+         (counsel-org-headline-display-style 'title)
+         )
+    (if (not was-buffer-live)
+        (find-file file)
+      (switch-to-buffer buffer)
+      )
+    (save-excursion
+      (goto-char (org-find-exact-headline-in-buffer "LINKS" (current-buffer) t))
+      (org-narrow-to-subtree)
+      (org-show-children)
+      (counsel-org-goto-bookmarks "link")
+      )
+    ;; (if (not was-buffer-live)
+    ;;     (kill-buffer file))
+    )
+  )
+;;;###autoload
+(defun aj/take-care-of-org-buffers (&rest _)
+  "This is meant as an advice to all commands which like to opens a lot of org files"
+  (let ((persp-autokill-buffer-on-remove nil))
+    (persp-remove-buffer +persp-blacklist))
+  )
+
+;;;###autoload
+(defun aj/choose-note-to-indirect (&optional initial-input)
+  "Choose note and open it into indirect buffer."
+  (interactive)
+  (ivy-read "Find file: " 'read-file-name-internal
+            :matcher #'counsel--find-file-matcher
+            :initial-input initial-input
+            :action #'aj/choose-note-to-indirect-action
+            :preselect (counsel--preselect-file)
+            :require-match 'confirm-after-completion
+            :history 'file-name-history
+            :keymap counsel-find-file-map
+            :caller 'counsel-find-file)
+  )
+
+;;;###autoload
+(defun aj/choose-note-to-indirect-action (x)
+  "Find file X and open it always into new indirect buffer.
+Buffers are cheap.
+"
+  (let* ((path (expand-file-name x ivy--directory))
+         (file-name (file-name-nondirectory path))
+         (random-string (concat "-" (substring (number-to-string (random)) 3 9)))
+         (new-name (concat file-name random-string)))
+    (find-file-noselect path)
+    (make-indirect-buffer (get-buffer file-name) new-name t)
+    (switch-to-buffer new-name))
+  )
+
+;;;###autoload
+(defun aj/refile-to-file (&optional arg)
+  "Ask for file and offer refile locations.
+With prefix ARG initiate refile into current file."
+  (interactive "P")
+  (let* ((org-refile-target-verify-function nil)
+         (file (if arg
+                   (buffer-file-name (current-buffer))
+                 (read-file-name "Choose file: " org-brain-path)))
+         (org-refile-targets `((,file :maxlevel . 9))))
+    (org-refile)))
+
+;;;###autoload
+(defun aj/org-agenda-refile-to-file-dont-ask (file)
+  "Refile to file FILE."
+  (interactive)
+  (let* ((buffer-orig (buffer-name))
+         (marker (or (org-get-at-bol 'org-hd-marker)
+                     (org-agenda-error)))
+         (buffer (marker-buffer marker)))
+    (with-current-buffer buffer
+      (org-with-wide-buffer
+       (goto-char marker)
+       (org-cut-subtree)
+       (find-file file)
+       (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
+                 :action '(lambda (x)
+                            (goto-char (cdr x))))
+       (org-narrow-to-subtree)
+       (show-subtree)
+       (org-end-of-subtree t)
+       (newline)
+       (goto-char (point-max))
+       (org-paste-subtree)
+       (widen)
+       (save-buffer)
+       (delete-window)
+       ))
+    )
+  )
+;;;###autoload
+(defun aj/org-agenda-refile-to-file-as-top-level (file)
+  "Refile to file FILE."
+  (interactive)
+  (let* ((buffer-orig (buffer-name))
+         (marker (or (org-get-at-bol 'org-hd-marker)
+                     (org-agenda-error)))
+         (buffer (marker-buffer marker)))
+    (with-current-buffer buffer
+      (org-with-wide-buffer
+       (goto-char marker)
+       (org-cut-subtree)
+       (find-file file)
+       ;; (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
+       ;;           :action '(lambda (x)
+       ;;                      (goto-char (cdr x))))
+       (goto-char (point-max))
+       (org-narrow-to-subtree)
+       (show-subtree)
+       (org-end-of-subtree t)
+       (newline)
+       (goto-char (point-max))
+       (org-paste-subtree)
+       (widen)
+       (save-buffer)
+       (delete-window)
+       ))
+    )
+  )
+;;;###autoload
+(defun aj/org-agenda-refile-to-file ()
+  "Same as `aj/refile-to-file', but works from org agenda type buffers"
+  (interactive)
+  (let* ((buffer-orig (buffer-name))
+         (marker (or (org-get-at-bol 'org-hd-marker)
+                     (org-agenda-error)))
+         (buffer (marker-buffer marker))
+         (file (read-file-name "Choose file: " org-brain-path)))
+    (with-current-buffer buffer
+      (org-with-wide-buffer
+       (goto-char marker)
+       (org-cut-subtree)
+       (find-file file)
+       (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
+                 :action '(lambda (x)
+                            (goto-char (cdr x))))
+       (org-narrow-to-subtree)
+       (show-subtree)
+       (org-end-of-subtree t)
+       (newline)
+       (goto-char (point-max))
+       (org-paste-subtree)
+       (widen)
+       (save-buffer)
+       (delete-window)
+       ))
+    )
+  )
+
+;;;###autoload
+(defun aj/refile-to-project-readme ()
+  "Refile into README files in registered projects"
+  (interactive)
+  (let* ((org-refile-target-verify-function nil)
+         (file (ivy-read "File: " (get-all-projectile-README-org-files)
+                         :action (lambda (x) x)))
+         (org-refile-targets `((,file :maxlevel . 9))))
+    (org-refile)))
+
+;;;###autoload
+(defun aj/org-agenda-refile-to-project-readme ()
+  "Same as `aj/refile-to-project-readme', but works from org agenda type buffers.
+TODO: this should be just one function acting differently depending on argument value..."
+  (interactive)
+  (let* ((buffer-orig (buffer-name))
+         (marker (or (org-get-at-bol 'org-hd-marker)
+                     (org-agenda-error)))
+         (buffer (marker-buffer marker))
+         (file (ivy-read "File: " (get-all-projectile-README-org-files)
+                         :action (lambda (x) x)))
+         )
+    (with-current-buffer buffer
+      (org-with-wide-buffer
+       (goto-char marker)
+       (org-cut-subtree)
+       (find-file file)
+       (goto-char (point-max))
+       (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
+                 :action '(lambda (x)
+                            (if (stringp x) nil
+                              (goto-char (cdr x))
+                              )))
+       (org-narrow-to-subtree)
+       (show-subtree)
+       (org-end-of-subtree t)
+       (newline)
+       (goto-char (point-max))
+       ;; it doesn't actually paste this under selected heading and it is not obvious to me why
+       (org-paste-subtree)
+       (widen)
+       (save-buffer)
+       (delete-window)
+       ))
+    )
+  )
+
+;;;###autoload
+;; https://emacs.stackexchange.com/questions/17622/how-can-i-walk-an-org-mode-tree
+(defun org-get-header-list (&optional buffer)
+  "Get the headers of an org buffer as a flat list of headers and levels.
+Buffer will default to the current buffer."
+  (interactive)
+  (with-current-buffer (or buffer (current-buffer))
+    (let ((tree (org-element-parse-buffer 'headline)))
+      (org-element-map
+          tree
+          'headline
+        (lambda (el) (list
+                      (org-element-property :raw-value el) ; get header title without tags etc
+                      (org-element-property :level el) ; get depth
+                      ;; >> could add other properties here
+                      ))))))
+
+;;;###autoload
+(defun buffer-mode (buffer-or-string)
+  "Returns the major mode associated with a buffer."
+  (with-current-buffer buffer-or-string
+    major-mode))
+
+;;;###autoload
+(defun my/org-capture-get-src-block-string (major-mode)
+  "Given a major mode symbol, return the associated org-src block
+    string that will enable syntax highlighting for that language
+
+    E.g. tuareg-mode will return 'ocaml', python-mode 'python', etc..."
+
+  (let ((mm (intern (replace-regexp-in-string "-mode" "" (format "%s" major-mode)))))
+    (or (car (rassoc mm org-src-lang-modes)) (format "%s" mm))))
+
+;;;###autoload
+;; https://www.reddit.com/r/emacs/comments/8fg34h/capture_code_snippet_using_org_capture_template/
+(defun my/org-capture-code-snippet (f)
+  (with-current-buffer (find-buffer-visiting f)
+    (let ((code-snippet (buffer-substring-no-properties (mark) (point)))
+          (func-name (which-function))
+          (file-name (buffer-file-name))
+          (line-number (line-number-at-pos (region-beginning)))
+          (org-src-mode (my/org-capture-get-src-block-string major-mode)))
+      (format
+       "file:%s::%s
+In ~%s~:
+#+BEGIN_SRC %s
+%s
+#+END_SRC"
+       file-name
+       line-number
+       func-name
+       org-src-mode
+       code-snippet))))
+;;;###autoload
+(defun aj/capture-code-but-ask-first-where ()
+  "Ask for file and headline, then capture."
+  (interactive)
+  (let* ((file (read-file-name "File: " org-directory))
+         (heading (ivy-read "Choose heading: " (org-get-header-list
+                                                (get-buffer (file-name-nondirectory file)))))
+         (org-capture-templates `(
+                                  ("s" "code snippet" entry (file+headline ,file ,heading)
+                                   "* %?\n %(my/org-capture-code-snippet \"%F\")")))
+         )
+    (org-capture nil "s")))
+
+;; ("c" "calendar" entry (file+headline "~/org/GTD.org" "CALENDAR")
+;;  "** %^{Title} %^g\n %^{Date:}t \n %?")
+
+(defun aj/calendar-the-right-way ()
+  "Ask for file and headline, then capture."
+  (interactive)
+  (let* ((file +GTD)
+         (heading "CALENDAR")
+         (date (org-read-date) a)
+         (title (ivy-completing-read "Title " nil))
+         (tag (ivy-completing-read "Tag: " nil))
+         (org-capture-templates `(
+                                  ("c" "calendar" entry (file+headline ,file ,heading)
+                                   ,(concat "** "
+                                            title " "
+                                            tag "\n"
+                                            "<" date ">" "\n %?")
+                                   )))
+         )
+    (org-capture nil "c")))

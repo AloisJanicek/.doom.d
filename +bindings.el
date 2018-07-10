@@ -52,6 +52,7 @@
    "RET" #'ivy-done
    "C-f" #'ivy-call
    "C-d" #'ivy-immediate-done
+   "C-;" #'ivy-restrict-to-matches
    )
  (:after emmet
    (:map emmet-mode-keymap
@@ -148,9 +149,11 @@
                                                             (counsel-org-goto-private-wiki))
                                                           )
        (:desc "Refile:"       :prefix         "r"
+         :desc "file"          :nv            "f" #'aj/refile-to-file
          :desc "targets"       :nv            "t" #'org-refile
          :desc "visible"       :nv            "v" #'avy-org-refile-as-child
          :desc "Journal"        :nv           "j" (λ! (org-refile-to-datetree "~/org/JOURNAL.org"))
+         :desc "Project"        :nv           "p" #'aj/refile-to-project-readme
          :desc "GTD"            :nv           "g" (λ! (let ((hydra-lv nil)) (aj/gtd-refile/body)))
          )
 
@@ -178,6 +181,10 @@
          :desc "eXecute ALL"          :nv     "e" #'org-babel-execute-src-block
          )
 
+       (:desc "Toggle"        :prefix        "T"
+         :desc "heading"          :nv         "h" #'org-toggle-heading
+         :desc "item"             :nv         "i" #'org-toggle-item
+         )
 
        (:desc "Link"        :prefix           "l"
          :desc "store"            :nv         "s" #'org-store-link
@@ -260,6 +267,13 @@
      :desc "Schedule"     :nv "s" #'org-schedule
      )
    )
+ (:after evil-org-agenda
+   (:map org-agenda-mode-map
+     (:prefix "c"
+       :m         "t"     #'counsel-org-tag-agenda
+       )
+     )
+   )
  (:after org-agenda
    (:map org-agenda-mode-map
      :mn                                      "t"     #'org-agenda-todo
@@ -273,8 +287,15 @@
      :iemnv "C-l" #'evil-window-right
      (:prefix "d"
        :m         "s"     #'org-agenda-schedule
-       :m         "r"     #'org-agenda-refile
-       :m         "j"     (λ! (aj/org-agenda-refile-to-datetree "~/org/JOURNAL.org"))
+    (:desc "refile:"   :prefix "r"
+      :desc "targets"        :m "t"  #'org-agenda-refile
+      :desc "GTD"            :m "g"  (λ! (aj/org-agenda-refile-to-file-dont-ask +GTD))
+      :desc "journal"        :m "j"  (λ! (aj/org-agenda-refile-to-datetree "~/org/JOURNAL.org"))
+      :desc "file"           :m "f"  #'aj/org-agenda-refile-to-file
+      :desc "project readme" :m "p"  #'aj/org-agenda-refile-to-project-readme
+      :desc "someday"        :m "s"  (λ! (aj/org-agenda-refile-to-file-as-top-level +SOMEDAY))
+      :desc "maybe"          :m "m"  (λ! (aj/org-agenda-refile-to-file-as-top-level +MAYBE))
+      )
        )
      (:prefix "c"
        :m         "t"     #'counsel-org-tag-agenda
@@ -375,7 +396,8 @@
      :desc "App: MPD"                 :nv     "m" (λ! (let ((hydra-lv nil)) (aj/mpd-control/body)))
      :desc "Clock"                    :nv     "c" #'aj/clock-menu
      :desc "Imenu-list"               :nv     "i" #'aj/open-imenu-sidebar
-     :desc "Links"                    :nv     "l" #'aj/goto-bookmarks
+     ;; :desc "Links"                    :nv     "l" #'aj/goto-bookmarks
+     :desc "Links"                    :nv     "l" #'aj/bookmarks
      :desc "GTD"                      :nv     "g" #'aj/gtd-goto/body
      :desc "GTD"                      :nv     "g" (λ! (let ((hydra-lv nil)) (aj/gtd-goto/body)))
      :desc "Sidebar"                   :nv     "s" #'+treemacs/toggle
@@ -489,10 +511,12 @@
      :desc "Kill buffers"             :nv     "K" #'kill-buffer
      )
    (:desc "notes"    :prefix "n"
-     :desc "notes"     :nv "n" (λ! (counsel-find-file org-brain-path))
+     :desc "notes"     :nv "n" (λ! (aj/choose-note-to-indirect org-brain-path))
+     :desc "org-dir"   :nv "o" (λ! (aj/choose-note-to-indirect org-directory))
      :desc "private"   :nv "p" (λ! (counsel-find-file (concat org-brain-path "/private_brain/")))
      :desc "grep"      :nv "g" (λ! (+ivy/rg nil nil org-brain-path))
-     :desc "visualize" :nv "v" #'aj/visualize-brain-and-take-care-of-buffers
+     ;; :desc "visualize" :nv "v" #'aj/visualize-brain-and-take-care-of-buffers
+     :desc "visualize" :nv "v" #'org-brain-visualize
      )
    ;; (:desc "mmmmmmmm" :prefix "m" )
    ;; switch buffer          ","

@@ -29,7 +29,7 @@
 
        :ui
        doom              ; what makes DOOM look the way it does
-       ;; doom-dashboard    ; a nifty splash screen for Emacs
+       doom-dashboard    ; a nifty splash screen for Emacs
        doom-modeline     ; a snazzy Atom-inspired mode-line
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
@@ -154,20 +154,23 @@
 (defvar +GTD "~/org/GTD.org"
   "File where things must be done.")
 
+(defvar +SOMEDAY "~/org/SOMEDAY.org"
+  "File where things must be done.")
+
+(defvar +MAYBE "~/org/MAYBE.org"
+  "File where things must be done.")
+
+(defvar org-files nil
+  "Lists of org files I always want to have opened for quick access.")
+
 (defvar +org-projectile-per-project-filepath "README.org"
   "Org file in every project which can be used to contribute into agenda")
 
 (defvar +JOURNAL "~/org/JOURNAL.org"
   "File where things are logged.")
 
-(defvar +BOOKMARKS "~/org/BOOKMARKS.org"
-  "Jungle of links.")
-
 (defvar +persp-blacklist nil
   "Contains list files which should not be considered as part of workspace")
-
-(defvar +persp-whitelist nil
-  "Contains list files which should be considered as part of workspace")
 
 (defvar +aj/time-block nil
   "Is a list of sequences where first item is string representing time in
@@ -179,9 +182,14 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
 (defvar +refile-targets-with-headlines t
   "List of org files which should be allowed offer refile under headlines")
 
+(setq org-files (directory-files-recursively "~/org/brain" ".org"))
+(add-to-list 'org-files (expand-file-name +GTD))
+(add-to-list 'org-files (expand-file-name +SOMEDAY))
+(add-to-list 'org-files (expand-file-name +MAYBE))
+
 (setq user-mail-address "janicek.dev@gmail.com"
       user-full-name    "Alois Janíček"
-      +refile-targets-with-headlines '("GTD.org" "About.org")
+      +refile-targets-with-headlines '("GTD.org" "About.org" "SOMEDAY.org" "LISTS.org")
       +aj/time-blocks
       '(["06:30" (0630 0700 0730 0800) "MORNING"]
         ["08:00" (0800 0830 0900 0930 1000 1030 1100 1130 1200) "WORK"]
@@ -220,9 +228,9 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
         "/usr/share/languagetool:/usr/share/java/languagetool/*")
   nil)
 
-;; (setq +doom-dashboard-functions
-;;       '(doom-dashboard-widget-banner
-;;         doom-dashboard-widget-loaded
-;;         doom-dashboard-widget-footer))
+(setq +doom-dashboard-functions
+      '(doom-dashboard-widget-banner
+        doom-dashboard-widget-loaded
+        doom-dashboard-widget-footer))
 
 (provide 'init.el)
