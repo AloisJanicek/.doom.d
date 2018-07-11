@@ -32,6 +32,18 @@
 (def-package! define-word
   :commands (define-word  define-word-at-point))
 
+(def-package! ereader
+  :commands (ereader-read-epub ereader-mode)
+  :mode ("\\.epub\\'". ereader-mode)
+  :init (add-to-list 'doom-large-file-modes-list 'ereader-mode)
+  :config
+  (add-hook 'ereader-mode-hook 'hide-mode-line-mode)
+  )
+
+(def-package! esqlite
+  :commands (esqlite-stream-open)
+  )
+
 (def-package! exwm
   :disabled
   :config
