@@ -1590,9 +1590,10 @@ Requires esqlite and dash.el.
                       (concat (nth 1 member) ": " (nth 0 member)))
                     (esqlite-read "~/Library/metadata.db" "SELECT title,id FROM books"))
             :action (lambda (x)
-                        (kill-new (aj/return-calibre-book-path x))
-                        (find-file (aj/return-calibre-book-path x))
-                        )
+                      (let ((path (aj/return-calibre-book-path x)))
+                        (kill-new path)
+                        (find-file path))
+                      )
             )
   )
 
