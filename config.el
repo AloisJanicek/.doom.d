@@ -946,16 +946,6 @@ than having to call `add-to-list' multiple times."
   (dolist (file (directory-files-recursively org-directory ".org"))
     (add-to-list '+persp-blacklist `,(file-name-nondirectory file)))
 
-  ;; (dolist (file +persp-blacklist)
-  ;;  (find-file-noselect file))
-
-  ;;;;(persp-remove-buffer +persp-blacklist)
-  ;; (dolist (file (directory-files-recursively org-directory ".org"))
-  ;;   (add-to-list '+persp-blacklist `,(file-name-nondirectory file)))
-  ;; TODO
-  ;; collect names of all interactively used brain files
-  ;; this should be some data structure which would hold list of whitelisted files per perspective
-  ;; (setq +persp-whitelist nil)
   (setq persp-emacsclient-init-frame-behaviour-override 'persp-ignore-wconf)
   )
 
