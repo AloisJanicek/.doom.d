@@ -38,6 +38,7 @@
   :init (add-to-list 'doom-large-file-modes-list 'ereader-mode)
   :config
   (add-hook 'ereader-mode-hook 'hide-mode-line-mode)
+  (add-hook 'ereader-mode-hook 'turn-off-solaire-mode)
   )
 
 (def-package! esqlite
@@ -937,7 +938,15 @@ than having to call `add-to-list' multiple times."
   )
 
 (after! pdf-view
-  (add-hook 'pdf-view-mode-hook 'hide-mode-line-mode)
+  (setq pdf-view-midnight-colors `(,(doom-color 'fg) . ,(doom-color 'bg-alt)))
+  (add-hook 'pdf-view-mode-hook '(lambda ()
+                                   (hide-mode-line-mode)
+                                   (blink-cursor-mode -1)
+                                   (internal-show-cursor nil nil)
+                                   (turn-off-solaire-mode)
+                                   (pdf-view-midnight-minor-mode)
+                                   ))
+
   )
 
 (after! persp-mode
