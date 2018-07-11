@@ -945,6 +945,9 @@ than having to call `add-to-list' multiple times."
                                    (pdf-view-midnight-minor-mode)
                                    (set (make-local-variable 'evil-normal-state-cursor) (list nil))
                                    ))
+  (add-hook 'pdf-view-after-change-page-hook '(lambda ()
+                                                (hide-mode-line-mode -1)
+                                                ))
 
   )
 
