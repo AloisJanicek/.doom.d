@@ -1590,23 +1590,31 @@ Requires esqlite and dash.el.
                       (concat (nth 1 member) ": " (nth 0 member)))
                     (esqlite-read "~/Library/metadata.db" "SELECT title,id FROM books"))
             :action (lambda (x)
-                      (let* ((id (substring x 0 (string-match ":" x)))
-                             (base (expand-file-name "~/Library/"))
-                             (db "metadata.db")
-                             (dbpath (concat base db))
-                             (path (car (-flatten (esqlite-read dbpath (concat "SELECT path FROM books WHERE id=" id ";")))))
-                             (name (car (-flatten (esqlite-read dbpath (concat "SELECT name FROM data WHERE book=" id ";")))))
-                             (formats (esqlite-read dbpath (concat "SELECT format FROM data WHERE book=" id ";")))
-                             (format (if (> (length formats) 1)
-                                         (concat "." (downcase (ivy-read "Choose format: " formats)))
-                                       (concat "." (downcase (car (car formats))))))
-                             )
+                        (kill-new (aj/return-calibre-book-path x))
+                        (find-file (aj/return-calibre-book-path x))
+                        )
+            )
+  )
 
-                        (find-file
-                         (concat base
-                                 path "/"
-                                 name
-                                 format
-                                 ))
-                        )))
+;;;###autoload
+(defun aj/return-calibre-book-path (x)
+  "Takes X which represents id and name of book from Calibre database
+and returns string representing path to the chosen book file."
+  (let* ((id (substring x 0 (string-match ":" x)))
+         (base (expand-file-name "~/Library/"))
+         (db "metadata.db")
+         (dbpath (concat base db))
+         (path (car (-flatten (esqlite-read dbpath (concat "SELECT path FROM books WHERE id=" id ";")))))
+         (name (car (-flatten (esqlite-read dbpath (concat "SELECT name FROM data WHERE book=" id ";")))))
+         (formats (esqlite-read dbpath (concat "SELECT format FROM data WHERE book=" id ";")))
+         (format (if (> (length formats) 1)
+                     (concat "." (downcase (ivy-read "Choose format: " formats)))
+                   (concat "." (downcase (car (car formats))))))
+         )
+    (concat base
+            path "/"
+            name
+            format
+            )
+    )
   )
