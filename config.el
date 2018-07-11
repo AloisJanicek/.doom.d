@@ -290,7 +290,9 @@
 
 (after! files
   (add-hook 'after-save-hook #'prettier-stylelint-fix-file-and-revert)
-  (add-hook 'after-save-hook #'beautify-html-file-and-revert))
+  (add-hook 'after-save-hook #'beautify-html-file-and-revert)
+  (setq large-file-warning-threshold 30000000)
+  )
 
 (after! flycheck
   (flycheck-add-mode 'html-tidy 'web-mode)
