@@ -86,6 +86,10 @@
   :config
   (set-popup-rule! "*MPDEL Current Playlist*"       :size 0.4 :side 'left :select t :transient nil))
 
+(def-package! ivy-pages
+  :after ivy
+  )
+
 (def-package! link-hint
   :commands (link-hint-open-all-links
              link-hint-copy-all-links
@@ -932,6 +936,10 @@ than having to call `add-to-list' multiple times."
   org-icalendar-use-deadline '(event-if-todo event-if-not-todo)
   )
 
+(after! pdf-view
+  (add-hook 'pdf-view-mode-hook 'hide-mode-line-mode)
+  )
+
 (after! persp-mode
   (setq persp-kill-foreign-buffer-action nil)
 
@@ -979,7 +987,9 @@ than having to call `add-to-list' multiple times."
 
 (after! recentf
   (advice-add #'recentf-cleanup :around #'doom*shut-up)
-  (add-to-list 'recentf-exclude ".org")
+  (dolist (i '(".org" ".pdf" ".epub" ".db"))
+    (add-to-list 'recentf-exclude i)
+    )
   )
 
 (after! synosaurus

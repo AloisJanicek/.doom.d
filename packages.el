@@ -49,6 +49,9 @@
 (package! ivy-mpdel
   :recipe (:fetcher github :repo "mpdel/ivy-mpdel") :disable t)
 
+(package! ivy-pages :recipe (:fetcher github :repo "igorepst/ivy-pages")
+  )
+
 (package! ivy-rich :recipe (:fetcher github :repo "Yevgnen/ivy-rich" :branch "customize" :files ("*")))
 
 (package! ivy-yasnippet

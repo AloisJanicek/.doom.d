@@ -61,6 +61,11 @@
      :i "M-e" #'emmet-expand-line
      )
    )
+ (:after ereader
+   (:map ereader-mode-map
+     :inmev "o" #'ivy-pages
+     )
+   )
  (:after flycheck
    :map flycheck-error-list-mode-map
    :ne                                        "j" #'flycheck-error-list-next-error
@@ -324,11 +329,12 @@
    )
  (:after pdf-tools
    (:map pdf-view-mode-map
-     "j" #'pdf-view-next-line-or-next-page
-     "k" #'pdf-view-previous-line-or-previous-page
-     "l" #'org-store-link
-     "i" #'counsel-imenu
-     :nimve                                   "y" #'pdf-view-kill-ring-save
+     :nimve "j" #'pdf-view-next-line-or-next-page
+     :nimve "k" #'pdf-view-previous-line-or-previous-page
+     :nimve "l" #'org-store-link
+     :nimve "O" #'pdf-outline
+     :nimve "o" #'counsel-imenu
+     :nimve "y" #'pdf-view-kill-ring-save
      )
    )
  (:after popup-buffer
