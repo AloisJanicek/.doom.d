@@ -619,6 +619,9 @@ than having to call `add-to-list' multiple times."
   (add-hook 'org-agenda-mode-hook #'hide-mode-line-mode)
   (add-hook 'org-agenda-mode-hook #'aj/complete-all-tags-for-org)
   (add-hook 'org-agenda-after-show-hook 'org-narrow-to-subtree)
+  (add-hook 'org-agenda-finalize-hook '(lambda ()
+                                         (setq-local org-global-tags-completion-table
+                                                     (org-global-tags-completion-table org-agenda-contributing-files))))
   ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
   (remove-hook 'org-agenda-finalize-hook '+org|cleanup-agenda-files)
 
