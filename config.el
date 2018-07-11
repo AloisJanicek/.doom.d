@@ -59,14 +59,6 @@
                "xrandr" nil "xrandr --output VGA-1 --right-of LVDS-1 --auto")))
   (exwm-randr-enable))
 
-(def-package! ereader
-  :commands (ereader-read-epub ereader-mode)
-  :mode ("\\.epub\\'". ereader-mode)
-  :init (add-to-list 'doom-large-file-modes-list 'ereader-mode)
-  :config
-  (add-hook 'ereader-mode-hook 'hide-mode-line-mode)
-  )
-
 (def-package! fish-mode
   :commands (fish-mode))
 
