@@ -390,11 +390,12 @@
      :desc "bash history"             :nv     "h" #'counsel-yank-bash-history
      )
    (:desc "open"     :prefix "o"
+     :desc "Calibre book"             :nv     "c" #'aj/open-calibre-book
      :desc "link"                     :nv     "o" #'link-hint-open-link
      :desc "Agenda"                   :nv     "A" #'org-agenda
      :desc "App: Podcast"             :nv     "p" #'podcaster
      :desc "App: MPD"                 :nv     "m" (λ! (let ((hydra-lv nil)) (aj/mpd-control/body)))
-     :desc "Clock"                    :nv     "c" #'aj/clock-menu
+     ;; :desc "Clock"                    :nv     "c" #'aj/clock-menu
      :desc "Imenu-list"               :nv     "i" #'aj/open-imenu-sidebar
      ;; :desc "Links"                    :nv     "l" #'aj/goto-bookmarks
      :desc "Links"                    :nv     "l" #'aj/bookmarks
