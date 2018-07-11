@@ -1,7 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; packages.el
 
-;; until it gets merged
 (package! all-the-icons-ivy
   )
 
@@ -19,6 +18,9 @@
 
 (package! emms
   :disable t)
+
+(package! esqlite
+  )
 
 (package! exwm
   :disable t)
