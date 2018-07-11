@@ -710,7 +710,7 @@ than having to call `add-to-list' multiple times."
                                         (:name "Projects"
                                                :auto-category t
                                                )))))
-      ("3" "Someday" ((tags "*"))
+      ("3" "Someday" ((tags "+LEVEL=1"))
        ((org-agenda-overriding-header "Someday...")
         (org-agenda-files `(,+SOMEDAY))
         (org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
@@ -718,12 +718,6 @@ than having to call `add-to-list' multiple times."
                                     (todo  . " ")
                                     (tags  . " ")
                                     (search . "%l")))
-        (org-tags-match-list-sublevels t)
-        (org-super-agenda-groups
-         '((:name "issue"
-                  :tag "issue"
-                  )
-           ))
         ))
 
       ("9" "Calendar" ((agenda "*"))
