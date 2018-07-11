@@ -1619,3 +1619,32 @@ and returns string representing path to the chosen book file."
             )
     )
   )
+
+;;;###autoload
+(defun brds/pdf-set-last-viewed-bookmark ()
+  (interactive)
+  (when (eq major-mode 'pdf-view-mode)
+    (bookmark-set (brds/pdf-generate-bookmark-name))))
+
+;;;###autoload
+(defun brds/pdf-jump-last-viewed-bookmark ()
+  (bookmark-set "fake") ; this is new
+  (when
+      (brds/pdf-has-last-viewed-bookmark)
+    (bookmark-jump (brds/pdf-generate-bookmark-name))))
+
+;;;###autoload
+(defun brds/pdf-has-last-viewed-bookmark ()
+  (assoc
+   (brds/pdf-generate-bookmark-name) bookmark-alist))
+
+;;;###autoload
+(defun brds/pdf-generate-bookmark-name ()
+  (concat "PDF-LAST-VIEWED: " (buffer-file-name)))
+
+;;;###autoload
+(defun brds/pdf-set-all-last-viewed-bookmarks ()
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (brds/pdf-set-last-viewed-bookmark))))
+
