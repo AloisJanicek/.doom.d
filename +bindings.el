@@ -335,6 +335,7 @@
      :nimve "O" #'pdf-outline
      :nimve "o" #'counsel-imenu
      :nimve "y" #'pdf-view-kill-ring-save
+     :nimve "q" (λ! (progn (brds/pdf-set-all-last-viewed-bookmarks) (kill-this-buffer)))
      )
    )
  (:after popup-buffer
