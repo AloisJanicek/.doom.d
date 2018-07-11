@@ -997,19 +997,20 @@ than having to call `add-to-list' multiple times."
   (setq treemacs-project-follow-cleanup t)
 
   ;; seems like all the icons doesn't work without png icons being enabled
-  (setq treemacs-no-png-images nil)
+  ;; (setq treemacs-no-png-images nil)
   ;; Looks actually quite good now with this size setting
-  (treemacs-resize-icons 18)
+  ;; (treemacs-resize-icons 18)
   ;; Override (some?) icons with all-the-icons
-  (dolist (item all-the-icons-icon-alist)
-    (let* ((extension (car item))
-           (icon (apply (cdr item))))
-      (ht-set! treemacs-icons-hash
-               (s-replace-all '(("\\" . "") ("$" . "") ("." . "")) extension)
-               (concat icon " "))))
+  ;; (dolist (item all-the-icons-icon-alist)
+  ;;   (let* ((extension (car item))
+  ;;          (icon (apply (cdr item))))
+  ;;     (ht-set! treemacs-icons-hash
+  ;;              (s-replace-all '(("\\" . "") ("$" . "") ("." . "")) extension)
+  ;;              (concat icon " "))))
 
   (set-face-attribute     'treemacs-root-face nil :height 1.0)
-  (add-hook 'treemacs-mode-hook 'variable-pitch-mode))
+  (add-hook 'treemacs-mode-hook 'variable-pitch-mode)
+  )
 
 (after! web-mode
   (add-hook 'web-mode-hook (lambda () (setq-local counsel-dash-docsets '("HTML" "CSS" "Bootstrap 4"))))
