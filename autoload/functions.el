@@ -1601,7 +1601,7 @@ In ~%s~:
     (org-capture nil "c")))
 
 ;;;###autoload
-(defun aj/open-calibre-book ()
+(defun aj/open-calibre-book (base)
   "Select book from calibre database, choose file format and open it.
 Requires esqlite and dash.el.
 "
@@ -1609,9 +1609,9 @@ Requires esqlite and dash.el.
   (ivy-read "Books: "
             (mapcar (lambda (member)
                       (concat (nth 1 member) ": " (nth 0 member)))
-                    (esqlite-read "~/Library/metadata.db" "SELECT title,id FROM books"))
+                    (esqlite-read (concat base "metadata.db") "SELECT title,id FROM books"))
             :action (lambda (x)
-                      (let ((path (aj/return-calibre-book-path x)))
+                      (let ((path (aj/return-calibre-book-path x base)))
                         (kill-new path)
                         (find-file path))
                       )
@@ -1619,11 +1619,10 @@ Requires esqlite and dash.el.
   )
 
 ;;;###autoload
-(defun aj/return-calibre-book-path (x)
+(defun aj/return-calibre-book-path (x base)
   "Takes X which represents id and name of book from Calibre database
 and returns string representing path to the chosen book file."
   (let* ((id (substring x 0 (string-match ":" x)))
-         (base (expand-file-name "~/Library/"))
          (db "metadata.db")
          (dbpath (concat base db))
          (path (car (-flatten (esqlite-read dbpath (concat "SELECT path FROM books WHERE id=" id ";")))))

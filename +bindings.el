@@ -401,7 +401,11 @@
      :desc "bash history"             :nv     "h" #'counsel-yank-bash-history
      )
    (:desc "open"     :prefix "o"
-     :desc "Calibre book"             :nv     "c" #'aj/open-calibre-book
+     (:desc "calibre" :prefix "c"
+       :desc "cs"    :nv "c" (λ! (aj/open-calibre-book (expand-file-name "~/ComputerScience/")))
+       :desc "webdev"     :nv "w" (λ! (aj/open-calibre-book (expand-file-name "~/Webdev/")))
+       :desc "library"    :nv "l" (λ! (aj/open-calibre-book (expand-file-name "~/Library/")))
+       )
      :desc "link"                     :nv     "o" #'link-hint-open-link
      :desc "Agenda"                   :nv     "A" #'org-agenda
      :desc "App: Podcast"             :nv     "p" #'podcaster
