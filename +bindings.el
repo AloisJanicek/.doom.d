@@ -276,6 +276,10 @@
    (:map org-agenda-mode-map
      (:prefix "c"
        :m         "t"     #'counsel-org-tag-agenda
+       :m         "i"     #'org-agenda-clock-in
+       :m         "o"     #'org-agenda-clock-out
+       :m         "p"     #'org-pomodoro
+       :m         "m"     #'aj/clock-menu
        )
      )
    )
