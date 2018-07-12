@@ -1085,10 +1085,17 @@ than having to call `add-to-list' multiple times."
   ("s" (org-clock-out) "stop clock")
   )
 
+(defhydra aj/capture-code (:color blue)
+  "Code:"
+  ("a" (aj/capture-code-but-ask-first-where) "ask where:" )
+  ("c" (aj/capture-code-but-ask-first-for-name) "code of name:" )
+  )
+
+
 (defhydra aj/capture ()
   "Capture:"
   ;; ("i" (org-capture nil "i") "issue" :exit t)
-  ("c" (aj/capture-code-but-ask-first-where) "code:" :exit t)
+  ("c" ((lambda () (let ((hydra-lv nil)) (aj/capture-code/body)))) "code:" :exit t)
   ("i" (org-capture nil "i") "issue" :exit t)
   ("k" (org-capture nil "gi") "inbox" :exit t)
   ("m" (org-capture nil "gm") "morning" :exit t)

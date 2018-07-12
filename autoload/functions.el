@@ -1565,6 +1565,20 @@ In ~%s~:
          )
     (org-capture nil "s")))
 
+
+;;;###autoload
+(defun aj/capture-code-but-ask-first-for-name ()
+  "Ask for headline, then capture."
+  (interactive)
+  (let* ((file +GTD)
+         (heading "INBOX")
+         (title (ivy-read "Choose title: " " "))
+         (line (concat "* " title "\n %(my/org-capture-code-snippet \"%F\")"))
+         (org-capture-templates `(
+                                  ("s" "code snippet" entry (file+headline ,file ,heading)
+                                   ,line :immediate-finish t)))
+         )
+    (org-capture nil "s")))
 ;; ("c" "calendar" entry (file+headline "~/org/GTD.org" "CALENDAR")
 ;;  "** %^{Title} %^g\n %^{Date:}t \n %?")
 
