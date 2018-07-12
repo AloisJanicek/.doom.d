@@ -17,7 +17,7 @@
 (defconst +agenda-projects-not-task-faces '(("NEXT" . '(:inherit org-todo :weight normal))
                                             ("TODO" . '(:inherit org-todo :weight normal))))
 
-(defconst +agenda-projects-task-faces '(("NEXT" . '(:inherit org-todo :weight bold))
+(defconst +agenda-projects-task-faces '(("NEXT" . '(:inherit org-todo :weight bold :foreground "#98be65"))
                                         ("TODO" . '(:inherit org-todo :weight bold))))
 
 (defun +agenda-format-entry (prefix entry)
