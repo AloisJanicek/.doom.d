@@ -280,6 +280,7 @@
        :m         "o"     #'org-agenda-clock-out
        :m         "p"     #'org-pomodoro
        :m         "m"     #'aj/clock-menu
+       :m         "l"     #'visual-line-mode
        )
      )
    )
