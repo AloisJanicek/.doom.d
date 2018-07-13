@@ -1673,3 +1673,8 @@ and returns string representing path to the chosen book file."
     (with-current-buffer buf
       (brds/pdf-set-last-viewed-bookmark))))
 
+;;;###autoload
+(defun aj/fix-evil-org-agenda-keys ()
+  "Remap some keys in advice after `evil-org-agenda-set-keys'"
+  (evil-define-key 'motion org-agenda-mode-map
+    "ct" 'counsel-org-tag-agenda))

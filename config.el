@@ -279,6 +279,10 @@
 (after! evil-org
   (setq evil-org-key-theme '(textobjects insert navigation additional shift heading)))
 
+(after! evil-org-agenda
+  (advice-add 'evil-org-agenda-set-keys :after 'aj/fix-evil-org-agenda-keys)
+  )
+
 (after! emmet-mode
 ;;; run remaping function before entering emmet-preview
   (advice-add 'emmet-preview :before 'aj/remap-emmet)

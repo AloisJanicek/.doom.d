@@ -306,9 +306,6 @@
          :desc "maybe"          :m "m"  (λ! (aj/org-agenda-refile-to-file-as-top-level +MAYBE))
          )
        )
-     (:prefix "c"
-       :m         "t"     #'counsel-org-tag-agenda
-       )
      )
    )
  (:after org-brain
