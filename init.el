@@ -3,7 +3,7 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (doom! :feature
-       ;; debugger          ; FIXME stepping through code, to help you add bugs
+       ;; debugger          ; stepping through code, to help you add bugs
        eval              ; run code, run (also, repls)
        (evil +everywhere); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
@@ -34,7 +34,7 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
        ;; fci               ; a `fill-column' indicator
-       hl-todo           ; highlight TODO/FIXME/NOTE tags
+       hl-todo           ; highlight todo/fixme/note tags
        nav-flash         ; blink the current line after jumping
        ;; neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
@@ -42,7 +42,7 @@
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;; pretty-code       ; replace bits of code with pretty symbols
-       ;; tabbar            ; FIXME an (incomplete) tab bar for Emacs
+       ;; tabbar            ;  an (incomplete) tab bar for Emacs
        ;; unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -70,7 +70,7 @@
        magit             ;
        ;; password-store    ; password manager for nerds
        pdf               ; pdf enhancements
-       prodigy           ; FIXME managing external services & code builders
+       prodigy           ;  managing external services & code builders
        rgb               ; creating color strings
        ;; tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp

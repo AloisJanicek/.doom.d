@@ -27,7 +27,7 @@
   (org-narrow-to-subtree))
 ;;;###autoload
 (defun org-summary-todo (n-done n-not-done)
-  "Switch entry to DONE when all subentries are done, to TODO otherwise."
+  "Switch entry to DONE when all subentries are done, to todo otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 ;;;###autoload
@@ -962,7 +962,6 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
     (counsel-bookmark)))
 
 ;;;###autoload
-                                        ; TODO: replace "link: " with actual domain name - useful for hyper links with titles
 (defun gk-browse-url (&rest args)
   "Prompt for whether or not to browse with EWW, if no browse
 with external browser."
@@ -1072,7 +1071,6 @@ If STRICT-P, return nil if no project was found, otherwise return
           )
       (aj/new-project-init-and-register full-path gitlab project))))
 
-;; TODO
 ;;;###autoload
 (defun aj/visualize-brain-and-take-care-of-buffers ()
   "Visualize all brain org files and them hide them from perspectives"
@@ -1081,10 +1079,6 @@ If STRICT-P, return nil if no project was found, otherwise return
     (call-interactively 'org-brain-visualize)
     (persp-remove-buffer +persp-blacklist)))
 
-;; TODO
-;;;###autoload
-(defun aj/browse-brain-files ()
-  "browse brain files and bring selected one to the current perspective")
 
 ;;;###autoload
 (defun aj/open-agenda-time-dependent ()
@@ -1474,7 +1468,7 @@ With prefix ARG initiate refile into current file."
 ;;;###autoload
 (defun aj/org-agenda-refile-to-project-readme ()
   "Same as `aj/refile-to-project-readme', but works from org agenda type buffers.
-TODO: this should be just one function acting differently depending on argument value..."
+FIXME: this should be just one function acting differently depending on argument value..."
   (interactive)
   (let* ((buffer-orig (buffer-name))
          (marker (or (org-get-at-bol 'org-hd-marker)

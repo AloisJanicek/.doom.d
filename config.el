@@ -251,6 +251,10 @@
   (set-popup-rule! "^\\*ivy-occur" :size 0.70 :ttl 0 :quit nil)
   (advice-add #'+ivy-buffer-transformer :override #'+ivy-combined-buffer-transformer)
   (advice-add #'counsel-org-goto-bookmarks :after #'aj/take-care-of-org-buffers)
+  (advice-add #'counsel-org-tag-agenda :after #'(lambda ()
+                                                  (save-some-buffers t (lambda () (string= buffer-file-name (car org-agenda-contributing-files))))
+                                                  (org-agenda-redo)
+                                                  ))
   )
 
 (after! counsel-projectile
@@ -466,6 +470,14 @@
 
 (after! magit
   (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
+
+(after! magit-todos
+  (setq magit-todos-keywords-list `("FIXME")
+        ;; magit-todos-group-by '(magit-todos-item-keyword magit-todos-item-filename)
+        ;; magit-todos-auto-group-items 20
+        ;; magit-todos-show-filenames t
+        )
+  )
 
 (after! man
   (set-face-attribute 'Man-overstrike nil :inherit 'bold :foreground "#ff7a79")
