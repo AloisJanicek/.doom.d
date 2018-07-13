@@ -1047,6 +1047,9 @@ than having to call `add-to-list' multiple times."
   (add-hook 'treemacs-mode-hook 'variable-pitch-mode)
   )
 
+(after! undo-tree
+  (setq undo-tree-auto-save-history t))
+
 (after! web-mode
   (add-hook 'web-mode-hook (lambda () (setq-local counsel-dash-docsets '("HTML" "CSS" "Bootstrap_4"))))
   (add-hook 'web-mode-hook 'my-web-mode-hook)
