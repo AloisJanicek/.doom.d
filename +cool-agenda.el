@@ -1,5 +1,5 @@
 ;;; ~/.doom.d/+cool-agenda.el -*- lexical-binding: t; -*-
-
+;; More info about this and stolen from: https://www.reddit.com/r/emacs/comments/8wohqz/completely_custom_orgagenda_with_support_for_gtd/
 ;; Entry
 (cl-defstruct +agenda-entry todo priority text tags planned low-effort marker project-status children)
 
