@@ -1091,8 +1091,8 @@ than having to call `add-to-list' multiple times."
   ("p" (org-agenda nil "P") "Projects Overview")
   ("P" (org-agenda nil "p") "Projectile Projects")
   ("i" (org-agenda nil "i") "inbox")
-  ("S" (org-agenda nil "3") "someday")
-  ("M" (org-agenda nil "8") "maybe")
+  ("s" (org-agenda nil "3") "someday")
+  ("m" (org-agenda nil "8") "maybe")
   ("t" (org-agenda nil "T") "Tasks Overview")
   )
 
