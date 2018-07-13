@@ -504,6 +504,7 @@
   (add-hook 'org-after-todo-state-change-hook 'org-save-all-org-buffers)
   (add-hook 'org-mode-hook #'visual-line-mode)
   (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-save-all-org-buffers :around 'doom*shut-up)
   (advice-add #'org-refile :after #'aj/take-care-of-org-buffers)
   ;;(advice-add #'aj/has-children-p :after #'winner-undo)
   ;;(advice-add #'aj/has-children-p :after #'aj/take-care-of-org-buffers)
@@ -609,6 +610,7 @@ than having to call `add-to-list' multiple times."
   ;; New stuff
   (load! "+cool-agenda.el")
 
+  (advice-add #'org-agenda-redo :around #'doom*shut-up)
   (advice-add #'org-agenda-refile :after #'aj/take-care-of-org-buffers)
   (advice-add #'org-agenda-exit :after #'aj/take-care-of-org-buffers)
   (advice-add #'aj/org-agenda-refile-to-file :after #'aj/take-care-of-org-buffers)

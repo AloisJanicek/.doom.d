@@ -1316,6 +1316,7 @@ is nil, refile in the current file."
 (defun aj/take-care-of-org-buffers (&rest _)
   "This is meant as an advice to all commands which like to opens a lot of org files"
   (let ((persp-autokill-buffer-on-remove nil))
+    (org-save-all-org-buffers)
     (persp-remove-buffer +persp-blacklist))
   )
 
