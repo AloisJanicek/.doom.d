@@ -322,8 +322,10 @@ and returns that weird time number which Emacs understands."
         (emacs-lock-mode 'kill)
         (widen)
         (goto-char (point-min))
-        (forward-line 3)
+        (forward-line 1)
         (outline-show-branches)
+        (with-current-buffer (current-buffer)
+          (aj/grep-or-nothing/body))
         )
     (progn
       (pop-to-buffer (find-file-noselect +SOMEDAY))
@@ -331,8 +333,10 @@ and returns that weird time number which Emacs understands."
       (turn-off-solaire-mode)
       (widen)
       (goto-char (point-min))
-      (forward-line 3)
+      (forward-line 1)
       (outline-show-branches)
+      (with-current-buffer (current-buffer)
+        (aj/grep-or-nothing/body))
       )))
 ;;;###autoload
 (defun aj/goto-maybe ()

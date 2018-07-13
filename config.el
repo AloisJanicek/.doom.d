@@ -977,7 +977,7 @@ than having to call `add-to-list' multiple times."
 
 (after! persp-mode
   (setq persp-kill-foreign-buffer-action nil)
-
+  (advice-add 'persp-remove-buffer :around 'doom*shut-up)
   (dolist (file (directory-files-recursively org-directory ".org"))
     (add-to-list '+persp-blacklist `,(file-name-nondirectory file)))
 
@@ -1179,6 +1179,10 @@ than having to call `add-to-list' multiple times."
 ;;   ("W" (aj/refile-to-file-headline +SOMEDAY "Watch" )     "Watch" )
 ;;   ("w" (aj/refile-to-file-headline +SOMEDAY "Write" )     "write" )
 ;;   )
+(defhydra aj/grep-or-nothing (:color blue)
+  "grep this file:"
+  ("g" (counsel-grep-or-swiper)))
+
 
 (defhydra aj/wiki-select (:color blue)
   "Goto:"
