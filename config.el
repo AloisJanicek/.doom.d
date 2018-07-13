@@ -282,7 +282,7 @@
 
 (after! eww
   (set-popup-rule! "*eww\*"                         :size 0.4 :side 'left :select t)
-  (add-hook 'eww-mode-hook 'visual-line-mode-hook))
+  (add-hook 'eww-mode-hook 'visual-line-mode))
 
 (after! faces
   (set-face-attribute 'fixed-pitch-serif nil :family "Iosevka Slab")
@@ -358,6 +358,10 @@
   (setq google-translate-default-source-language "cs"
         google-translate-default-target-language "en")
   (set-popup-rule! "*Google Translate\*"            :size 0.4 :side 'top :select t))
+
+(after! helm-dash
+  (setq helm-dash-docsets-path (expand-file-name "~/Reference/Docsets"))
+  )
 
 (after! help
   (set-popup-rule! "*help\*"                        :size 0.4 :side 'left :select t))
@@ -1030,7 +1034,7 @@ than having to call `add-to-list' multiple times."
   )
 
 (after! web-mode
-  (add-hook 'web-mode-hook (lambda () (setq-local counsel-dash-docsets '("HTML" "CSS" "Bootstrap 4"))))
+  (add-hook 'web-mode-hook (lambda () (setq-local counsel-dash-docsets '("HTML" "CSS" "Bootstrap_4"))))
   (add-hook 'web-mode-hook 'my-web-mode-hook)
   (add-hook 'web-mode-hook 'er/add-web-mode-expansions)
   (add-hook 'web-mode-hook 'flycheck-mode)
