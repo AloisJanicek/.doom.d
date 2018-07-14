@@ -574,7 +574,7 @@
    ;;           todo     ongoing  hold         zap      done
    '((sequence "[ ](T)" "[-](O)" "[!](H)" "|" "[✘](Z)" "[✔](D)")
      (sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "LATER(l)" "|" "DONE(d)" "CANCELLED(c)"))
-   org-todo-keyword-faces '(("NEXT" . "#98be65") ("WAITING" . "#c678dd") ("TODO" . "#ECBE7B") ("STARTED" . "#4db5bd"))
+   org-todo-keyword-faces '(("NEXT" . "#98be65") ("HOLD" . "#c678dd") ("TODO" . "#ECBE7B"))
    org-enforce-todo-dependencies nil ;; if t, it hides todo entries with todo children from agenda
    org-enforce-todo-checkbox-dependencies nil
    org-provide-todo-statistics t
