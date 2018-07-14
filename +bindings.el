@@ -507,6 +507,7 @@
      :desc "Manual"                   :nv     "m" #'man
      :desc "Echo"                     :nv     "e" #'view-echo-area-messages
      :desc "Pop on error"             :nv     "P" #'toggle-debug-on-error
+     :desc "Dash docset"              :nv     "/" #'counsel-dash
      )
    (:desc "jump:"    :prefix "j"
      :desc "file"                     :nv     "f" #'counsel-file-jump
