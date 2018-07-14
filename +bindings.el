@@ -424,6 +424,7 @@
      :desc "insert"          :nv     "i" #'yankpad-insert
      :desc "capture"         :nv     "c" #'yankpad-capture-snippet
      :desc "edit"            :nv     "e" #'yankpad-edit
+     :desc "reload"          :nv     "r" #'yankpad-reload
      :desc "append category" :nv     "a" #'yankpad-append-category
      :desc "set category"    :nv     "s" #'yankpad-append-category
      )
