@@ -901,7 +901,7 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   "Beautify file with html-beautify and only if major mode is web-mode"
   (interactive)
   (when (eq major-mode 'web-mode)
-    (message "html-beautify taking care of your markup" (buffer-file-name))
+    (message "html-beautify taking care of your markup %s" (buffer-file-name))
     (shell-command (concat "html-beautify --quiet --replace -s 2 -w 120 -A \"auto\" -I -E \"\" --max-preserve-newlines 0 -f " (buffer-file-name)))
     (revert-buffer t t)))
 ;;;###autoload
@@ -909,7 +909,7 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   "Prettify current file and apply autofixes only in css-mode"
   (interactive)
   (when (or (eq major-mode 'css-mode) (eq major-mode 'scss-mode))
-    (message "prettier-stylelint fixing the file" (buffer-file-name))
+    (message "prettier-stylelint fixing the file %s" (buffer-file-name))
     (shell-command (concat "prettier-stylelint --quiet --write " (buffer-file-name)))
     (revert-buffer t t)))
 ;;;###autoload
@@ -1243,7 +1243,7 @@ is nil, refile in the current file."
         (org-datetree-find-iso-week-create date) ;; for week-based datatree
         ;; (org-datetree-find-date-create date)  ;; for month-based datatree
         (org-narrow-to-subtree)
-        (show-subtree)
+        (outline-show-subtree)
         (org-end-of-subtree t)
         (newline)
         (goto-char (point-max))
@@ -1272,7 +1272,7 @@ is nil, refile in the current file."
        (org-datetree-find-iso-week-create date) ;; for week-based datatree
        ;; (org-datetree-find-date-create date)  ;; for month-based datatree
        (org-narrow-to-subtree)
-       (show-subtree)
+       (outline-show-subtree)
        (org-end-of-subtree t)
        (newline)
        (goto-char (point-max))
@@ -1370,7 +1370,7 @@ With prefix ARG initiate refile into current file."
                      (org-agenda-error)))
          (buffer (marker-buffer marker))
          (counsel-org-headline-display-style 'title)
-         (counsel-org-goto-display-todo t)
+         (counsel-org-headline-display-todo t)
          (current-file (buffer-file-name))
          )
     (with-current-buffer buffer
@@ -1385,7 +1385,7 @@ With prefix ARG initiate refile into current file."
                  :action '(lambda (x)
                             (goto-char (cdr x))))
        (org-narrow-to-subtree)
-       (show-subtree)
+       (outline-show-subtree)
        (org-end-of-subtree t)
        ;; (newline)
        (goto-char (point-max))
@@ -1416,7 +1416,7 @@ With prefix ARG initiate refile into current file."
        ;;                      (goto-char (cdr x))))
        (goto-char (point-max))
        (org-narrow-to-subtree)
-       (show-subtree)
+       (outline-show-subtree)
        (org-end-of-subtree t)
        (newline)
        (goto-char (point-max))
@@ -1447,7 +1447,7 @@ With prefix ARG initiate refile into current file."
                  :action '(lambda (x)
                             (goto-char (cdr x))))
        (org-narrow-to-subtree)
-       (show-subtree)
+       (outline-show-subtree)
        (org-end-of-subtree t)
        (newline)
        (goto-char (point-max))
@@ -1495,7 +1495,7 @@ FIXME: this should be just one function acting differently depending on argument
                               (goto-char (cdr x))
                               )))
        (org-narrow-to-subtree)
-       (show-subtree)
+       (outline-show-subtree)
        (org-end-of-subtree t)
        (newline)
        (goto-char (point-max))
@@ -1598,7 +1598,7 @@ In ~%s~:
   (interactive)
   (let* ((file +GTD)
          (heading "CALENDAR")
-         (date (org-read-date) a)
+         (date (org-read-date))
          (title (ivy-completing-read "Title " nil))
          (tag (ivy-completing-read "Tag: " nil))
          (org-capture-templates `(
