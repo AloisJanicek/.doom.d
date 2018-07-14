@@ -26,6 +26,7 @@
    "C-<left>"  #'previous-buffer
    "M-p"       #'ivy-yasnippet
    :ne    "M-f"       #'aj/my-swiper
+   :ne    "M-F"       #'swiper-all
    "<f2>"      #'which-key-show-top-level
    "<f3>"      #'which-key-show-major-mode
    "<f4>"      #'which-key-show-minor-mode-keymap
