@@ -639,6 +639,10 @@ than having to call `add-to-list' multiple times."
   ;; New stuff
   (load! "+cool-agenda.el")
 
+  (advice-add #'org-agenda-todo :after #'(lambda (&optional arg)
+                                                  (save-some-buffers t (lambda () (string= buffer-file-name (car org-agenda-contributing-files))))
+                                                  (org-agenda-redo)
+                                                  ))
   (advice-add #'org-agenda-redo :around #'doom*shut-up)
   (advice-add #'org-agenda-refile :after #'aj/take-care-of-org-buffers)
   (advice-add #'org-agenda-exit :after #'aj/take-care-of-org-buffers)
