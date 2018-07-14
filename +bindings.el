@@ -419,8 +419,14 @@
      :desc "Swap dictionaries"        :nv     "S" (λ! (aj/swap-two-ispell-dicts "english" "czech"))
      :desc "Highlight-blocks"         :nv     "B" #'highlight-blocks-mode
      )
-   ;; (:desc "yyyyyyyy" :prefix "y"
-   ;;   )
+   (:desc "yankpad" :prefix "y"
+     :desc "yankpad: repeat" :nv     "y" #'yankpad-reapt
+     :desc "insert"          :nv     "i" #'yankpad-insert
+     :desc "capture"         :nv     "c" #'yankpad-capture-snippet
+     :desc "edit"            :nv     "e" #'yankpad-edit
+     :desc "append category" :nv     "a" #'yankpad-append-category
+     :desc "set category"    :nv     "s" #'yankpad-append-category
+     )
    ;; universal argument     "u"
    (:desc "insert"   :prefix "i"
      :desc "entity"                   :nv     "e" #'counsel-org-entity
