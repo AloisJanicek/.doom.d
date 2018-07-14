@@ -2,6 +2,10 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+;; fix for emacs 27
+;; https://github.com/emacs-mirror/emacs/commit/2fde6275b69fd113e78243790bf112bbdd2fe2bf
+(defalias 'format-proper-list-p 'proper-list-p)
+
 (doom! :feature
        ;; debugger          ; stepping through code, to help you add bugs
        eval              ; run code, run (also, repls)
