@@ -1164,8 +1164,6 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
     )
   )
 
-(let ((persp-autokill-buffer-on-remove nil))
-  (persp-remove-buffer +persp-blacklist))
 ;;;###autoload
 (defun aj/has-children-p (file headline)
   "Checks if HEADLINE under FILE has children and return t. Otherwise nil"

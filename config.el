@@ -140,7 +140,9 @@
   :config
   (advice-add #'org-brain-visualize :after #'aj/take-care-of-org-buffers)
   (setq org-brain-visualize-default-choices 'all
-        org-brain-title-max-length 12 )
+        org-brain-title-max-length 12
+        org-brain-path "~/org/brain/"
+        )
   )
 
 (def-package! org-ebook
@@ -151,7 +153,7 @@
   :after org-agenda
   :config
   ;; directories
-  (setq org-starter-path `(,org-brain-path ,org-directory, (concat org-brain-path "private_brain")))
+  (setq org-starter-path `("~/org/brain" ,org-directory, (concat "~/org/brain/" "private_brain")))
 
   ;; files
   (org-starter-define-file "GTD.org"       :agenda t   :refile '(:level . 1))
@@ -409,6 +411,7 @@
 (after! ivy
   (ivy-rich-mode)
   (setq ivy-height 40)
+  (require 'map)
   (map-put ivy-display-functions-alist 't 'ivy-posframe-display-at-frame-center)
   (ivy-set-actions
    'counsel-projectile-bookmark
@@ -605,7 +608,7 @@
    )
 
   ;; refile targets
-  (dolist (file (directory-files-recursively org-brain-path ".org"))
+  (dolist (file (directory-files-recursively "~/org/brain" ".org"))
     (add-to-list 'org-refile-targets `(,file :level . 1)))
 
   (defun jlp/add-to-list-multiple (list to-add)

@@ -203,7 +203,6 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
         ["21:00" (2100 2130 2200) "SLEEP"]
         ["22:00" (2200 0600) nil])
       org-directory "~/org/"
-      org-brain-path "~/org/brain/"
       +org-attach-dir "attach/"
       +org-export-dir "export"
       +file-templates-dir "~/org/templates"
