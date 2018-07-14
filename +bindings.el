@@ -535,7 +535,7 @@
      )
    ;; (:desc "mmmmmmmm" :prefix "m" )
    ;; switch buffer          ","
-     :desc "Switch buffer"            :nv     "," #'persp-switch-to-buffer
+   :desc "Switch buffer"            :nv     "," #'persp-switch-to-buffer
    ;; find file              ","
    (:desc "search"   :prefix "/"
      :desc "Swiper"                   :nv     "/" #'aj/my-swiper

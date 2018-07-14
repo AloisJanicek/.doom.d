@@ -640,9 +640,9 @@ than having to call `add-to-list' multiple times."
   (load! "+cool-agenda.el")
 
   (advice-add #'org-agenda-todo :after #'(lambda (&optional arg)
-                                                  (save-some-buffers t (lambda () (string= buffer-file-name (car org-agenda-contributing-files))))
-                                                  (org-agenda-redo)
-                                                  ))
+                                           (save-some-buffers t (lambda () (string= buffer-file-name (car org-agenda-contributing-files))))
+                                           (org-agenda-redo)
+                                           ))
   (advice-add #'org-agenda-redo :around #'doom*shut-up)
   (advice-add #'org-agenda-refile :after #'aj/take-care-of-org-buffers)
   (advice-add #'org-agenda-exit :after #'aj/take-care-of-org-buffers)
@@ -987,8 +987,8 @@ than having to call `add-to-list' multiple times."
   ;;                                               (hide-mode-line-mode -1)
   ;;                                               ))
 
- ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
-    ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
+  ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
+  ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
   (add-hook 'pdf-view-mode-hook 'brds/pdf-jump-last-viewed-bookmark)
   )
 
