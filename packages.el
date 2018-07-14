@@ -118,4 +118,7 @@
   ;; yay -S python-lxml
   )
 
+(package! yankpad
+  )
+
 (package! xml+)

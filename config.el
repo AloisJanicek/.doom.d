@@ -219,6 +219,17 @@
 (def-package! x-path-walker
   :commands (helm-x-path-walker))
 
+(def-package! yankpad
+  :commands (
+             yankpad-map
+             yankpad-edit
+             yankpad-expand
+             yankpad-insert
+             yankpad-set-category
+             yankpad-capture-snippet
+             )
+  )
+
 (after! apropos
   (set-popup-rule! "*apropos\*"                     :size 0.4 :side 'left :select t)
   (set-popup-rule! "*Apropos\*"                     :size 0.4 :side 'left :select t))
