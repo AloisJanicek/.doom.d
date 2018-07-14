@@ -573,8 +573,7 @@
    org-todo-keywords
    ;;           todo     ongoing  hold         zap      done
    '((sequence "[ ](T)" "[-](O)" "[!](H)" "|" "[✘](Z)" "[✔](D)")
-     (sequnece "STARTED(s)" "|" "FINISHED(f)")
-     (sequence "MAYBE(M)" "SOMEDAY(S)" "TODO(t)" "NEXT(n)" "HOLD(h)" "LATER(l)" "|" "DONE(d)" "CANCELLED(c)"))
+     (sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "LATER(l)" "|" "DONE(d)" "CANCELLED(c)"))
    org-todo-keyword-faces '(("NEXT" . "#98be65") ("WAITING" . "#c678dd") ("TODO" . "#ECBE7B") ("STARTED" . "#4db5bd"))
    org-enforce-todo-dependencies nil ;; if t, it hides todo entries with todo children from agenda
    org-enforce-todo-checkbox-dependencies nil
