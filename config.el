@@ -32,6 +32,8 @@
 (def-package! define-word
   :commands (define-word  define-word-at-point))
 
+;; (def-package! eaf)
+
 (def-package! ereader
   :commands (ereader-read-epub ereader-mode)
   :mode ("\\.epub\\'". ereader-mode)

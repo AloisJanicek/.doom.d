@@ -16,6 +16,9 @@
 (package! emacs-ereader
   :recipe (:fetcher github :repo "bddean/emacs-ereader" :files ("org-ebook.el" "ereader.el")))
 
+;; (package! eaf :recipe (:fetcher github :repo "manateelazycat/emacs-application-framework" :files ("*"))
+;;   )
+
 (package! emms
   :disable t)
 
