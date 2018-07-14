@@ -345,6 +345,34 @@
    :map +popup-buffer-mode-map
    "C-l"  #'evil-window-right
    )
+
+ (:after web-mode
+   (:map web-mode-map
+     (:localleader
+       :desc "dash at point" :nv               "." #'+lookup/in-docsets
+       :desc "docsets at point" :nv               ">" #'+lookup/in-devdocs
+       )
+     )
+   )
+
+ (:after css-mode
+   (:map css-mode-map
+     (:localleader
+       :desc "dash at point" :nv               "." #'+lookup/in-docsets
+       :desc "docsets at point" :nv               ">" #'+lookup/in-devdocs
+       )
+     )
+   )
+
+ (:after js2-mode
+   (:map js2-mode-map
+     (:localleader
+       :desc "dash at point" :nv               "." #'+lookup/in-docsets
+       :desc "docsets at point" :nv               ">" #'+lookup/in-devdocs
+       )
+     )
+   )
+
  (:after treemacs
    (:map treemacs-mode-map
      :iemnv "C-k" #'evil-window-up
