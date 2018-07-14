@@ -400,9 +400,9 @@
      )
    (:desc "open"     :prefix "o"
      (:desc "calibre" :prefix "c"
-       :desc "cs"    :nv "c" (λ! (aj/open-calibre-book (expand-file-name "~/ComputerScience/")))
-       :desc "webdev"     :nv "w" (λ! (aj/open-calibre-book (expand-file-name "~/Webdev/")))
-       :desc "library"    :nv "l" (λ! (aj/open-calibre-book (expand-file-name "~/Library/")))
+       :desc "cs"    :nv "c" (λ! (aj/open-calibre-book (concat +Libraries "ComputerScience/")))
+       :desc "webdev"     :nv "w" (λ! (aj/open-calibre-book (concat +Libraries "Webdev/")))
+       :desc "library"    :nv "l" (λ! (aj/open-calibre-book (concat +Libraries "Library/")))
        )
      :desc "link"                     :nv     "o" #'link-hint-open-link
      :desc "Agenda"                   :nv     "A" #'org-agenda

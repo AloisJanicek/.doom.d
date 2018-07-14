@@ -150,6 +150,8 @@
        ;; and additional ex commands for evil-mode. Use it as a reference for
        ;; your own modules.
        (default +bindings +snippets +evil-commands))
+(defvar +Libraries nil
+  "Location of Calibre libraries.")
 
 (defvar +GTD "~/org/GTD.org"
   "File where things must be done.")
@@ -189,7 +191,8 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
 
 (setq user-mail-address "janicek.dev@gmail.com"
       user-full-name    "Alois Janíček"
-      +refile-targets-with-headlines '("GTD.org" "About.org" "SOMEDAY.org" "LISTS.org")
+      +refile-targets-with-headlines '("GTD.org")
+      +Libraries (expand-file-name "~/Reference/Libraries/")
       +aj/time-blocks
       '(["06:30" (0630 0700 0730 0800) "MORNING"]
         ["08:00" (0800 0830 0900 0930 1000 1030 1100 1130 1200) "WORK"]
