@@ -1355,7 +1355,7 @@ With prefix ARG initiate refile into current file."
   (let* ((org-refile-target-verify-function nil)
          (file (if arg
                    (buffer-file-name (current-buffer))
-                 (read-file-name "Choose file: " org-brain-path)))
+                 (read-file-name "Choose file: " "~/org/brain/")))
          (org-refile-targets `((,file :maxlevel . 9))))
     (org-refile)))
 
@@ -1437,7 +1437,7 @@ With prefix ARG initiate refile into current file."
          (marker (or (org-get-at-bol 'org-hd-marker)
                      (org-agenda-error)))
          (buffer (marker-buffer marker))
-         (file (read-file-name "Choose file: " org-brain-path)))
+         (file (read-file-name "Choose file: " "~/org/brain/")))
     (with-current-buffer buffer
       (org-with-wide-buffer
        (goto-char marker)
