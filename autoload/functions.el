@@ -1387,7 +1387,7 @@ With prefix ARG initiate refile into current file."
        (org-narrow-to-subtree)
        (outline-show-subtree)
        (org-end-of-subtree t)
-       ;; (newline)
+       (newline)
        (goto-char (point-max))
        (org-paste-subtree)
        (widen)
