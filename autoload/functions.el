@@ -1332,19 +1332,59 @@ is nil, refile in the current file."
             :keymap counsel-find-file-map
             :caller 'counsel-find-file)
   )
+;;;###autoload
+(defun aj/open-file-switch-create-indirect-buffer-per-persp (buffer-or-path)
+  "Takes BUFFER-OF-PATH which can be either string representing full file path
+or buffer satisfying `bufferp'.
+
+If there is no buffer representing file, function opens this file and
+makes indirect buffer naming it \"filename-name\", where name represents current
+perspective name.
+Then switches to this new buffer.
+This functions also removes source buffer from all perspectives without actually killing it.
+
+Use case: Having opened dozens of org files on background (not associated with any perspective)
+always ready for agenda, capture, refile, and similar stuff and only when you actually need to
+visit this file, bring it to current perspective as indirect buffer,
+so you can kill it as usual without affecting rest of the workflow.
+"
+  (if (and (stringp buffer-or-path)
+           (not (get-file-buffer buffer-or-path)))
+      (find-file-noselect buffer-or-path))
+  (if (not (eq buffer-or-path nil))
+      (let* ((persp-autokill-buffer-on-remove nil)
+             (file-name (if (stringp buffer-or-path)
+                            (file-name-nondirectory buffer-or-path)
+                          (file-name-nondirectory (buffer-file-name buffer-or-path))
+                          ))
+             (current-persp-name (persp-name (get-current-persp)))
+             (source-buffer (if (stringp buffer-or-path)
+                                file-name
+                              (buffer-name buffer-or-path)))
+             (new-buffer (concat source-buffer "-" current-persp-name)))
+
+        (persp-remove-buffer (get-buffer source-buffer))
+
+        (if (not (get-buffer new-buffer))
+            (make-indirect-buffer (get-buffer source-buffer) new-buffer t))
+        (persp-add-buffer (get-buffer new-buffer))
+        (switch-to-buffer new-buffer))
+
+    (message "%s is not valid buffer" buffer-or-path)
+    )
+  )
+
+;; (aj/open-file-switch-create-indirect-buffer-per-persp (get-buffer "Emacs.org"))
+;; (aj/open-file-switch-create-indirect-buffer-per-persp "/home/work/org/brain/Emacs.org")
 
 ;;;###autoload
 (defun aj/choose-note-to-indirect-action (x)
   "Find file X and open it always into new indirect buffer.
 Buffers are cheap.
 "
-  (let* ((path (expand-file-name x ivy--directory))
-         (file-name (file-name-nondirectory path))
-         (random-string (concat "-" (substring (number-to-string (random)) 3 9)))
-         (new-name (concat file-name random-string)))
-    (find-file-noselect path)
-    (make-indirect-buffer (get-buffer file-name) new-name t)
-    (switch-to-buffer new-name))
+  (let ((path (expand-file-name x ivy--directory)))
+    (aj/open-file-switch-create-indirect-buffer-per-persp path)
+    )
   )
 
 ;;;###autoload
