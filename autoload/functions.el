@@ -728,7 +728,7 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   (require 'org-brain)
   (if same-window
       (my/org-brain-goto (org-brain-entry-at-pt))
-    (my/org-brain-goto (org-brain-entry-at-pt) #'pop-to-buffer)))
+    (my/org-brain-goto (org-brain-entry-at-pt) #'aj/open-file-switch-create-indirect-buffer-per-persp)))
 ;;;###autoload
 (defun aj/org-brain-visualize-entry-at-pt ()
   "Helper function for direct visualizing of entry at point"
@@ -1361,14 +1361,19 @@ so you can kill it as usual without affecting rest of the workflow.
              (source-buffer (if (stringp buffer-or-path)
                                 file-name
                               (buffer-name buffer-or-path)))
-             (new-buffer (concat source-buffer "-" current-persp-name)))
-
-        (persp-remove-buffer (get-buffer source-buffer))
+             (persp-buffer-is-there (string-match (concat "-" current-persp-name) source-buffer))
+             (new-buffer (if (and (bufferp buffer-or-path) persp-buffer-is-there)
+                             file-name
+                           (concat source-buffer "-" current-persp-name)))
+             )
+        (if (not persp-buffer-is-there)
+            (persp-remove-buffer (get-buffer source-buffer))
+          )
 
         (if (not (get-buffer new-buffer))
             (make-indirect-buffer (get-buffer source-buffer) new-buffer t))
         (persp-add-buffer (get-buffer new-buffer))
-        (switch-to-buffer new-buffer))
+        (pop-to-buffer new-buffer))
 
     (message "%s is not valid buffer" buffer-or-path)
     )
