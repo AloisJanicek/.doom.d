@@ -577,7 +577,7 @@
   (setq
    org-crypt-tag-matcher "+crypt-nocrypt"
    ;; settings for export to ical file
-   org-M-RET-may-split-line '((default . nil))
+   ;; org-M-RET-may-split-line '((default . nil))
    org-tags-match-list-sublevels 'indented
    org-tags-exclude-from-inheritance '("crypt" "exclude")
    org-show-context-detail '((agenda . lineage)

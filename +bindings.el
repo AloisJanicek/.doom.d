@@ -562,12 +562,13 @@
      :desc "Kill buffers"             :nv     "K" #'kill-buffer
      )
    (:desc "notes"    :prefix "n"
-     :desc "notes"     :nv "n" (λ! (aj/choose-note-to-indirect "~/org/brain/"))
-     :desc "org-dir"   :nv "o" (λ! (aj/choose-note-to-indirect org-directory))
-     :desc "private"   :nv "p" (λ! (counsel-find-file (concat "~/org/brain" "/private_brain/")))
-     :desc "grep"      :nv "g" (λ! (+ivy/rg nil nil "~/org/brain"))
+     :desc "notes"        :nv "n" (λ! (aj/choose-note-to-indirect "~/org/brain/"))
+     :desc "org-dir"      :nv "o" (λ! (aj/choose-note-to-indirect org-directory))
+     :desc "private"      :nv "p" (λ! (counsel-find-file (concat "~/org/brain" "/private_brain/")))
+     :desc "grep"         :nv "g" (λ! (+ivy/rg nil nil "~/org/brain"))
      ;; :desc "visualize" :nv "v" #'aj/visualize-brain-and-take-care-of-buffers
-     :desc "visualize" :nv "v" #'org-brain-visualize
+     :desc "visualize"    :nv "v" #'org-brain-visualize
+     :desc "indirect"     :nv "i" (λ! (aj/open-file-switch-create-indirect-buffer-per-persp (buffer-file-name (current-buffer))))
      )
    ;; (:desc "mmmmmmmm" :prefix "m" )
    ;; switch buffer          ","
