@@ -1766,4 +1766,7 @@ and returns string representing path to the chosen book file."
 (defun aj/fix-evil-org-agenda-keys ()
   "Remap some keys in advice after `evil-org-agenda-set-keys'"
   (evil-define-key 'motion org-agenda-mode-map
-    "ct" 'counsel-org-tag-agenda))
+    "ct" 'counsel-org-tag-agenda
+    "j"   'org-agenda-next-item
+    "k"   'org-agenda-previous-item
+    ))
