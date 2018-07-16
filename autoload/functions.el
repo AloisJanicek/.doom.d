@@ -1373,7 +1373,7 @@ so you can kill it as usual without affecting rest of the workflow.
         (if (not (get-buffer new-buffer))
             (make-indirect-buffer (get-buffer source-buffer) new-buffer t))
         (persp-add-buffer (get-buffer new-buffer))
-        (pop-to-buffer new-buffer))
+        (aj/find-me-org-buffer new-buffer))
 
     (message "%s is not valid buffer" buffer-or-path)
     )
@@ -1381,6 +1381,35 @@ so you can kill it as usual without affecting rest of the workflow.
 
 ;; (aj/open-file-switch-create-indirect-buffer-per-persp (get-buffer "Emacs.org"))
 ;; (aj/open-file-switch-create-indirect-buffer-per-persp "/home/work/org/brain/Emacs.org")
+
+;;;###autoload
+(defun aj/find-me-org-buffer (buffer)
+  "Takes BUFFER and tries to find suitable window for it.
+First looks for org-mode buffers. If there isn't one, selects fist window
+which isn't current window. If there is only one window, it splits current window
+to the right and displays buffer there."
+  (let ((window (catch 'org-window
+                  (mapcar (lambda (x)
+                            (let* ((mode (buffer-mode (window-buffer x))))
+                              (if (eq 'org-mode mode)
+                                  (throw 'org-window x))))
+                          (window-list)))))
+    (if (windowp window)
+        (progn
+          (select-window window t)
+          (switch-to-buffer buffer)
+          )
+      (progn
+        (if (= (length (window-list)) 1)
+            (split-window-right)
+          )
+        (select-window (some-window '(lambda (x)
+                                       (not (eq x (selected-window))))))
+        (switch-to-buffer buffer)
+        )
+      )
+    )
+  )
 
 ;;;###autoload
 (defun aj/choose-note-to-indirect-action (x)
