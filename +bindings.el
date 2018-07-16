@@ -472,6 +472,7 @@
      :desc "Services"                 :nv     "t" #'prodigy
      :desc "set variable"             :nv     "v" #'projectile-edit-dir-locals
      :desc "Remove"                   :nv     "R" #'projectile-remove-known-project
+     :desc "grep"                     :nv     "g" #'+ivy/project-search
      )
    ;; previous               "["
    ;; next                   "]"
