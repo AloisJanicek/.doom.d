@@ -715,9 +715,13 @@ Unless GOTO-FILE-FUNC is nil, use `pop-to-buffer-same-window' for opening the en
     (widen)
     (org-set-visibility-according-to-property)
     (goto-char (marker-position marker))
-    ;; (org-show-entry)
-    (outline-show-branches)
-    (org-narrow-to-subtree)
+
+    (if (string-match "*" (thing-at-point 'line t))
+        (progn
+          (outline-show-branches)
+          (org-narrow-to-subtree)
+          )
+      )
     )
   entry)
 ;;;###autoload
