@@ -1772,3 +1772,27 @@ and returns string representing path to the chosen book file."
     (kbd "C-j") 'org-agenda-next-line
     (kbd "C-k") 'org-agenda-previous-line
     ))
+
+;; (defun my/org-get-header-list (&optional buffer)
+;;   "Get the headers of an org buffer as a flat list of headers and levels.
+;; Buffer will default to the current buffer."
+;;   (interactive)
+;;   (with-current-buffer (or buffer (current-buffer))
+;;     (let ((tree (org-element-parse-buffer 'headline)))
+;;       (ivy-read "Headlines: "
+;;                 (org-element-map
+;;                     tree
+;;                     'headline
+;;                   (lambda (el) (list
+;;                                 (org-element-property :title el) ; get header title without tags etc
+;;                                 ;; (org-element-property :level el) ; get depth
+;;                                 ;; >> could add other properties here
+;;                                 )))
+;;                 :action '(lambda (x)
+;;                            ;; (print (if (stringp x) x (car x)))
+;;                            (goto-char
+;;                             (org-find-exact-headline-in-buffer (substring-no-properties (if (stringp x) x (car x))))
+;;                             )
+;;                            )
+;;                 )
+;;       )))
