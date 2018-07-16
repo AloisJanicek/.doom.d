@@ -1769,4 +1769,6 @@ and returns string representing path to the chosen book file."
     "ct" 'counsel-org-tag-agenda
     "j"   'org-agenda-next-item
     "k"   'org-agenda-previous-item
+    (kbd "C-j") 'org-agenda-next-line
+    (kbd "C-k") 'org-agenda-previous-line
     ))
