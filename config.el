@@ -947,8 +947,8 @@ than having to call `add-to-list' multiple times."
   )
 
 (after! org-clock
-  (advice-add 'org-clock-in :around (lambda (&rest _) (org-save-all-org-buffers)))
-  (advice-add 'org-clock-out :around (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-clock-in :after (lambda (&rest _) (org-save-all-org-buffers)))
+  (advice-add 'org-clock-out :after (lambda (&rest _) (org-save-all-org-buffers)))
   (advice-add #'org-clock-load :around #'doom*shut-up)
 
   (setq
