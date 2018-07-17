@@ -554,9 +554,9 @@
      :desc "dictionary"               :nv     "d" #'browse-dictionary-at-point
      )
    (:desc "file"     :prefix "f"
-     :desc "ag-cwd"                   :nv     "g" #'+ivy/ag-from-cwd
+     :desc "ag-cwd"                   :nv     "g" (λ! (+ivy/ag-from-cwd t))
      :desc "ag-project"               :nv     "G" #'+ivy/ag
-     :desc "rg-cwd"                   :nv     "h" #'+ivy/rg-from-cwd
+     :desc "rg-cwd"                   :nv     "h" (λ! (+ivy/rg-from-cwd t))
      :desc "rg-project"               :nv     "H" #'+ivy/rg
      :desc "file"                     :nv     "f" #'counsel-find-file
      :desc "jump org"                 :nv     "o" #'aj/jump-to-org-dir
