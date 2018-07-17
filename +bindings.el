@@ -366,7 +366,7 @@
 
      ;; :m  "RET" #'org-brain-goto-current
      :m  "o" #'my/org-brain-goto-current
-     :m  "O" #'org-brain-goto ;; FIXME this needs custom treatment
+     :m  "O" (λ! (my/org-brain-goto nil 'aj/open-file-switch-create-indirect-buffer-per-persp))
      :m  "f" #'link-hint-open-link
 
      :m  "v" #'org-brain-visualize
@@ -627,6 +627,7 @@
      :desc "grep"         :nv "g" (λ! (+ivy/rg nil nil "~/org/brain"))
      ;; :desc "visualize" :nv "v" #'aj/visualize-brain-and-take-care-of-buffers
      :desc "visualize"    :nv "v" #'org-brain-visualize
+     :desc  "brain-goto" :nv  "b" (λ! (my/org-brain-goto nil 'aj/open-file-switch-create-indirect-buffer-per-persp))
      :desc "indirect"     :nv "i" (λ! (aj/open-file-switch-create-indirect-buffer-per-persp (buffer-file-name (current-buffer))))
      )
    ;; (:desc "mmmmmmmm" :prefix "m" )
