@@ -602,7 +602,10 @@ of text segment of current headline.
         (ivy-posframe-parameters `((min-width . 120)
                                    (height . 30)
                                    (min-height . ,ivy-height)
-                                   (internal-border-width . 20))))
+                                   (internal-border-width . 20)))
+        ;; (first-headline (search-forward "*"))
+        )
+    (search-forward "*")
     (ivy-read "Goto: " (counsel-org-goto--get-headlines)
               :history 'counsel-org-goto-history
               ;; :action 'aj/create-new-org-l1-heading

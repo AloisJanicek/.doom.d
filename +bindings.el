@@ -151,6 +151,7 @@
          )
        :desc "Wiki"       :nv                 "w"     (λ! (progn
                                                             (widen)
+                                                            (search-forward "*")
                                                             (org-set-visibility-according-to-property)
                                                             (outline-show-branches)
                                                             (counsel-org-goto-private-wiki))
