@@ -445,6 +445,10 @@
    #'ivy-yasnippet
    '(("e" ivy-yasnippet--copy-edit-snippet-action "Edit snippet as your own"))))
 
+(after! ivy-pages
+  (advice-add 'ivy-pages-transformer :override 'ivy-pages-transformer-clear-string)
+  )
+
 (after! ivy-posframe
   (advice-add #'ivy-posframe-enable :around #'doom*shut-up))
 

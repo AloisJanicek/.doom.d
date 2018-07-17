@@ -1802,3 +1802,9 @@ and returns string representing path to the chosen book file."
 ;;                            )
 ;;                 )
 ;;       )))
+
+;;;###autoload
+(defun ivy-pages-transformer-clear-string (header)
+  "Return HEADER without start point. And without properties, images and other noise...
+Epub files offten has very poor quality."
+  (substring-no-properties (replace-regexp-in-string ":[0-9]+$" "" header)))
