@@ -1343,7 +1343,7 @@ is nil, refile in the current file."
             :caller 'counsel-find-file)
   )
 ;;;###autoload
-(defun aj/open-file-switch-create-indirect-buffer-per-persp (buffer-or-path)
+(defun aj/open-file-switch-create-indirect-buffer-per-persp (buffer-or-path &optional select)
   "Takes BUFFER-OF-PATH which can be either string representing full file path
 or buffer satisfying `bufferp'.
 
@@ -1386,7 +1386,9 @@ so you can kill it as usual without affecting rest of the workflow.
             (make-indirect-buffer (get-buffer source-buffer) new-buffer t))
         (persp-add-buffer (get-buffer new-buffer))
         (aj/find-me-org-buffer new-buffer)
-        (select-window win)
+        (if (not select)
+            (select-window win)
+          )
         ;; (goto-char pos)
         )
 
@@ -1416,7 +1418,8 @@ to the right and displays buffer there."
           )
       (progn
         (if (= (length (window-list)) 1)
-            (split-window-right)
+            (split-window (selected-window) (/ (window-total-width) 2) 'left)
+            ;; (split-window-right)
           )
         (select-window (some-window '(lambda (x)
                                        (not (eq x (selected-window))))))
@@ -1432,7 +1435,7 @@ to the right and displays buffer there."
 Buffers are cheap.
 "
   (let ((path (expand-file-name x ivy--directory)))
-    (aj/open-file-switch-create-indirect-buffer-per-persp path)
+    (aj/open-file-switch-create-indirect-buffer-per-persp path t)
     )
   )
 
