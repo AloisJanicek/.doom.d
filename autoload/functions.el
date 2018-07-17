@@ -1696,7 +1696,7 @@ In ~%s~:
                                             title " "
                                             tag "\n"
                                             "<" date ">" "\n %?")
-                                   )))
+                                  :immediate-finish t )))
          )
     (org-capture nil "c")))
 

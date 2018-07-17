@@ -786,6 +786,7 @@ than having to call `add-to-list' multiple times."
        ((org-agenda-files `(,+GTD))
         (org-tags-match-list-sublevels t)
         (org-agenda-skip-entry-if 'todo)
+        (org-agenda-hide-tags-regexp "CALENDAR")
         ))
 
       ("8" "Maybe" ((tags "*"))
