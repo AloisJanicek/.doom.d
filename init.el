@@ -5,6 +5,7 @@
 ;; fix for emacs 27
 ;; https://github.com/emacs-mirror/emacs/commit/2fde6275b69fd113e78243790bf112bbdd2fe2bf
 (defalias 'format-proper-list-p 'proper-list-p)
+(advice-add 'projectile-cleanup-known-projects :around #'doom*shut-up)
 
 (doom! :feature
        ;; debugger          ; stepping through code, to help you add bugs

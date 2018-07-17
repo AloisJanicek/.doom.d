@@ -1029,7 +1029,6 @@ than having to call `add-to-list' multiple times."
         projectile-track-known-projects-automatically nil
         counsel-projectile-sort-projects t
         projectile-ignored-projects nil )
-  (advice-add #'projectile-cleanup-known-projects :around #'doom*shut-up)
   )
 
 (after! prodigy
