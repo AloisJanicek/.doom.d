@@ -1119,12 +1119,12 @@ than having to call `add-to-list' multiple times."
   "Agenda"
   ("a" (org-agenda nil "9") "Agenda")
   ("c" (org-agenda nil "c") "Clever")
-  ("p" (org-agenda nil "P") "Projects Overview")
+  ;; ("p" (org-agenda nil "P") "Projects Overview")
   ("P" (org-agenda nil "p") "Projectile Projects")
   ("i" (org-agenda nil "i") "inbox")
   ("s" (org-agenda nil "3") "someday")
   ("m" (org-agenda nil "8") "maybe")
-  ("t" (org-agenda nil "T") "Tasks Overview")
+  ;; ("t" (org-agenda nil "T") "Tasks Overview")
   )
 
 (defhydra aj/agenda-hydra (:color blue )
