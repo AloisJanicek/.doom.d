@@ -1028,7 +1028,9 @@ than having to call `add-to-list' multiple times."
         projectile-globally-ignored-directories (append (list "node_modules"))
         projectile-track-known-projects-automatically nil
         counsel-projectile-sort-projects t
-        projectile-ignored-projects nil ))
+        projectile-ignored-projects nil )
+  (advice-add #'projectile-cleanup-known-projects :around #'doom*shut-up)
+  )
 
 (after! prodigy
   (prodigy-define-service
