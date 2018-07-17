@@ -302,7 +302,7 @@
 
 (after! evil-org
   (setq evil-org-key-theme '(textobjects insert navigation additional shift heading))
-  (setq evil-org-special-o/O '(table-row item))
+  ;; (setq evil-org-special-o/O '(table-row item))
   )
 
 (after! evil-org-agenda
