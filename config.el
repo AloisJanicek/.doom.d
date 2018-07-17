@@ -118,6 +118,10 @@
 (def-package! ob-javascript
   :after ob-core)
 
+(after! evil-snipe
+  (add-to-list 'evil-snipe-disabled-modes 'org-brain-visualize-mode nil #'eq)
+  )
+
 (def-package! org-brain
   ;; :after org
   :commands
@@ -138,7 +142,7 @@
    org-brain-remove-parent
    )
   :init
-  (set-evil-initial-state! 'org-brain-visualize-mode 'emacs)
+  (add-to-list 'evil-motion-state-modes 'org-brain-visualize-mode)
   :config
   (advice-add #'org-brain-visualize :after #'aj/take-care-of-org-buffers)
   (setq org-brain-visualize-default-choices 'all

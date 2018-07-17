@@ -703,27 +703,33 @@ If ENTRY isn't specified, ask for the ENTRY.
 Unless GOTO-FILE-FUNC is nil, use `pop-to-buffer-same-window' for opening the entry."
   (interactive)
   (require 'org-brain)
-  (org-brain-stop-wandering)
-  (unless entry (setq entry (org-brain-choose-entry
-                             "Entry: "
-                             (append (org-brain-files t)
-                                     (org-brain-headline-entries))
-                             nil t)))
-  (let ((marker (org-brain-entry-marker entry)))
-    (apply (or goto-file-func #'pop-to-buffer-same-window)
-           (list (marker-buffer marker)))
-    (widen)
-    (org-set-visibility-according-to-property)
-    (goto-char (marker-position marker))
+  (with-current-buffer (current-buffer)
+    (save-excursion
 
-    (if (string-match "*" (thing-at-point 'line t))
-        (progn
-          (outline-show-branches)
-          (org-narrow-to-subtree)
+      (org-brain-stop-wandering)
+      (unless entry (setq entry (org-brain-choose-entry
+                                 "Entry: "
+                                 (append (org-brain-files t)
+                                         (org-brain-headline-entries))
+                                 nil t)))
+      (let ((marker (org-brain-entry-marker entry)))
+        (apply (or goto-file-func #'pop-to-buffer-same-window)
+               (list (marker-buffer marker)))
+        (widen)
+        (org-set-visibility-according-to-property)
+        (goto-char (marker-position marker))
+
+        (if (string-match "*" (thing-at-point 'line t))
+            (progn
+              (outline-show-branches)
+              (org-narrow-to-subtree)
+              )
           )
+        )
+      entry
       )
     )
-  entry)
+  )
 ;;;###autoload
 (defun my/org-brain-goto-current (&optional same-window)
   "Use `org-brain-goto' on `org-brain-entry-at-pt', in other window..
