@@ -301,7 +301,9 @@
   (setq evil-move-cursor-back nil))
 
 (after! evil-org
-  (setq evil-org-key-theme '(textobjects insert navigation additional shift heading)))
+  (setq evil-org-key-theme '(textobjects insert navigation additional shift heading))
+  (setq evil-org-special-o/O '(table-row item))
+  )
 
 (after! evil-org-agenda
   (advice-add 'evil-org-agenda-set-keys :after 'aj/fix-evil-org-agenda-keys)
