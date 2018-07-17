@@ -598,7 +598,7 @@ of text segment of current headline.
   "Go to a different location in my private wiki file."
   (interactive)
   (let ((ivy-height 40)
-        (ivy-posframe-font (font-spec :family "Iosevka" :size 18))
+        (ivy-posframe-font (font-spec :family "Iosevka" :size 16))
         (ivy-posframe-parameters `((min-width . 120)
                                    (height . 30)
                                    (min-height . ,ivy-height)
