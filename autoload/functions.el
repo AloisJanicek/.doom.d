@@ -1814,3 +1814,12 @@ and returns string representing path to the chosen book file."
   "Return HEADER without start point. And without properties, images and other noise...
 Epub files offten has very poor quality."
   (substring-no-properties (replace-regexp-in-string ":[0-9]+$" "" header)))
+
+;;;###autoload
+(defun link-hint-open-link-and-brain-goto ()
+  "Use avy to open a visible link and org-brain-goto"
+  (interactive)
+  (avy-with link-hint-open-link
+    (link-hint--one :open)
+    (my/org-brain-goto-current)
+    ))

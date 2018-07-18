@@ -372,6 +372,7 @@
      :m  "o" #'my/org-brain-goto-current
      :m  "O" (λ! (my/org-brain-goto nil 'aj/open-file-switch-create-indirect-buffer-per-persp))
      :m  "f" #'link-hint-open-link
+     :m  "F" #'link-hint-open-link-and-brain-goto
 
      :m  "v" #'org-brain-visualize
 
