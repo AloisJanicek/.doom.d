@@ -1819,6 +1819,8 @@ Epub files offten has very poor quality."
 (defun link-hint-open-link-and-brain-goto ()
   "Use avy to open a visible link and org-brain-goto"
   (interactive)
+  (when (not (featurep 'link-hint))
+    (require 'link-hint))
   (avy-with link-hint-open-link
     (link-hint--one :open)
     (my/org-brain-goto-current)
