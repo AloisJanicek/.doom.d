@@ -321,8 +321,10 @@
      ;; #'org-brain-insert-relationships
      ;; #'org-brain-create-relationships-from-links
 
+     :m "C-k" #'evil-window-up
+     :m "C-j" #'evil-window-down
+     :m "C-h" #'evil-window-left
      :m "C-l" #'evil-window-right
-     :m "C-j" #'evil-window-bottom
      :m  "-" (λ! ()
                  (org-brain-visualize-remove-grandparent)
                  (org-brain-visualize-remove-grandchild))
