@@ -1422,7 +1422,7 @@ to the right and displays buffer there."
       (progn
         (if (= (length (window-list)) 1)
             (split-window (selected-window) (/ (window-total-width) 2) 'left)
-            ;; (split-window-right)
+          ;; (split-window-right)
           )
         (select-window (some-window '(lambda (x)
                                        (not (eq x (selected-window))))))
@@ -1702,7 +1702,7 @@ In ~%s~:
                                             title " "
                                             tag "\n"
                                             "<" date ">" "\n %?")
-                                  :immediate-finish t )))
+                                   :immediate-finish t )))
          )
     (org-capture nil "c")))
 
