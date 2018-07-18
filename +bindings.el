@@ -323,44 +323,46 @@
 
      :m "C-l" #'evil-window-right
      :m "C-j" #'evil-window-bottom
+     :m  "-" (λ! ()
+                 (org-brain-visualize-remove-grandparent)
+                 (org-brain-visualize-remove-grandchild))
+     :m  "=" (λ! ()
+                 (org-brain-visualize-add-grandparent)
+                 (org-brain-visualize-add-grandchild))
      (:desc "add" :prefix "a"
        :m  "p" #'org-brain-add-parent
        :m  "c" #'org-brain-add-child
        :m  "f" #'org-brain-add-friendship
-       :m  "C" #'org-brain-visualize-add-grandchild
-       :m  "P" #'org-brain-visualize-add-grandparent
        )
 
      (:desc "set" :prefix "s"
-     :m  "r" #'org-brain-add-resource
-     :m  "a" #'org-brain-visualize-attach
-     :m  "T" #'org-brain-set-title
-     :m  "t" #'org-brain-set-tags
-     )
+       :m  "r" #'org-brain-add-resource
+       :m  "a" #'org-brain-visualize-attach
+       :m  "T" #'org-brain-set-title
+       :m  "t" #'org-brain-set-tags
+       )
 
      :m  "p" #'org-brain-visualize-paste-resource
 
      (:desc "remove" :prefix "r"
-     :m  "p" #'org-brain-remove-paren
-     :m  "c" #'org-brain-remove-child
-     :m  "f" #'org-brain-remove-friendship
-     :m  "P" #'org-brain-visualize-remove-grandparent
-     :m  "C" #'org-brain-visualize-remove-grandchild
-     )
+       :m  "p" #'org-brain-remove-paren
+       :m  "c" #'org-brain-remove-child
+       :m  "f" #'org-brain-remove-friendship
+       )
 
      (:desc "do" :prefix "d"
-     :m  "d" #'org-brain-delete-entry
-     :m  "p" #'org-brain-pin
-     :m  "a" #'org-brain-archive
-     )
+       :m  "d" #'org-brain-delete-entry
+       :m  "p" #'org-brain-pin
+       :m  "a" #'org-brain-archive
+       )
 
      :m  "N" #'org-brain-new-child
 
      (:desc "view" :prefix "z"
-     :m  "m" #'org-brain-visualize-mind-map
-     :m  "b" #'org-brain-visualize-back
-     :m  "r" #'org-brain-visualize-random
-     :m  "w" #'org-brain-visualize-wander
+       :m  "m" #'org-brain-visualize-mind-map
+       :m  "b" #'org-brain-visualize-back
+       :m  "r" #'org-brain-visualize-random
+       :m  "w" #'org-brain-visualize-wander
        )
 
      :m  "j" #'forward-button
