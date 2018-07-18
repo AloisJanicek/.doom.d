@@ -490,7 +490,7 @@
 (after! loaddefs
   (setq browse-url-browser-function
         '(
-          ("wikipedia\\.org" . browse-url-firefox)
+          ;; ("wikipedia\\.org" . browse-url-firefox)
           ("github" . browse-url-chromium)
           ("reddit" . browse-url-chromium)
           ("gitlab" . browse-url-chromium)
