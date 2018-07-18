@@ -471,9 +471,9 @@
             (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face :width 80))))
           counsel-bookmark
           (:columns
-           ((ivy-rich-bookmark-file-type)       ; return the file type of the bookmark target
+           ((ivy-rich-bookmark-type)       ; return the file type of the bookmark target
             (ivy-rich-candidate (:width 0.2))   ; return the bookmark name
-            (ivy-rich-bookmark-file-truename)))  ; return the true name of the related file
+            (ivy-rich-bookmark-info)))  ; return the true name of the related file
           ))
   )
 
