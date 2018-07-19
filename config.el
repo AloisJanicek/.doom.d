@@ -26,6 +26,12 @@
 (def-package! cheatsheet
   :commands (cheatsheet-add cheatsheet-add-group cheatsheet-get cheatsheet-show))
 
+(def-package! counsel-org-clock
+  :commands (counsel-org-clock-context counsel-org-clock-history)
+  :config
+  (setq counsel-org-clock-history-limit 15)
+  )
+
 (def-package! counsel-org-starter
   :commands (counsel-org-starter counsel-org-starter-known-file))
 
@@ -1146,6 +1152,8 @@ than having to call `add-to-list' multiple times."
   ("c" (aj/clock-menu) "clock" )
   ("p" (org-pomodoro) "pomodoro" )
   ("s" (org-clock-out) "stop clock")
+  ("k" (counsel-org-clock-context) "context")
+  ("h" (counsel-org-clock-history) "history")
   )
 
 (defhydra aj/capture-code (:color blue)

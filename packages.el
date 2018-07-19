@@ -10,6 +10,10 @@
 (package! cheatsheet
   :disable t)
 
+(package! counsel-org-clock
+  :recipe (:fetcher github :repo "akirak/counsel-org-clock")
+  )
+
 (package! define-word
   )
 
