@@ -589,6 +589,7 @@
      :desc "window"                   :nv     "o" #'ace-select-window
      :desc "shell-buffer"             :nv     "s" #'counsel-switch-to-shell-buffer
      :desc "word"                     :nv     "w" #'evil-avy-goto-word-1
+     :desc "Reference"                :nv     "r" (λ! (counsel-find-file "~/Reference"))
      :desc "line"                     :nv     "l" #'evil-avy-goto-line
      :desc "directory"                :nv     "d" #'counsel-dired-jump
      :desc "view"                     :nv     "v" #'ivy-switch-view

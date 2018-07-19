@@ -1,7 +1,9 @@
 ;;;  -*- lexical-binding: t; -*-
 
 (def-package! racket-mode
-  :mode ("\\.rkt\\'" . racket-mode)
+  :mode (("\\.rkt\\'" . racket-mode)
+         ("\\.scm\\'" . racket-mode)
+         )
   :config
   (set-repl-handler! 'racket-mode #'+racket/repl)
   (set-popup-rule! "*Racket REPL\*" :quit nil :ttl nil :side 'bottom :size 0.4)
