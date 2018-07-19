@@ -211,10 +211,10 @@ should be agenda-view filtered by `org-agenda-tag-filter-preset'.")
       +org-attach-dir "attach/"
       +org-export-dir "export"
       +file-templates-dir "~/org/templates"
-      doom-font                   (font-spec :family "Iosevka" :size 16)
-      doom-big-font               (font-spec :family "Iosevka" :size 24)
+      doom-font                   (font-spec :family "Iosevka SS08" :size 16)
+      doom-big-font               (font-spec :family "Iosevka SS08" :size 24)
       doom-variable-pitch-font    (font-spec :family "Roboto" :size 16)
-      doom-unicode-font           (font-spec :family "Iosevka" :size 16)
+      doom-unicode-font           (font-spec :family "Iosevka SS08" :size 16)
       +doom-modeline-bar-width    4
       doom-neotree-project-size 1
       doom-neotree-line-spacing 0
