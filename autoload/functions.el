@@ -705,32 +705,34 @@ If either org-pomodoro or org-clock aren't active, print \"No Active Task \" "
 If ENTRY isn't specified, ask for the ENTRY.
 Unless GOTO-FILE-FUNC is nil, use `pop-to-buffer-same-window' for opening the entry."
   (interactive)
-  (require 'org-brain)
-  (with-current-buffer (current-buffer)
-    (save-excursion
+  (when (not (featurep 'org-brain))
+    (require 'org-brain))
+  (let ((buffer (current-buffer))
+        (window (selected-window)))
+    (with-current-buffer buffer
+      (save-excursion
+        (org-brain-stop-wandering)
+        (unless entry (setq entry (org-brain-choose-entry
+                                   "Entry: "
+                                   (append (org-brain-files t)
+                                           (org-brain-headline-entries))
+                                   nil t)))
+        (let ((marker (org-brain-entry-marker entry)))
+          (apply (or goto-file-func #'pop-to-buffer-same-window)
+                 (list (marker-buffer marker)))
+          (widen)
+          (org-set-visibility-according-to-property)
+          (goto-char (marker-position marker))
 
-      (org-brain-stop-wandering)
-      (unless entry (setq entry (org-brain-choose-entry
-                                 "Entry: "
-                                 (append (org-brain-files t)
-                                         (org-brain-headline-entries))
-                                 nil t)))
-      (let ((marker (org-brain-entry-marker entry)))
-        (apply (or goto-file-func #'pop-to-buffer-same-window)
-               (list (marker-buffer marker)))
-        (widen)
-        (org-set-visibility-according-to-property)
-        (goto-char (marker-position marker))
-
-        (if (string-match "*" (thing-at-point 'line t))
-            (progn
-              (outline-show-branches)
-              (org-narrow-to-subtree)
-              )
+          (if (string-match "*" (thing-at-point 'line t))
+              (progn
+                (outline-show-branches)
+                (org-narrow-to-subtree)))
           )
+        entry
         )
-      entry
       )
+    (select-window window)
     )
   )
 ;;;###autoload
@@ -741,7 +743,9 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
   (require 'org-brain)
   (if same-window
       (my/org-brain-goto (org-brain-entry-at-pt))
-    (my/org-brain-goto (org-brain-entry-at-pt) #'aj/open-file-switch-create-indirect-buffer-per-persp)))
+    (my/org-brain-goto (org-brain-entry-at-pt) '(lambda (x)
+                                                  (aj/open-file-switch-create-indirect-buffer-per-persp x t))
+                       )))
 ;;;###autoload
 (defun aj/org-brain-visualize-entry-at-pt ()
   "Helper function for direct visualizing of entry at point"
