@@ -344,7 +344,8 @@
        :m  "t" #'org-brain-set-tags
        )
 
-     :m  "p" #'org-brain-visualize-paste-resource
+     :m "p" #'org-brain-visualize-paste-resource
+     :m "R" (λ! (org-brain-stop-wandering) (revert-buffer))
 
      (:desc "remove" :prefix "r"
        :m  "p" #'org-brain-remove-paren
