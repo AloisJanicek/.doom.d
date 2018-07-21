@@ -156,7 +156,7 @@
   (add-hook 'org-brain-visualize-mode-hook 'visual-line-mode)
   (advice-add #'org-brain-visualize :after #'aj/take-care-of-org-buffers)
   (setq org-brain-visualize-default-choices 'all
-        org-brain-title-max-length 12
+        org-brain-title-max-length -1
         org-brain-path "~/org/brain/"
         )
   )
