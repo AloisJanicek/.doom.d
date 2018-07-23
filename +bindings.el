@@ -121,6 +121,14 @@
      :n   "J"     #'outline-next-visible-heading
      :n   "K"     #'outline-previous-visible-heading
 
+
+     (:prefix "g"
+       :n "h" #'org-up-element
+       :n "j" #'org-forward-element
+       :n "k" #'org-backward-element
+       :n "l" #'org-down-element
+       )
+
      (:localleader
        (:desc "decrypt:"          :prefix     "d"
          :desc "encrypt entry"     :nv        "e" #'org-encrypt-entry
