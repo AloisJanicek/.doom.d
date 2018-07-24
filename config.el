@@ -1007,7 +1007,7 @@ than having to call `add-to-list' multiple times."
 (after! pdf-view
   (setq pdf-view-midnight-colors `(,(doom-color 'fg) . ,(doom-color 'bg-alt)))
   (add-hook 'pdf-view-mode-hook '(lambda ()
-                                   (hide-mode-line-mode)
+                                   ;; (hide-mode-line-mode)
                                    (turn-off-solaire-mode)
                                    (pdf-view-midnight-minor-mode)
                                    (set (make-local-variable 'evil-normal-state-cursor) (list nil))
