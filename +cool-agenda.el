@@ -367,9 +367,9 @@
 
       (let ((inhibit-read-only t))
 	    (goto-char (point-max))
+        (+agenda-render-block (nreverse +agenda-isolated-tasks)   "Tasks")
         (+agenda-render-block (nreverse +agenda-high-priority)    "High")
         (+agenda-render-block +agenda-projects                    "Projects" #'+agenda-project-printer)
-        (+agenda-render-block (nreverse +agenda-isolated-tasks)   "Tasks")
         (+agenda-render-block (nreverse +agenda-low-priority)     "Low")
         (+agenda-render-block (nreverse +agenda-archivable-tasks) "Finished")
         (+agenda-render-block (nreverse +agenda-planned-tasks)    "Scheduled")
