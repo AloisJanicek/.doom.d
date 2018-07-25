@@ -343,10 +343,10 @@
        :m  "p" #'org-brain-add-parent
        :m  "c" #'org-brain-add-child
        :m  "f" #'org-brain-add-friendship
+       :m  "r" #'org-brain-add-resource
        )
 
      (:desc "set" :prefix "s"
-       :m  "r" #'org-brain-add-resource
        :m  "a" #'org-brain-visualize-attach
        :m  "T" #'org-brain-set-title
        :m  "t" #'org-brain-set-tags
@@ -513,6 +513,7 @@
        :desc "cs"    :nv "c" (λ! (aj/open-calibre-book (concat +Libraries "ComputerScience/")))
        :desc "webdev"     :nv "w" (λ! (aj/open-calibre-book (concat +Libraries "Webdev/")))
        :desc "library"    :nv "l" (λ! (aj/open-calibre-book (concat +Libraries "Library/")))
+       :desc "library"    :nv "p" (λ! (aj/open-calibre-book (concat +Libraries "Personal/")))
        )
      :desc "link"                     :nv     "o" #'link-hint-open-link
      :desc "Agenda"                   :nv     "A" #'org-agenda
