@@ -513,7 +513,7 @@
        :desc "cs"    :nv "c" (λ! (aj/open-calibre-book (concat +Libraries "ComputerScience/")))
        :desc "webdev"     :nv "w" (λ! (aj/open-calibre-book (concat +Libraries "Webdev/")))
        :desc "library"    :nv "l" (λ! (aj/open-calibre-book (concat +Libraries "Library/")))
-       :desc "library"    :nv "p" (λ! (aj/open-calibre-book (concat +Libraries "Personal/")))
+       :desc "personal"    :nv "p" (λ! (aj/open-calibre-book (concat +Libraries "Personal/")))
        )
      :desc "link"                     :nv     "o" #'link-hint-open-link
      :desc "Agenda"                   :nv     "A" #'org-agenda
