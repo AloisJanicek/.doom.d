@@ -695,10 +695,10 @@ than having to call `add-to-list' multiple times."
   (setq
 
    ;; org-agenda-files '("~/org/GTD.org")
-   org-agenda-prefix-format '((agenda  . "  %-12s%6t ")
+   org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
                               (timeline  . "%s ")
-                              (todo  . "     Effort: %6e  ")
-                              (tags  . "%l")
+                              (todo  . " ")
+                              (tags  . " ")
                               (search . "%l"))
 
    org-agenda-tags-column 68
@@ -713,6 +713,7 @@ than having to call `add-to-list' multiple times."
    org-agenda-compact-blocks t
    org-agenda-dim-blocked-tasks t
    org-agenda-use-time-grid nil
+   org-agenda-time-grid '((daily today require-timed) nil " " " ")
 
    org-agenda-custom-commands
    ' (
@@ -781,7 +782,8 @@ than having to call `add-to-list' multiple times."
         ;;                     ))
         (+agenda-tasks)
         )
-       ((org-agenda-prefix-format '((agenda . "  %?-12t% s")))
+       (
+        ;; (org-agenda-prefix-format '((agenda . "  %?-12t% s")))
         (org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
         (org-agenda-tags-todo-honor-ignore-options t)
         (org-agenda-todo-ignore-scheduled 'all)
@@ -794,7 +796,7 @@ than having to call `add-to-list' multiple times."
         (org-agenda-dim-blocked-tasks nil)
         (org-agenda-todo-list-sublevels nil)
         (org-agenda-block-separator "")
-        ;; (org-agenda-time-grid '((daily today require-timed) nil "......" "----------------"))
+        (org-agenda-time-grid '((daily today require-timed) nil " " " "))
         )
        )
 
