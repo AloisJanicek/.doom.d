@@ -715,7 +715,46 @@ than having to call `add-to-list' multiple times."
    org-agenda-use-time-grid nil
 
    org-agenda-custom-commands
-   ' (("c" "Agenda"
+   ' (
+
+      ("R" "Current scheduled"
+       (
+
+        (agenda ""
+                ((org-agenda-overriding-header "")
+                 (org-agenda-show-current-time-in-grid t)
+                 (org-agenda-use-time-grid t)
+                 (org-agenda-skip-scheduled-if-done t)
+                 (org-agenda-span 'day)
+                 ))
+        )
+       (
+
+        (org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
+                                    (timeline  . "%s ")
+                                    (todo  . " ")
+                                    (tags  . " ")
+                                    (search . "%l")))
+        ;; (org-agenda-prefix-format '((agenda . "  %?-12t% s")))
+        ;; (org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
+        ;; (org-agenda-tags-todo-honor-ignore-options t)
+        ;; (org-agenda-todo-ignore-scheduled 'all)
+        ;; (org-agenda-todo-ignore-deadlines 'far)
+        ;; (org-agenda-skip-scheduled-if-done t)
+        ;; (org-agenda-skip-deadline-if-done t)
+        ;; (org-agenda-skip-scheduled-if-deadline-is-shown t)
+        ;; (org-agenda-clockreport-parameter-plist `(:link t :maxlevel 6 :fileskip0 t :compact t :narrow 100))
+        ;; (org-agenda-columns-add-appointments-to-effort-sum t)
+        ;; (org-agenda-dim-blocked-tasks nil)
+        ;; (org-agenda-todo-list-sublevels nil)
+        ;; (org-agenda-block-separator "")
+        ;; (org-agenda-time-grid '((daily today require-timed) nil "......" "----------------"))
+        )
+       )
+
+
+
+      ("c" "Agenda"
        (
 
         (agenda ""
@@ -740,7 +779,8 @@ than having to call `add-to-list' multiple times."
         ;; (+agenda-inbox nil (
         ;;                     ;; (org-agenda-files (list org-default-notes-file))
         ;;                     ))
-        (+agenda-tasks))
+        (+agenda-tasks)
+        )
        ((org-agenda-prefix-format '((agenda . "  %?-12t% s")))
         (org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
         (org-agenda-tags-todo-honor-ignore-options t)
