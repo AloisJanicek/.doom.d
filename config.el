@@ -1226,8 +1226,7 @@ than having to call `add-to-list' multiple times."
   ("1" (org-capture nil "g1") "sunday" :exit t)
   ("j" (org-capture nil "e") "journal" :exit t)
   ("C" (aj/calendar-the-right-way) "CAL:" :exit t)
-  ("p" (org-capture nil "P") "P-task:" :exit t)
-  ("n" (org-capture nil "J") "P-journal:" :exit t)
+  ("p" (aj/capture-into-project) "into project:" :exit t)
   )
 
 (defhydra aj/gtd-goto (:color blue)

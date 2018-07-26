@@ -1836,3 +1836,26 @@ Epub files offten has very poor quality."
  (defun +javascript*sort-imenu-index-by-position (orig-fn)
     (let ((tide-imenu-flatten t))
       (cl-sort (funcall orig-fn) #'< :key #'cdr)))
+
+;;;###autoload
+(defun aj/capture-into-project ()
+  "Ask for the project and for the tempate - journal or task."
+  (interactive)
+  (let* ((project (ivy-read "Project: " projectile-known-projects))
+         (template (ivy-read "Template: " '("journal" "task")))
+         (file (concat (expand-file-name project) "README.org"))
+
+         (org-capture-templates `(
+                                  ("P" "Project task" entry (file+headline ,file "TASKS")
+                                   "* [ ] %?" :prepend t)
+
+                                  ("J" "Project journal" entry (file+olp+datetree ,file "JOURNAL")
+                                   "**** %?" :tree-type week)))
+         )
+    (cond ((string= template "journal")
+           (org-capture nil "J"))
+          ((string= template "task")
+           (org-capture nil "P"))
+          ((t)
+           (message "Invalid template")))
+    ))
