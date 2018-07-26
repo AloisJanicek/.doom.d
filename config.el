@@ -839,6 +839,7 @@ than having to call `add-to-list' multiple times."
         (org-tags-match-list-sublevels t)
         (org-agenda-skip-entry-if 'todo)
         (org-agenda-hide-tags-regexp "CALENDAR")
+        (org-agenda-skip-scheduled-if-done t)
         ))
 
       ("8" "Maybe" ((tags "*"))
