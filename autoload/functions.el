@@ -1831,3 +1831,8 @@ Epub files offten has very poor quality."
             (link-hint--one :open)
             (my/org-brain-goto-current)
             ))
+
+;;;###autoload
+ (defun +javascript*sort-imenu-index-by-position (orig-fn)
+    (let ((tide-imenu-flatten t))
+      (cl-sort (funcall orig-fn) #'< :key #'cdr)))

@@ -1118,7 +1118,9 @@ than having to call `add-to-list' multiple times."
 
 (after! tide
   (setq tide-completion-detailed nil
-        tide-always-show-documentation nil))
+        tide-always-show-documentation nil)
+  (advice-add #'tide-imenu-index :around #'+javascript*sort-imenu-index-by-position)
+  )
 
 (after! treemacs
   (setq evil-treemacs-state-cursor 'box)
