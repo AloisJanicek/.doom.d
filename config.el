@@ -789,6 +789,7 @@ than having to call `add-to-list' multiple times."
         (org-agenda-todo-ignore-scheduled 'all)
         (org-agenda-todo-ignore-deadlines 'far)
         (org-agenda-skip-scheduled-if-done t)
+        (org-agenda-start-with-log-mode t)
         (org-agenda-skip-deadline-if-done t)
         (org-agenda-skip-scheduled-if-deadline-is-shown t)
         (org-agenda-clockreport-parameter-plist `(:link t :maxlevel 6 :fileskip0 t :compact t :narrow 100))
