@@ -201,6 +201,9 @@
 (def-package! outline-magic
   :commands (outline-cycle outline-next-line outline-move-subtree-up outline-move-subtree-down outline-promote outline-demote))
 
+(def-package! ox-hugo
+  :after ox
+  )
 (def-package! plain-org-wiki
   :config
   (setq pow-directory "~/org/brain"))
@@ -623,7 +626,7 @@
    org-hierarchical-todo-statistics t
 
    org-startup-with-inline-images t
-   org-hide-emphasis-markers nil
+   org-hide-emphasis-markers t
    org-fontify-whole-heading-line nil
    org-src-fontify-natively t
    org-imenu-depth 9

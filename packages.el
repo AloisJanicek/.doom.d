@@ -101,7 +101,7 @@
   :disable t)
 
 (package! ox-hugo
-  :disable t)
+  )
 
 (package! plain-org-wiki
   :recipe (:fetcher github :repo "AloisJanicek/plain-org-wiki") :disable t)
