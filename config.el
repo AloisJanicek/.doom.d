@@ -739,20 +739,6 @@ than having to call `add-to-list' multiple times."
                                     (todo  . " ")
                                     (tags  . " ")
                                     (search . "%l")))
-        ;; (org-agenda-prefix-format '((agenda . "  %?-12t% s")))
-        ;; (org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
-        ;; (org-agenda-tags-todo-honor-ignore-options t)
-        ;; (org-agenda-todo-ignore-scheduled 'all)
-        ;; (org-agenda-todo-ignore-deadlines 'far)
-        ;; (org-agenda-skip-scheduled-if-done t)
-        ;; (org-agenda-skip-deadline-if-done t)
-        ;; (org-agenda-skip-scheduled-if-deadline-is-shown t)
-        ;; (org-agenda-clockreport-parameter-plist `(:link t :maxlevel 6 :fileskip0 t :compact t :narrow 100))
-        ;; (org-agenda-columns-add-appointments-to-effort-sum t)
-        ;; (org-agenda-dim-blocked-tasks nil)
-        ;; (org-agenda-todo-list-sublevels nil)
-        ;; (org-agenda-block-separator "")
-        ;; (org-agenda-time-grid '((daily today require-timed) nil "......" "----------------"))
         )
        )
 
@@ -767,26 +753,10 @@ than having to call `add-to-list' multiple times."
                  (org-agenda-use-time-grid t)
                  (org-agenda-skip-scheduled-if-done nil)
                  (org-agenda-span 'day)
-                 ;; (org-super-agenda-groups '((:name "Scheduled hours"
-                 ;;                                   :time-grid t
-                 ;;                                   )
-                 ;;                            (:name "Scheduled today"
-                 ;;                                   :date today
-                 ;;                                   :scheduled past ;; ensure overdue items
-                 ;;                                   :scheduled today
-                 ;;                                   )
-                 ;;                            (:discard (:anything t))))
                  ))
-        ;; (agenda "" (
-        ;;             ;; (org-agenda-files (list org-default-notes-file nox-org-agenda-file))
-        ;;             (org-agenda-span 3)))
-        ;; (+agenda-inbox nil (
-        ;;                     ;; (org-agenda-files (list org-default-notes-file))
-        ;;                     ))
         (+agenda-tasks)
         )
        (
-        ;; (org-agenda-prefix-format '((agenda . "  %?-12t% s")))
         (org-agenda-skip-deadline-prewarning-if-scheduled 'pre-scheduled)
         (org-agenda-tags-todo-honor-ignore-options t)
         (org-agenda-todo-ignore-scheduled 'all)
@@ -855,49 +825,7 @@ than having to call `add-to-list' multiple times."
                                     (tags  . " ")
                                     (search . "%l")))
         (org-tags-match-list-sublevels t)
-        ;; (org-super-agenda-groups
-        ;;  '((:name "issue"
-        ;;           :tag "issue"
-        ;;           )
-        ;;    ))
         ))
-      ;; ("c" "Clever" ((agenda ""
-      ;;                        ((org-agenda-overriding-header "")
-      ;;                         (org-agenda-show-current-time-in-grid t)
-      ;;                         (org-agenda-use-time-grid t)
-      ;;                         (org-agenda-skip-scheduled-if-done t)
-      ;;                         (org-agenda-span 'day)
-      ;;                         (org-super-agenda-groups '((:name "Scheduled hours"
-      ;;                                                           :time-grid t
-      ;;                                                           )
-      ;;                                                    (:name "Scheduled today"
-      ;;                                                           :date today
-      ;;                                                           :scheduled past ;; ensure overdue items
-      ;;                                                           :scheduled today
-      ;;                                                           )
-      ;;                                                    (:discard (:anything t))))))
-      ;;                (tags-todo "*"
-      ;;                           ((org-agenda-overriding-header "")
-      ;;                            (org-super-agenda-groups
-      ;;                             '((:discard (:scheduled t))
-      ;;                               (:name "Projects"
-      ;;                                      :children t
-      ;;                                      :order 2)
-      ;;                               (:name "Tasks"
-      ;;                                      :children nil
-      ;;                                      :order 1
-      ;;                                      )
-      ;;                               (:discard (:anything t))
-      ;;                               ))))
-      ;;                )
-      ;;  (
-      ;;   (org-agenda-prefix-format '((agenda  . "  %-5t %6e ")
-      ;;                               (timeline  . "%s ")
-      ;;                               (todo  . "        %6e ")
-      ;;                               (tags  . "        %6e ")
-      ;;                               (search . "%l")))
-      ;;   (org-tags-match-list-sublevels t)
-      ;;   ))
 
       ("C" "Current project" ((tags "+LEVEL=1+CATEGORY=\"TASKS\"
                                     |+LEVEL=2+CATEGORY=\"TASKS\""))
@@ -1260,22 +1188,6 @@ than having to call `add-to-list' multiple times."
   ;; ("m" (aj/refile-to-file-headline +MAYBE "Ideas") "maybe")
   )
 
-;; (defhydra aj/gtd-someday-refile ()
-;;   "SOMEDAY:"
-;;   ("b" (aj/refile-to-file-headline +SOMEDAY "Build" )     "build" )
-;;   ("B" (aj/refile-to-file-headline +SOMEDAY "Buy" )       "Buy" )
-;;   ("c" (aj/refile-to-file-headline +SOMEDAY "Configure" ) "configure" )
-;;   ("d" (aj/refile-to-file-headline +SOMEDAY "Do" )        "do" )
-;;   ("g" (aj/refile-to-file-headline +SOMEDAY "Go" )        "go" )
-;;   ("h" (aj/refile-to-file-headline +SOMEDAY "Habit" )    "habit" )
-;;   ("l" (aj/refile-to-file-headline +SOMEDAY "Learn" )     "learn" )
-;;   ("L" (aj/refile-to-file-headline +SOMEDAY "Listen" )    "Listen" )
-;;   ("m" (aj/refile-to-file-headline +SOMEDAY "MOC" )       "moc" )
-;;   ("p" (aj/refile-to-file-headline +SOMEDAY "Program" )   "program" )
-;;   ("r" (aj/refile-to-file-headline +SOMEDAY "Read" )      "read" )
-;;   ("W" (aj/refile-to-file-headline +SOMEDAY "Watch" )     "Watch" )
-;;   ("w" (aj/refile-to-file-headline +SOMEDAY "Write" )     "write" )
-;;   )
 (defhydra aj/grep-or-nothing (:color blue)
   "grep this file:"
   ("g" (counsel-grep-or-swiper)))
