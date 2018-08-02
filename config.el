@@ -1119,7 +1119,8 @@ than having to call `add-to-list' multiple times."
                       :color blue)
   "Agenda"
   ("a" (org-agenda nil "9") "Agenda")
-  ("c" (org-agenda nil "c") "Clever")
+  ("c" (aj/show-clever-agenda-and-filter) "Clever")
+  ("g" (org-agenda nil "c") "Clever")
   ;; ("p" (org-agenda nil "P") "Projects Overview")
   ("P" (org-agenda nil "p") "Projectile Projects")
   ("i" (org-agenda nil "i") "inbox")

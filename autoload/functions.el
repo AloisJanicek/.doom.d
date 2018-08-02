@@ -1182,6 +1182,29 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   )
 
 ;;;###autoload
+(defun aj/clever-agenda-filter ()
+  (interactive)
+  (let (tag)
+    (mapcar (lambda (element)
+              (let* ((hm (elt element 0))
+                     (tag (list (concat "+" (elt element 2)))))
+                (if (not (time-less-p (current-time) (aj/time-from-h-m hm)))
+                    (setq tag-to-narrow tag))))
+            +aj/time-blocks)
+    (org-agenda-filter-apply tag-to-narrow 'tag)
+    )
+  )
+
+;;;###autoload
+(defun aj/show-clever-agenda-and-filter ()
+  (interactive)
+  (progn
+  (org-agenda nil "c")
+  (aj/clever-agenda-filter)
+    )
+  )
+
+;;;###autoload
 (defun aj/has-children-p (file headline)
   "Checks if HEADLINE under FILE has children and return t. Otherwise nil"
   (save-excursion
