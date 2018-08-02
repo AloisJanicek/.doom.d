@@ -408,6 +408,7 @@
 
 (after! helm-dash
   (setq helm-dash-docsets-path (expand-file-name "~/Reference/Docsets"))
+  (setq helm-dash-browser-func 'browse-url-chromium)
   )
 
 (after! help
