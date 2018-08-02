@@ -591,6 +591,10 @@
      :desc "Echo"                     :nv     "e" #'view-echo-area-messages
      :desc "Pop on error"             :nv     "P" #'toggle-debug-on-error
      :desc "Dash docset"              :nv     "/" #'counsel-dash
+     :desc "Zeal at point"            :nv     "z" #'zeal-at-point
+     :desc "Zeal search"              :nv     "s" #'zeal-at-point-search
+     :desc "Zeal set buffer docset"   :nv     "Z" #'zeal-at-point-set-docset
+     :desc "Describe DOOM setting"    :nv     "S" #'doom/describe-setters
      )
    (:desc "jump:"    :prefix "j"
      :desc "file"                     :nv     "f" #'counsel-file-jump

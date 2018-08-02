@@ -129,3 +129,7 @@
   )
 
 (package! xml+)
+
+(package! zeal-at-point
+  :recipe (:fetcher github :repo "jinzhu/zeal-at-point")
+  )

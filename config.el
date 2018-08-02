@@ -254,6 +254,13 @@
   ;; (add-to-list 'hippie-expand-try-functions-list #'yankpad-expand)
   )
 
+(def-package! zeal-at-point
+  :commands (zeal-at-point zeal-at-point-search zeal-at-point-set-docset)
+  :config
+  (add-to-list 'zeal-at-point-mode-alist '(web-mode . "html"))
+  (add-to-list 'zeal-at-point-mode-alist '(pug-mode . ("html" "pug")))
+  )
+
 (after! apropos
   (set-popup-rule! "*apropos\*"                     :size 0.4 :side 'left :select t)
   (set-popup-rule! "*Apropos\*"                     :size 0.4 :side 'left :select t))
