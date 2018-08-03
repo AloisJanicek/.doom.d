@@ -453,6 +453,11 @@
 (after! info
   (advice-add 'info :before 'aj/set-info-popup-width))
 
+(after! ispell
+  (setq ispell-program-name "aspell")
+  (add-to-list 'ispell-extra-args "--sug-mode=ultra")
+  )
+
 (after! ivy
   (ivy-rich-mode)
   (setq ivy-height 40)
