@@ -188,6 +188,10 @@ Use `org-agenda-refile' in `org-agenda' mode."
 (defun aj/my-org-faces ()
   "set org faces how I like them"
   (set-face-attribute     'org-level-1 nil                :height 1.0 :background nil)
+  (set-face-attribute     'outline-1   nil                :height 1.0)
+  (set-face-attribute     'outline-2   nil                :height 1.0)
+  (set-face-attribute     'outline-3   nil                :height 1.0)
+  (set-face-attribute     'outline-4   nil                :height 1.0)
   (set-face-attribute     'org-level-2 nil                :height 1.0)
   (set-face-attribute     'org-level-3 nil                :height 1.0)
   (set-face-attribute     'org-level-4 nil                :height 1.0)
