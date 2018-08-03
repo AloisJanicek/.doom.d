@@ -1111,25 +1111,16 @@ than having to call `add-to-list' multiple times."
 
 (defhydra aj/agenda ( :body-pre
                       (aj/org-agenda-clever)
-                      ;; (progn
-                      ;;   ;; (org-agenda nil "g")
-                      ;;   ;; (aj/remap-keys-for-org-agenda) ;; remap keys for org agenda
-                      ;;   ;; (projectile-project-root)
-                      ;;   )
                       :color blue)
   "Agenda"
   ("a" (org-agenda nil "9") "Agenda")
-  ;; ("c" (aj/show-clever-agenda-and-filter) "Clever")
-  ;; ("c" (aj/maybe-cancel-agenda-filter/body) "Clever")
   ("c" ((lambda () (let ((hydra-lv nil))
                     (aj/maybe-cancel-agenda-filter/body)))) "Clever")
   ("g" (org-agenda nil "c") "Clever")
-  ;; ("p" (org-agenda nil "P") "Projects Overview")
   ("P" (org-agenda nil "p") "Projectile Projects")
   ("i" (org-agenda nil "i") "inbox")
   ("s" (org-agenda nil "3") "someday")
   ("m" (org-agenda nil "8") "maybe")
-  ;; ("t" (org-agenda nil "T") "Tasks Overview")
   )
 
 (defhydra aj/maybe-cancel-agenda-filter
@@ -1137,7 +1128,7 @@ than having to call `add-to-list' multiple times."
    (aj/show-clever-agenda-and-filter)
    :color blue
    )
-  "maybe"
+  "Agenda"
   ("c" (org-agenda-filter-show-all-tag) "cancel filter" ))
 
 
