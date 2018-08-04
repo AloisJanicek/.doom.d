@@ -10,9 +10,12 @@
 (def-package! all-the-icons-ivy
   :after ivy
   :config
-  (dolist (cmd '( counsel-find-file counsel-file-jump
-                                    counsel-dired-jump counsel-projectile-find-dir
-                                    counsel-projectile-switch-project))
+  (dolist (cmd '( counsel-find-file
+                  counsel-file-jump
+                  projectile-find-file
+                  counsel-projectile-find-file
+                  counsel-dired-jump counsel-projectile-find-dir
+                  counsel-projectile-switch-project))
     (ivy-set-display-transformer cmd #'all-the-icons-ivy-file-transformer)))
 
 (def-package! apache-mode
@@ -302,7 +305,9 @@
   )
 
 (after! counsel-projectile
-  (advice-add  #'+ivy-projectile-find-file-transformer :override #'+ivy-projectile-find-file-combined-transformer))
+  (ivy-set-display-transformer #'counsel-projectile-find-file #'+ivy-projectile-find-file-combined-transformer)
+  ;; (advice-add  #'+ivy-projectile-find-file-transformer :override #'+ivy-projectile-find-file-combined-transformer)
+  )
 
 (after! epa
   (setq epa-pinentry-mode 'ask))
