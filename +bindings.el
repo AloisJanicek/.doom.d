@@ -652,6 +652,7 @@
      :desc  "brain-goto" :nv  "b" (λ! (my/org-brain-goto nil 'aj/open-file-switch-create-indirect-buffer-per-persp))
      :desc "indirect"     :nv "i" (λ! (aj/open-file-switch-create-indirect-buffer-per-persp (buffer-file-name (current-buffer))))
      :desc "feed"         :nv "f" #'elfeed
+     :desc "wikipedia"    :nv "w" #'helm-wikipedia-suggest
      )
    ;; (:desc "mmmmmmmm" :prefix "m" )
    ;; switch buffer          ","
