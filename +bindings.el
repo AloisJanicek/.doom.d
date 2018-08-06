@@ -66,6 +66,7 @@
    (:map ereader-mode-map
      :inmev "o" #'ivy-pages
      :inmev "O" #'ereader-goto-chapter
+     :inmev "q" #'kill-buffer
      )
    )
  (:after flycheck
