@@ -933,16 +933,16 @@ If run with `\\[universal-argument]', or SAME-WINDOW as t, use current window."
     (message "prettier-stylelint fixing the file %s" (buffer-file-name))
     (shell-command (concat "prettier-stylelint --quiet --write " (buffer-file-name)))
     (revert-buffer t t)))
-;;;###autoload
-(defun aj/update-my-doom-theme ()
-  "Update my Doom theme. I should not this this way, but..."
-  (interactive)
-  (progn
-    (byte-compile-file "/tmp/doom-breeze-theme.el")
-    (shell-command "cd /tmp/ && cp doom-breeze* ~/.emacs.d/.local/packages/elpa/doom-themes*")
-    (shell-command "ls ~/.emacs.d/.local/packages/elpa/doom-themes*")
-    )
-  )
+;; ;;;###autoload
+;; (defun aj/update-my-doom-theme ()
+;;   "Update my Doom theme. I should not this this way, but..."
+;;   (interactive)
+;;   (progn
+;;     (byte-compile-file "/tmp/doom-breeze-theme.el")
+;;     (shell-command "cd /tmp/ && cp doom-breeze* ~/.emacs.d/.local/packages/elpa/doom-themes*")
+;;     (shell-command "ls ~/.emacs.d/.local/packages/elpa/doom-themes*")
+;;     )
+;;   )
 ;;;###autoload
 (defun counsel-yank-bash-history ()
   "Yank the bash history"
