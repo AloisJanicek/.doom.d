@@ -580,6 +580,7 @@
      :desc "jump file"                :nv     "j" #'counsel-file-jump
      :desc "jump dir"                 :nv     "k" #'counsel-dired-jump
      )
+   (:desc "Follow"                    :nv     "F" #'link-hint-open-link)
    (:desc "git"      :prefix "g"
      :desc "/log"                     :nv     "/" #'counsel-git-log
      )
