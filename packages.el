@@ -14,6 +14,10 @@
   :recipe (:fetcher github :repo "akirak/counsel-org-clock")
   )
 
+(package! counsel-projectile
+  :recipe (:fetcher github :repo "akash-akya/counsel-projectile" :branch "remap-fix")
+  )
+
 (package! define-word
   )
 
