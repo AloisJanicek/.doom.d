@@ -528,13 +528,7 @@
      :desc "GTD"                      :nv     "g" #'aj/gtd-goto/body
      :desc "GTD"                      :nv     "g" (λ! (let ((hydra-lv nil)) (aj/gtd-goto/body)))
      :desc "Sidebar"                   :nv     "s" #'+treemacs/toggle
-     (:desc "Wiki"      :prefix               "w"
-       :desc "private"                  :nv   "p" #'aj/goto-private-wiki
-       :desc "work"                     :nv   "w" #'aj/goto-work-wiki
-       :desc "build"                    :nv   "b" #'aj/goto-build-wiki
-       :desc "environment"              :nv   "e" #'aj/goto-environment-wiki
-       :desc "eDucation"                :nv   "d" #'aj/goto-education-wiki
-       ))
+     )
    (:desc "project"  :prefix "p"
      :desc "Agenda"                   :nv     "a" #'aj/project
      :desc "bootstrap"                :nv     "B" #'aj/project-bootstrap
