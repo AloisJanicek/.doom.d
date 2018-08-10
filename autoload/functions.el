@@ -541,7 +541,8 @@ If either org-pomodoro or org-clock aren't active, print \"No Active Task \" "
   (interactive)
   (save-excursion
     (find-file (concat (projectile-project-root) "README.org"))
-    (counsel-org-goto)))
+    (aj/org-menu-and-goto)
+    ))
 
 ;;;###autoload
 (defun aj/org-menu-and-goto ()
