@@ -9,23 +9,6 @@
   (string-match org-bracket-link-regexp text)
   (insert (substring text (match-beginning 1) (match-end 1))))
 ;;;###autoload
-(defun counsel-org-goto-open-org-link (x)
-  "Open selected link"
-  (org-goto-marker-or-bmk (cdr x))
-  (org-open-at-point)
-  ;; (bury-buffer)
-  ;; (kill-buffer)
-  )
-;;;###autoload
-(defun counsel-org-goto-wiki-action (x)
-  "Go to headline in candidate X."
-  (org-goto-marker-or-bmk (cdr x))
-  (outline-show-branches)
-  ;; (forward-line 1)
-  ;; (org-cycle)
-  ;; (forward-line -1)
-  (org-narrow-to-subtree))
-;;;###autoload
 (defun org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to todo otherwise."
   (let (org-log-done org-log-states)   ; turn off logging
@@ -396,23 +379,6 @@ and returns that weird time number which Emacs understands."
       (emacs-lock-mode 'kill)
       (turn-off-solaire-mode))))
 ;;;###autoload
-(defun aj/goto-bookmarks ()
-  "Selects and opens links"
-  (interactive)
-  (persp-remove-buffer "BOOKMARKS.org")
-  (if (get-buffer +BOOKMARKS)
-      (progn
-        (pop-to-buffer "BOOKMARKS.org")
-        (emacs-lock-mode 'kill)
-        (widen)
-        (counsel-org-goto-bookmarks))
-    (progn
-      (pop-to-buffer (find-file-noselect +BOOKMARKS))
-      (emacs-lock-mode 'kill)
-      (turn-off-solaire-mode)
-      (widen)
-      (counsel-org-goto-bookmarks))))
-;;;###autoload
 (defun aj-strike-through-org-headline ()
   "Strikes through headline in org mode.
 Searches for beginning of text segment of a headline under the point, inserts \"+\",
@@ -489,17 +455,6 @@ of text segment of current headline.
     (when (eq major-mode 'org-mode)
       (call-interactively #'my-org-retrieve-url-from-point))))
 ;;;###autoload
-(defun counsel-org-goto-bookmarks (&optional something)
-  "Browse my bookmarks"
-  (interactive)
-  (ivy-read "Open: " (counsel-org-goto--get-headlines)
-            :history 'counsel-org-goto-bookmarks
-            :initial-input (ivy-read "Type: " '(":link:" ":book:" ":moc:" ":yt:" ":tut:" " "))
-            :action 'counsel-org-goto-open-org-link
-            :caller 'counsel-org-goto-bookmarks)
-  )
-
-;;;###autoload
 (defun aj/create-new-org-l1-heading (x)
   "Creates new top level heading in current org file from which ivy was called"
   (interactive)
@@ -512,25 +467,6 @@ of text segment of current headline.
     (forward-line 1)
     (org-cycle)
     (evil-open-below 1)))
-;;;###autoload
-(defun counsel-org-goto-private-wiki ()
-  "Go to a different location in my private wiki file."
-  (interactive)
-  (let ((ivy-height 40)
-        ;; (ivy-posframe-font (font-spec :family "Iosevka SS08" :size 16))
-        (ivy-posframe-parameters `((min-width . 120)
-                                   (height . 30)
-                                   (min-height . ,ivy-height)
-                                   (internal-border-width . 20)))
-        ;; (first-headline (search-forward "*"))
-        )
-    (search-forward "*")
-    (ivy-read "Goto: " (counsel-org-goto--get-headlines)
-              :history 'counsel-org-goto-history
-              ;; :action 'aj/create-new-org-l1-heading
-              :action 'counsel-org-goto-wiki-action
-              :caller 'counsel-org-goto))
-  )
 
 ;;;###autoload
 (defun aj/refile-to-file-headline (file headline &optional arg)
@@ -606,6 +542,21 @@ If either org-pomodoro or org-clock aren't active, print \"No Active Task \" "
   (save-excursion
     (find-file (concat (projectile-project-root) "README.org"))
     (counsel-org-goto)))
+
+;;;###autoload
+(defun aj/org-menu-and-goto ()
+  (interactive)
+  (progn
+    (widen)
+    (search-forward "*")
+    (org-set-visibility-according-to-property)
+    (outline-show-branches)
+    (counsel-outline)
+    (outline-show-branches)
+    (outline-show-entry)
+    (org-narrow-to-subtree)
+    )
+  )
 ;;;###autoload
 (defun aj/org-projectile-capture-for-current-project ()
   "Call standard capture template for current org-projectile file"
@@ -1252,28 +1203,6 @@ is nil, refile in the current file."
   "Sets buffer-local variable which allows to complete all tags from org-agenda files"
   (setq-local org-complete-tags-always-offer-all-agenda-tags t))
 
-;;;###autoload
-(defun aj/bookmarks ()
-  (interactive)
-  (let* ((file (read-file-name "File: " "~/org/brain/"))
-         (buffer (file-name-nondirectory file))
-         (was-buffer-live (get-buffer buffer))
-         (counsel-org-headline-display-style 'title)
-         )
-    (if (not was-buffer-live)
-        (find-file file)
-      (switch-to-buffer buffer)
-      )
-    (save-excursion
-      (goto-char (org-find-exact-headline-in-buffer "LINKS" (current-buffer) t))
-      (org-narrow-to-subtree)
-      (org-show-children)
-      (counsel-org-goto-bookmarks "link")
-      )
-    ;; (if (not was-buffer-live)
-    ;;     (kill-buffer file))
-    )
-  )
 ;;;###autoload
 (defun aj/take-care-of-org-buffers (&rest _)
   "This is meant as an advice to all commands which like to opens a lot of org files"

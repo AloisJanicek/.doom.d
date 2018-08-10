@@ -158,13 +158,7 @@
        (:desc "jump:"          :prefix        "j"
          :desc "headline"           :nv       "h" #'counsel-org-goto
          )
-       :desc "Wiki"       :nv                 "w"     (λ! (progn
-                                                            (widen)
-                                                            (search-forward "*")
-                                                            (org-set-visibility-according-to-property)
-                                                            (outline-show-branches)
-                                                            (counsel-org-goto-private-wiki))
-                                                          )
+       :desc "Wiki"       :nv                 "w" #'aj/org-menu-and-goto
        (:desc "Refile:"       :prefix         "r"
          :desc "file"          :nv            "f" #'aj/refile-to-file
          :desc "targets"       :nv            "t" #'org-refile
@@ -523,8 +517,7 @@
      :desc "App: MPD"                 :nv     "m" (λ! (let ((hydra-lv nil)) (aj/mpd-control/body)))
      ;; :desc "Clock"                    :nv     "c" #'aj/clock-menu
      :desc "Imenu-list"               :nv     "i" #'aj/open-imenu-sidebar
-     ;; :desc "Links"                    :nv     "l" #'aj/goto-bookmarks
-     :desc "Links"                    :nv     "l" #'aj/bookmarks
+     ;; :desc "Links"                    :nv     "l" #'aj/bookmarks
      :desc "GTD"                      :nv     "g" #'aj/gtd-goto/body
      :desc "GTD"                      :nv     "g" (λ! (let ((hydra-lv nil)) (aj/gtd-goto/body)))
      :desc "Sidebar"                   :nv     "s" #'+treemacs/toggle
