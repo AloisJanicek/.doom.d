@@ -1075,8 +1075,8 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
 (defun aj/show-clever-agenda-and-filter ()
   (interactive)
   (progn
-  (org-agenda nil "c")
-  (aj/clever-agenda-filter)
+    (org-agenda nil "c")
+    (aj/clever-agenda-filter)
     )
   )
 
@@ -1343,8 +1343,6 @@ With prefix ARG initiate refile into current file."
          (marker (or (org-get-at-bol 'org-hd-marker)
                      (org-agenda-error)))
          (buffer (marker-buffer marker))
-         (counsel-org-headline-display-style 'title)
-         (counsel-org-headline-display-todo t)
          (current-file (buffer-file-name))
          )
     (with-current-buffer buffer
@@ -1355,7 +1353,8 @@ With prefix ARG initiate refile into current file."
        (if (not (string= current-file file))
            (find-file file)
          )
-       (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
+       (widen)
+       (ivy-read "Choose headline: " (counsel-outline-candidates (cdr (assq major-mode counsel-outline-settings)))
                  :action '(lambda (x)
                             (goto-char (cdr x))))
        (let ((level (org-element-property :level (org-element-at-point))))
@@ -1419,7 +1418,8 @@ With prefix ARG initiate refile into current file."
        (goto-char marker)
        (org-cut-subtree)
        (find-file file)
-       (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
+       (widen)
+       (ivy-read "Choose headline: " (counsel-outline-candidates (cdr (assq major-mode counsel-outline-settings)))
                  :action '(lambda (x)
                             (goto-char (cdr x))))
        (let ((level (org-element-property :level (org-element-at-point))))
@@ -1466,8 +1466,9 @@ FIXME: this should be just one function acting differently depending on argument
        (goto-char marker)
        (org-cut-subtree)
        (find-file file)
+       (widen)
        (goto-char (point-max))
-       (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
+       (ivy-read "Choose headline: " (counsel-outline-candidates (cdr (assq major-mode counsel-outline-settings)))
                  :action '(lambda (x)
                             (if (stringp x) nil
                               (goto-char (cdr x))
@@ -1705,14 +1706,14 @@ Epub files offten has very poor quality."
   (when (not (featurep 'link-hint))
     (require 'link-hint))
   (avy-with link-hint-open-link
-            (link-hint--one :open)
-            (my/org-brain-goto-current)
-            ))
+    (link-hint--one :open)
+    (my/org-brain-goto-current)
+    ))
 
 ;;;###autoload
- (defun +javascript*sort-imenu-index-by-position (orig-fn)
-    (let ((tide-imenu-flatten t))
-      (cl-sort (funcall orig-fn) #'< :key #'cdr)))
+(defun +javascript*sort-imenu-index-by-position (orig-fn)
+  (let ((tide-imenu-flatten t))
+    (cl-sort (funcall orig-fn) #'< :key #'cdr)))
 
 ;;;###autoload
 (defun aj/capture-into-project ()
