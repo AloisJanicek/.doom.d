@@ -1335,109 +1335,6 @@ With prefix ARG initiate refile into current file."
          (org-refile-targets `((,file :maxlevel . 9))))
     (org-refile)))
 
-;;;###autoload
-(defun aj/org-agenda-refile-to-file-dont-ask (file)
-  "Refile to file FILE."
-  (interactive)
-  (let* ((buffer-orig (buffer-name))
-         (marker (or (org-get-at-bol 'org-hd-marker)
-                     (org-agenda-error)))
-         (buffer (marker-buffer marker))
-         (current-file (buffer-file-name))
-         )
-    (with-current-buffer buffer
-      (org-with-wide-buffer
-       (goto-char marker)
-       (org-cut-subtree)
-       (save-buffer)
-       (if (not (string= current-file file))
-           (find-file file)
-         )
-       (widen)
-       (ivy-read "Choose headline: " (counsel-outline-candidates (cdr (assq major-mode counsel-outline-settings)))
-                 :action '(lambda (x)
-                            (goto-char (cdr x))))
-       (let ((level (org-element-property :level (org-element-at-point))))
-         (org-narrow-to-subtree)
-         (outline-show-subtree)
-         (org-end-of-subtree t)
-         (newline)
-         (goto-char (point-max))
-         (org-paste-subtree (+ level 1))
-         )
-       (widen)
-       (save-buffer)
-       (delete-window)
-       (select-window (get-buffer-window "*Org Agenda*"))
-       (org-agenda-redo)
-       ))
-    )
-  )
-;;;###autoload
-(defun aj/org-agenda-refile-to-file-as-top-level (file)
-  "Refile to file FILE."
-  (interactive)
-  (let* ((buffer-orig (buffer-name))
-         (marker (or (org-get-at-bol 'org-hd-marker)
-                     (org-agenda-error)))
-         (buffer (marker-buffer marker)))
-    (with-current-buffer buffer
-      (org-with-wide-buffer
-       (goto-char marker)
-       (org-cut-subtree)
-       (find-file file)
-       ;; (ivy-read "Choose headline: " (counsel-org-goto--get-headlines)
-       ;;           :action '(lambda (x)
-       ;;                      (goto-char (cdr x))))
-       (goto-char (point-max))
-       (org-narrow-to-subtree)
-       (outline-show-subtree)
-       (org-end-of-subtree t)
-       (newline)
-       (goto-char (point-max))
-       (org-paste-subtree)
-       (widen)
-       (save-buffer)
-       (delete-window)
-       (select-window (get-buffer-window "*Org Agenda*"))
-       (org-agenda-redo)
-       ))
-    )
-  )
-;;;###autoload
-(defun aj/org-agenda-refile-to-file ()
-  "Same as `aj/refile-to-file', but works from org agenda type buffers"
-  (interactive)
-  (let* ((buffer-orig (buffer-name))
-         (marker (or (org-get-at-bol 'org-hd-marker)
-                     (org-agenda-error)))
-         (buffer (marker-buffer marker))
-         (file (read-file-name "Choose file: " "~/org/brain/")))
-    (with-current-buffer buffer
-      (org-with-wide-buffer
-       (goto-char marker)
-       (org-cut-subtree)
-       (find-file file)
-       (widen)
-       (ivy-read "Choose headline: " (counsel-outline-candidates (cdr (assq major-mode counsel-outline-settings)))
-                 :action '(lambda (x)
-                            (goto-char (cdr x))))
-       (let ((level (org-element-property :level (org-element-at-point))))
-         (org-narrow-to-subtree)
-         (outline-show-subtree)
-         (org-end-of-subtree t)
-         (newline)
-         (goto-char (point-max))
-         (org-paste-subtree (+ level 1))
-         )
-       (widen)
-       (save-buffer)
-       (delete-window)
-       (select-window (get-buffer-window "*Org Agenda*"))
-       (org-agenda-redo)
-       ))
-    )
-  )
 
 ;;;###autoload
 (defun aj/refile-to-project-readme ()
@@ -1448,46 +1345,6 @@ With prefix ARG initiate refile into current file."
                          :action (lambda (x) x)))
          (org-refile-targets `((,file :maxlevel . 9))))
     (org-refile)))
-
-;;;###autoload
-(defun aj/org-agenda-refile-to-project-readme ()
-  "Same as `aj/refile-to-project-readme', but works from org agenda type buffers.
-FIXME: this should be just one function acting differently depending on argument value..."
-  (interactive)
-  (let* ((buffer-orig (buffer-name))
-         (marker (or (org-get-at-bol 'org-hd-marker)
-                     (org-agenda-error)))
-         (buffer (marker-buffer marker))
-         (file (ivy-read "File: " (get-all-projectile-README-org-files)
-                         :action (lambda (x) x)))
-         )
-    (with-current-buffer buffer
-      (org-with-wide-buffer
-       (goto-char marker)
-       (org-cut-subtree)
-       (find-file file)
-       (widen)
-       (goto-char (point-max))
-       (ivy-read "Choose headline: " (counsel-outline-candidates (cdr (assq major-mode counsel-outline-settings)))
-                 :action '(lambda (x)
-                            (if (stringp x) nil
-                              (goto-char (cdr x))
-                              )))
-       (org-narrow-to-subtree)
-       (outline-show-subtree)
-       (org-end-of-subtree t)
-       (newline)
-       (goto-char (point-max))
-       ;; it doesn't actually paste this under selected heading and it is not obvious to me why
-       (org-paste-subtree)
-       (widen)
-       (save-buffer)
-       (delete-window)
-       (select-window (get-buffer-window "*Org Agenda*"))
-       (org-agenda-redo)
-       ))
-    )
-  )
 
 ;;;###autoload
 ;; https://emacs.stackexchange.com/questions/17622/how-can-i-walk-an-org-mode-tree
@@ -1706,9 +1563,9 @@ Epub files offten has very poor quality."
   (when (not (featurep 'link-hint))
     (require 'link-hint))
   (avy-with link-hint-open-link
-    (link-hint--one :open)
-    (my/org-brain-goto-current)
-    ))
+            (link-hint--one :open)
+            (my/org-brain-goto-current)
+            ))
 
 ;;;###autoload
 (defun +javascript*sort-imenu-index-by-position (orig-fn)
@@ -1737,3 +1594,58 @@ Epub files offten has very poor quality."
           ((t)
            (message "Invalid template")))
     ))
+
+;;;###autoload
+(defun aj/org-agenda-refile-to-file-custom (&optional file-name top-level readme)
+  "Refile to `FILE' from org-agenda buffers.
+If `FILE' is nil, user is prompt for file.
+If `TOP-LEVEL' is nil, user is also prompt for headline to refile under.
+If `TOP-LEVEL' is non-nil, refile as top level headline.
+If `README' is t, refile into current projectile project readme file.
+"
+  (interactive)
+  (let* ((buffer-orig (buffer-name))
+         (marker (or (org-get-at-bol 'org-hd-marker)
+                     (org-agenda-error)))
+         (buffer (marker-buffer marker))
+         (file (if (and (not file-name) (not readme))
+                   (read-file-name "Choose file to refile into: " "~/org/brain/")
+                 (if (and (not file-name) readme)
+                     (ivy-read "File: " (get-all-projectile-README-org-files)
+                               :action (lambda (x) x))
+                   file-name)))
+         (counsel-outline-display-style 'title)
+         (counsel-org-headline-display-tags t)
+         (counsel-org-headline-display-todo t)
+         )
+
+    (with-current-buffer buffer
+      (org-with-wide-buffer
+       (goto-char marker)
+       (org-cut-subtree)
+       (find-file file)
+       (widen)
+
+       (if (not top-level)
+           (ivy-read "Choose headline: " (counsel-outline-candidates (cdr (assq major-mode counsel-outline-settings)))
+                     :action '(lambda (x)
+                                (goto-char (cdr x))))
+         (goto-char (point-max)))
+
+       (let ((level (if (not top-level)
+                        (org-element-property :level (org-element-at-point)) 0)))
+         (org-narrow-to-subtree)
+         (outline-show-subtree)
+         (org-end-of-subtree t)
+         (newline)
+         (goto-char (point-max))
+         (org-paste-subtree (+ level 1))
+         )
+       (widen)
+       (save-buffer)
+       (delete-window)
+       (select-window (get-buffer-window "*Org Agenda*"))
+       (org-agenda-redo)
+       ))
+    )
+  )

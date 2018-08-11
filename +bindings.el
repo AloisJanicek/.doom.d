@@ -304,13 +304,18 @@
      (:prefix "d"
        :m         "s"     #'org-agenda-schedule
        (:desc "refile:"   :prefix "r"
+
          :desc "targets"        :m "t"  #'org-agenda-refile
-         :desc "GTD"            :m "g"  (λ! (aj/org-agenda-refile-to-file-dont-ask +GTD))
+
+         :desc "GTD"            :m "g"  (λ! (aj/org-agenda-refile-to-file-custom +GTD nil))
+         :desc "someday"        :m "s"  (λ! (aj/org-agenda-refile-to-file-custom +SOMEDAY t))
+         :desc "maybe"          :m "m"  (λ! (aj/org-agenda-refile-to-file-custom +MAYBE t))
+
          :desc "journal"        :m "j"  (λ! (aj/org-agenda-refile-to-datetree "~/org/JOURNAL.org"))
-         :desc "file"           :m "f"  #'aj/org-agenda-refile-to-file
-         :desc "project readme" :m "p"  #'aj/org-agenda-refile-to-project-readme
-         :desc "someday"        :m "s"  (λ! (aj/org-agenda-refile-to-file-as-top-level +SOMEDAY))
-         :desc "maybe"          :m "m"  (λ! (aj/org-agenda-refile-to-file-as-top-level +MAYBE))
+
+         :desc "file top level"            :m "F"  (λ! (aj/org-agenda-refile-to-file-custom nil t))
+         :desc "file and headline"         :m "f"  (λ! (aj/org-agenda-refile-to-file-custom nil nil))
+         :desc "project readme"            :m "p"  (λ! (aj/org-agenda-refile-to-file-custom nil nil t))
          )
        )
      )
