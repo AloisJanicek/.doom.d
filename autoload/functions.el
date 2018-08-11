@@ -1601,7 +1601,7 @@ Epub files offten has very poor quality."
 If `FILE' is nil, user is prompt for file.
 If `TOP-LEVEL' is nil, user is also prompt for headline to refile under.
 If `TOP-LEVEL' is non-nil, refile as top level headline.
-If `README' is t, refile into current projectile project readme file.
+If `README' is t, ask user for projectile project instead of file.
 "
   (interactive)
   (let* ((buffer-orig (buffer-name))
