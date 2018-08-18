@@ -481,7 +481,9 @@
   )
 
 (after! ivy-posframe
-  (advice-add #'ivy-posframe-enable :around #'doom*shut-up))
+  (advice-add #'ivy-posframe-enable :around #'doom*shut-up)
+  (setq ivy-posframe-width 120)
+  )
 
 (after! ivy-rich
   (advice-add #'+ivy-recentf-transformer :override #'+ivy-recentf-combined-transformer)
