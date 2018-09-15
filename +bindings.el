@@ -31,6 +31,10 @@
    "<f3>"      #'which-key-show-major-mode
    "<f4>"      #'which-key-show-minor-mode-keymap
    "<f5>"      #'which-key-show-keymap
+   :imnv "C-k" #'evil-window-up
+   :imnv "C-j" #'evil-window-down
+   :imnv "C-h" #'evil-window-left
+   :imnv "C-l" #'evil-window-right
    (:prefix "g"
      :n "2" #'avy-goto-char-2
      :n "h" #'avy-goto-char-timer
