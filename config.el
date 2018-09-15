@@ -1132,9 +1132,9 @@ than having to call `add-to-list' multiple times."
    :color blue
    )
   "Agenda"
-  ;; ("c" (org-agenda-filter-show-all-tag) "cancel filter" )
+  ("c" (org-agenda-filter-show-all-tag) "cancel filter" )
   ;; ("f" (org-agenda-filter-apply org-agenda-tag-filter 'tag) "filter by last choice")
-  ("c" (org-agenda-filter-apply aj/agenda-filter 'tag) "clever (last filter)")
+  ;; ("c" (org-agenda-filter-apply aj/agenda-filter 'tag) "clever (last filter)")
   )
 
 
