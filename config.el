@@ -916,40 +916,29 @@ than having to call `add-to-list' multiple times."
 
                            ;; Capture: GTD
                            ("g" "GTD:")
+
                            ("gi" "INBOX" entry
                             (file+headline +GTD "INBOX")
                             "* %?" :prepend t)
 
-                           ("gm" "MORNING" entry
-                            (file+headline +GTD "MORNING")
+                           ("ge" "ENVIRONMENT" entry
+                            (file+headline +GTD "ENVIRONMENT")
                             "* TODO %?" :prepend t)
 
-                           ("gw" "WORK" entry
-                            (file+headline +GTD "WORK")
+                           ("gj" "JOB" entry
+                            (file+headline +GTD "JOB")
                             "* TODO %?" :prepend t)
 
-                           ("gl" "LUNCH" entry
-                            (file+headline +GTD "LUNCH")
+                           ("gd" "EDUCATION" entry
+                            (file+headline +GTD "EDUCATION")
                             "* TODO %?" :prepend t)
 
-                           ("go" "OUTSIDE" entry
-                            (file+headline +GTD "OUTSIDE")
+                           ("gp" "PERSONAL" entry
+                            (file+headline +GTD "PERSONAL")
                             "* TODO %?" :prepend t)
 
-                           ("ge" "EVENING" entry
-                            (file+headline +GTD "EVENING")
-                            "* TODO %?" :prepend t)
-
-                           ("gs" "SLEEP" entry
-                            (file+headline +GTD "SLEEP")
-                            "* TODO %?" :prepend t)
-
-                           ("g0" "saturday" entry
-                            (file+headline +GTD "SATURDAY")
-                            "* TODO %?" :prepend t)
-
-                           ("g1" "sunday" entry
-                            (file+headline +GTD "SUNDAY")
+                           ("gf" "PROFESSION" entry
+                            (file+headline +GTD "PROFESSION")
                             "* TODO %?" :prepend t)
 
                            ("c" "calendar" entry (file+headline "~/org/GTD.org" "CALENDAR")
@@ -1174,14 +1163,11 @@ than having to call `add-to-list' multiple times."
   ("c" ((lambda () (let ((hydra-lv nil)) (aj/capture-code/body)))) "code:" :exit t)
   ("i" (org-capture nil "i") "issue" :exit t)
   ("k" (org-capture nil "gi") "inbox" :exit t)
-  ("m" (org-capture nil "gm") "morning" :exit t)
-  ("w" (org-capture nil "gw") "work:" :exit t)
-  ("l" (org-capture nil "gl") "lunch:" :exit t)
-  ("o" (org-capture nil "go") "outside:" :exit t)
-  ("e" (org-capture nil "ge") "evening" :exit t)
-  ("s" (org-capture nil "gs") "sleep" :exit t)
-  ("0" (org-capture nil "g0") "saturday" :exit t)
-  ("1" (org-capture nil "g1") "sunday" :exit t)
+  ("e" (org-capture nil "ge") "env" :exit t)
+  ("j" (org-capture nil "gj") "job" :exit t)
+  ("d" (org-capture nil "gd") "education" :exit t)
+  ("p" (org-capture nil "gp") "personal" :exit t)
+  ("f" (org-capture nil "gf") "profession" :exit t)
   ("j" (org-capture nil "e") "journal" :exit t)
   ("C" (aj/calendar-the-right-way) "CAL:" :exit t)
   ("p" (aj/capture-into-project) "into project:" :exit t)

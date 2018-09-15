@@ -1076,7 +1076,7 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   (interactive)
   (progn
     (org-agenda nil "c")
-    (aj/clever-agenda-filter)
+    ;; (aj/clever-agenda-filter)
     )
   )
 
