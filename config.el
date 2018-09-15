@@ -729,8 +729,8 @@ than having to call `add-to-list' multiple times."
    `(("GTD" ,(list (all-the-icons-faicon "cogs")) nil nil :ascent center))
    org-agenda-todo-list-sublevels t
    org-agenda-log-mode-items '(closed clock state)
-   org-agenda-span 7
-   org-agenda-start-on-weekday 1
+   org-agenda-span 10
+   org-agenda-start-on-weekday nil
    org-agenda-start-with-log-mode nil
    org-agenda-start-day "1d"
    org-agenda-compact-blocks t
