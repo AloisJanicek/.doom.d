@@ -706,6 +706,7 @@ than having to call `add-to-list' multiple times."
   (advice-add 'org-agenda-archive-default :after #'org-save-all-org-buffers)
   (advice-add 'org-agenda-exit :before 'org-save-all-org-buffers)
   (advice-add 'org-agenda-switch-to :after 'turn-off-solaire-mode)
+  (advice-add 'org-agenda-filter-by-tag :around 'aj/copy-agenda-filter)
   (advice-add #'org-copy :after #'aj/take-care-of-org-buffers)
   (add-hook 'org-agenda-mode-hook #'hide-mode-line-mode)
   (add-hook 'org-agenda-mode-hook #'aj/complete-all-tags-for-org)
@@ -1131,7 +1132,10 @@ than having to call `add-to-list' multiple times."
    :color blue
    )
   "Agenda"
-  ("c" (org-agenda-filter-show-all-tag) "cancel filter" ))
+  ;; ("c" (org-agenda-filter-show-all-tag) "cancel filter" )
+  ;; ("f" (org-agenda-filter-apply org-agenda-tag-filter 'tag) "filter by last choice")
+  ("c" (org-agenda-filter-apply aj/agenda-filter 'tag) "clever (last filter)")
+  )
 
 
 (defhydra aj/agenda-hydra (:color blue )

@@ -1669,3 +1669,11 @@ This works also with indirect buffers
          org-brain--vis-entry)
         (t
          (error "Not in org-mode or org-brain-visualize"))))
+
+;;;###autoload
+(defun aj/copy-agenda-filter (orig-fn &rest args)
+  "Copy value of `org-agenda-filter' into custom variable,
+so it can be used later."
+  (apply orig-fn args)
+  (when (not (equal nil org-agenda-filter))
+    (setq aj/agenda-filter org-agenda-filter)))

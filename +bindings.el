@@ -284,6 +284,15 @@
    )
  (:after evil-org-agenda
    (:map org-agenda-mode-map
+     (:prefix "s"
+       :m         "f"     (λ! (org-agenda-filter-apply aj/agenda-filter 'tag))
+       :m         "i"     #'org-agenda-clock-in
+       :m         "o"     #'org-agenda-clock-out
+       :m         "p"     #'org-pomodoro
+       :m         "m"     #'aj/clock-menu
+       :m         "l"     #'visual-line-mode
+       )
+
      (:prefix "c"
        :m         "t"     #'counsel-org-tag-agenda
        :m         "i"     #'org-agenda-clock-in
