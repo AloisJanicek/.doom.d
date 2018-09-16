@@ -286,11 +286,7 @@
    (:map org-agenda-mode-map
      (:prefix "s"
        :m         "f"     (λ! (org-agenda-filter-apply aj/agenda-filter 'tag))
-       :m         "i"     #'org-agenda-clock-in
-       :m         "o"     #'org-agenda-clock-out
-       :m         "p"     #'org-pomodoro
-       :m         "m"     #'aj/clock-menu
-       :m         "l"     #'visual-line-mode
+       :m         "F"     (λ! (org-agenda-filter-show-all-tag))
        )
 
      (:prefix "c"
