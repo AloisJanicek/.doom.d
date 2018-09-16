@@ -1177,7 +1177,7 @@ than having to call `add-to-list' multiple times."
   ("f" (org-capture nil "gf") "profession" :exit t)
   ("j" (org-capture nil "e") "journal" :exit t)
   ("C" (aj/calendar-the-right-way) "CAL:" :exit t)
-  ("p" (aj/capture-into-project) "into project:" :exit t)
+  ("P" (aj/capture-into-project) "into project:" :exit t)
   )
 
 (defhydra aj/gtd-goto (:color blue)
