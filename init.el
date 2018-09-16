@@ -171,6 +171,9 @@
 (defvar org-files nil
   "Lists of org files I always want to have opened for quick access.")
 
+(defvar aj/org-agenda nil
+  "Variable for preserving filter choice between agenda views")
+
 (defvar +org-projectile-per-project-filepath "README.org"
   "Org file in every project which can be used to contribute into agenda")
 

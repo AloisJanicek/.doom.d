@@ -1113,7 +1113,10 @@ than having to call `add-to-list' multiple times."
   (push "~/org/snippets" yas-snippet-dirs))
 
 (defhydra aj/agenda ( :body-pre
-                      (aj/org-agenda-clever)
+                      ;; (aj/org-agenda-clever)
+                      (let ((org-agenda-span 1)
+                            (aj/org-agenda nil))
+                        (org-agenda nil "9"))
                       :color blue)
   "Agenda"
   ("a" (org-agenda nil "9") "Agenda")
