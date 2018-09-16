@@ -1112,12 +1112,14 @@ than having to call `add-to-list' multiple times."
 (after! yasnippet
   (push "~/org/snippets" yas-snippet-dirs))
 
-(defhydra aj/agenda ( :body-pre
-                      ;; (aj/org-agenda-clever)
-                      (let ((org-agenda-span 1)
-                            (aj/org-agenda nil))
-                        (org-agenda nil "9"))
-                      :color blue)
+(defhydra aj/agenda (:body-pre
+                     ;; (aj/org-agenda-clever)
+                     (if (aj/has-children-p "~/org/GTD.org" "INBOX")
+                         (org-agenda nil "i")
+                       (let ((org-agenda-span 1)
+                             (aj/org-agenda nil))
+                         (org-agenda nil "9")))
+                     :color blue)
   "Agenda"
   ("a" (org-agenda nil "9") "Agenda")
   ("c" ((lambda () (let ((hydra-lv nil))
