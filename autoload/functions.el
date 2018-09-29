@@ -1076,7 +1076,6 @@ imenu-list sidbar so it doesn't get closed in any other way then from inside of 
   (interactive)
   (progn
     (org-agenda nil "c")
-    (org-agenda-filter-apply aj/agenda-filter 'tag)
     ;; (aj/clever-agenda-filter)
     )
   )
@@ -1651,6 +1650,7 @@ If `README' is t, ask user for projectile project instead of file.
     )
   )
 
+;;;###autoload
 (defun aj/org-brain-entry-at-pt ()
   "Get current org-brain entry.
 In `org-mode' this is the current headline, or the file.
