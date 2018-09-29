@@ -569,7 +569,7 @@
   )
 
 (after! org
-  (set-popup-rule! "^\\*org-brain\\*$"    :size 0.21 :side 'left  :vslot -2 :select t :quit nil :ttl nil               :autosave t)
+  (set-popup-rule! "^\\*org-brain\\*$"    :size 0.24 :side 'left  :vslot -2 :select t :quit nil :ttl nil               :autosave t)
   (set-popup-rule! "^CAPTURE.*\\.org$"    :size 0.4  :side 'bottom          :select t                                  :autosave t)
   ;; (set-popup-rule! "README.org"           :size 0.4  :side 'left            :select t           :ttl nil               :autosave t)
   (set-popup-rule! "^\\*Org Src"          :size 0.4  :side 'right           :select t :quit t                          :autosave t)
