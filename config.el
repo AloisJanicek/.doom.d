@@ -804,7 +804,7 @@ than having to call `add-to-list' multiple times."
                                      :tag "INBOX")
                               (:discard (:anything t)))))))
        ((org-agenda-overriding-header " Inbox")
-        (org-agenda-hide-tags-regexp  "INBOX\\|CALENDAR\\|tags3")
+        (org-agenda-hide-tags-regexp  "INBOX\\|CALENDAR")
         (org-tags-match-list-sublevels t)))
 
       ("T" "Tasks" ((tags-todo "*"))((org-agenda-overriding-header "Tasks (no children, no schedule, by file)")
