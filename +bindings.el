@@ -135,6 +135,7 @@
        )
 
      (:localleader
+       "d" nil
        (:desc "decrypt:"          :prefix     "d"
          :desc "encrypt entry"     :nv        "e" #'org-encrypt-entry
          :desc "Encrytp entries"     :nv      "E" #'org-encrypt-entries
