@@ -297,7 +297,6 @@
         counsel-org-tags t
         )
   (set-popup-rule! "^\\*ivy-occur" :size 0.70 :ttl 0 :quit nil)
-  (advice-add #'+ivy-buffer-transformer :override #'+ivy-combined-buffer-transformer)
   (advice-add #'counsel-org-goto-bookmarks :after #'aj/take-care-of-org-buffers)
   (advice-add #'counsel-org-tag-agenda :after #'(lambda ()
                                                   (save-some-buffers t (lambda () (string= buffer-file-name (car org-agenda-contributing-files))))
@@ -305,10 +304,6 @@
                                                   ))
   )
 
-(after! counsel-projectile
-  (ivy-set-display-transformer #'counsel-projectile-find-file #'+ivy-projectile-find-file-combined-transformer)
-  ;; (advice-add  #'+ivy-projectile-find-file-transformer :override #'+ivy-projectile-find-file-combined-transformer)
-  )
 
 (after! epa
   (setq epa-pinentry-mode 'ask))
@@ -465,7 +460,6 @@
   )
 
 (after! ivy
-  (ivy-rich-mode)
   (setq ivy-height 40)
   (require 'map)
   (map-put ivy-display-functions-alist 't 'ivy-posframe-display-at-frame-center)
@@ -486,29 +480,6 @@
   (setq ivy-posframe-width 120)
   )
 
-(after! ivy-rich
-  (advice-add #'+ivy-recentf-transformer :override #'+ivy-recentf-combined-transformer)
-  (setq ivy-rich--display-transformers-list
-        '(
-          counsel-M-x
-          (:columns
-           ((counsel-M-x-transformer (:width 40))
-            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face :width 80))))
-          counsel-describe-function
-          (:columns
-           ((counsel-describe-function-transformer (:width 40))
-            (ivy-rich-counsel-function-docstring (:face font-lock-doc-face :width 80))))
-          counsel-describe-variable
-          (:columns
-           ((counsel-describe-variable-transformer (:width 40))
-            (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face :width 80))))
-          counsel-bookmark
-          (:columns
-           ((ivy-rich-bookmark-type)       ; return the file type of the bookmark target
-            (ivy-rich-candidate (:width 0.2))   ; return the bookmark name
-            (ivy-rich-bookmark-info)))  ; return the true name of the related file
-          ))
-  )
 
 (after! js2-mode
   (add-hook 'js2-mode-hook (lambda () (setq-local counsel-dash-docsets '("JavaScript" "HTML" "CSS"))))
