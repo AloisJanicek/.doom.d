@@ -25,8 +25,9 @@
    "C-<right>" #'next-buffer
    "C-<left>"  #'previous-buffer
    "M-p"       #'ivy-yasnippet
-   :ne    "M-f"       #'aj/my-swiper
-   :ne    "M-F"       #'swiper-all
+   "M-f"       #'aj/my-swiper
+   "M-F"       #'swiper-all
+   "M-s"       #'save-buffer
    "<f2>"      #'which-key-show-top-level
    "<f3>"      #'which-key-show-major-mode
    "<f4>"      #'which-key-show-minor-mode-keymap
